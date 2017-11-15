@@ -1,6 +1,6 @@
 ﻿namespace VirtualKeyboard
 {
-    partial class Form1
+    partial class Virtualkeyboard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // Virtualkeyboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 253);
-            this.Name = "Form1";
+            this.ClientSize = new System.Drawing.Size(1497, 750);
+            this.Name = "Virtualkeyboard";
             this.Text = "Virtual Keyboard";
             this.ResumeLayout(false);
 
