@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace VirtualKeyboard.Model
 {
-    class Staff
+    class Bar
     {
-
     }
 }
