@@ -8,6 +8,5 @@ namespace VirtualKeyboard.Model
 {
     class Staff
     {
-
     }
 }
