@@ -33,16 +33,16 @@
             // 
             // formContent
             // 
-            this.formContent.Location = new System.Drawing.Point(96, 124);
+            this.formContent.Location = new System.Drawing.Point(-2, 45);
             this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(420, 296);
+            this.formContent.Size = new System.Drawing.Size(1805, 1015);
             this.formContent.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 564);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.formContent);
             this.Name = "MainForm";
             this.Text = "MainForm";
