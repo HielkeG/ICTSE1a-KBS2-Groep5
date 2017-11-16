@@ -13,7 +13,6 @@ namespace VirtualPiano.View
 {
     public partial class ComposeView : UserControl
     {
-        private StaffView _staffView;
         Song song = new Song();
         Button btnAddStaff = new Button();
         int y_staff = 30;
@@ -28,7 +27,7 @@ namespace VirtualPiano.View
         {
             for (int x = 1; x <= song.GetStaffs().Count ;x++)
             {
-                AddStaffView();
+                AddStaffView(song.GetStaffs()[x-1]);
                 if (x == song.GetStaffs().Count)
                 {
                     AddStaffButton();         
@@ -51,22 +50,21 @@ namespace VirtualPiano.View
             {
                 if (x == song.GetStaffs().Count)
                 {
-                    AddStaffView();
+                    AddStaffView(song.GetStaffs()[x - 1]);
                     AddStaffButton();
                     y_staff += 190;
                 }
             }
         }
 
-        public void AddStaffView()
+        public void AddStaffView(Staff staff)
         {
             Panel panel = new Panel();
             panel.Location = new Point(500, y_staff);
             panel.Size = new Size(1300, 175);
-            panel.BackColor = Color.Green;
             this.Controls.Add(panel);
 
-            _staffView = new StaffView()
+            StaffView _staffView = new StaffView(staff)
             {
                 Dock = DockStyle.Fill
             };

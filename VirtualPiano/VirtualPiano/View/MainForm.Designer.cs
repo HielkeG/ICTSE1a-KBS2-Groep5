@@ -33,21 +33,18 @@
             // 
             // formContent
             // 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             this.formContent.Location = new System.Drawing.Point(1, 34);
             this.formContent.Name = "formContent";
             this.formContent.Size = new System.Drawing.Size(428, 531);
-=======
+
             this.formContent.Location = new System.Drawing.Point(-2, 45);
             this.formContent.Name = "formContent";
             this.formContent.Size = new System.Drawing.Size(1805, 1015);
->>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
-=======
+
             this.formContent.Location = new System.Drawing.Point(-2, 45);
             this.formContent.Name = "formContent";
             this.formContent.Size = new System.Drawing.Size(1805, 1015);
->>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
             this.formContent.TabIndex = 0;
             // 
             // MainForm

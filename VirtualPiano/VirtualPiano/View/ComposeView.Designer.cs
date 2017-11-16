@@ -43,8 +43,7 @@
             // 
             // toolStripContainer1
             // 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             this.toolStripContainer1.BottomToolStripPanelVisible = false;
             // 
             // toolStripContainer1.ContentPanel
@@ -143,20 +142,13 @@
             this.EenTweeenDertigsteNoot.Name = "EenTweeenDertigsteNoot";
             this.EenTweeenDertigsteNoot.Size = new System.Drawing.Size(130, 55);
             this.EenTweeenDertigsteNoot.Text = "1/32e noot";
-=======
-=======
->>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
+
             this.button1.Location = new System.Drawing.Point(50, 163);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-
-<<<<<<< HEAD
->>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
-=======
->>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
             // 
             // ComposeView
             // 
@@ -164,8 +156,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "ComposeView";
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             this.Size = new System.Drawing.Size(790, 512);
             this.toolStripContainer1.LeftToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.LeftToolStripPanel.PerformLayout();
@@ -173,12 +164,11 @@
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-=======
+
             this.Size = new System.Drawing.Size(1900, 1000);
->>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
-=======
+
             this.Size = new System.Drawing.Size(1900, 1000);
->>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
+
             this.ResumeLayout(false);
 
         }
