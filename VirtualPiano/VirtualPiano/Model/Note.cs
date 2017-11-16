@@ -12,6 +12,8 @@ namespace VirtualPiano.Model
     {
         string name;
         int octave;
+        int tone;
+
         //Sound sound;
         NoteName noteName;
         

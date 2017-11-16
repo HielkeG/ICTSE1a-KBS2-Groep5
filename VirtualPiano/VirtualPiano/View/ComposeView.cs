@@ -16,6 +16,7 @@ namespace VirtualPiano.View
         private StaffView _staffView;
         Song song = new Song();
         Button btnAddStaff = new Button();
+        List<Note> notenbalk = new List<Note>();
         int y_staff = 30;
 
         public ComposeView()
