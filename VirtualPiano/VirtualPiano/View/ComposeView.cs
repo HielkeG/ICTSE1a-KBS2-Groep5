@@ -63,13 +63,14 @@ namespace VirtualPiano.View
             Panel panel = new Panel();
             panel.Location = new Point(500, y_staff);
             panel.Size = new Size(1300, 175);
-            this.Controls.Add(panel);
-
+            Controls.Add(panel);
             StaffView _staffView = new StaffView(staff)
             {
-                Dock = DockStyle.Fill
+                Dock = DockStyle.None
+                
             };
             panel.Controls.Add(_staffView);
+
         }
 
         public void AddStaffButton()

@@ -36,38 +36,34 @@
             this.EenAchtsteNoot = new System.Windows.Forms.ToolStripButton();
             this.EenZestiendeNoot = new System.Windows.Forms.ToolStripButton();
             this.EenTweeenDertigsteNoot = new System.Windows.Forms.ToolStripButton();
-            this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripContainer1
             // 
-
             this.toolStripContainer1.BottomToolStripPanelVisible = false;
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(659, 512);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            // 
-            // toolStripContainer1.LeftToolStripPanel
-            // 
-            this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.toolStrip1);
-            this.toolStripContainer1.LeftToolStripPanel.Click += new System.EventHandler(this.toolStripContainer1_LeftToolStripPanel_Click);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(130, 1000);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Left;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(790, 512);
+            this.toolStripContainer1.Size = new System.Drawing.Size(130, 1000);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(25, 40);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -77,9 +73,10 @@
             this.EenAchtsteNoot,
             this.EenZestiendeNoot,
             this.EenTweeenDertigsteNoot});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 3);
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(131, 366);
+            this.toolStrip1.Size = new System.Drawing.Size(131, 1000);
             this.toolStrip1.TabIndex = 0;
             // 
             // HeleNoot
@@ -142,13 +139,6 @@
             this.EenTweeenDertigsteNoot.Name = "EenTweeenDertigsteNoot";
             this.EenTweeenDertigsteNoot.Size = new System.Drawing.Size(130, 55);
             this.EenTweeenDertigsteNoot.Text = "1/32e noot";
-
-            this.button1.Location = new System.Drawing.Point(50, 163);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // ComposeView
             // 
@@ -156,19 +146,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "ComposeView";
-
-            this.Size = new System.Drawing.Size(790, 512);
-            this.toolStripContainer1.LeftToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.LeftToolStripPanel.PerformLayout();
+            this.Size = new System.Drawing.Size(1900, 1000);
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-
-            this.Size = new System.Drawing.Size(1900, 1000);
-
-            this.Size = new System.Drawing.Size(1900, 1000);
-
             this.ResumeLayout(false);
 
         }

@@ -28,23 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.formContent = new System.Windows.Forms.Panel();
+            this.formContent = new VirtualPiano.View.ComposeView();
             this.SuspendLayout();
             // 
             // formContent
             // 
-
-            this.formContent.Location = new System.Drawing.Point(1, 34);
+            this.formContent.BackColor = System.Drawing.Color.Transparent;
+            this.formContent.Location = new System.Drawing.Point(2, 12);
             this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(428, 531);
-
-            this.formContent.Location = new System.Drawing.Point(-2, 45);
-            this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(1805, 1015);
-
-            this.formContent.Location = new System.Drawing.Point(-2, 45);
-            this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(1805, 1015);
+            this.formContent.Size = new System.Drawing.Size(1900, 1029);
             this.formContent.TabIndex = 0;
             // 
             // MainForm
@@ -53,6 +45,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.formContent);
+            this.DoubleBuffered = true;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);
@@ -61,7 +54,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel formContent;
+        public View.ComposeView formContent;
     }
 }
 
