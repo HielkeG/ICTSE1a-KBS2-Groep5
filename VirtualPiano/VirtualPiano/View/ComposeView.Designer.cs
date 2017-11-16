@@ -28,31 +28,170 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.HeleNoot = new System.Windows.Forms.ToolStripButton();
+            this.HalveNoot = new System.Windows.Forms.ToolStripButton();
+            this.KwartNoot = new System.Windows.Forms.ToolStripButton();
+            this.EenAchtsteNoot = new System.Windows.Forms.ToolStripButton();
+            this.EenZestiendeNoot = new System.Windows.Forms.ToolStripButton();
+            this.EenTweeenDertigsteNoot = new System.Windows.Forms.ToolStripButton();
+            this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // toolStripContainer1
             // 
-            this.button1.Location = new System.Drawing.Point(100, 130);
+<<<<<<< HEAD
+<<<<<<< HEAD
+            this.toolStripContainer1.BottomToolStripPanelVisible = false;
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(659, 512);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            // 
+            // toolStripContainer1.LeftToolStripPanel
+            // 
+            this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.LeftToolStripPanel.Click += new System.EventHandler(this.toolStripContainer1_LeftToolStripPanel_Click);
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(2);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.RightToolStripPanelVisible = false;
+            this.toolStripContainer1.Size = new System.Drawing.Size(790, 512);
+            this.toolStripContainer1.TabIndex = 0;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            this.toolStripContainer1.TopToolStripPanelVisible = false;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(25, 40);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.HeleNoot,
+            this.HalveNoot,
+            this.KwartNoot,
+            this.EenAchtsteNoot,
+            this.EenZestiendeNoot,
+            this.EenTweeenDertigsteNoot});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(131, 366);
+            this.toolStrip1.TabIndex = 0;
+            // 
+            // HeleNoot
+            // 
+            this.HeleNoot.AutoSize = false;
+            this.HeleNoot.Image = global::VirtualPiano.Properties.Resources.helenoot_icon;
+            this.HeleNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.HeleNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HeleNoot.Margin = new System.Windows.Forms.Padding(0);
+            this.HeleNoot.Name = "HeleNoot";
+            this.HeleNoot.Size = new System.Drawing.Size(130, 55);
+            this.HeleNoot.Text = "Hele noot";
+            // 
+            // HalveNoot
+            // 
+            this.HalveNoot.AutoSize = false;
+            this.HalveNoot.Image = global::VirtualPiano.Properties.Resources.halvenoot_icon;
+            this.HalveNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.HalveNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HalveNoot.Name = "HalveNoot";
+            this.HalveNoot.Size = new System.Drawing.Size(130, 55);
+            this.HalveNoot.Text = "Halve noot";
+            // 
+            // KwartNoot
+            // 
+            this.KwartNoot.AutoSize = false;
+            this.KwartNoot.Image = global::VirtualPiano.Properties.Resources.kwartnoot_icon;
+            this.KwartNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.KwartNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.KwartNoot.Name = "KwartNoot";
+            this.KwartNoot.Size = new System.Drawing.Size(130, 55);
+            this.KwartNoot.Text = "Kwart noot";
+            // 
+            // EenAchtsteNoot
+            // 
+            this.EenAchtsteNoot.AutoSize = false;
+            this.EenAchtsteNoot.Image = global::VirtualPiano.Properties.Resources.achtstenoot_icon;
+            this.EenAchtsteNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EenAchtsteNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EenAchtsteNoot.Name = "EenAchtsteNoot";
+            this.EenAchtsteNoot.Size = new System.Drawing.Size(130, 55);
+            this.EenAchtsteNoot.Text = "1/8e noot";
+            // 
+            // EenZestiendeNoot
+            // 
+            this.EenZestiendeNoot.AutoSize = false;
+            this.EenZestiendeNoot.Image = global::VirtualPiano.Properties.Resources.zestiendenoot_icon;
+            this.EenZestiendeNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EenZestiendeNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EenZestiendeNoot.Name = "EenZestiendeNoot";
+            this.EenZestiendeNoot.Size = new System.Drawing.Size(130, 55);
+            this.EenZestiendeNoot.Text = "1/16e noot";
+            // 
+            // EenTweeenDertigsteNoot
+            // 
+            this.EenTweeenDertigsteNoot.AutoSize = false;
+            this.EenTweeenDertigsteNoot.Image = global::VirtualPiano.Properties.Resources.tweeendertigstenoot_icon;
+            this.EenTweeenDertigsteNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EenTweeenDertigsteNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EenTweeenDertigsteNoot.Name = "EenTweeenDertigsteNoot";
+            this.EenTweeenDertigsteNoot.Size = new System.Drawing.Size(130, 55);
+            this.EenTweeenDertigsteNoot.Text = "1/32e noot";
+=======
+=======
+>>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
+            this.button1.Location = new System.Drawing.Point(50, 163);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+
+<<<<<<< HEAD
+>>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
+=======
+>>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
             // 
             // ComposeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.toolStripContainer1);
             this.Name = "ComposeView";
-            this.Size = new System.Drawing.Size(523, 357);
+<<<<<<< HEAD
+<<<<<<< HEAD
+            this.Size = new System.Drawing.Size(790, 512);
+            this.toolStripContainer1.LeftToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.LeftToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+=======
+            this.Size = new System.Drawing.Size(1900, 1000);
+>>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
+=======
+            this.Size = new System.Drawing.Size(1900, 1000);
+>>>>>>> 4e27e07f8d1477167a5961d97fe55022b7c07992
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton HeleNoot;
+        private System.Windows.Forms.ToolStripButton HalveNoot;
+        private System.Windows.Forms.ToolStripButton KwartNoot;
+        private System.Windows.Forms.ToolStripButton EenAchtsteNoot;
+        private System.Windows.Forms.ToolStripButton EenZestiendeNoot;
+        private System.Windows.Forms.ToolStripButton EenTweeenDertigsteNoot;
     }
 }
