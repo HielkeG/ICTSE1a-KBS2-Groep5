@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComposeView));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.FullNote = new System.Windows.Forms.ToolStripButton();
@@ -41,7 +40,6 @@
             this.Flat = new System.Windows.Forms.ToolStripButton();
             this.GKey = new System.Windows.Forms.ToolStripButton();
             this.FKey = new System.Windows.Forms.ToolStripButton();
-            this.CKey = new System.Windows.Forms.ToolStripButton();
             this.FullRest = new System.Windows.Forms.ToolStripButton();
             this.HalfRest = new System.Windows.Forms.ToolStripButton();
             this.QuarterRest = new System.Windows.Forms.ToolStripButton();
@@ -86,14 +84,13 @@
             this.Flat,
             this.GKey,
             this.FKey,
-            this.CKey,
             this.FullRest,
             this.HalfRest,
             this.QuarterRest});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(131, 830);
+            this.toolStrip1.Size = new System.Drawing.Size(131, 772);
             this.toolStrip1.TabIndex = 0;
             // 
             // FullNote
@@ -160,7 +157,8 @@
             // Sharp
             // 
             this.Sharp.AutoSize = false;
-            this.Sharp.Image = ((System.Drawing.Image)(resources.GetObject("Sharp.Image")));
+            this.Sharp.Image = global::VirtualPiano.Properties.Resources.Kruis;
+            this.Sharp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Sharp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Sharp.Name = "Sharp";
             this.Sharp.Size = new System.Drawing.Size(130, 55);
@@ -169,7 +167,8 @@
             // Flat
             // 
             this.Flat.AutoSize = false;
-            this.Flat.Image = ((System.Drawing.Image)(resources.GetObject("Flat.Image")));
+            this.Flat.Image = global::VirtualPiano.Properties.Resources.Mol;
+            this.Flat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Flat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Flat.Name = "Flat";
             this.Flat.Size = new System.Drawing.Size(130, 55);
@@ -178,7 +177,8 @@
             // GKey
             // 
             this.GKey.AutoSize = false;
-            this.GKey.Image = ((System.Drawing.Image)(resources.GetObject("GKey.Image")));
+            this.GKey.Image = global::VirtualPiano.Properties.Resources.Gsleutel_icon;
+            this.GKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.GKey.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GKey.Name = "GKey";
             this.GKey.Size = new System.Drawing.Size(130, 55);
@@ -187,25 +187,18 @@
             // FKey
             // 
             this.FKey.AutoSize = false;
-            this.FKey.Image = ((System.Drawing.Image)(resources.GetObject("FKey.Image")));
+            this.FKey.Image = global::VirtualPiano.Properties.Resources.fsleutel;
+            this.FKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FKey.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FKey.Name = "FKey";
             this.FKey.Size = new System.Drawing.Size(130, 55);
             this.FKey.Text = "F-Sleutel";
             // 
-            // CKey
-            // 
-            this.CKey.AutoSize = false;
-            this.CKey.Image = ((System.Drawing.Image)(resources.GetObject("CKey.Image")));
-            this.CKey.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CKey.Name = "CKey";
-            this.CKey.Size = new System.Drawing.Size(130, 55);
-            this.CKey.Text = "C-Sleutel";
-            // 
             // FullRest
             // 
             this.FullRest.AutoSize = false;
-            this.FullRest.Image = ((System.Drawing.Image)(resources.GetObject("FullRest.Image")));
+            this.FullRest.Image = global::VirtualPiano.Properties.Resources.HeleRust;
+            this.FullRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FullRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FullRest.Name = "FullRest";
             this.FullRest.Size = new System.Drawing.Size(130, 55);
@@ -214,7 +207,8 @@
             // HalfRest
             // 
             this.HalfRest.AutoSize = false;
-            this.HalfRest.Image = ((System.Drawing.Image)(resources.GetObject("HalfRest.Image")));
+            this.HalfRest.Image = global::VirtualPiano.Properties.Resources.HalveRust;
+            this.HalfRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HalfRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HalfRest.Name = "HalfRest";
             this.HalfRest.Size = new System.Drawing.Size(130, 55);
@@ -223,7 +217,8 @@
             // QuarterRest
             // 
             this.QuarterRest.AutoSize = false;
-            this.QuarterRest.Image = ((System.Drawing.Image)(resources.GetObject("QuarterRest.Image")));
+            this.QuarterRest.Image = global::VirtualPiano.Properties.Resources.KwartRust;
+            this.QuarterRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.QuarterRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.QuarterRest.Name = "QuarterRest";
             this.QuarterRest.Size = new System.Drawing.Size(130, 55);
@@ -260,7 +255,6 @@
         private System.Windows.Forms.ToolStripButton Flat;
         private System.Windows.Forms.ToolStripButton GKey;
         private System.Windows.Forms.ToolStripButton FKey;
-        private System.Windows.Forms.ToolStripButton CKey;
         private System.Windows.Forms.ToolStripButton FullRest;
         private System.Windows.Forms.ToolStripButton HalfRest;
         private System.Windows.Forms.ToolStripButton QuarterRest;

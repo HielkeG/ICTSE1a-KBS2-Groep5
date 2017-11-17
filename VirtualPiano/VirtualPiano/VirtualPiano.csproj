@@ -105,7 +105,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenoot.png" />
   </ItemGroup>
   <ItemGroup>
@@ -146,8 +145,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestiendenoot_icon.png" />
-
-    <Folder Include="Control\" /> <Folder Include="Control\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\fsleutel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\HalveRust.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\HeleRust.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\Kruis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\KwartRust.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\Mol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Control\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
