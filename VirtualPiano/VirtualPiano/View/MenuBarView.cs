@@ -22,12 +22,10 @@ namespace VirtualPiano.View
             if (geluidAanuitToolStripMenuItem.Checked)
             {
                 geluidAanuitToolStripMenuItem.CheckState = CheckState.Unchecked;
-                Console.WriteLine("zet false");
             }
             else
             {
                 geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
-                Console.WriteLine("zet false");
             }
         }
     }
