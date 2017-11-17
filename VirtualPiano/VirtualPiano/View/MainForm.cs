@@ -17,6 +17,7 @@ namespace VirtualPiano
         public MainForm()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
         }
             //public void StartOver()
             //{

@@ -34,9 +34,9 @@
             // formContent
             // 
             this.formContent.BackColor = System.Drawing.Color.Transparent;
-            this.formContent.Location = new System.Drawing.Point(2, 12);
+            this.formContent.Location = new System.Drawing.Point(2, 24);
             this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(1900, 1029);
+            this.formContent.Size = new System.Drawing.Size(1900, 1017);
             this.formContent.TabIndex = 0;
             // 
             // MainForm

@@ -28,14 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComposeView));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.HeleNoot = new System.Windows.Forms.ToolStripButton();
-            this.HalveNoot = new System.Windows.Forms.ToolStripButton();
-            this.KwartNoot = new System.Windows.Forms.ToolStripButton();
-            this.EenAchtsteNoot = new System.Windows.Forms.ToolStripButton();
-            this.EenZestiendeNoot = new System.Windows.Forms.ToolStripButton();
-            this.EenTweeenDertigsteNoot = new System.Windows.Forms.ToolStripButton();
+            this.FullNote = new System.Windows.Forms.ToolStripButton();
+            this.HalfNote = new System.Windows.Forms.ToolStripButton();
+            this.QuarterNote = new System.Windows.Forms.ToolStripButton();
+            this.EightNote = new System.Windows.Forms.ToolStripButton();
+            this.SixteenthNote = new System.Windows.Forms.ToolStripButton();
+            this.ThirtySecondNote = new System.Windows.Forms.ToolStripButton();
+            this.Sharp = new System.Windows.Forms.ToolStripButton();
+            this.Flat = new System.Windows.Forms.ToolStripButton();
+            this.GKey = new System.Windows.Forms.ToolStripButton();
+            this.FKey = new System.Windows.Forms.ToolStripButton();
+            this.CKey = new System.Windows.Forms.ToolStripButton();
+            this.FullRest = new System.Windows.Forms.ToolStripButton();
+            this.HalfRest = new System.Windows.Forms.ToolStripButton();
+            this.QuarterRest = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -47,7 +56,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(130, 1000);
@@ -63,82 +72,162 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(25, 40);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.HeleNoot,
-            this.HalveNoot,
-            this.KwartNoot,
-            this.EenAchtsteNoot,
-            this.EenZestiendeNoot,
-            this.EenTweeenDertigsteNoot});
+            this.FullNote,
+            this.HalfNote,
+            this.QuarterNote,
+            this.EightNote,
+            this.SixteenthNote,
+            this.ThirtySecondNote,
+            this.Sharp,
+            this.Flat,
+            this.GKey,
+            this.FKey,
+            this.CKey,
+            this.FullRest,
+            this.HalfRest,
+            this.QuarterRest});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(131, 1000);
+            this.toolStrip1.Size = new System.Drawing.Size(131, 830);
             this.toolStrip1.TabIndex = 0;
             // 
-            // HeleNoot
+            // FullNote
             // 
-            this.HeleNoot.AutoSize = false;
-            this.HeleNoot.Image = global::VirtualPiano.Properties.Resources.helenoot_icon;
-            this.HeleNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.HeleNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.HeleNoot.Margin = new System.Windows.Forms.Padding(0);
-            this.HeleNoot.Name = "HeleNoot";
-            this.HeleNoot.Size = new System.Drawing.Size(130, 55);
-            this.HeleNoot.Text = "Hele noot";
+            this.FullNote.AutoSize = false;
+            this.FullNote.Image = global::VirtualPiano.Properties.Resources.helenoot_icon;
+            this.FullNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.FullNote.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FullNote.Margin = new System.Windows.Forms.Padding(0);
+            this.FullNote.Name = "FullNote";
+            this.FullNote.Size = new System.Drawing.Size(130, 55);
+            this.FullNote.Text = "Hele noot";
             // 
-            // HalveNoot
+            // HalfNote
             // 
-            this.HalveNoot.AutoSize = false;
-            this.HalveNoot.Image = global::VirtualPiano.Properties.Resources.halvenoot_icon;
-            this.HalveNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.HalveNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.HalveNoot.Name = "HalveNoot";
-            this.HalveNoot.Size = new System.Drawing.Size(130, 55);
-            this.HalveNoot.Text = "Halve noot";
+            this.HalfNote.AutoSize = false;
+            this.HalfNote.Image = global::VirtualPiano.Properties.Resources.halvenoot_icon;
+            this.HalfNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.HalfNote.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HalfNote.Name = "HalfNote";
+            this.HalfNote.Size = new System.Drawing.Size(130, 55);
+            this.HalfNote.Text = "Halve noot";
             // 
-            // KwartNoot
+            // QuarterNote
             // 
-            this.KwartNoot.AutoSize = false;
-            this.KwartNoot.Image = global::VirtualPiano.Properties.Resources.kwartnoot_icon;
-            this.KwartNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.KwartNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.KwartNoot.Name = "KwartNoot";
-            this.KwartNoot.Size = new System.Drawing.Size(130, 55);
-            this.KwartNoot.Text = "Kwart noot";
+            this.QuarterNote.AutoSize = false;
+            this.QuarterNote.Image = global::VirtualPiano.Properties.Resources.kwartnoot_icon;
+            this.QuarterNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.QuarterNote.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.QuarterNote.Name = "QuarterNote";
+            this.QuarterNote.Size = new System.Drawing.Size(130, 55);
+            this.QuarterNote.Text = "Kwart noot";
             // 
-            // EenAchtsteNoot
+            // EightNote
             // 
-            this.EenAchtsteNoot.AutoSize = false;
-            this.EenAchtsteNoot.Image = global::VirtualPiano.Properties.Resources.achtstenoot_icon;
-            this.EenAchtsteNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EenAchtsteNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EenAchtsteNoot.Name = "EenAchtsteNoot";
-            this.EenAchtsteNoot.Size = new System.Drawing.Size(130, 55);
-            this.EenAchtsteNoot.Text = "1/8e noot";
+            this.EightNote.AutoSize = false;
+            this.EightNote.Image = global::VirtualPiano.Properties.Resources.achtstenoot_icon;
+            this.EightNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EightNote.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EightNote.Name = "EightNote";
+            this.EightNote.Size = new System.Drawing.Size(130, 55);
+            this.EightNote.Text = "1/8e noot";
             // 
-            // EenZestiendeNoot
+            // SixteenthNote
             // 
-            this.EenZestiendeNoot.AutoSize = false;
-            this.EenZestiendeNoot.Image = global::VirtualPiano.Properties.Resources.zestiendenoot_icon;
-            this.EenZestiendeNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EenZestiendeNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EenZestiendeNoot.Name = "EenZestiendeNoot";
-            this.EenZestiendeNoot.Size = new System.Drawing.Size(130, 55);
-            this.EenZestiendeNoot.Text = "1/16e noot";
+            this.SixteenthNote.AutoSize = false;
+            this.SixteenthNote.Image = global::VirtualPiano.Properties.Resources.zestiendenoot_icon;
+            this.SixteenthNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SixteenthNote.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SixteenthNote.Name = "SixteenthNote";
+            this.SixteenthNote.Size = new System.Drawing.Size(130, 55);
+            this.SixteenthNote.Text = "1/16e noot";
             // 
-            // EenTweeenDertigsteNoot
+            // ThirtySecondNote
             // 
-            this.EenTweeenDertigsteNoot.AutoSize = false;
-            this.EenTweeenDertigsteNoot.Image = global::VirtualPiano.Properties.Resources.tweeendertigstenoot_icon;
-            this.EenTweeenDertigsteNoot.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EenTweeenDertigsteNoot.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EenTweeenDertigsteNoot.Name = "EenTweeenDertigsteNoot";
-            this.EenTweeenDertigsteNoot.Size = new System.Drawing.Size(130, 55);
-            this.EenTweeenDertigsteNoot.Text = "1/32e noot";
+            this.ThirtySecondNote.AutoSize = false;
+            this.ThirtySecondNote.Image = global::VirtualPiano.Properties.Resources.tweeendertigstenoot_icon;
+            this.ThirtySecondNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ThirtySecondNote.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ThirtySecondNote.Name = "ThirtySecondNote";
+            this.ThirtySecondNote.Size = new System.Drawing.Size(130, 55);
+            this.ThirtySecondNote.Text = "1/32e noot";
+            // 
+            // Sharp
+            // 
+            this.Sharp.AutoSize = false;
+            this.Sharp.Image = ((System.Drawing.Image)(resources.GetObject("Sharp.Image")));
+            this.Sharp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Sharp.Name = "Sharp";
+            this.Sharp.Size = new System.Drawing.Size(130, 55);
+            this.Sharp.Text = "Kruis";
+            // 
+            // Flat
+            // 
+            this.Flat.AutoSize = false;
+            this.Flat.Image = ((System.Drawing.Image)(resources.GetObject("Flat.Image")));
+            this.Flat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Flat.Name = "Flat";
+            this.Flat.Size = new System.Drawing.Size(130, 55);
+            this.Flat.Text = "Mol";
+            // 
+            // GKey
+            // 
+            this.GKey.AutoSize = false;
+            this.GKey.Image = ((System.Drawing.Image)(resources.GetObject("GKey.Image")));
+            this.GKey.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.GKey.Name = "GKey";
+            this.GKey.Size = new System.Drawing.Size(130, 55);
+            this.GKey.Text = "G-Sleutel";
+            // 
+            // FKey
+            // 
+            this.FKey.AutoSize = false;
+            this.FKey.Image = ((System.Drawing.Image)(resources.GetObject("FKey.Image")));
+            this.FKey.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FKey.Name = "FKey";
+            this.FKey.Size = new System.Drawing.Size(130, 55);
+            this.FKey.Text = "F-Sleutel";
+            // 
+            // CKey
+            // 
+            this.CKey.AutoSize = false;
+            this.CKey.Image = ((System.Drawing.Image)(resources.GetObject("CKey.Image")));
+            this.CKey.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CKey.Name = "CKey";
+            this.CKey.Size = new System.Drawing.Size(130, 55);
+            this.CKey.Text = "C-Sleutel";
+            // 
+            // FullRest
+            // 
+            this.FullRest.AutoSize = false;
+            this.FullRest.Image = ((System.Drawing.Image)(resources.GetObject("FullRest.Image")));
+            this.FullRest.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FullRest.Name = "FullRest";
+            this.FullRest.Size = new System.Drawing.Size(130, 55);
+            this.FullRest.Text = "Hele Rust";
+            // 
+            // HalfRest
+            // 
+            this.HalfRest.AutoSize = false;
+            this.HalfRest.Image = ((System.Drawing.Image)(resources.GetObject("HalfRest.Image")));
+            this.HalfRest.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HalfRest.Name = "HalfRest";
+            this.HalfRest.Size = new System.Drawing.Size(130, 55);
+            this.HalfRest.Text = "Halve Rust";
+            // 
+            // QuarterRest
+            // 
+            this.QuarterRest.AutoSize = false;
+            this.QuarterRest.Image = ((System.Drawing.Image)(resources.GetObject("QuarterRest.Image")));
+            this.QuarterRest.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.QuarterRest.Name = "QuarterRest";
+            this.QuarterRest.Size = new System.Drawing.Size(130, 55);
+            this.QuarterRest.Text = "Kwart rust";
             // 
             // ComposeView
             // 
@@ -161,11 +250,19 @@
 
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton HeleNoot;
-        private System.Windows.Forms.ToolStripButton HalveNoot;
-        private System.Windows.Forms.ToolStripButton KwartNoot;
-        private System.Windows.Forms.ToolStripButton EenAchtsteNoot;
-        private System.Windows.Forms.ToolStripButton EenZestiendeNoot;
-        private System.Windows.Forms.ToolStripButton EenTweeenDertigsteNoot;
+        private System.Windows.Forms.ToolStripButton FullNote;
+        private System.Windows.Forms.ToolStripButton HalfNote;
+        private System.Windows.Forms.ToolStripButton QuarterNote;
+        private System.Windows.Forms.ToolStripButton EightNote;
+        private System.Windows.Forms.ToolStripButton SixteenthNote;
+        private System.Windows.Forms.ToolStripButton ThirtySecondNote;
+        private System.Windows.Forms.ToolStripButton Sharp;
+        private System.Windows.Forms.ToolStripButton Flat;
+        private System.Windows.Forms.ToolStripButton GKey;
+        private System.Windows.Forms.ToolStripButton FKey;
+        private System.Windows.Forms.ToolStripButton CKey;
+        private System.Windows.Forms.ToolStripButton FullRest;
+        private System.Windows.Forms.ToolStripButton HalfRest;
+        private System.Windows.Forms.ToolStripButton QuarterRest;
     }
 }
