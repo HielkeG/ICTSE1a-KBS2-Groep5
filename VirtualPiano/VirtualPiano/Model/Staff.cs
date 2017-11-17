@@ -8,6 +8,6 @@ namespace VirtualPiano.Model
 {
     public class Staff
     {
-        public List<Bar> Bars = new List<Bar>() { new Bar(), new Bar(), new Bar(), new Bar() }; 
+        public List<Bar> Bars = new List<Bar>() { new Bar(ClefName.G), new Bar(), new Bar(), new Bar() }; 
     }
 }

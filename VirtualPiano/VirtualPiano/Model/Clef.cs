@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace VirtualPiano.Model
 {
-    public class Clef : Sign
-    {
-        string name;
-    }
+   
+        
+    //public class Clef : Sign
+    //{
+    //    clefName name;
+
+    //    public Clef(clefName name)
+    //    {
+    //        this.name = name;
+    //    }
+    //}
 }
