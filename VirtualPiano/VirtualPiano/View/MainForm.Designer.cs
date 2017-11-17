@@ -29,163 +29,50 @@
         private void InitializeComponent()
         {
             this.formContent = new VirtualPiano.View.ComposeView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.bestandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nieuwToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.opslaanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opslaanAlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exporterenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.beeldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.SuspendLayout();
             // 
             // formContent
             // 
             this.formContent.BackColor = System.Drawing.Color.Transparent;
+            this.formContent.ForeColor = System.Drawing.Color.Transparent;
             this.formContent.Location = new System.Drawing.Point(2, 24);
             this.formContent.Name = "formContent";
             this.formContent.Size = new System.Drawing.Size(1900, 1017);
             this.formContent.TabIndex = 0;
             this.formContent.Load += new System.EventHandler(this.formContent_Load);
             // 
-            // menuStrip1
+            // menuBarView1
             // 
-            this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bestandToolStripMenuItem,
-            this.beeldToolStripMenuItem,
-            this.geluidToolStripMenuItem,
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 6, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1904, 24);
-            this.menuStrip1.Stretch = false;
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // bestandToolStripMenuItem
-            // 
-            this.bestandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nieuwToolStripMenuItem,
-            this.openenToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.opslaanToolStripMenuItem,
-            this.opslaanAlsToolStripMenuItem,
-            this.exporterenToolStripMenuItem});
-            this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
-            this.bestandToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.bestandToolStripMenuItem.Text = "Bestand";
-            // 
-            // nieuwToolStripMenuItem
-            // 
-            this.nieuwToolStripMenuItem.Name = "nieuwToolStripMenuItem";
-            this.nieuwToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.nieuwToolStripMenuItem.Text = "Nieuw...";
-            // 
-            // openenToolStripMenuItem
-            // 
-            this.openenToolStripMenuItem.Name = "openenToolStripMenuItem";
-            this.openenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openenToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.openenToolStripMenuItem.Text = "Openen...";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(212, 6);
-            // 
-            // opslaanToolStripMenuItem
-            // 
-            this.opslaanToolStripMenuItem.Name = "opslaanToolStripMenuItem";
-            this.opslaanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.opslaanToolStripMenuItem.Text = "Opslaan";
-            // 
-            // opslaanAlsToolStripMenuItem
-            // 
-            this.opslaanAlsToolStripMenuItem.Name = "opslaanAlsToolStripMenuItem";
-            this.opslaanAlsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.opslaanAlsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.opslaanAlsToolStripMenuItem.Text = "Opslaan als...";
-            // 
-            // exporterenToolStripMenuItem
-            // 
-            this.exporterenToolStripMenuItem.Name = "exporterenToolStripMenuItem";
-            this.exporterenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.E)));
-            this.exporterenToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.exporterenToolStripMenuItem.Text = "Exporteren...";
-            // 
-            // beeldToolStripMenuItem
-            // 
-            this.beeldToolStripMenuItem.Name = "beeldToolStripMenuItem";
-            this.beeldToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.beeldToolStripMenuItem.Text = "Beeld";
-            // 
-            // geluidToolStripMenuItem
-            // 
-            this.geluidToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.geluidAanuitToolStripMenuItem});
-            this.geluidToolStripMenuItem.Name = "geluidToolStripMenuItem";
-            this.geluidToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.geluidToolStripMenuItem.Text = "Geluid";
-            // 
-            // geluidAanuitToolStripMenuItem
-            // 
-            this.geluidAanuitToolStripMenuItem.Checked = true;
-            this.geluidAanuitToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.geluidAanuitToolStripMenuItem.Name = "geluidAanuitToolStripMenuItem";
-            this.geluidAanuitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
-            // 
-            // asdfdsafdsfadsfadsfaToolStripMenuItem
-            // 
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem.Name = "asdfdsafdsfadsfadsfaToolStripMenuItem";
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem.Text = "asdfdsafdsfadsfadsfa";
+            this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.menuBarView1.Location = new System.Drawing.Point(0, 0);
+            this.menuBarView1.Margin = new System.Windows.Forms.Padding(0);
+            this.menuBarView1.Name = "menuBarView1";
+            this.menuBarView1.Size = new System.Drawing.Size(500, 25);
+            this.menuBarView1.TabIndex = 1;
+            this.menuBarView1.Load += new System.EventHandler(this.menuBarView1_Load);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuBarView1);
             this.Controls.Add(this.formContent);
             this.DoubleBuffered = true;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimumSize = new System.Drawing.Size(960, 540);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         public View.ComposeView formContent;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem bestandToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nieuwToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem opslaanToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opslaanAlsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exporterenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem beeldToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem asdfdsafdsfadsfadsfaToolStripMenuItem;
+        private View.MenuBarView menuBarView1;
     }
 }
 

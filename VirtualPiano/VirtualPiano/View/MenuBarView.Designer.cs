@@ -35,6 +35,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.opslaanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opslaanAlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exporterenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beeldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +67,7 @@
             this.toolStripSeparator1,
             this.opslaanToolStripMenuItem,
             this.opslaanAlsToolStripMenuItem,
+            this.toolStripSeparator2,
             this.exporterenToolStripMenuItem});
             this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
             this.bestandToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -105,6 +107,11 @@
             this.opslaanAlsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.opslaanAlsToolStripMenuItem.Text = "Opslaan als...";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(212, 6);
+            // 
             // exporterenToolStripMenuItem
             // 
             this.exporterenToolStripMenuItem.Name = "exporterenToolStripMenuItem";
@@ -135,6 +142,7 @@
             this.geluidAanuitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
+            this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.geluidAanuitToolStripMenuItem_Click);
             // 
             // MenuBarView
             // 
@@ -165,5 +173,6 @@
         private System.Windows.Forms.ToolStripMenuItem beeldToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

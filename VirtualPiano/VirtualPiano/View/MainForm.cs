@@ -24,6 +24,16 @@ namespace VirtualPiano
         {
 
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void menuBarView1_Load(object sender, EventArgs e)
+        {
+
+        }
         //public void StartOver()
         //{
         //    formContent.Controls.Remove(_mainView);

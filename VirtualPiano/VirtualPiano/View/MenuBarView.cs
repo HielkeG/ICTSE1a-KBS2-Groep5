@@ -16,5 +16,19 @@ namespace VirtualPiano.View
         {
             InitializeComponent();
         }
+
+        public void geluidAanuitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (geluidAanuitToolStripMenuItem.Checked)
+            {
+                geluidAanuitToolStripMenuItem.CheckState = CheckState.Unchecked;
+                Console.WriteLine("zet false");
+            }
+            else
+            {
+                geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
+                Console.WriteLine("zet false");
+            }
+        }
     }
 }
