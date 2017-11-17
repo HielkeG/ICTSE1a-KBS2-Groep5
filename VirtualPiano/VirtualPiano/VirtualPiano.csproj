@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Bar.cs" />
-    <Compile Include="Model\Clef.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Rest.cs" />
     <Compile Include="Model\Sign.cs" />
@@ -65,6 +64,9 @@
     </Compile>
     <Compile Include="View\ComposeView.Designer.cs">
       <DependentUpon>ComposeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RoundButton.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\StaffView.cs">
       <SubType>UserControl</SubType>

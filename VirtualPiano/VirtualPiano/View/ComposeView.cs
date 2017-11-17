@@ -15,7 +15,6 @@ namespace VirtualPiano.View
     {
         Song song = new Song();
         Button btnAddStaff = new Button();
-        List<Note> notenbalk = new List<Note>();
         int y_staff = 30;
 
         public ComposeView()
@@ -26,16 +25,16 @@ namespace VirtualPiano.View
 
         public void ShowFirstStaffView()
         {
-            for (int x = 1; x <= song.GetStaffs().Count ;x++)
+            for (int x = 1; x <= song.GetStaffs().Count; x++)
             {
-                AddStaffView(song.GetStaffs()[x-1]);
+                AddStaffView(song.GetStaffs()[x - 1]);
                 if (x == song.GetStaffs().Count)
                 {
-                    AddStaffButton();         
+                    AddStaffButton();
                 }
-                y_staff += 190;
+                y_staff += 150;
             }
-           
+
         }
 
         private void btnAddStaff_Click(object sender, EventArgs e)
@@ -53,7 +52,7 @@ namespace VirtualPiano.View
                 {
                     AddStaffView(song.GetStaffs()[x - 1]);
                     AddStaffButton();
-                    y_staff += 190;
+                    y_staff += 150;
                 }
             }
         }
@@ -61,24 +60,43 @@ namespace VirtualPiano.View
         public void AddStaffView(Staff staff)
         {
             Panel panel = new Panel();
-            panel.Location = new Point(500, y_staff);
-            panel.Size = new Size(1300, 175);
+            panel.Location = new Point(200, y_staff);
+            panel.Size = new Size(1600, 150);
             Controls.Add(panel);
             StaffView _staffView = new StaffView(staff)
             {
                 Dock = DockStyle.None
-                
             };
             panel.Controls.Add(_staffView);
-
         }
 
         public void AddStaffButton()
         {
-            btnAddStaff = new Button();
-            btnAddStaff.Location = new Point(1070, y_staff + 180);
+            btnAddStaff = new RoundButton();
+            btnAddStaff.Location = new Point(970, y_staff + 170);
+            btnAddStaff.Size = new Size(50, 50);
+            btnAddStaff.Text = "+";
+            btnAddStaff.ForeColor = Color.White;
+            btnAddStaff.BackColor = Color.Black;
+            btnAddStaff.Font = new Font(Font.FontFamily, 20);
+            btnAddStaff.TabStop = false;
+            btnAddStaff.FlatStyle = FlatStyle.Flat;
+            btnAddStaff.FlatAppearance.BorderSize = 0;
             this.Controls.Add(btnAddStaff);
             btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
+            btnAddStaff.MouseEnter += OnMouseEnterButton1;
+            btnAddStaff.MouseLeave += OnMouseLeaveButton1;
+        }
+
+        private void OnMouseEnterButton1(object sender, EventArgs e)
+        {
+            btnAddStaff.BackColor = Color.White;
+            btnAddStaff.ForeColor = Color.Black;
+        }
+        private void OnMouseLeaveButton1(object sender, EventArgs e)
+        {
+            btnAddStaff.BackColor = Color.Black;
+            btnAddStaff.ForeColor = Color.White;
         }
     }
 }

@@ -14,8 +14,6 @@ namespace VirtualPiano.Model
         {
             staffs = new List<Staff>();
             staffs.Add(new Staff());
-            staffs.Add(new Staff());
-
 
         }
 

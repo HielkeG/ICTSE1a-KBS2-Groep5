@@ -19,8 +19,7 @@ namespace VirtualPiano.View
         public StaffView(Staff staff)
         {
             this.staff = staff;
-            InitializeComponent();
-          
+            InitializeComponent();  
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -33,41 +32,39 @@ namespace VirtualPiano.View
         private void Drawlines(PaintEventArgs e)
         {
             Pen penBlack = new Pen(Color.Black);
-            e.Graphics.DrawLine(penBlack, 10, 30, 10, 130);
+            e.Graphics.DrawLine(penBlack, 10, 30, 10, 110);
             int i = 0;
             while (i < 5)
             {
-                e.Graphics.DrawLine(penBlack, 10, 30 + i * 25, 1600, 30 + i * 25);
+                e.Graphics.DrawLine(penBlack, 10, 30 + i * 20, 1550, 30 + i * 20);
                 i++;
             }
         }
 
         public void DrawBars(PaintEventArgs e)
         {
-            int x_bar = 363;
-            ClefName latestClef = new ClefName();
+            int x_bar = 425;
+            ClefName latestClef = ClefName.NULL;
             foreach (Bar bar in staff.Bars)
             {
                 if(bar.clef == ClefName.G && latestClef != ClefName.G)
                 {
-                    //e.Graphics.DrawImage();
+                    e.Graphics.DrawImage(Resources.gsleutel,x_bar-415,0,50,150);
                     latestClef = ClefName.G;
                 }
                 else if (bar.clef == ClefName.F && latestClef != ClefName.F)
                 {
-                    //e.Graphics.DrawImage();
+                    e.Graphics.DrawImage(Resources.fsleutel, x_bar-425, 25, 43, 65);
                     latestClef = ClefName.F;
                 }
                 else if (bar.clef == ClefName.C && latestClef != ClefName.C)
                 {
-                    //e.Graphics.DrawImage();
                     latestClef = ClefName.C;
                 }
-
-                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,130);  
-                x_bar += 312;
-            }
-            
+                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,110);  
+                x_bar += 375;
+            }     
         }
+
     }
 }
