@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VirtualPiano.Model
 {
-    public enum ClefName { G, F, C }
+    public enum ClefName { G, F, C , NULL}
 
     public class Bar
     {
@@ -18,14 +18,7 @@ namespace VirtualPiano.Model
         public Bar()
         {
             Notes = new List<Sign>();
+            clef = ClefName.NULL;
         }
-
-        public Bar(ClefName clef)
-        {
-            Notes = new List<Sign>();
-            this.clef = clef;
-        }
-        
-
     }
 }

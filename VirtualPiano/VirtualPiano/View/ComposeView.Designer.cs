@@ -90,7 +90,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(131, 772);
+            this.toolStrip1.Size = new System.Drawing.Size(131, 753);
             this.toolStrip1.TabIndex = 0;
             // 
             // FullNote
@@ -228,7 +228,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.toolStripContainer1);
+            this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "ComposeView";
             this.Size = new System.Drawing.Size(1900, 1000);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);

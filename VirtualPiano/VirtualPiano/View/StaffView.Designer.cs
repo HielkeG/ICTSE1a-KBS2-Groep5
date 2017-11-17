@@ -37,7 +37,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.DoubleBuffered = true;
             this.Name = "StaffView";
-            this.Size = new System.Drawing.Size(1300, 175);
+            this.Size = new System.Drawing.Size(1600, 150);
             this.ResumeLayout(false);
 
         }
