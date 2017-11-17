@@ -65,7 +65,7 @@
     <Compile Include="View\ComposeView.Designer.cs">
       <DependentUpon>ComposeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\RoundButton.cs">
+    <Compile Include="Model\RoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\StaffView.cs">
