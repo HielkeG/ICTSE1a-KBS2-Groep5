@@ -19,13 +19,18 @@ namespace VirtualPiano
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
         }
-            //public void StartOver()
-            //{
-            //    formContent.Controls.Remove(_mainView);
-            //    _mainView.Dispose();
 
-            //    ShowStartView();
-            //}
+        private void formContent_Load(object sender, EventArgs e)
+        {
+
+        }
+        //public void StartOver()
+        //{
+        //    formContent.Controls.Remove(_mainView);
+        //    _mainView.Dispose();
+
+        //    ShowStartView();
+        //}
 
     }
 }

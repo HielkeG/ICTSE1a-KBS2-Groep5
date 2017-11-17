@@ -66,6 +66,12 @@
     <Compile Include="View\ComposeView.Designer.cs">
       <DependentUpon>ComposeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MenuBarView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\MenuBarView.Designer.cs">
+      <DependentUpon>MenuBarView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\StaffView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="View\ComposeView.resx">
       <DependentUpon>ComposeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MenuBarView.resx">
+      <DependentUpon>MenuBarView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\StaffView.resx">
       <DependentUpon>StaffView.cs</DependentUpon>

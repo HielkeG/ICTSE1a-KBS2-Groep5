@@ -1,13 +1,13 @@
-﻿namespace VirtualPiano
+﻿namespace VirtualPiano.View
 {
-    partial class MainForm
+    partial class MenuBarView
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,15 +20,14 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.formContent = new VirtualPiano.View.ComposeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.bestandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nieuwToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,18 +39,8 @@
             this.beeldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // formContent
-            // 
-            this.formContent.BackColor = System.Drawing.Color.Transparent;
-            this.formContent.Location = new System.Drawing.Point(2, 24);
-            this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(1900, 1017);
-            this.formContent.TabIndex = 0;
-            this.formContent.Load += new System.EventHandler(this.formContent_Load);
             // 
             // menuStrip1
             // 
@@ -60,14 +49,13 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bestandToolStripMenuItem,
             this.beeldToolStripMenuItem,
-            this.geluidToolStripMenuItem,
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem});
+            this.geluidToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 6, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1904, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(500, 24);
             this.menuStrip1.Stretch = false;
-            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // bestandToolStripMenuItem
@@ -148,22 +136,15 @@
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
             // 
-            // asdfdsafdsfadsfadsfaToolStripMenuItem
-            // 
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem.Name = "asdfdsafdsfadsfadsfaToolStripMenuItem";
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
-            this.asdfdsafdsfadsfadsfaToolStripMenuItem.Text = "asdfdsafdsfadsfadsfa";
-            // 
-            // MainForm
+            // MenuBarView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.formContent);
-            this.DoubleBuffered = true;
-            this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Name = "MenuBarView";
+            this.Size = new System.Drawing.Size(500, 25);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -173,7 +154,6 @@
 
         #endregion
 
-        public View.ComposeView formContent;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem bestandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nieuwToolStripMenuItem;
@@ -185,7 +165,5 @@
         private System.Windows.Forms.ToolStripMenuItem beeldToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem asdfdsafdsfadsfadsfaToolStripMenuItem;
     }
 }
-
