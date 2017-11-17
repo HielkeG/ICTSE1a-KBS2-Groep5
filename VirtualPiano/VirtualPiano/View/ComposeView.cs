@@ -84,16 +84,16 @@ namespace VirtualPiano.View
             btnAddStaff.FlatAppearance.BorderSize = 0;
             this.Controls.Add(btnAddStaff);
             btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
-            btnAddStaff.MouseEnter += OnMouseEnterButton1;
-            btnAddStaff.MouseLeave += OnMouseLeaveButton1;
+            btnAddStaff.MouseEnter += OnMouseEnterButtonAddStaff;
+            btnAddStaff.MouseLeave += OnMouseLeaveButtonAddStaff;
         }
 
-        private void OnMouseEnterButton1(object sender, EventArgs e)
+        private void OnMouseEnterButtonAddStaff(object sender, EventArgs e)
         {
             btnAddStaff.BackColor = Color.White;
             btnAddStaff.ForeColor = Color.Black;
         }
-        private void OnMouseLeaveButton1(object sender, EventArgs e)
+        private void OnMouseLeaveButtonAddStaff(object sender, EventArgs e)
         {
             btnAddStaff.BackColor = Color.Black;
             btnAddStaff.ForeColor = Color.White;
