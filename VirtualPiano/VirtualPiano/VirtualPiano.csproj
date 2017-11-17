@@ -48,6 +48,9 @@
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Rest.cs" />
+    <Compile Include="Model\RoundButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Model\Sign.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\Staff.cs" />
@@ -64,9 +67,6 @@
     </Compile>
     <Compile Include="View\ComposeView.Designer.cs">
       <DependentUpon>ComposeView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model\RoundButton.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\MenuBarView.cs">
       <SubType>UserControl</SubType>

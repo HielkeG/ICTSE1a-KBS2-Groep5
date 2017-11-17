@@ -16,6 +16,7 @@ namespace VirtualPiano.View
         Song song = new Song();
         Button btnAddStaff = new Button();
         int y_staff = 30;
+        internal static bool tempBool;
 
         public ComposeView()
         {
@@ -97,6 +98,36 @@ namespace VirtualPiano.View
         {
             btnAddStaff.BackColor = Color.Black;
             btnAddStaff.ForeColor = Color.White;
+        }
+
+        private void ComposeView_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+        }
+
+        private void HalfNote_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+        }
+
+        private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+        }
+
+        private void EightNote_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+        }
+
+        private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+        }
+
+        private void ThirtySecondNote_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
         }
     }
 }

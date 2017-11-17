@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtualPiano.Properties;
 
 namespace VirtualPiano.Model
 {
@@ -10,12 +12,21 @@ namespace VirtualPiano.Model
 
     public class Note : Sign
     {
-        string name;
-        int octave;
-        int tone;
+        public int octave { get; set; }
+        public int tone { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public Image image;
+        public NoteName noteName;
 
-        //Sound sound;
-        NoteName noteName;
+        public Note()
+        {
+            if (noteName == NoteName.wholeNote) image = Resources.helenoot;
+            else if (noteName == NoteName.halfNote) image = Resources.halvenoot;
+            else if (noteName == NoteName.quarterNote) image = Resources.kwartnoot;
+            else if (noteName == NoteName.eightNote) image = Resources.achtstenoot;
+            else if (noteName == NoteName.sixteenthNote) image = Resources.zestiendenoot;
+        }
         
         
 

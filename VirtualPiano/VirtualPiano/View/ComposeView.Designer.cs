@@ -90,7 +90,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(131, 753);
+            this.toolStrip1.Size = new System.Drawing.Size(131, 772);
             this.toolStrip1.TabIndex = 0;
             // 
             // FullNote
@@ -113,6 +113,7 @@
             this.HalfNote.Name = "HalfNote";
             this.HalfNote.Size = new System.Drawing.Size(130, 55);
             this.HalfNote.Text = "Halve noot";
+            this.HalfNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HalfNote_MouseDown);
             // 
             // QuarterNote
             // 
@@ -123,6 +124,7 @@
             this.QuarterNote.Name = "QuarterNote";
             this.QuarterNote.Size = new System.Drawing.Size(130, 55);
             this.QuarterNote.Text = "Kwart noot";
+            this.QuarterNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.QuarterNote_MouseDown);
             // 
             // EightNote
             // 
@@ -133,6 +135,7 @@
             this.EightNote.Name = "EightNote";
             this.EightNote.Size = new System.Drawing.Size(130, 55);
             this.EightNote.Text = "1/8e noot";
+            this.EightNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EightNote_MouseDown);
             // 
             // SixteenthNote
             // 
@@ -143,6 +146,7 @@
             this.SixteenthNote.Name = "SixteenthNote";
             this.SixteenthNote.Size = new System.Drawing.Size(130, 55);
             this.SixteenthNote.Text = "1/16e noot";
+            this.SixteenthNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SixteenthNote_MouseDown);
             // 
             // ThirtySecondNote
             // 
@@ -153,6 +157,7 @@
             this.ThirtySecondNote.Name = "ThirtySecondNote";
             this.ThirtySecondNote.Size = new System.Drawing.Size(130, 55);
             this.ThirtySecondNote.Text = "1/32e noot";
+            this.ThirtySecondNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ThirtySecondNote_MouseDown);
             // 
             // Sharp
             // 
@@ -233,6 +238,7 @@
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "ComposeView";
             this.Size = new System.Drawing.Size(1900, 1000);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
