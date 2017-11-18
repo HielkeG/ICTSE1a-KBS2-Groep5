@@ -47,6 +47,7 @@ namespace VirtualPiano.View
         public void DrawBars(PaintEventArgs e)
         {
             int x_bar = 425;
+            int Xnotelocation = 20;
             ClefName latestClef = ClefName.NULL;
             foreach (Bar bar in staff.Bars)
             {
@@ -64,7 +65,27 @@ namespace VirtualPiano.View
                 {
                     latestClef = ClefName.C;
                 }
-                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,110); 
+                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,110);
+
+                Xnotelocation = x_bar - 400;
+                foreach(Sign sign in bar.Notes)
+                {
+                    int Ynotelocation = 0;
+                    if (sign.tone == 'A'){ Ynotelocation = 17; }
+                    if (sign.tone == 'B') { Ynotelocation = 5; }
+                    if (sign.tone == 'C') { Ynotelocation = -5; }
+                    if (sign.tone == 'D') { Ynotelocation = -15; }
+                    if (sign.tone == 'E') { Ynotelocation = 47; }
+                    if (sign.tone == 'F') { Ynotelocation = 37; }
+                    if (sign.tone == 'G') { Ynotelocation = 27; }
+
+                    e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
+                    if(sign.noteName == NoteName.wholeNote) {Xnotelocation += 336; }
+                    if (sign.noteName == NoteName.halfNote) { Xnotelocation += 168; }
+                    if (sign.noteName == NoteName.quarterNote){ Xnotelocation += 84;}
+                    if (sign.noteName == NoteName.eightNote){Xnotelocation += 42;}
+                    if (sign.noteName == NoteName.sixteenthNote){ Xnotelocation += 21; }
+                }
                 x_bar += 375;
             }     
         }
@@ -74,12 +95,26 @@ namespace VirtualPiano.View
         {
             Console.WriteLine(PointToClient(Cursor.Position).Y);
             if (ComposeView.tempBool)
-            {
-                Note note = new Note() { };
-                
-                note.X = PointToClient(Cursor.Position).X;
-                note.Y = PointToClient(Cursor.Position).Y;
-                notenbalk.Add(note);
+            {                
+                char tone = 'A';
+
+                if (PointToClient(Cursor.Position).Y < 105 && PointToClient(Cursor.Position).Y >= 95) { tone = 'F'; }
+                if (PointToClient(Cursor.Position).Y < 45 && PointToClient(Cursor.Position).Y >= 35) { tone = 'E'; }
+                if (PointToClient(Cursor.Position).Y < 55 && PointToClient(Cursor.Position).Y >= 45) { tone = 'D'; }
+                if (PointToClient(Cursor.Position).Y < 65 && PointToClient(Cursor.Position).Y >= 55) { tone = 'C'; }
+                if (PointToClient(Cursor.Position).Y < 75 && PointToClient(Cursor.Position).Y >= 65) { tone = 'B'; }
+                if (PointToClient(Cursor.Position).Y < 85 && PointToClient(Cursor.Position).Y >= 75) { tone = 'A'; }
+                if (PointToClient(Cursor.Position).Y < 95 && PointToClient(Cursor.Position).Y >= 85 ) {tone = 'G';}
+                int barBegin =  50;
+                int barEnd = 425;
+                foreach(Bar bar in staff.Bars)
+                {
+                    if(PointToClient(Cursor.Position).X < barEnd  && PointToClient(Cursor.Position).X > barBegin)
+                    bar.Notes.Add(new Note(ComposeView.tempNotenaam, tone));
+                    barBegin += 375;
+                    barEnd += 375;
+                }
+
                 Invalidate();
                 ComposeView.tempBool = false;
             }

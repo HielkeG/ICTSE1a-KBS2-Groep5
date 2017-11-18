@@ -17,8 +17,10 @@ namespace VirtualPiano.Model
 
         public Bar()
         {
+            
+            clef = ClefName.G;
             Notes = new List<Sign>();
-            clef = ClefName.NULL;
+            
         }
     }
 }

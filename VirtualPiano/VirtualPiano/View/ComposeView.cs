@@ -17,6 +17,7 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         int y_staff = 30;
         internal static bool tempBool;
+        internal static NoteName tempNotenaam;
 
         public ComposeView()
         {
@@ -108,21 +109,25 @@ namespace VirtualPiano.View
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
+            tempNotenaam = NoteName.halfNote;
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
+            tempNotenaam = NoteName.quarterNote;
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
+            tempNotenaam = NoteName.eightNote;
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
+            tempNotenaam = NoteName.sixteenthNote;
         }
 
         private void ThirtySecondNote_MouseDown(object sender, MouseEventArgs e)
