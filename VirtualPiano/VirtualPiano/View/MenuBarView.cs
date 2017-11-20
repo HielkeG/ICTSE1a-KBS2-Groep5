@@ -28,5 +28,10 @@ namespace VirtualPiano.View
                 geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
             }
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

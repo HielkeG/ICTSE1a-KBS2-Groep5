@@ -260,3 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 VirtualKeyboard/VirtualKeyboard/Program.cs
+/VirtualPiano/VirtualPiano/View/MenuBarView - Copy.cs
+/VirtualPiano/VirtualPiano/View/MenuBarView - Copy.resx
+/VirtualPiano/VirtualPiano/View/MenuBarView.Designer - Copy.cs

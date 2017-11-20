@@ -62,12 +62,6 @@
     </Compile>
     <Compile Include="Model\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\ComposeView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\ComposeView.Designer.cs">
-      <DependentUpon>ComposeView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\MenuBarView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,9 +87,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\ComposeView.resx">
-      <DependentUpon>ComposeView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\MenuBarView.resx">
       <DependentUpon>MenuBarView.cs</DependentUpon>
     </EmbeddedResource>
