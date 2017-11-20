@@ -16,6 +16,7 @@ namespace VirtualPiano.View
     {
         public Staff staff;
         List<Note> notenbalk = new List<Note>();
+        Color barColor;
 
 
         public StaffView(Staff staff)
@@ -66,6 +67,10 @@ namespace VirtualPiano.View
                 }
                 e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90);
 
+                if (bar.isFull) barColor = Color.Green;
+                else barColor = Color.Red;
+                e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 375, 125, x_bar, 125);
+
                 Xnotelocation = x_bar - 400;
                 foreach(Sign sign in bar.signs)
                 {
@@ -103,7 +108,7 @@ namespace VirtualPiano.View
                         else if(rest.restName == RestName.eightRest) Xnotelocation += 42;
                         else if(rest.restName == RestName.sixteenthRest) Xnotelocation += 21;
                     }
-                    
+                  
                 }
                 x_bar += 375;
             }     

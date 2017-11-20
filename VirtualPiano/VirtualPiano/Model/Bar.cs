@@ -15,6 +15,7 @@ namespace VirtualPiano.Model
         public int TimeSignatureAmount;
         public NoteName TimeSignatureName;
         public int duration = 0;
+        public bool isFull = false;
 
         public Bar()
         {
@@ -32,6 +33,7 @@ namespace VirtualPiano.Model
         {
             signs.Add(sign);
             duration += sign.duration;
+            if (duration == 16) isFull = true;
         }
     }
 }
