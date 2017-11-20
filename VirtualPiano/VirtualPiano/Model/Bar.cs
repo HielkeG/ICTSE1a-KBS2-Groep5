@@ -19,6 +19,7 @@ namespace VirtualPiano.Model
         {
             clef = ClefName.G;
             Notes = new List<Sign>();
+            Notes.Add(new Note(NoteName.quarterNote, 'A'));
             
         }
     }
