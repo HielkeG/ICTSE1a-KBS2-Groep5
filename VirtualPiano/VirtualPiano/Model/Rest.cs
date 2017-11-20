@@ -13,7 +13,7 @@ namespace VirtualPiano.Model
     public class Rest : Sign
     {
         public RestName restName;
-        
+        public Image image;
 
         public Rest()
         {
