@@ -53,9 +53,8 @@
             this.geluidToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 6, 2);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Size = new System.Drawing.Size(500, 24);
-            this.menuStrip1.Stretch = false;
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,7 +69,7 @@
             this.toolStripSeparator2,
             this.exporterenToolStripMenuItem});
             this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
-            this.bestandToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.bestandToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.bestandToolStripMenuItem.Text = "Bestand";
             // 
             // nieuwToolStripMenuItem
@@ -123,7 +122,7 @@
             // beeldToolStripMenuItem
             // 
             this.beeldToolStripMenuItem.Name = "beeldToolStripMenuItem";
-            this.beeldToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.beeldToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
             this.beeldToolStripMenuItem.Text = "Beeld";
             // 
             // geluidToolStripMenuItem
@@ -131,7 +130,7 @@
             this.geluidToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.geluidAanuitToolStripMenuItem});
             this.geluidToolStripMenuItem.Name = "geluidToolStripMenuItem";
-            this.geluidToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.geluidToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.geluidToolStripMenuItem.Text = "Geluid";
             // 
             // geluidAanuitToolStripMenuItem
@@ -142,7 +141,7 @@
             this.geluidAanuitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
-            this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.geluidAanuitToolStripMenuItem_Click);
+            this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.GeluidAanUit);
             // 
             // MenuBarView
             // 

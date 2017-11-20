@@ -17,7 +17,7 @@ namespace VirtualPiano.View
             InitializeComponent();
         }
 
-        public void geluidAanuitToolStripMenuItem_Click(object sender, EventArgs e)
+        public void GeluidAanUit(object sender, EventArgs e)
         {
             if (geluidAanuitToolStripMenuItem.Checked)
             {

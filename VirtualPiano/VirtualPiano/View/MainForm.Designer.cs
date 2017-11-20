@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.Titel = new System.Windows.Forms.Label();
-            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
-            this.formContent = new VirtualPiano.View.ComposeView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Snelheid = new System.Windows.Forms.Label();
             this.Componist = new System.Windows.Forms.Label();
+            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
+            this.formContent = new VirtualPiano.View.ComposeView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,26 +47,6 @@
             this.Titel.TabIndex = 2;
             this.Titel.Text = "Titel";
             this.Titel.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // menuBarView1
-            // 
-            this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.menuBarView1.Location = new System.Drawing.Point(0, 0);
-            this.menuBarView1.Margin = new System.Windows.Forms.Padding(0);
-            this.menuBarView1.Name = "menuBarView1";
-            this.menuBarView1.Size = new System.Drawing.Size(500, 25);
-            this.menuBarView1.TabIndex = 1;
-            this.menuBarView1.Load += new System.EventHandler(this.menuBarView1_Load);
-            // 
-            // formContent
-            // 
-            this.formContent.BackColor = System.Drawing.Color.Transparent;
-            this.formContent.ForeColor = System.Drawing.Color.Transparent;
-            this.formContent.Location = new System.Drawing.Point(2, 24);
-            this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(1900, 1017);
-            this.formContent.TabIndex = 0;
-            this.formContent.Load += new System.EventHandler(this.formContent_Load);
             // 
             // pictureBox1
             // 
@@ -98,6 +78,27 @@
             this.Componist.Size = new System.Drawing.Size(136, 31);
             this.Componist.TabIndex = 5;
             this.Componist.Text = "Componist";
+            // 
+            // menuBarView1
+            // 
+            this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.menuBarView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.menuBarView1.Location = new System.Drawing.Point(0, 0);
+            this.menuBarView1.Margin = new System.Windows.Forms.Padding(0);
+            this.menuBarView1.Name = "menuBarView1";
+            this.menuBarView1.Size = new System.Drawing.Size(1904, 25);
+            this.menuBarView1.TabIndex = 1;
+            this.menuBarView1.Load += new System.EventHandler(this.menuBarView1_Load);
+            // 
+            // formContent
+            // 
+            this.formContent.BackColor = System.Drawing.Color.Transparent;
+            this.formContent.ForeColor = System.Drawing.Color.Transparent;
+            this.formContent.Location = new System.Drawing.Point(2, 24);
+            this.formContent.Name = "formContent";
+            this.formContent.Size = new System.Drawing.Size(1900, 1017);
+            this.formContent.TabIndex = 0;
+            this.formContent.Load += new System.EventHandler(this.formContent_Load);
             // 
             // MainForm
             // 
