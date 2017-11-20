@@ -8,7 +8,7 @@ using VirtualPiano.Properties;
 
 namespace VirtualPiano.Model
 {
-    public enum NoteName { wholeNote, halfNote, quarterNote, eightNote, sixteenthNote }
+    public enum NoteName { wholeNote, halfNote, quarterNote, eightNote, sixteenthNote, NULL}
 
     public class Note : Sign
     {
@@ -16,29 +16,15 @@ namespace VirtualPiano.Model
         public char tone;        
         public NoteName noteName;
 
-        public Note(NoteName notename, char tone, int octave) : base()
-        {
-            noteName = notename;
-            this.octave = octave;
-            this.tone = tone;
-            if (noteName == NoteName.wholeNote) image = Resources.helenoot;
-            else if (noteName == NoteName.halfNote) image = Resources.halvenoot;
-            else if (noteName == NoteName.quarterNote) image = Resources.kwartnoot;
-            else if (noteName == NoteName.eightNote) image = Resources.achtstenoot;
-            else if (noteName == NoteName.sixteenthNote) image = Resources.zestiendenoot;
-            
-        }
-
         public Note(NoteName notename, char tone) : base()
         {
             noteName = notename;
             this.tone = tone;
-            if (noteName == NoteName.wholeNote) image = Resources.helenoot;
-            else if (noteName == NoteName.halfNote) image = Resources.halvenoot;
-            else if (noteName == NoteName.quarterNote) image = Resources.kwartnoot;
-            else if (noteName == NoteName.eightNote) image = Resources.achtstenoot;
-            else if (noteName == NoteName.sixteenthNote) image = Resources.zestiendenoot;
-
+            if (noteName == NoteName.wholeNote) { image = Resources.helenoot; duration = 16; }
+            else if (noteName == NoteName.halfNote) { image = Resources.halvenoot; duration = 8; }
+            else if (noteName == NoteName.quarterNote) { image = Resources.kwartnoot; duration = 4; }
+            else if (noteName == NoteName.eightNote) { image = Resources.achtstenoot; duration = 2; }
+            else if (noteName == NoteName.sixteenthNote) { image = Resources.zestiendenoot; duration = 1; }
         }
     }
 }

@@ -17,7 +17,8 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         int y_staff = 150;
         internal static bool tempBool;
-        internal static NoteName tempNotenaam;
+        internal static NoteName tempNotename;
+        internal static RestName tempRestName;
 
         public ComposeView()
         {
@@ -106,33 +107,63 @@ namespace VirtualPiano.View
             tempBool = true;
         }
 
+
+        private void FullNote_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempNotename = NoteName.wholeNote;
+            tempRestName = RestName.NULL;
+        }
+
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
-            tempNotenaam = NoteName.halfNote;
+            tempNotename = NoteName.halfNote;
+            tempRestName = RestName.NULL;
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
-            tempNotenaam = NoteName.quarterNote;
+            tempNotename = NoteName.quarterNote;
+            tempRestName = RestName.NULL;
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
-            tempNotenaam = NoteName.eightNote;
+            tempNotename = NoteName.eightNote;
+            tempRestName = RestName.NULL;
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
-            tempNotenaam = NoteName.sixteenthNote;
+            tempNotename = NoteName.sixteenthNote;
+            tempRestName = RestName.NULL;
         }
 
-        private void ThirtySecondNote_MouseDown(object sender, MouseEventArgs e)
+        private void FullRest_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
+            tempRestName = RestName.wholeRest;
+            tempNotename = NoteName.NULL;
         }
+
+        private void HalfRest_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempRestName = RestName.halfRest;
+            tempNotename = NoteName.NULL;
+        }
+
+        private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempRestName = RestName.quarterRest;
+            tempNotename = NoteName.NULL;
+        }
+
+     
     }
 }

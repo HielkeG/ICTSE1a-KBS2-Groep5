@@ -106,6 +106,7 @@
             this.FullNote.Name = "FullNote";
             this.FullNote.Size = new System.Drawing.Size(130, 55);
             this.FullNote.Text = "Hele noot";
+            this.FullNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FullNote_MouseDown);
             // 
             // HalfNote
             // 
@@ -160,7 +161,6 @@
             this.ThirtySecondNote.Name = "ThirtySecondNote";
             this.ThirtySecondNote.Size = new System.Drawing.Size(130, 55);
             this.ThirtySecondNote.Text = "1/32e noot";
-            this.ThirtySecondNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ThirtySecondNote_MouseDown);
             // 
             // Sharp
             // 
@@ -211,6 +211,7 @@
             this.FullRest.Name = "FullRest";
             this.FullRest.Size = new System.Drawing.Size(130, 55);
             this.FullRest.Text = "Hele Rust";
+            this.FullRest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FullRest_MouseDown);
             // 
             // HalfRest
             // 
@@ -221,6 +222,7 @@
             this.HalfRest.Name = "HalfRest";
             this.HalfRest.Size = new System.Drawing.Size(130, 55);
             this.HalfRest.Text = "Halve Rust";
+            this.HalfRest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HalfRest_MouseDown);
             // 
             // QuarterRest
             // 
@@ -231,6 +233,7 @@
             this.QuarterRest.Name = "QuarterRest";
             this.QuarterRest.Size = new System.Drawing.Size(130, 55);
             this.QuarterRest.Text = "Kwart rust";
+            this.QuarterRest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.QuarterRest_MouseDown);
             // 
             // ComposeView
             // 

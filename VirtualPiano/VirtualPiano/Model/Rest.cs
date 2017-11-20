@@ -8,20 +8,21 @@ using VirtualPiano.Properties;
 
 namespace VirtualPiano.Model
 {
-    public enum RestName { wholeRest, halfRest, quarterRest, eightRest, sixteenthRest}
+    public enum RestName { wholeRest, halfRest, quarterRest, eightRest, sixteenthRest, NULL }
 
     public class Rest : Sign
     {
         public RestName restName;
-        
 
-        public Rest()
+        public Rest(RestName restName)
         {
-            if (restName == RestName.wholeRest) image = Resources.HeleRust;
-            else if (restName == RestName.halfRest) image = Resources.HalveRust;
-            else if (restName == RestName.quarterRest) image = Resources.KwartRust;
-            else if (restName == RestName.eightRest) image = null;
-            else if (restName == RestName.sixteenthRest) image = null;
+            this.restName = restName;
+            if (restName == RestName.wholeRest) { image = Resources.HeleRust; duration = 16; }
+            else if (restName == RestName.halfRest) { image = Resources.HalveRust; duration = 8; }
+            else if (restName == RestName.quarterRest) { image = Resources.KwartRust; duration = 4; }
+            else if (restName == RestName.eightRest) { image = null; duration = 2; }
+            else if (restName == RestName.sixteenthRest) { image = null; duration = 1; }
         }
+
     }
 }
