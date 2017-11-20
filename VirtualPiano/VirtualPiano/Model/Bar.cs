@@ -10,17 +10,28 @@ namespace VirtualPiano.Model
 
     public class Bar
     {
-        public List<Sign> Notes;
+        public List<Sign> signs;
         public ClefName clef;
         public int TimeSignatureAmount;
         public NoteName TimeSignatureName;
+        public int duration = 0;
 
         public Bar()
         {
             clef = ClefName.G;
-            Notes = new List<Sign>();
-            Notes.Add(new Note(NoteName.quarterNote, 'A'));
-            
+            signs = new List<Sign>();
+        }
+
+        public bool CheckBarSpace(Sign sign)
+        {
+            if (duration + sign.duration > 16) return false;
+            else return true;
+        }
+
+        public void Add(Sign sign)
+        {
+            signs.Add(sign);
+            duration += sign.duration;
         }
     }
 }

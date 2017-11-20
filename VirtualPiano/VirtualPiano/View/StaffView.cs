@@ -67,30 +67,41 @@ namespace VirtualPiano.View
                 e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90);
 
                 Xnotelocation = x_bar - 400;
-                foreach(Sign sign in bar.Notes)
+                foreach(Sign sign in bar.signs)
                 {
                     if (sign is Note note)
                     {
                         int Ynotelocation = 0;
                         if (note.tone == 'A') Ynotelocation = 4;
-                        if (note.tone == 'B') Ynotelocation = -3;
-                        if (note.tone == 'C') Ynotelocation = -11;
-                        if (note.tone == 'D') Ynotelocation = -19;
-                        if (note.tone == 'E') Ynotelocation = -26;
-                        if (note.tone == 'F') Ynotelocation = -34;
-                        if (note.tone == 'G') Ynotelocation = 10;
+                        else if(note.tone == 'B') Ynotelocation = -3;
+                        else if(note.tone == 'C') Ynotelocation = -11;
+                        else if(note.tone == 'D') Ynotelocation = -19;
+                        else if(note.tone == 'E') Ynotelocation = -26;
+                        else if(note.tone == 'F') Ynotelocation = -34;
+                        else if(note.tone == 'G') Ynotelocation = 10;
 
                         e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
+
                         if (note.noteName == NoteName.wholeNote) Xnotelocation += 336;
-                        if (note.noteName == NoteName.halfNote) Xnotelocation += 168;
-                        if (note.noteName == NoteName.quarterNote) Xnotelocation += 84;
-                        if (note.noteName == NoteName.eightNote) Xnotelocation += 42;
-                        if (note.noteName == NoteName.sixteenthNote) Xnotelocation += 21;
+                        else if(note.noteName == NoteName.halfNote) Xnotelocation += 168;
+                        else if(note.noteName == NoteName.quarterNote) Xnotelocation += 84;
+                        else if(note.noteName == NoteName.eightNote) Xnotelocation += 42;
+                        else if(note.noteName == NoteName.sixteenthNote) Xnotelocation += 21;
                         
                     }
                     else if (sign is Rest rest)
-                    {
+                    {                    
+                        if (rest.restName == RestName.wholeRest) e.Graphics.DrawImage(rest.image, Xnotelocation + 180, 25, 50, 50);
+                        else if (rest.restName == RestName.halfRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 31, 50, 50);
+                        else if(rest.restName == RestName.quarterRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 35, 40, 50);
+                        else if(rest.restName == RestName.eightRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 100, 10, 10);
+                        else if(rest.restName == RestName.sixteenthRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 100, 10, 10);
 
+                        if (rest.restName == RestName.wholeRest) Xnotelocation += 336;
+                        else if(rest.restName == RestName.halfRest) Xnotelocation += 168;
+                        else if(rest.restName == RestName.quarterRest) Xnotelocation += 84;
+                        else if(rest.restName == RestName.eightRest) Xnotelocation += 42;
+                        else if(rest.restName == RestName.sixteenthRest) Xnotelocation += 21;
                     }
                     
                 }
@@ -101,11 +112,9 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseUp(object sender, MouseEventArgs e)
         {
-            Console.WriteLine(PointToClient(Cursor.Position).Y);
             if (ComposeView.tempBool)
-            {                
-                char tone = 'E';
-                Console.WriteLine(PointToClient(Cursor.Position).Y);
+            {
+                char tone = ' ';
 
                 if (PointToClient(Cursor.Position).Y < 31 && PointToClient(Cursor.Position).Y >= 23) tone = 'F';
                 if (PointToClient(Cursor.Position).Y < 40 && PointToClient(Cursor.Position).Y >= 31) tone = 'E';
@@ -118,12 +127,19 @@ namespace VirtualPiano.View
                 int barEnd = 425;
                 foreach(Bar bar in staff.Bars)
                 {
-                    if(PointToClient(Cursor.Position).X < barEnd  && PointToClient(Cursor.Position).X > barBegin)
-                    bar.Notes.Add(new Note(ComposeView.tempNotenaam, tone));
+                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin )
+                    {
+                        Note newNote = new Note(ComposeView.tempNotename, tone);
+                        Rest newRest = new Rest(ComposeView.tempRestName);
+
+                        Console.WriteLine(bar.CheckBarSpace(newNote));
+
+                       if (bar.CheckBarSpace(newNote) && ComposeView.tempNotename != NoteName.NULL) bar.Add(newNote);
+                       if(bar.CheckBarSpace(newRest) && ComposeView.tempRestName != RestName.NULL) bar.Add(newRest);
+                    }
                     barBegin += 375;
                     barEnd += 375;
                 }
-
                 Invalidate();
                 ComposeView.tempBool = false;
             }

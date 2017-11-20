@@ -11,5 +11,6 @@ namespace VirtualPiano.Model
     public abstract class Sign
     {
         public Image image;
+        public int duration;
     }
 }
