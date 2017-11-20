@@ -35,11 +35,11 @@ namespace VirtualPiano.View
         private void Drawlines(PaintEventArgs e)
         {
             Pen penBlack = new Pen(Color.Black);
-            e.Graphics.DrawLine(penBlack, 10, 30, 10, 110);
+            e.Graphics.DrawLine(penBlack, 10, 30, 10, 90);
             int i = 0;
             while (i < 5)
             {
-                e.Graphics.DrawLine(penBlack, 10, 30 + i * 20, 1550, 30 + i * 20);
+                e.Graphics.DrawLine(penBlack, 10, 30 + i * 15, 1550, 30 + i * 15);
                 i++;
             }
         }
@@ -53,7 +53,7 @@ namespace VirtualPiano.View
             {
                 if(bar.clef == ClefName.G && latestClef != ClefName.G)
                 {
-                    e.Graphics.DrawImage(Resources.gsleutel,x_bar-415,6,76,140);
+                    e.Graphics.DrawImage(Resources.gsleutel,x_bar-415,6,50,115);
                     latestClef = ClefName.G;
                 }
                 else if (bar.clef == ClefName.F && latestClef != ClefName.F)
@@ -65,7 +65,7 @@ namespace VirtualPiano.View
                 {
                     latestClef = ClefName.C;
                 }
-                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,110);
+                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90);
 
                 Xnotelocation = x_bar - 400;
                 foreach(Sign sign in bar.Notes)
