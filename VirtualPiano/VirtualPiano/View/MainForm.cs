@@ -34,6 +34,11 @@ namespace VirtualPiano
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
         //public void StartOver()
         //{
         //    formContent.Controls.Remove(_mainView);

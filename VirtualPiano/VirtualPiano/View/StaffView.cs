@@ -53,7 +53,7 @@ namespace VirtualPiano.View
             {
                 if(bar.clef == ClefName.G && latestClef != ClefName.G)
                 {
-                    e.Graphics.DrawImage(Resources.gsleutel,x_bar-415,0,50,150);
+                    e.Graphics.DrawImage(Resources.gsleutel,x_bar-415,6,76,140);
                     latestClef = ClefName.G;
                 }
                 else if (bar.clef == ClefName.F && latestClef != ClefName.F)

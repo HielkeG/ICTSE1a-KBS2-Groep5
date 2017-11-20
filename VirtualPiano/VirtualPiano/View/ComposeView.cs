@@ -15,7 +15,7 @@ namespace VirtualPiano.View
     {
         Song song = new Song();
         Button btnAddStaff = new Button();
-        int y_staff = 30;
+        int y_staff = 150;
         internal static bool tempBool;
         internal static NoteName tempNotenaam;
 
