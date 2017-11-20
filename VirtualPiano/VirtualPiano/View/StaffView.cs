@@ -71,20 +71,20 @@ namespace VirtualPiano.View
                 foreach(Sign sign in bar.Notes)
                 {
                     int Ynotelocation = 0;
-                    if (sign.tone == 'A'){ Ynotelocation = 17; }
-                    if (sign.tone == 'B') { Ynotelocation = 5; }
-                    if (sign.tone == 'C') { Ynotelocation = -5; }
-                    if (sign.tone == 'D') { Ynotelocation = -15; }
-                    if (sign.tone == 'E') { Ynotelocation = 47; }
-                    if (sign.tone == 'F') { Ynotelocation = 37; }
-                    if (sign.tone == 'G') { Ynotelocation = 27; }
+                    if (sign.tone == 'A') Ynotelocation = 17; 
+                    if (sign.tone == 'B') Ynotelocation = 5; 
+                    if (sign.tone == 'C') Ynotelocation = -5;
+                    if (sign.tone == 'D') Ynotelocation = -15; 
+                    if (sign.tone == 'E') Ynotelocation = 47; 
+                    if (sign.tone == 'F') Ynotelocation = 37; 
+                    if (sign.tone == 'G') Ynotelocation = 27; 
 
                     e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
-                    if(sign.noteName == NoteName.wholeNote) {Xnotelocation += 336; }
-                    if (sign.noteName == NoteName.halfNote) { Xnotelocation += 168; }
-                    if (sign.noteName == NoteName.quarterNote){ Xnotelocation += 84;}
-                    if (sign.noteName == NoteName.eightNote){Xnotelocation += 42;}
-                    if (sign.noteName == NoteName.sixteenthNote){ Xnotelocation += 21; }
+                    if(sign.noteName == NoteName.wholeNote) Xnotelocation += 336;
+                    if (sign.noteName == NoteName.halfNote) Xnotelocation += 168;
+                    if (sign.noteName == NoteName.quarterNote) Xnotelocation += 84;
+                    if (sign.noteName == NoteName.eightNote) Xnotelocation += 42;
+                    if (sign.noteName == NoteName.sixteenthNote) Xnotelocation += 21;
                 }
                 x_bar += 375;
             }     
@@ -98,13 +98,13 @@ namespace VirtualPiano.View
             {                
                 char tone = 'A';
 
-                if (PointToClient(Cursor.Position).Y < 105 && PointToClient(Cursor.Position).Y >= 95) { tone = 'F'; }
-                if (PointToClient(Cursor.Position).Y < 45 && PointToClient(Cursor.Position).Y >= 35) { tone = 'E'; }
-                if (PointToClient(Cursor.Position).Y < 55 && PointToClient(Cursor.Position).Y >= 45) { tone = 'D'; }
-                if (PointToClient(Cursor.Position).Y < 65 && PointToClient(Cursor.Position).Y >= 55) { tone = 'C'; }
-                if (PointToClient(Cursor.Position).Y < 75 && PointToClient(Cursor.Position).Y >= 65) { tone = 'B'; }
-                if (PointToClient(Cursor.Position).Y < 85 && PointToClient(Cursor.Position).Y >= 75) { tone = 'A'; }
-                if (PointToClient(Cursor.Position).Y < 95 && PointToClient(Cursor.Position).Y >= 85 ) {tone = 'G';}
+                if (PointToClient(Cursor.Position).Y < 105 && PointToClient(Cursor.Position).Y >= 95) tone = 'F';
+                if (PointToClient(Cursor.Position).Y < 45 && PointToClient(Cursor.Position).Y >= 35) tone = 'E';
+                if (PointToClient(Cursor.Position).Y < 55 && PointToClient(Cursor.Position).Y >= 45) tone = 'D';
+                if (PointToClient(Cursor.Position).Y < 65 && PointToClient(Cursor.Position).Y >= 55) tone = 'C';
+                if (PointToClient(Cursor.Position).Y < 75 && PointToClient(Cursor.Position).Y >= 65) tone = 'B'; 
+                if (PointToClient(Cursor.Position).Y < 85 && PointToClient(Cursor.Position).Y >= 75) tone = 'A'; 
+                if (PointToClient(Cursor.Position).Y < 95 && PointToClient(Cursor.Position).Y >= 85 ) tone = 'G';
                 int barBegin =  50;
                 int barEnd = 425;
                 foreach(Bar bar in staff.Bars)
@@ -130,11 +130,11 @@ namespace VirtualPiano.View
                 else if (noot.Y < 60) noot.Y = 55;
                 else if (noot.Y < 70) noot.Y = 65;
                 else if (noot.Y < 80) noot.Y = 75;
-                else if (noot.Y < 90)noot.Y = 85;
+                else if (noot.Y < 90) noot.Y = 85;
                 else if (noot.Y < 100) noot.Y = 95;
                 else if (noot.Y < 110) noot.Y = 105;
                 else if (noot.Y < 120) noot.Y = 115;
-                else if (noot.Y < 130)noot.Y = 125;
+                else if (noot.Y < 130) noot.Y = 125;
                 else if (noot.Y < 140) noot.Y = 135;
 
                 e.Graphics.DrawImage(noot.image, noot.X - noot.image.Width / 2, noot.Y - noot.image.Height / 2);

@@ -13,11 +13,10 @@ namespace VirtualPiano.Model
         public List<Sign> Notes;
         public ClefName clef;
         public int TimeSignatureAmount;
-        public NoteName TimneSignatureName;
+        public NoteName TimeSignatureName;
 
         public Bar()
         {
-            
             clef = ClefName.G;
             Notes = new List<Sign>();
             

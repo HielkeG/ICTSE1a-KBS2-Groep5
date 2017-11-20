@@ -14,6 +14,8 @@ namespace VirtualPiano.Model
         public NoteName noteName;
         public char tone;
 
+        public Sign() { }
+
         public Sign(NoteName notename, char tone)
         {
             noteName = notename;
@@ -23,11 +25,6 @@ namespace VirtualPiano.Model
             else if (noteName == NoteName.quarterNote) image = Resources.kwartnoot;
             else if (noteName == NoteName.eightNote) image = Resources.achtstenoot;
             else if (noteName == NoteName.sixteenthNote) image = Resources.zestiendenoot;
-
-        }
-
-        public Sign()
-        {
         }
     }
 }
