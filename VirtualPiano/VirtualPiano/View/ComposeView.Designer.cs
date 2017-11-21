@@ -136,7 +136,7 @@ namespace VirtualPiano.View
             // 
             this.FKey.AutoSize = false;
             this.FKey.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FKey.Image = global::VirtualPiano.Properties.Resources.fsleutel;
+            this.FKey.Image = global::VirtualPiano.Properties.Resources.fsleutel_icon;
             this.FKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FKey.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FKey.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);

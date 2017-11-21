@@ -194,7 +194,7 @@ namespace VirtualPiano.View
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
+             
         }
         private void FKey_MouseDown(object sender, MouseEventArgs e)
         {
