@@ -18,8 +18,8 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         int y_staff = 150;
         internal static bool tempBool;
-        internal static NoteName tempNotename;
-        internal static RestName tempRestName;
+        internal static NoteName tempNotename = NoteName.NULL;
+        internal static RestName tempRestName = RestName.NULL;
 
         public ComposeView()
         {
