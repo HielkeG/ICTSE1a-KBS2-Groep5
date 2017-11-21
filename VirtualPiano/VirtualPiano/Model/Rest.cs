@@ -17,8 +17,8 @@ namespace VirtualPiano.Model
         public Rest(RestName restName)
         {
             this.restName = restName;
-            if (restName == RestName.wholeRest) { image = Resources.HeleEnHalveRust; duration = 16; }
-            else if (restName == RestName.halfRest) { image = Resources.HeleEnHalveRust; duration = 8; }
+            if (restName == RestName.wholeRest) { duration = 16; }
+            else if (restName == RestName.halfRest) {duration = 8; }
             else if (restName == RestName.quarterRest) { image = Resources.KwartRust; duration = 4; }
             else if (restName == RestName.eightRest) { image = Resources.achtsterust; duration = 2; }
             else if (restName == RestName.sixteenthRest) { image = Resources.zestienderust; duration = 1; }
