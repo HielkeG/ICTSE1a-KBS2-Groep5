@@ -176,9 +176,20 @@
   <ItemGroup>
     <None Include="Resources\Afbeeldingen\Muzieknoten\Mol.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenoot_cur.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\achtstenoot_cur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\halvenoot_cur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnoot_cur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\zestiendenoot_cur.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

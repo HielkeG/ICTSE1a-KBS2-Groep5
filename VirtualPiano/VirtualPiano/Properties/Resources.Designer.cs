@@ -133,6 +133,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap halvenoot_cur {
+            get {
+                object obj = ResourceManager.GetObject("halvenoot_cur", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap halvenoot_icon {
             get {
                 object obj = ResourceManager.GetObject("halvenoot_icon", resourceCulture);
@@ -203,6 +213,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kwartnoot_cur {
+            get {
+                object obj = ResourceManager.GetObject("kwartnoot_cur", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap kwartnoot_icon {
             get {
                 object obj = ResourceManager.GetObject("kwartnoot_icon", resourceCulture);
@@ -256,6 +276,16 @@ namespace VirtualPiano.Properties {
         internal static System.Drawing.Bitmap zestiendenoot {
             get {
                 object obj = ResourceManager.GetObject("zestiendenoot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zestiendenoot_cur {
+            get {
+                object obj = ResourceManager.GetObject("zestiendenoot_cur", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
