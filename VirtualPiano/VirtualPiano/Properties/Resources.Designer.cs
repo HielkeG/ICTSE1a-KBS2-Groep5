@@ -193,16 +193,6 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap HeleEnHalveRust {
-            get {
-                object obj = ResourceManager.GetObject("HeleEnHalveRust", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap helenoot {
             get {
                 object obj = ResourceManager.GetObject("helenoot", resourceCulture);
@@ -286,26 +276,6 @@ namespace VirtualPiano.Properties {
         internal static System.Drawing.Bitmap Mol {
             get {
                 object obj = ResourceManager.GetObject("Mol", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tweeendertigste {
-            get {
-                object obj = ResourceManager.GetObject("tweeendertigste", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tweeendertigstenoot_icon {
-            get {
-                object obj = ResourceManager.GetObject("tweeendertigstenoot_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
