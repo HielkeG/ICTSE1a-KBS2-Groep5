@@ -178,4 +178,7 @@
   <data name="Mol" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\Mol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="achtstenoot_cur" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\achtstenoot_cur.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

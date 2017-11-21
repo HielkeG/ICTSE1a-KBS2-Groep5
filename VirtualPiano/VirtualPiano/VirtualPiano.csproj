@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\CursorController.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Rest.cs" />
@@ -175,8 +176,9 @@
   <ItemGroup>
     <None Include="Resources\Afbeeldingen\Muzieknoten\Mol.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Control\" />
+    <None Include="Resources\achtstenoot_cur.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

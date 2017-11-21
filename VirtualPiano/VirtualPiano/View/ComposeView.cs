@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
+using VirtualPiano.Control;
 
 namespace VirtualPiano.View
 {
@@ -17,9 +18,14 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         int y_staff = 150;
         internal static bool tempBool;
+<<<<<<< HEAD
         internal static NoteName tempNotename;
         internal static RestName tempRestName;
         internal static ClefName tempClefName;
+=======
+        internal static NoteName tempNotename = NoteName.NULL;
+        internal static RestName tempRestName = RestName.NULL;
+>>>>>>> 28b22daf8c33904e33bbcedd6c8039de1bd127fa
 
         public ComposeView()
         {
@@ -114,7 +120,11 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.wholeNote;
             tempRestName = RestName.NULL;
+<<<<<<< HEAD
             tempClefName = ClefName.NULL;
+=======
+            Cursor = CursorController.ChangeCursor(tempNotename);
+>>>>>>> 28b22daf8c33904e33bbcedd6c8039de1bd127fa
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
@@ -138,7 +148,11 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.eightNote;
             tempRestName = RestName.NULL;
+<<<<<<< HEAD
             tempClefName = ClefName.NULL;
+=======
+            Cursor = CursorController.ChangeCursor(tempNotename);
+>>>>>>> 28b22daf8c33904e33bbcedd6c8039de1bd127fa
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
@@ -173,6 +187,7 @@ namespace VirtualPiano.View
             tempClefName = ClefName.NULL;
         }
 
+<<<<<<< HEAD
         private void GKey_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
@@ -187,6 +202,14 @@ namespace VirtualPiano.View
             tempClefName = ClefName.F;
             tempNotename = NoteName.NULL;
             tempRestName = RestName.NULL;
+=======
+        private void ComposeView_MouseEnter(object sender, EventArgs e)
+        {
+            if (tempBool == false)
+            {
+                Cursor = Cursors.Default;
+            }
+>>>>>>> 28b22daf8c33904e33bbcedd6c8039de1bd127fa
         }
     }
 }

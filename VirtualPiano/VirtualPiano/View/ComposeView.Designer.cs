@@ -60,7 +60,7 @@
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(130, 1000);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Left;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(2);
+            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
             this.toolStripContainer1.Size = new System.Drawing.Size(130, 1000);
@@ -70,10 +70,12 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.CanOverflow = false;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(25, 40);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FullNote,
             this.HalfNote,
@@ -91,7 +93,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(131, 772);
+            this.toolStrip1.Size = new System.Drawing.Size(130, 1000);
             this.toolStrip1.TabIndex = 0;
             // 
             // FullNote
@@ -218,7 +220,7 @@
             this.HalfRest.AutoSize = false;
             this.HalfRest.Image = global::VirtualPiano.Properties.Resources.HalveRust;
             this.HalfRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.HalfRest.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HalfRest.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.HalfRest.Name = "HalfRest";
             this.HalfRest.Size = new System.Drawing.Size(130, 55);
             this.HalfRest.Text = "Halve Rust";
@@ -237,16 +239,16 @@
             // 
             // ComposeView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.toolStripContainer1);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "ComposeView";
-            this.Size = new System.Drawing.Size(1900, 1000);
+            this.Size = new System.Drawing.Size(200, 1000);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
+            this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
