@@ -360,6 +360,7 @@ namespace VirtualPiano.View
             this.Name = "ComposeView";
             this.Size = new System.Drawing.Size(75, 1000);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
+            this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
@@ -371,7 +372,7 @@ namespace VirtualPiano.View
 
         private void ComposeView_MouseDown(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         #endregion

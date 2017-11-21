@@ -34,7 +34,6 @@
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.formContent = new VirtualPiano.View.ComposeView();
-            this.TitelBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,9 +75,9 @@
             this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(676, 51);
+            this.TitelBox.Location = new System.Drawing.Point(871, 25);
             this.TitelBox.Name = "TitelBox";
-            this.TitelBox.Size = new System.Drawing.Size(493, 69);
+            this.TitelBox.Size = new System.Drawing.Size(153, 69);
             this.TitelBox.TabIndex = 6;
             this.TitelBox.Text = "Titel";
             this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -100,7 +99,7 @@
             // 
             this.formContent.AutoScroll = true;
             this.formContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.formContent.BackColor = System.Drawing.Color.Transparent;
+            this.formContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.formContent.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.formContent.ForeColor = System.Drawing.Color.Transparent;
             this.formContent.Location = new System.Drawing.Point(2, 24);
@@ -109,16 +108,6 @@
             this.formContent.Size = new System.Drawing.Size(1900, 1017);
             this.formContent.TabIndex = 0;
             this.formContent.Load += new System.EventHandler(this.formContent_Load);
-            // 
-            // Titel
-            // 
-            this.TitelBox.AutoSize = true;
-            this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(871, 25);
-            this.TitelBox.Name = "Titel";
-            this.TitelBox.Size = new System.Drawing.Size(153, 65);
-            this.TitelBox.TabIndex = 6;
-            this.TitelBox.Text = "Titel";
             // 
             // MainForm
             // 
