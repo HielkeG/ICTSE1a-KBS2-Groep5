@@ -239,9 +239,13 @@ namespace VirtualPiano.View
             {
                 Cursor = CursorController.ChangeCursor(ComposeView.tempClefName);
             }
-            else if(ComposeView.tempRestName != RestName.NULL)
+            else if (ComposeView.tempRestName != RestName.NULL)
             {
                 Cursor = CursorController.ChangeCursor(ComposeView.tempRestName);
+            }
+            else
+            {
+                Cursor = Cursors.Default;
             }
         }
     }

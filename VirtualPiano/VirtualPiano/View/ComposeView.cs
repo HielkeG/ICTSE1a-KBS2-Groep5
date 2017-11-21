@@ -16,7 +16,7 @@ namespace VirtualPiano.View
     {
         Song song = new Song();
         Button btnAddStaff = new Button();
-        int y_staff = 150;
+        int y_staff = 140;
         internal static bool tempBool;
         internal static NoteName tempNotename = NoteName.NULL;
         internal static RestName tempRestName = RestName.NULL;
@@ -37,7 +37,7 @@ namespace VirtualPiano.View
                 {
                     AddStaffButton();
                 }
-                y_staff += 150;
+                y_staff += 200;
             }
 
         }
@@ -57,7 +57,7 @@ namespace VirtualPiano.View
                 {
                     AddStaffView(song.GetStaffs()[x - 1]);
                     AddStaffButton();
-                    y_staff += 150;
+                    y_staff += 190;
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace VirtualPiano.View
         public void AddStaffView(Staff staff)   //nieuwe notenbalkpanel maken en vullen
         {
             Panel panel = new Panel();
-            panel.Location = new Point(200, y_staff);
+            panel.Location = new Point(190, y_staff);
             panel.Size = new Size(1600, 150);
             Controls.Add(panel);
             StaffView _staffView = new StaffView(staff)
@@ -78,7 +78,8 @@ namespace VirtualPiano.View
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
             btnAddStaff = new RoundButton();
-            btnAddStaff.Location = new Point(970, y_staff + 170);
+            //btnAddStaff.Location = new Point(970, y_staff + 170);
+            btnAddStaff.Location = new Point(1800, y_staff+35);
             btnAddStaff.Size = new Size(50, 50);
             btnAddStaff.Text = "+";
             btnAddStaff.ForeColor = Color.White;
