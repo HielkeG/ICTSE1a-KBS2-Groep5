@@ -161,6 +161,8 @@ namespace VirtualPiano.View
             tempRestName = RestName.wholeRest;
             tempNotename = NoteName.NULL;
             tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempRestName);
+
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
@@ -169,6 +171,8 @@ namespace VirtualPiano.View
             tempRestName = RestName.halfRest;
             tempNotename = NoteName.NULL;
             tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempRestName);
+
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
@@ -177,6 +181,7 @@ namespace VirtualPiano.View
             tempRestName = RestName.quarterRest;
             tempNotename = NoteName.NULL;
             tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempRestName);
         }
         
         private void GKey_MouseDown(object sender, MouseEventArgs e)
@@ -185,6 +190,7 @@ namespace VirtualPiano.View
             tempClefName = ClefName.G;
             tempNotename = NoteName.NULL;
             tempRestName = RestName.NULL;
+            Cursor = CursorController.ChangeCursor(tempClefName);
         }
 
         private void FKey_MouseDown(object sender, MouseEventArgs e)
@@ -193,6 +199,7 @@ namespace VirtualPiano.View
             tempClefName = ClefName.F;
             tempNotename = NoteName.NULL;
             tempRestName = RestName.NULL;
+            Cursor = CursorController.ChangeCursor(tempClefName);
         }
 
         private void ComposeView_MouseEnter(object sender, EventArgs e)
@@ -202,5 +209,7 @@ namespace VirtualPiano.View
                 Cursor = Cursors.Default;
             }
         }
+
+
     }
 }

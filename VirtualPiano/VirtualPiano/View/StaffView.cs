@@ -127,13 +127,11 @@ namespace VirtualPiano.View
                         {
                             bar.clef = ClefName.G;
                             bar.MakeEmpty();
-                            bar.isFull = false;
                             Console.WriteLine(bar.clef);
                         }
                         if (ComposeView.tempClefName == ClefName.F) {
                             bar.clef = ClefName.F;
                             bar.MakeEmpty();
-                            bar.isFull = false;
                             Console.WriteLine(bar.clef);
                         }
 
@@ -239,6 +237,14 @@ namespace VirtualPiano.View
             if (ComposeView.tempNotename != NoteName.NULL)
             {
                 Cursor = CursorController.ChangeCursor(ComposeView.tempNotename);
+            }
+            else if(ComposeView.tempClefName != ClefName.NULL)
+            {
+                Cursor = CursorController.ChangeCursor(ComposeView.tempClefName);
+            }
+            else if(ComposeView.tempRestName != RestName.NULL)
+            {
+                Cursor = CursorController.ChangeCursor(ComposeView.tempRestName);
             }
         }
     }

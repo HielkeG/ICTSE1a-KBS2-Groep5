@@ -14,7 +14,7 @@ namespace VirtualPiano.Control
     {
         public static Cursor ChangeCursor(NoteName name)
         {
-            Bitmap b = new Bitmap(Properties.Resources.helenoot_icon);
+            Bitmap b = null;
             switch (name)
             {
                 case NoteName.wholeNote:
@@ -33,6 +33,49 @@ namespace VirtualPiano.Control
                 case NoteName.sixteenthNote:
                     b = Resources.zestiendenoot_cur;
                     break;
+            }
+            b.MakeTransparent(b.GetPixel(0, 0));
+            Graphics g = Graphics.FromImage(b);
+            IntPtr ptr = b.GetHicon();
+            Cursor cur = new System.Windows.Forms.Cursor(ptr);
+            return cur;
+        }
+
+        public static Cursor ChangeCursor(ClefName name)
+        {
+            Bitmap b = null;
+            switch (name)
+            {
+                case ClefName.F:
+                    b = Resources.fsleutel;
+                    break;
+                case ClefName.G:
+                    b = Resources.Gsleutel_icon;
+                    break;
+
+            }
+            b.MakeTransparent(b.GetPixel(0, 0));
+            Graphics g = Graphics.FromImage(b);
+            IntPtr ptr = b.GetHicon();
+            Cursor cur = new System.Windows.Forms.Cursor(ptr);
+            return cur;
+        }
+
+        public static Cursor ChangeCursor(RestName name)
+        {
+            Bitmap b = null;
+            switch (name)
+            {
+                case RestName.wholeRest:
+                    b = Resources.HeleRust;
+                    break;
+                case RestName.halfRest:
+                    b = Resources.HalveRust;
+                    break;
+                case RestName.quarterRest:
+                    b = Resources.KwartRust;
+                    break;
+
             }
             b.MakeTransparent(b.GetPixel(0, 0));
             Graphics g = Graphics.FromImage(b);
