@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\CursorController.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Rest.cs" />
@@ -176,7 +177,16 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\Mol.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Control\" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenoot_cur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\halvenoot_cur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnoot_cur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\zestiendenoot_cur.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Afbeeldingen\Muzieknoten\fsleutel_icon.png" />

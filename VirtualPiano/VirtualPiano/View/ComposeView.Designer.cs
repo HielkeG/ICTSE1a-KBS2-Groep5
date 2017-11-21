@@ -238,6 +238,48 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator2.Size = new System.Drawing.Size(50, 6);
+            //
+            // Sharp
+            //
+            this.Sharp.AutoSize = false;
+            this.Sharp.Image = global::VirtualPiano.Properties.Resources.Kruis;
+            this.Sharp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Sharp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Sharp.Name = "Sharp";
+            this.Sharp.Size = new System.Drawing.Size(130, 55);
+            this.Sharp.Text = "Kruis";
+            // 
+            // Flat
+            // 
+            this.Flat.AutoSize = false;
+            this.Flat.Image = global::VirtualPiano.Properties.Resources.Mol;
+            this.Flat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Flat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Flat.Name = "Flat";
+            this.Flat.Size = new System.Drawing.Size(130, 55);
+            this.Flat.Text = "Mol";
+            // 
+            // GKey
+            // 
+            this.GKey.AutoSize = false;
+            this.GKey.Image = global::VirtualPiano.Properties.Resources.Gsleutel_icon;
+            this.GKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.GKey.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.GKey.Name = "GKey";
+            this.GKey.Size = new System.Drawing.Size(130, 55);
+            this.GKey.Text = "G-Sleutel";
+            this.GKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GKey_MouseDown);
+            // 
+            // FKey
+            // 
+            this.FKey.AutoSize = false;
+            this.FKey.Image = global::VirtualPiano.Properties.Resources.fsleutel;
+            this.FKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.FKey.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FKey.Name = "FKey";
+            this.FKey.Size = new System.Drawing.Size(130, 55);
+            this.FKey.Text = "F-Sleutel";
+            this.FKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FKey_MouseDown);
             // 
             // FullRest
             // 

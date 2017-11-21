@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
+using VirtualPiano.Control;
 
 namespace VirtualPiano.View
 {
@@ -17,8 +18,9 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         int y_staff = 150;
         internal static bool tempBool;
-        internal static NoteName tempNotename;
-        internal static RestName tempRestName;
+        internal static NoteName tempNotename = NoteName.NULL;
+        internal static RestName tempRestName = RestName.NULL;
+        internal static ClefName tempClefName = ClefName.NULL;
 
         public ComposeView()
         {
@@ -102,17 +104,13 @@ namespace VirtualPiano.View
             btnAddStaff.ForeColor = Color.White;
         }
 
-        private void ComposeView_MouseDown(object sender, MouseEventArgs e)
-        {
-            tempBool = true;
-        }
-
-
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
             tempNotename = NoteName.wholeNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempNotename);
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
@@ -120,6 +118,8 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.halfNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempNotename);
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
@@ -127,6 +127,8 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.quarterNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempNotename);
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
@@ -134,6 +136,8 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.eightNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempNotename);
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
@@ -141,6 +145,8 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.sixteenthNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempNotename);
         }
 
         private void FullRest_MouseDown(object sender, MouseEventArgs e)
@@ -148,6 +154,9 @@ namespace VirtualPiano.View
             tempBool = true;
             tempRestName = RestName.wholeRest;
             tempNotename = NoteName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempRestName);
+
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
@@ -155,6 +164,9 @@ namespace VirtualPiano.View
             tempBool = true;
             tempRestName = RestName.halfRest;
             tempNotename = NoteName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempRestName);
+
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
@@ -162,6 +174,17 @@ namespace VirtualPiano.View
             tempBool = true;
             tempRestName = RestName.quarterRest;
             tempNotename = NoteName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempRestName);
+        }
+        
+        private void GKey_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempClefName = ClefName.G;
+            tempNotename = NoteName.NULL;
+            tempRestName = RestName.NULL;
+            Cursor = CursorController.ChangeCursor(tempClefName);
         }
 
         private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
@@ -172,6 +195,22 @@ namespace VirtualPiano.View
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+        private void FKey_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempClefName = ClefName.F;
+            tempNotename = NoteName.NULL;
+            tempRestName = RestName.NULL;
+            Cursor = CursorController.ChangeCursor(tempClefName);
+        }
+
+        private void ComposeView_MouseEnter(object sender, EventArgs e)
+        {
+            if (tempBool == false)
+            {
+                Cursor = Cursors.Default;
+            }
         }
     }
 }

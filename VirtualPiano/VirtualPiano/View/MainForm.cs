@@ -39,6 +39,18 @@ namespace VirtualPiano
         {
 
         }
+
+ 
+
+        private void TitelBox_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TitelBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
         //public void StartOver()
         //{
         //    formContent.Controls.Remove(_mainView);
