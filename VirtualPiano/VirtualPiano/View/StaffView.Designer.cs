@@ -36,6 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "StaffView";
             this.Size = new System.Drawing.Size(1600, 182);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StaffView_MouseUp);

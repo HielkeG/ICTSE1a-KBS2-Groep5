@@ -28,25 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Titel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Snelheid = new System.Windows.Forms.Label();
             this.Componist = new System.Windows.Forms.Label();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.formContent = new VirtualPiano.View.ComposeView();
+            this.Titel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Titel
-            // 
-            this.Titel.AutoSize = true;
-            this.Titel.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titel.Location = new System.Drawing.Point(883, 24);
-            this.Titel.Name = "Titel";
-            this.Titel.Size = new System.Drawing.Size(153, 65);
-            this.Titel.TabIndex = 2;
-            this.Titel.Text = "Titel";
-            this.Titel.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox1
             // 
@@ -92,23 +81,36 @@
             // 
             // formContent
             // 
+            this.formContent.AutoScroll = true;
+            this.formContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.formContent.BackColor = System.Drawing.Color.Transparent;
             this.formContent.ForeColor = System.Drawing.Color.Transparent;
             this.formContent.Location = new System.Drawing.Point(2, 24);
+            this.formContent.Margin = new System.Windows.Forms.Padding(0);
             this.formContent.Name = "formContent";
             this.formContent.Size = new System.Drawing.Size(1900, 1017);
             this.formContent.TabIndex = 0;
             this.formContent.Load += new System.EventHandler(this.formContent_Load);
+            // 
+            // Titel
+            // 
+            this.Titel.AutoSize = true;
+            this.Titel.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titel.Location = new System.Drawing.Point(871, 25);
+            this.Titel.Name = "Titel";
+            this.Titel.Size = new System.Drawing.Size(153, 65);
+            this.Titel.TabIndex = 6;
+            this.Titel.Text = "Titel";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.Titel);
             this.Controls.Add(this.Componist);
             this.Controls.Add(this.Snelheid);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.Titel);
             this.Controls.Add(this.menuBarView1);
             this.Controls.Add(this.formContent);
             this.DoubleBuffered = true;
@@ -127,10 +129,10 @@
 
         public View.ComposeView formContent;
         private View.MenuBarView menuBarView1;
-        private System.Windows.Forms.Label Titel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Snelheid;
         private System.Windows.Forms.Label Componist;
+        private System.Windows.Forms.Label Titel;
     }
 }
 

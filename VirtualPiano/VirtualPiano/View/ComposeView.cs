@@ -164,6 +164,14 @@ namespace VirtualPiano.View
             tempNotename = NoteName.NULL;
         }
 
-     
+        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

@@ -121,6 +121,9 @@
   <data name="halvenoot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\halvenoot_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="fsleutel_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\fsleutel_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="helenoot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\helenoot_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,8 +136,8 @@
   <data name="achtstenoot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\achtstenoot_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="kwartnoot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\kwartnoot_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gsleutel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\gsleutel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Gsleutel_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\Gsleutel_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,40 +145,55 @@
   <data name="zestiendenoot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\zestiendenoot_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gsleutel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\gsleutel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zestiendenoot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\zestiendenoot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tweeendertigste" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\tweeendertigste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tweeendertigstenoot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\tweeendertigstenoot_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="helenoot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\helenoot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="kwartnoot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\kwartnoot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="fsleutel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\fsleutel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HalveRust" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\HalveRust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="fsleutel_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\fsleutel_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zestiendenoot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\zestiendenoot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kwartnoot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\kwartnoot_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tweeendertigste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\tweeendertigste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="halverust_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\halverust_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tweeendertigstenoot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\tweeendertigstenoot_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\mol_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="helenoot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\helenoot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KwartRust" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\kwartrust_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Kruis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\kruis_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kwartnoot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\kwartnoot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="helerust_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\helerust_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="HeleRust" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\HeleRust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Kruis" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\Kruis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="achtsterust_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\achtsterust_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="KwartRust" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\KwartRust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Mol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Afbeeldingen\Muzieknoten\Mol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="zestienderust_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

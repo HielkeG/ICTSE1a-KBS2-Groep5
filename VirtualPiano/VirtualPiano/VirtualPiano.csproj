@@ -54,6 +54,11 @@
     <Compile Include="Model\Sign.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\Staff.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,14 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="View\ComposeView.resx">
       <DependentUpon>ComposeView.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +177,33 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Control\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\fsleutel_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\mol_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\kruis_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\helerust_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\halverust_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\opheffing_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\kwartrust_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\achtsterust_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
