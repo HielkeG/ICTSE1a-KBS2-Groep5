@@ -47,7 +47,7 @@ namespace VirtualPiano.Control
             switch (name)
             {
                 case ClefName.F:
-                    b = Resources.fsleutel;
+                    b = Resources.fsleutel_icon;
                     break;
                 case ClefName.G:
                     b = Resources.Gsleutel_icon;
@@ -67,13 +67,19 @@ namespace VirtualPiano.Control
             switch (name)
             {
                 case RestName.wholeRest:
-                    b = Resources.HeleRust;
+                    b = Resources.helerust_icon;
                     break;
                 case RestName.halfRest:
-                    b = Resources.HalveRust;
+                    b = Resources.halverust_icon;
                     break;
                 case RestName.quarterRest:
-                    b = Resources.KwartRust;
+                    b = Resources.kwartrust_icon;
+                    break;
+                case RestName.eightRest:
+                    b = Resources.achtsterust_icon;
+                    break;
+                case RestName.sixteenthRest:
+                    b = Resources.zestienderust_icon;
                     break;
 
             }

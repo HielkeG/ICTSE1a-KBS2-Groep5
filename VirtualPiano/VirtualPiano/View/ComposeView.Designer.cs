@@ -42,7 +42,6 @@ namespace VirtualPiano.View
             this.QuarterNote = new System.Windows.Forms.ToolStripButton();
             this.EightNote = new System.Windows.Forms.ToolStripButton();
             this.SixteenthNote = new System.Windows.Forms.ToolStripButton();
-            this.ThirtySecondNote = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.FullRest = new System.Windows.Forms.ToolStripButton();
             this.HalfRest = new System.Windows.Forms.ToolStripButton();
@@ -99,7 +98,6 @@ namespace VirtualPiano.View
             this.QuarterNote,
             this.EightNote,
             this.SixteenthNote,
-            this.ThirtySecondNote,
             this.toolStripSeparator2,
             this.FullRest,
             this.HalfRest,
@@ -224,19 +222,6 @@ namespace VirtualPiano.View
             this.SixteenthNote.Text = "1/16e noot";
             this.SixteenthNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SixteenthNote_MouseDown);
             // 
-            // ThirtySecondNote
-            // 
-            this.ThirtySecondNote.AutoSize = false;
-            this.ThirtySecondNote.BackColor = System.Drawing.Color.Transparent;
-            this.ThirtySecondNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ThirtySecondNote.Image = global::VirtualPiano.Properties.Resources.tweeendertigstenoot_icon;
-            this.ThirtySecondNote.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ThirtySecondNote.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.ThirtySecondNote.Name = "ThirtySecondNote";
-            this.ThirtySecondNote.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.ThirtySecondNote.Size = new System.Drawing.Size(50, 50);
-            this.ThirtySecondNote.Text = "1/32e noot";
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.AutoSize = false;
@@ -299,6 +284,7 @@ namespace VirtualPiano.View
             this.EightRest.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.EightRest.Size = new System.Drawing.Size(50, 50);
             this.EightRest.Text = "Achtste rust";
+            this.EightRest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EightRest_MouseDown);
             // 
             // SixteenthRest
             // 
@@ -312,6 +298,7 @@ namespace VirtualPiano.View
             this.SixteenthRest.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.SixteenthRest.Size = new System.Drawing.Size(50, 50);
             this.SixteenthRest.Text = "SixteenthRest";
+            this.SixteenthRest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SixteenthRest_MouseDown);
             // 
             // toolStripSeparator3
             // 
@@ -384,7 +371,6 @@ namespace VirtualPiano.View
         private System.Windows.Forms.ToolStripButton QuarterNote;
         private System.Windows.Forms.ToolStripButton EightNote;
         private System.Windows.Forms.ToolStripButton SixteenthNote;
-        private System.Windows.Forms.ToolStripButton ThirtySecondNote;
         private System.Windows.Forms.ToolStripButton Sharp;
         private System.Windows.Forms.ToolStripButton Flat;
         private System.Windows.Forms.ToolStripButton GKey;
