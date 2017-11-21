@@ -72,6 +72,7 @@
             // 
             this.toolStrip1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.LightGray;
             this.toolStrip1.CanOverflow = false;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
