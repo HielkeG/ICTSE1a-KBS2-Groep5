@@ -23,7 +23,7 @@ namespace VirtualPiano.Model
             signs = new List<Sign>();
         }
 
-        public bool CheckBarSpace(Sign sign)
+        public bool CheckBarSpace(Sign sign)    //kijken of er ruimte in de maat is voor nieuw teken
         {
             if (duration + sign.duration > 16) return false;
             else return true;
@@ -36,7 +36,7 @@ namespace VirtualPiano.Model
             if (duration == 16) isFull = true;
         }
 
-        public void MakeEmpty()
+        public void MakeEmpty() //Lijst van tekens leegmaken
         {
             signs = new List<Sign>();
             isFull = false;

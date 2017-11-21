@@ -21,7 +21,7 @@ namespace VirtualPiano.Model
             noteName = notename;
             this.octave = octave;
             this.tone = tone;
-            if (noteName == NoteName.wholeNote) { image = Resources.helenoot; duration = 16; }
+            if (noteName == NoteName.wholeNote) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
             else if (noteName == NoteName.halfNote) { image = Resources.halvenoot; duration = 8; }
             else if (noteName == NoteName.quarterNote) { image = Resources.kwartnoot; duration = 4; }
             else if (noteName == NoteName.eightNote) { image = Resources.achtstenoot; duration = 2; }
