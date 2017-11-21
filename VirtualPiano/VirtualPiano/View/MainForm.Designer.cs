@@ -31,7 +31,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Snelheid = new System.Windows.Forms.Label();
             this.Componist = new System.Windows.Forms.Label();
-            this.TitelBox = new System.Windows.Forms.TextBox();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.formContent = new VirtualPiano.View.ComposeView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
