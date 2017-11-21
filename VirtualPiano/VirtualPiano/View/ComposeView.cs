@@ -28,7 +28,7 @@ namespace VirtualPiano.View
             ShowFirstStaffView();
         }
 
-        public void ShowFirstStaffView()
+        public void ShowFirstStaffView()    //Eerste notenbalk laten zien
         {
             for (int x = 1; x <= song.GetStaffs().Count; x++)
             {
@@ -42,13 +42,13 @@ namespace VirtualPiano.View
 
         }
 
-        private void btnAddStaff_Click(object sender, EventArgs e)
+        private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
             btnAddStaff.Dispose();
             AddNewStaff();
         }
 
-        public void AddNewStaff()
+        public void AddNewStaff()   //Nieuw notenbalk aan song toevoegen
         {
             song.AddStaff(new Staff());
             for (int x = 1; x <= song.GetStaffs().Count; x++)
@@ -62,7 +62,7 @@ namespace VirtualPiano.View
             }
         }
 
-        public void AddStaffView(Staff staff)
+        public void AddStaffView(Staff staff)   //nieuwe notenbalkpanel maken en vullen
         {
             Panel panel = new Panel();
             panel.Location = new Point(200, y_staff);
@@ -75,7 +75,7 @@ namespace VirtualPiano.View
             panel.Controls.Add(_staffView);
         }
 
-        public void AddStaffButton()
+        public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
             btnAddStaff = new RoundButton();
             btnAddStaff.Location = new Point(970, y_staff + 170);

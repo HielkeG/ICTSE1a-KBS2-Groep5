@@ -32,12 +32,12 @@ namespace VirtualPiano.View
             DrawBars(e);     
         }
 
-        private void Drawlines(PaintEventArgs e)
+        private void Drawlines(PaintEventArgs e)    //Lijnen van notenbalk tekenen
         {
             Pen penBlack = new Pen(Color.Black);
-            e.Graphics.DrawLine(penBlack, 10, 30, 10, 90);
+            e.Graphics.DrawLine(penBlack, 10, 30, 10, 90);  //Eerste verticale lijn
             int i = 0;
-            while (i < 5)
+            while (i < 5) //5 horizontale lijnen
             {
                 e.Graphics.DrawLine(penBlack, 10, 30 + i * 15, 1550, 30 + i * 15);
                 i++;
@@ -51,7 +51,7 @@ namespace VirtualPiano.View
             ClefName latestClef = ClefName.NULL;
             foreach (Bar bar in staff.Bars)
             {
-                if(staff.Bars.First() == bar)
+                if(staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen
                 {
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 420, 6, 60, 110); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 425, 25, 43, 65); latestClef = ClefName.F; }
@@ -63,11 +63,11 @@ namespace VirtualPiano.View
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
                 }
                 
-                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90);
+                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90); //per maat verticale lijn tekenen
 
-                if (bar.isFull) barColor = Color.Green;
+                if (bar.isFull) barColor = Color.Green;     //als maat vol is: groene lijn, anders rood
                 else barColor = Color.Red;
-                e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 375, 125, x_bar, 125);
+                e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 375, 125, x_bar, 125);   
                 Xnotelocation = x_bar - 400;
                 
                 foreach(Sign sign in bar.signs)
@@ -105,7 +105,7 @@ namespace VirtualPiano.View
         }
 
 
-        private void StaffView_MouseUp(object sender, MouseEventArgs e)
+        private void StaffView_MouseUp(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
         {
             if (ComposeView.tempBool)
             {
@@ -118,10 +118,8 @@ namespace VirtualPiano.View
                         Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.tempNotename, bar.clef);
                         Rest newRest = new Rest(ComposeView.tempRestName);
 
-              
-
-                       if (bar.CheckBarSpace(newNote) && ComposeView.tempNotename != NoteName.NULL) bar.Add(newNote);
-                       if (bar.CheckBarSpace(newRest) && ComposeView.tempRestName != RestName.NULL) bar.Add(newRest);
+                        if (bar.CheckBarSpace(newNote) && ComposeView.tempNotename != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
+                        if (bar.CheckBarSpace(newRest) && ComposeView.tempRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
                         if (ComposeView.tempClefName == ClefName.G)
                         {
                             bar.clef = ClefName.G;
@@ -133,18 +131,16 @@ namespace VirtualPiano.View
                             bar.MakeEmpty();
                             Console.WriteLine(bar.clef);
                         }
-
                     }
                     barBegin += 375;
                     barEnd += 375;
                 }
                 Invalidate();
-
                 SetDefaultCursor();
             }
         }
         
-        private int GiveYLocation(Note note, ClefName clefname)
+        private int GiveYLocation(Note note, ClefName clefname) //Geeft de Y coordinaat van de noten en sleutels
         {
             if(clefname == ClefName.G)
             {
@@ -177,53 +173,51 @@ namespace VirtualPiano.View
                 else if (note.tone == 'A' && note.octave == 2) return -34;
                 else if (note.tone == 'B' && note.octave == 2) return -42;
             }
-
-
             return 0;
         }
 
-        private Note CreateNote(int y, NoteName tempNotename, ClefName clef)
+        private Note CreateNote(int y, NoteName tempNotename, ClefName clef) //returnt note of sleutel afhankelijk van y coordinaat van cursor
         {
             char tone = ' ';
             int octave = 0;
             if (clef == ClefName.G)
             {
-                if (y < 25 && PointToClient(Cursor.Position).Y >= 14) { tone = 'G'; octave = 4; }
-                if (y < 33 && PointToClient(Cursor.Position).Y >= 25) { tone = 'F'; octave = 4; }
-                if (y < 41 && PointToClient(Cursor.Position).Y >= 33) { tone = 'E'; octave = 4; }
-                if (y < 48 && PointToClient(Cursor.Position).Y >= 41) { tone = 'D'; octave = 4; }
-                if (y < 55 && PointToClient(Cursor.Position).Y >= 48) { tone = 'C'; octave = 4; }
-                if (y < 63 && PointToClient(Cursor.Position).Y >= 55) { tone = 'B'; octave = 3; }
-                if (y < 72 && PointToClient(Cursor.Position).Y >= 63) { tone = 'A'; octave = 3; }
-                if (y < 78 && PointToClient(Cursor.Position).Y >= 72) { tone = 'G'; octave = 3; }
-                if (y < 86 && PointToClient(Cursor.Position).Y >= 78) { tone = 'F'; octave = 3; }
-                if (y < 94 && PointToClient(Cursor.Position).Y >= 86) { tone = 'E'; octave = 3; }
-                if (y < 100 && PointToClient(Cursor.Position).Y >= 94) { tone = 'D'; octave = 3; }
-                if (y < 107 && PointToClient(Cursor.Position).Y >= 100) { tone = 'C'; octave = 3; }
+                if (y < 25 && y >= 14) { tone = 'G'; octave = 4; }
+                if (y < 33 && y >= 25) { tone = 'F'; octave = 4; }
+                if (y < 41 && y >= 33) { tone = 'E'; octave = 4; }
+                if (y < 48 && y >= 41) { tone = 'D'; octave = 4; }
+                if (y < 55 && y >= 48) { tone = 'C'; octave = 4; }
+                if (y < 63 && y >= 55) { tone = 'B'; octave = 3; }
+                if (y < 72 && y >= 63) { tone = 'A'; octave = 3; }
+                if (y < 78 && y >= 72) { tone = 'G'; octave = 3; }
+                if (y < 86 && y >= 78) { tone = 'F'; octave = 3; }
+                if (y < 94 && y >= 86) { tone = 'E'; octave = 3; }
+                if (y < 100 && y >= 94) { tone = 'D'; octave = 3; }
+                if (y < 107 && y >= 100) { tone = 'C'; octave = 3; }
 
                 return new Note(tempNotename, tone, octave);
 
             }
             if (clef == ClefName.F)
             {
-                if (y < 25 && PointToClient(Cursor.Position).Y >= 14) { tone = 'B'; octave = 2; }
-                if (y < 33 && PointToClient(Cursor.Position).Y >= 25) { tone = 'A'; octave = 2; }
-                if (y < 41 && PointToClient(Cursor.Position).Y >= 33) { tone = 'G'; octave = 2; }
-                if (y < 48 && PointToClient(Cursor.Position).Y >= 41) { tone = 'F'; octave = 2; }
-                if (y < 55 && PointToClient(Cursor.Position).Y >= 48) { tone = 'E'; octave = 2; }
-                if (y < 63 && PointToClient(Cursor.Position).Y >= 55) { tone = 'D'; octave = 2; }
-                if (y < 72 && PointToClient(Cursor.Position).Y >= 63) { tone = 'C'; octave = 2; }
-                if (y < 78 && PointToClient(Cursor.Position).Y >= 72) { tone = 'B'; octave = 1; }
-                if (y < 86 && PointToClient(Cursor.Position).Y >= 78) { tone = 'A'; octave = 1; }
-                if (y < 94 && PointToClient(Cursor.Position).Y >= 86) { tone = 'G'; octave = 1; }
-                if (y < 100 && PointToClient(Cursor.Position).Y >= 94) { tone = 'F'; octave = 1; }
-                if (y < 107 && PointToClient(Cursor.Position).Y >= 100) { tone = 'E'; octave = 1; }
+                if (y < 25 && y >= 14) { tone = 'B'; octave = 2; }
+                if (y < 33 && y >= 25) { tone = 'A'; octave = 2; }
+                if (y < 41 && y >= 33) { tone = 'G'; octave = 2; }
+                if (y < 48 && y >= 41) { tone = 'F'; octave = 2; }
+                if (y < 55 && y >= 48) { tone = 'E'; octave = 2; }
+                if (y < 63 && y >= 55) { tone = 'D'; octave = 2; }
+                if (y < 72 && y >= 63) { tone = 'C'; octave = 2; }
+                if (y < 78 && y >= 72) { tone = 'B'; octave = 1; }
+                if (y < 86 && y >= 78) { tone = 'A'; octave = 1; }
+                if (y < 94 && y >= 86) { tone = 'G'; octave = 1; }
+                if (y < 100 && y >= 94) { tone = 'F'; octave = 1; }
+                if (y < 107 && y >= 100) { tone = 'E'; octave = 1; }
 
                 return new Note(tempNotename, tone, octave);
 
             }
 
-            return new Note(tempNotename, 'A', 1);
+            return null;
 
         }
         private void SetDefaultCursor()
