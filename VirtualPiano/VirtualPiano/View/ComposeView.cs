@@ -104,12 +104,6 @@ namespace VirtualPiano.View
             btnAddStaff.ForeColor = Color.White;
         }
 
-        private void ComposeView_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
-
-
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
             tempBool = true;
@@ -209,7 +203,5 @@ namespace VirtualPiano.View
                 Cursor = Cursors.Default;
             }
         }
-
-
     }
 }

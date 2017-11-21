@@ -109,7 +109,6 @@ namespace VirtualPiano.View
         {
             if (ComposeView.tempBool)
             {
-                ChangeCursor();
                 int barBegin =  50;
                 int barEnd = 425;
                 foreach(Bar bar in staff.Bars)
@@ -140,8 +139,8 @@ namespace VirtualPiano.View
                     barEnd += 375;
                 }
                 Invalidate();
-                ComposeView.tempBool = false;
-                ComposeView.tempNotename = NoteName.NULL;
+
+                SetDefaultCursor();
             }
         }
         
@@ -227,9 +226,13 @@ namespace VirtualPiano.View
             return new Note(tempNotename, 'A', 1);
 
         }
-        private void ChangeCursor()
+        private void SetDefaultCursor()
         {
             Cursor = Cursors.Default;
+            ComposeView.tempBool = false;
+            ComposeView.tempNotename = NoteName.NULL;
+            ComposeView.tempRestName = RestName.NULL;
+            ComposeView.tempClefName = ClefName.NULL;
         }
 
         private void StaffView_MouseEnter(object sender, EventArgs e)
