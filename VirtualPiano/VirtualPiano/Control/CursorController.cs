@@ -73,7 +73,13 @@ namespace VirtualPiano.Control
                     b = Resources.halverust_icon;
                     break;
                 case RestName.quarterRest:
-                    b = Resources.KwartRust;
+                    b = Resources.kwartrust_icon;
+                    break;
+                case RestName.eightRest:
+                    b = Resources.achtsterust_icon;
+                    break;
+                case RestName.sixteenthRest:
+                    b = Resources.zestienderust_icon;
                     break;
 
             }

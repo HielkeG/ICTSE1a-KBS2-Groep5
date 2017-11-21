@@ -284,6 +284,7 @@ namespace VirtualPiano.View
             this.EightRest.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.EightRest.Size = new System.Drawing.Size(50, 50);
             this.EightRest.Text = "Achtste rust";
+            this.EightRest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EightRest_MouseDown);
             // 
             // SixteenthRest
             // 
@@ -297,6 +298,7 @@ namespace VirtualPiano.View
             this.SixteenthRest.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.SixteenthRest.Size = new System.Drawing.Size(50, 50);
             this.SixteenthRest.Text = "SixteenthRest";
+            this.SixteenthRest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SixteenthRest_MouseDown);
             // 
             // toolStripSeparator3
             // 
