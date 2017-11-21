@@ -123,25 +123,28 @@ namespace VirtualPiano.View
             this.GKey.BackColor = System.Drawing.Color.Transparent;
             this.GKey.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.GKey.Image = global::VirtualPiano.Properties.Resources.Gsleutel_icon;
+            this.GKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.GKey.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GKey.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.GKey.Name = "GKey";
             this.GKey.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.GKey.Size = new System.Drawing.Size(50, 50);
+            this.GKey.Size = new System.Drawing.Size(130, 55);
             this.GKey.Text = "G-Sleutel";
+            this.GKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GKey_MouseDown);
             // 
             // FKey
             // 
             this.FKey.AutoSize = false;
             this.FKey.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FKey.Image = global::VirtualPiano.Properties.Resources.fsleutel_icon1;
+            this.FKey.Image = global::VirtualPiano.Properties.Resources.fsleutel;
             this.FKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FKey.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FKey.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.FKey.Name = "FKey";
             this.FKey.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.FKey.Size = new System.Drawing.Size(50, 50);
+            this.FKey.Size = new System.Drawing.Size(130, 55);
             this.FKey.Text = "F-Sleutel";
+            this.FKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FKey_MouseDown);
             // 
             // toolStripSeparator1
             // 
@@ -241,48 +244,6 @@ namespace VirtualPiano.View
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator2.Size = new System.Drawing.Size(50, 6);
-            //
-            // Sharp
-            //
-            this.Sharp.AutoSize = false;
-            this.Sharp.Image = global::VirtualPiano.Properties.Resources.Kruis;
-            this.Sharp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Sharp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Sharp.Name = "Sharp";
-            this.Sharp.Size = new System.Drawing.Size(130, 55);
-            this.Sharp.Text = "Kruis";
-            // 
-            // Flat
-            // 
-            this.Flat.AutoSize = false;
-            this.Flat.Image = global::VirtualPiano.Properties.Resources.Mol;
-            this.Flat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Flat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Flat.Name = "Flat";
-            this.Flat.Size = new System.Drawing.Size(130, 55);
-            this.Flat.Text = "Mol";
-            // 
-            // GKey
-            // 
-            this.GKey.AutoSize = false;
-            this.GKey.Image = global::VirtualPiano.Properties.Resources.Gsleutel_icon;
-            this.GKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.GKey.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.GKey.Name = "GKey";
-            this.GKey.Size = new System.Drawing.Size(130, 55);
-            this.GKey.Text = "G-Sleutel";
-            this.GKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GKey_MouseDown);
-            // 
-            // FKey
-            // 
-            this.FKey.AutoSize = false;
-            this.FKey.Image = global::VirtualPiano.Properties.Resources.fsleutel;
-            this.FKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.FKey.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FKey.Name = "FKey";
-            this.FKey.Size = new System.Drawing.Size(130, 55);
-            this.FKey.Text = "F-Sleutel";
-            this.FKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FKey_MouseDown);
             // 
             // FullRest
             // 
@@ -366,6 +327,7 @@ namespace VirtualPiano.View
             this.Sharp.BackColor = System.Drawing.Color.Transparent;
             this.Sharp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Sharp.Image = global::VirtualPiano.Properties.Resources.Kruis;
+            this.Sharp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Sharp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Sharp.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.Sharp.Name = "Sharp";
@@ -379,6 +341,7 @@ namespace VirtualPiano.View
             this.Flat.BackColor = System.Drawing.Color.Transparent;
             this.Flat.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Flat.Image = global::VirtualPiano.Properties.Resources.Mol;
+            this.Flat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Flat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Flat.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.Flat.Name = "Flat";
@@ -396,7 +359,7 @@ namespace VirtualPiano.View
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ComposeView";
             this.Size = new System.Drawing.Size(75, 1000);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
+            this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
@@ -404,11 +367,6 @@ namespace VirtualPiano.View
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
-        }
-
-        private void ComposeView_MouseDown(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

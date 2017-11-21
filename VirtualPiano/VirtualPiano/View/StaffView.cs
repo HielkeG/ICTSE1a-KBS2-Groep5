@@ -23,6 +23,8 @@ namespace VirtualPiano.View
         {
             this.staff = staff;
             InitializeComponent();
+            Cursor = Cursors.Default;
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -248,6 +250,10 @@ namespace VirtualPiano.View
             else if(ComposeView.tempRestName != RestName.NULL)
             {
                 Cursor = CursorController.ChangeCursor(ComposeView.tempRestName);
+            }
+            else
+            {
+                Cursor = Cursors.Default;
             }
         }
     }
