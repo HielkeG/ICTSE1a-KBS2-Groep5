@@ -247,7 +247,6 @@
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "ComposeView";
             this.Size = new System.Drawing.Size(200, 1000);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
             this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ResumeLayout(false);

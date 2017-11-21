@@ -39,6 +39,8 @@ namespace VirtualPiano.Model
         public void MakeEmpty()
         {
             signs = new List<Sign>();
+            isFull = false;
+            duration = 0;
         }
     }
 }
