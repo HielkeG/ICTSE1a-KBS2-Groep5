@@ -189,6 +189,7 @@
             this.GKey.Name = "GKey";
             this.GKey.Size = new System.Drawing.Size(130, 55);
             this.GKey.Text = "G-Sleutel";
+            this.GKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GKey_MouseDown);
             // 
             // FKey
             // 
@@ -199,6 +200,7 @@
             this.FKey.Name = "FKey";
             this.FKey.Size = new System.Drawing.Size(130, 55);
             this.FKey.Text = "F-Sleutel";
+            this.FKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FKey_MouseDown);
             // 
             // FullRest
             // 

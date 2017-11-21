@@ -16,9 +16,10 @@ namespace VirtualPiano.Model
         public char tone;        
         public NoteName noteName;
 
-        public Note(NoteName notename, char tone) : base()
+        public Note(NoteName notename, char tone, int octave) : base()
         {
             noteName = notename;
+            this.octave = octave;
             this.tone = tone;
             if (noteName == NoteName.wholeNote) { image = Resources.helenoot; duration = 16; }
             else if (noteName == NoteName.halfNote) { image = Resources.halvenoot; duration = 8; }

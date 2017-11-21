@@ -35,5 +35,10 @@ namespace VirtualPiano.Model
             duration += sign.duration;
             if (duration == 16) isFull = true;
         }
+
+        public void MakeEmpty()
+        {
+            signs = new List<Sign>();
+        }
     }
 }

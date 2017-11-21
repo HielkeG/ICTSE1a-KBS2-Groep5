@@ -19,6 +19,7 @@ namespace VirtualPiano.View
         internal static bool tempBool;
         internal static NoteName tempNotename;
         internal static RestName tempRestName;
+        internal static ClefName tempClefName;
 
         public ComposeView()
         {
@@ -113,6 +114,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.wholeNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
@@ -120,6 +122,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.halfNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
@@ -127,6 +130,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.quarterNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
@@ -134,6 +138,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.eightNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
@@ -141,6 +146,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.sixteenthNote;
             tempRestName = RestName.NULL;
+            tempClefName = ClefName.NULL;
         }
 
         private void FullRest_MouseDown(object sender, MouseEventArgs e)
@@ -148,6 +154,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempRestName = RestName.wholeRest;
             tempNotename = NoteName.NULL;
+            tempClefName = ClefName.NULL;
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
@@ -155,6 +162,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempRestName = RestName.halfRest;
             tempNotename = NoteName.NULL;
+            tempClefName = ClefName.NULL;
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
@@ -162,8 +170,23 @@ namespace VirtualPiano.View
             tempBool = true;
             tempRestName = RestName.quarterRest;
             tempNotename = NoteName.NULL;
+            tempClefName = ClefName.NULL;
         }
 
-     
+        private void GKey_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempClefName = ClefName.G;
+            tempNotename = NoteName.NULL;
+            tempRestName = RestName.NULL;
+        }
+
+        private void FKey_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempClefName = ClefName.F;
+            tempNotename = NoteName.NULL;
+            tempRestName = RestName.NULL;
+        }
     }
 }
