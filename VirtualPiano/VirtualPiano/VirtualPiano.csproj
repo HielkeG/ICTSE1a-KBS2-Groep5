@@ -215,5 +215,8 @@
   <ItemGroup>
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Muzieknoten\HeleEnHalveRust.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

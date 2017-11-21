@@ -54,12 +54,12 @@ namespace VirtualPiano.View
                 if(staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen
                 {
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 420, 6, 60, 110); latestClef = ClefName.G; }
-                    if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 425, 25, 43, 65); latestClef = ClefName.F; }
+                    if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 430, -39, 88, 185); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
                 } else
                 {
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 414, 23, 40, 83); latestClef = ClefName.G; }
-                    if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 410, 29, 30, 41); latestClef = ClefName.F; }
+                    if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 440, -25, 77, 155); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
                 }
                 
@@ -85,12 +85,14 @@ namespace VirtualPiano.View
                         
                     }
                     else if (sign is Rest rest)
-                    {                    
-                        if (rest.restName == RestName.wholeRest) e.Graphics.DrawImage(rest.image, Xnotelocation + 180, 25, 50, 50);
-                        else if (rest.restName == RestName.halfRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 31, 50, 50);
-                        else if(rest.restName == RestName.quarterRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 35, 40, 50);
-                        else if(rest.restName == RestName.eightRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 100, 10, 10);
-                        else if(rest.restName == RestName.sixteenthRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 100, 10, 10);
+                    {
+                        if (rest.restName == RestName.wholeRest) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 180, 46, 20, 10)); }
+                        else if (rest.restName == RestName.halfRest) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 110, 51, 20, 10)); }
+
+
+                        else if (rest.restName == RestName.quarterRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 35, 40, 50);
+                        else if (rest.restName == RestName.eightRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 100, 10, 10);
+                        else if (rest.restName == RestName.sixteenthRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 100, 10, 10);
 
                         if (rest.restName == RestName.wholeRest) Xnotelocation += 336;
                         else if(rest.restName == RestName.halfRest) Xnotelocation += 168;
