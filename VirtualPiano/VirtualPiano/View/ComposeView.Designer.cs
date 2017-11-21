@@ -1,4 +1,7 @@
-﻿namespace VirtualPiano.View
+﻿using System;
+using System.Windows.Forms;
+
+namespace VirtualPiano.View
 {
     partial class ComposeView
     {
@@ -401,6 +404,11 @@
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        private void ComposeView_MouseDown(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -34,7 +34,7 @@
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.formContent = new VirtualPiano.View.ComposeView();
-            this.Titel = new System.Windows.Forms.Label();
+            this.TitelBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,13 +112,13 @@
             // 
             // Titel
             // 
-            this.Titel.AutoSize = true;
-            this.Titel.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titel.Location = new System.Drawing.Point(871, 25);
-            this.Titel.Name = "Titel";
-            this.Titel.Size = new System.Drawing.Size(153, 65);
-            this.Titel.TabIndex = 6;
-            this.Titel.Text = "Titel";
+            this.TitelBox.AutoSize = true;
+            this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitelBox.Location = new System.Drawing.Point(871, 25);
+            this.TitelBox.Name = "Titel";
+            this.TitelBox.Size = new System.Drawing.Size(153, 65);
+            this.TitelBox.TabIndex = 6;
+            this.TitelBox.Text = "Titel";
             // 
             // MainForm
             // 
