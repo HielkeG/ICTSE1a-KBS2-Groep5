@@ -212,5 +212,23 @@ namespace VirtualPiano.View
                 Cursor = Cursors.Default;
             }
         }
+
+        private void EightRest_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempRestName = RestName.eightRest;
+            tempNotename = NoteName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempRestName);
+        }
+
+        private void SixteenthRest_MouseDown(object sender, MouseEventArgs e)
+        {
+            tempBool = true;
+            tempRestName = RestName.sixteenthRest;
+            tempNotename = NoteName.NULL;
+            tempClefName = ClefName.NULL;
+            Cursor = CursorController.ChangeCursor(tempRestName);
+        }
     }
 }

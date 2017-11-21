@@ -91,8 +91,8 @@ namespace VirtualPiano.View
                         if (rest.restName == RestName.wholeRest) e.Graphics.DrawImage(rest.image, Xnotelocation + 180, 25, 50, 50);
                         else if (rest.restName == RestName.halfRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 31, 50, 50);
                         else if(rest.restName == RestName.quarterRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 35, 40, 50);
-                        else if(rest.restName == RestName.eightRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 100, 10, 10);
-                        else if(rest.restName == RestName.sixteenthRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 100, 10, 10);
+                        else if(rest.restName == RestName.eightRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 35, 50, 50);
+                        else if(rest.restName == RestName.sixteenthRest) e.Graphics.DrawImage(rest.image, Xnotelocation, 35, 50, 50);
 
                         if (rest.restName == RestName.wholeRest) Xnotelocation += 336;
                         else if(rest.restName == RestName.halfRest) Xnotelocation += 168;

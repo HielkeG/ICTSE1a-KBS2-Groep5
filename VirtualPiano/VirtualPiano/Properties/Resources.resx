@@ -208,4 +208,13 @@
   <data name="zestiendenoot_cur" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Muzieknoten\zestiendenoot_cur.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="kwartrust_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\afbeeldingen\muzieknoten\kwartrust_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="achtsterust" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\afbeeldingen\muzieknoten\achtsterust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zestienderust" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\afbeeldingen\muzieknoten\zestienderust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

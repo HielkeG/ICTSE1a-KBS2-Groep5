@@ -93,6 +93,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap achtsterust {
+            get {
+                object obj = ResourceManager.GetObject("achtsterust", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap achtsterust_icon {
             get {
                 object obj = ResourceManager.GetObject("achtsterust_icon", resourceCulture);
@@ -293,6 +303,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kwartrust_icon {
+            get {
+                object obj = ResourceManager.GetObject("kwartrust_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Mol {
             get {
                 object obj = ResourceManager.GetObject("Mol", resourceCulture);
@@ -346,6 +366,16 @@ namespace VirtualPiano.Properties {
         internal static System.Drawing.Bitmap zestiendenoot_icon {
             get {
                 object obj = ResourceManager.GetObject("zestiendenoot_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zestienderust {
+            get {
+                object obj = ResourceManager.GetObject("zestienderust", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
