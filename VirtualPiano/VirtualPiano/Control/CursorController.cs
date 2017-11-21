@@ -27,6 +27,9 @@ namespace VirtualPiano.Control
                 case NoteName.quarterNote:
                     b = Resources.kwartnoot_cur;
                     break;
+                case NoteName.eightNote:
+                    b = Resources.achtstenoot_cur;
+                    break;
                 case NoteName.sixteenthNote:
                     b = Resources.zestiendenoot_cur;
                     break;

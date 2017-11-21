@@ -127,11 +127,13 @@ namespace VirtualPiano.View
                         {
                             bar.clef = ClefName.G;
                             bar.MakeEmpty();
+                            bar.isFull = false;
                             Console.WriteLine(bar.clef);
                         }
                         if (ComposeView.tempClefName == ClefName.F) {
                             bar.clef = ClefName.F;
                             bar.MakeEmpty();
+                            bar.isFull = false;
                             Console.WriteLine(bar.clef);
                         }
 
