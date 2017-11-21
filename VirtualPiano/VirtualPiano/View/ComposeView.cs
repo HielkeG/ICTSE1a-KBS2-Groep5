@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
+using VirtualPiano.Control;
 
 namespace VirtualPiano.View
 {
@@ -134,6 +135,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.eightNote;
             tempRestName = RestName.NULL;
+            Cursor = CursorController.ChangeCursor("achtstenoot");
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
@@ -164,6 +166,12 @@ namespace VirtualPiano.View
             tempNotename = NoteName.NULL;
         }
 
-     
+        private void ComposeView_MouseEnter(object sender, EventArgs e)
+        {
+            if (tempBool == false)
+            {
+                Cursor = Cursors.Default;
+            }
+        }
     }
 }

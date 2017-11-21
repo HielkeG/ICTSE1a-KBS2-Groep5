@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Properties;
+using VirtualPiano.Control;
 
 namespace VirtualPiano.View
 {
@@ -120,7 +121,7 @@ namespace VirtualPiano.View
             if (ComposeView.tempBool)
             {
                 char tone = ' ';
-
+                ChangeCursor();
                 if (PointToClient(Cursor.Position).Y < 31 && PointToClient(Cursor.Position).Y >= 23) tone = 'F';
                 if (PointToClient(Cursor.Position).Y < 40 && PointToClient(Cursor.Position).Y >= 31) tone = 'E';
                 if (PointToClient(Cursor.Position).Y < 48 && PointToClient(Cursor.Position).Y >= 40) tone = 'D';
@@ -147,8 +148,21 @@ namespace VirtualPiano.View
                 }
                 Invalidate();
                 ComposeView.tempBool = false;
+                ComposeView.tempNotename = 0;
             }
         }
 
+        private void ChangeCursor()
+        {
+            Cursor = Cursors.Default;
+        }
+
+        private void StaffView_MouseEnter(object sender, EventArgs e)
+        {
+            if (ComposeView.tempNotename != 0)
+            {
+                Cursor = CursorController.ChangeCursor("achtstenoot");
+            }
+        }
     }
 }
