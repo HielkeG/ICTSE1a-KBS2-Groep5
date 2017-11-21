@@ -159,10 +159,7 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
-            if (ComposeView.tempNotename == NoteName.eightNote)
-            {
-                Cursor = CursorController.ChangeCursor("achtstenoot");
-            }
+            Cursor = CursorController.ChangeCursor(ComposeView.tempNotename);
         }
     }
 }

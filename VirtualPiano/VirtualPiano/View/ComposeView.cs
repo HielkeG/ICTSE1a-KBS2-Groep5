@@ -114,6 +114,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.wholeNote;
             tempRestName = RestName.NULL;
+            Cursor = CursorController.ChangeCursor(tempNotename);
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
@@ -135,7 +136,7 @@ namespace VirtualPiano.View
             tempBool = true;
             tempNotename = NoteName.eightNote;
             tempRestName = RestName.NULL;
-            Cursor = CursorController.ChangeCursor("achtstenoot");
+            Cursor = CursorController.ChangeCursor(tempNotename);
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
