@@ -18,9 +18,9 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         int y_staff = 150;
         internal static bool tempBool;
-        internal static NoteName tempNotename;
-        internal static RestName tempRestName;
-        internal static ClefName tempClefName;
+        internal static NoteName tempNotename = NoteName.NULL;
+        internal static RestName tempRestName = RestName.NULL;
+        internal static ClefName tempClefName = ClefName.NULL;
 
         public ComposeView()
         {
@@ -106,7 +106,7 @@ namespace VirtualPiano.View
 
         private void ComposeView_MouseDown(object sender, MouseEventArgs e)
         {
-            tempBool = true;
+
         }
 
 

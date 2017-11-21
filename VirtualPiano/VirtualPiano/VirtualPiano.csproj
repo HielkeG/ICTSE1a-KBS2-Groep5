@@ -180,9 +180,6 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenoot_cur.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\achtstenoot_cur.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenoot_cur.png" />
   </ItemGroup>
   <ItemGroup>

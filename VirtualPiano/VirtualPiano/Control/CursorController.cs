@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
+using VirtualPiano.Properties;
 
 namespace VirtualPiano.Control
 {
@@ -13,38 +14,28 @@ namespace VirtualPiano.Control
     {
         public static Cursor ChangeCursor(NoteName name)
         {
-            if (name == NoteName.eightNote)
+            Bitmap b = new Bitmap(Properties.Resources.helenoot_icon);
+            switch (name)
             {
-                Bitmap b = new Bitmap(Properties.Resources.achtstenoot_cur);
-                b.MakeTransparent(b.GetPixel(0, 0));
+                case NoteName.wholeNote:
+                    b = Resources.helenoot_icon;
+                    break;
 
-                Graphics g = Graphics.FromImage(b);
-
-                IntPtr ptr = b.GetHicon();
-
-                Cursor cur = new System.Windows.Forms.Cursor(ptr);
-
-                return cur;
+                case NoteName.halfNote:
+                    b = Resources.halvenoot_cur;
+                    break;
+                case NoteName.quarterNote:
+                    b = Resources.kwartnoot_cur;
+                    break;
+                case NoteName.sixteenthNote:
+                    b = Resources.zestiendenoot_cur;
+                    break;
             }
-            else if(name == NoteName.wholeNote)
-            {
-                Bitmap b = new Bitmap(Properties.Resources.helenoot_icon);
-                b.MakeTransparent(b.GetPixel(0, 0));
-
-                Graphics g = Graphics.FromImage(b);
-
-                IntPtr ptr = b.GetHicon();
-
-                Cursor cur = new System.Windows.Forms.Cursor(ptr);
-
-                return cur;
-            }
-            else
-            {
-                return null;
-            }
+            b.MakeTransparent(b.GetPixel(0, 0));
+            Graphics g = Graphics.FromImage(b);
+            IntPtr ptr = b.GetHicon();
+            Cursor cur = new System.Windows.Forms.Cursor(ptr);
+            return cur;
         }
-
-
     }
 }
