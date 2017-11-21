@@ -109,19 +109,7 @@ namespace VirtualPiano.View
         {
             if (ComposeView.tempBool)
             {
-<<<<<<< HEAD
-                
-=======
-                char tone = ' ';
                 ChangeCursor();
-                if (PointToClient(Cursor.Position).Y < 31 && PointToClient(Cursor.Position).Y >= 23) tone = 'F';
-                if (PointToClient(Cursor.Position).Y < 40 && PointToClient(Cursor.Position).Y >= 31) tone = 'E';
-                if (PointToClient(Cursor.Position).Y < 48 && PointToClient(Cursor.Position).Y >= 40) tone = 'D';
-                if (PointToClient(Cursor.Position).Y < 55 && PointToClient(Cursor.Position).Y >= 48) tone = 'C';
-                if (PointToClient(Cursor.Position).Y < 63 && PointToClient(Cursor.Position).Y >= 55) tone = 'B'; 
-                if (PointToClient(Cursor.Position).Y < 72 && PointToClient(Cursor.Position).Y >= 63) tone = 'A'; 
-                if (PointToClient(Cursor.Position).Y < 78 && PointToClient(Cursor.Position).Y >= 72 ) tone = 'G';
->>>>>>> 28b22daf8c33904e33bbcedd6c8039de1bd127fa
                 int barBegin =  50;
                 int barEnd = 425;
                 foreach(Bar bar in staff.Bars)
@@ -156,8 +144,7 @@ namespace VirtualPiano.View
                 ComposeView.tempNotename = NoteName.NULL;
             }
         }
-
-<<<<<<< HEAD
+        
         private int GiveYLocation(Note note, ClefName clefname)
         {
             if(clefname == ClefName.G)
@@ -240,8 +227,6 @@ namespace VirtualPiano.View
             return new Note(tempNotename, 'A', 1);
 
         }
-
-=======
         private void ChangeCursor()
         {
             Cursor = Cursors.Default;
@@ -251,6 +236,5 @@ namespace VirtualPiano.View
         {
             Cursor = CursorController.ChangeCursor(ComposeView.tempNotename);
         }
->>>>>>> 28b22daf8c33904e33bbcedd6c8039de1bd127fa
     }
 }
