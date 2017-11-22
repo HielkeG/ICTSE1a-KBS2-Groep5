@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Control;
+using VirtualPiano.Properties;
 
 namespace VirtualPiano.View
 {
@@ -21,11 +22,37 @@ namespace VirtualPiano.View
         internal static NoteName SelectedNoteName = NoteName.NULL;
         internal static RestName SelectedRestName = RestName.NULL;
         internal static ClefName SelectedClefName = ClefName.NULL;
+        private Image stop = Resources.stop;
+        private Image play = Resources.play;
+        private Image pause = Resources.pause;
+        private Image add = Resources.add;
+        private Image rewind = Resources.rewind;
+        private PictureBox playBox = new PictureBox();
+        private PictureBox stopBox = new PictureBox();
+        private PictureBox rewindBox = new PictureBox();
+        private bool isAanHetSpelen = false;
 
         public ComposeView()
         {
             InitializeComponent();
             ShowFirstStaffView();
+
+
+            rewindBox.Location = new Point(115, 30);
+            rewindBox.Image = new Bitmap(rewind);
+            rewindBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            Controls.Add(rewindBox);
+
+            playBox.Location = new Point(150,30);
+            playBox.Image = new Bitmap(play);
+            playBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            playBox.Click += PlayGeklikt;
+            Controls.Add(playBox);
+
+            stopBox.Location = new Point(185, 30);
+            stopBox.Image = new Bitmap(stop);
+            stopBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            Controls.Add(stopBox);
         }
 
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
@@ -40,6 +67,21 @@ namespace VirtualPiano.View
                 y_staff += 200;
             }
 
+        }
+
+        public void PlayGeklikt(Object sender, EventArgs e)
+        {
+            
+            if (isAanHetSpelen == false)
+            {
+                playBox.Image = new Bitmap(play);
+                isAanHetSpelen = true;
+            }
+            else if (isAanHetSpelen)
+            {
+                playBox.Image = new Bitmap(pause);
+                isAanHetSpelen = false;
+            }
         }
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
