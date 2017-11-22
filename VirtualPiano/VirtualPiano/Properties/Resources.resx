@@ -205,7 +205,139 @@
   <data name="zestienderust" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\afbeeldingen\muzieknoten\zestienderust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Piano1A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1A.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1Ais" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1Ais.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1B.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1C.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1Cis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1Cis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1D.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1Dis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1Dis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1E.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1F" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1F.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1Fis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1Fis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1G" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1G.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano1Gis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano1Gis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2A.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2Ais" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2Ais.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2B.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2C.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2Cis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2Cis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2D.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2Dis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2Dis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2E.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2F" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2F.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2Fis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2Fis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2G" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2G.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano2Gis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano2Gis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3A.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3Ais" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3Ais.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3B.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3C.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3Cis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3Cis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3D.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3Dis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3Dis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3E.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3F" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3F.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3Fis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3Fis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3G" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3G.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano3Gis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano3Gis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4C.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4Cis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4Cis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4D.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4Dis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4Dis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4E.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4F" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4F.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4Fis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4Fis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4G" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4G.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Knoppen\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check" type="System.Resources.ResXFileRef, System.Windows.Forms">
