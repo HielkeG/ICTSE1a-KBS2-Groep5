@@ -6,12 +6,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtualPiano.Control;
 using System.Windows.Forms;
 
 namespace VirtualPiano.View
 {
     public partial class MenuBarView : UserControl
     {
+        MenuBarController mbc = new MenuBarController();
+
         public MenuBarView()
         {
             InitializeComponent();
@@ -19,14 +22,7 @@ namespace VirtualPiano.View
 
         public void GeluidAanUit(object sender, EventArgs e)
         {
-            if (geluidAanuitToolStripMenuItem.Checked)
-            {
-                geluidAanuitToolStripMenuItem.CheckState = CheckState.Unchecked;
-            }
-            else
-            {
-                geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
-            }
+            mbc.SoundToggle(this);
         }
     }
 }
