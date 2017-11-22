@@ -216,6 +216,13 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Knoppen\add.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\check.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\min.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\pause.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\play.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\rewind.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\zestienderust.png" />
     <None Include="Resources\Geluiden\Piano\Piano4G.wav" />
