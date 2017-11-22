@@ -44,19 +44,21 @@ namespace VirtualPiano.View
             }
         }
 
-        public void DrawBars(PaintEventArgs e)
+        public void DrawBars(PaintEventArgs e) //Deze methode tekent de maten inclusief de noten en de sleutels
         {
             int x_bar = 425;
             int Xnotelocation = 20;
             ClefName latestClef = ClefName.NULL;
-            foreach (Bar bar in staff.Bars)
+            foreach (Bar bar in staff.Bars) // Elke bar in de notenbalk wordt langsgegaan
             {
+                //Sleutels tekenen
                 if(staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen
                 {
+                    //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 420, 6, 60, 110); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 430, -39, 88, 185); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
-                } else
+                } else 
                 {
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 414, 23, 40, 83); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 440, -25, 77, 155); latestClef = ClefName.F; }
@@ -65,20 +67,20 @@ namespace VirtualPiano.View
                 
                 e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90); //per maat verticale lijn tekenen
 
-                if (bar.isFull) barColor = Color.Green;     //als maat vol is: groene lijn, anders rood
+                if (bar.isFull) barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
                 else barColor = Color.Red;
                 e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 375, 125, x_bar, 125);   
-                Xnotelocation = x_bar - 400;
+                Xnotelocation = x_bar - 400; // De x-coördinaat van het einde van de maat
                 
                 foreach(Sign sign in bar.signs)
                 {
-                    if (sign is Note note)
+                    if (sign is Note note) 
                     {
-                        int Ynotelocation = GiveYLocation(note, bar.clef);
-                        e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
+                        int Ynotelocation = GiveYLocation(note, bar.clef); //Deze methode berekent de Y-coordinaat obv de noot en sleutel
+                        e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130); 
 
-                        if (note.noteName == NoteName.wholeNote) Xnotelocation += 336;
-                        else if(note.noteName == NoteName.halfNote) Xnotelocation += 168;
+                        if (note.noteName == NoteName.wholeNote) Xnotelocation += 336; 
+                        else if(note.noteName == NoteName.halfNote) Xnotelocation += 168; //De volgende noot wordt getekent op een afstand van 168
                         else if(note.noteName == NoteName.quarterNote) Xnotelocation += 84;
                         else if(note.noteName == NoteName.eightNote) Xnotelocation += 42;
                         else if(note.noteName == NoteName.sixteenthNote) Xnotelocation += 21;
@@ -102,7 +104,7 @@ namespace VirtualPiano.View
                     }
                   
                 }
-                x_bar += 375;
+                x_bar += 375; 
             }     
         }
 
@@ -142,9 +144,9 @@ namespace VirtualPiano.View
             }
         }
         
-        private int GiveYLocation(Note note, ClefName clefname) //Geeft de Y coordinaat van de noten en sleutels
+        private int GiveYLocation(Note note, ClefName clefname) //Geeft de Y coordinaat van de noot, op basis van de noot en de sleutel
         {
-            if(clefname == ClefName.G)
+            if(clefname == ClefName.G) 
             {
                 if (note.tone == 'C' && note.octave == 3) return 40;
                 if (note.tone == 'D' && note.octave == 3) return 33;
@@ -178,7 +180,7 @@ namespace VirtualPiano.View
             return 0;
         }
 
-        private Note CreateNote(int y, NoteName tempNotename, ClefName clef) //returnt note of sleutel afhankelijk van y coordinaat van cursor
+        private Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
         {
             char tone = ' ';
             int octave = 0;
