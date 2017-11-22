@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace VirtualPiano.Model
 {
@@ -25,5 +26,38 @@ namespace VirtualPiano.Model
         {
             return staffs;
         }
+
+        public async void PlaySong()
+        {
+            for(int i = 0; i < staffs.Count(); i++)
+            {
+                for(int b = 0; b <  staffs[i].Bars.Count();b++)
+                {
+                    for(int c = 0; c< staffs[i].Bars[b].signs.Count();c++)
+                    {
+                        if(staffs[i].Bars[b].signs[c] is Note note)
+                        {
+                            note.PlaySound();
+                            await PutTaskDelay(note.duration * 120);
+
+                          
+                        }
+
+                        else if (staffs[i].Bars[b].signs[c] is Rest rest)
+                        {
+                            await PutTaskDelay(rest.duration * 120);
+
+                        }
+                    }
+                }
+            }
+        }
+
+        async Task PutTaskDelay(int delay)
+        {
+            await Task.Delay(delay);
+        }
+        
+
     }
 }

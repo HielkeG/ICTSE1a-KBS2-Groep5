@@ -335,6 +335,7 @@ namespace VirtualPiano.View
             this.Flat.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.Flat.Size = new System.Drawing.Size(50, 50);
             this.Flat.Text = "Mol";
+            this.Flat.Click += new System.EventHandler(this.Flat_Click);
             // 
             // ComposeView
             // 

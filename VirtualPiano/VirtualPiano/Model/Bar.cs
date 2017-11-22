@@ -10,7 +10,7 @@ namespace VirtualPiano.Model
 
     public class Bar
     {
-        public List<Sign> signs;
+        public List<Sign> signs = new List<Sign>();
         public ClefName clef;
         public int TimeSignatureAmount;
         public NoteName TimeSignatureName;
@@ -20,7 +20,6 @@ namespace VirtualPiano.Model
         public Bar()
         {
             clef = ClefName.G;
-            signs = new List<Sign>();
         }
 
         public bool CheckBarSpace(Sign sign)    //kijken of er ruimte in de maat is voor nieuw teken

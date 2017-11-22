@@ -253,5 +253,10 @@ namespace VirtualPiano.View
             SelectedRestName = RestName.sixteenthRest;
             Cursor = CursorController.ChangeCursor(SelectedRestName);
         }
+
+        private void Flat_Click(object sender, EventArgs e)
+        {
+            song.PlaySong();
+        }
     }
 }
