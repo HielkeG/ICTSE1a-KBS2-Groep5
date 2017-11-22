@@ -76,8 +76,10 @@ namespace VirtualPiano.View
                 {
                     if (sign is Note note) 
                     {
-                        int Ynotelocation = GiveYLocation(note, bar.clef); //Deze methode berekent de Y-coordinaat obv de noot en sleutel
-                        e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130); 
+                        note.SetY(bar.clef);
+                        int Ynotelocation = note.y; 
+                        e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
+                        note.SetX(Xnotelocation);
 
                         if (note.noteName == NoteName.wholeNote) Xnotelocation += 336; 
                         else if(note.noteName == NoteName.halfNote) Xnotelocation += 168; //De volgende noot wordt getekent op een afstand van 168
@@ -113,11 +115,12 @@ namespace VirtualPiano.View
         {
             if (ComposeView.signSelected)
             {
-                int barBegin =  50;
+
+                int barBegin = 50;
                 int barEnd = 425;
-                foreach(Bar bar in staff.Bars)
+                foreach (Bar bar in staff.Bars)
                 {
-                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin )
+                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                     {
                         Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
                         Rest newRest = new Rest(ComposeView.SelectedRestName);
@@ -128,12 +131,11 @@ namespace VirtualPiano.View
                         {
                             bar.clef = ClefName.G;
                             bar.MakeEmpty();
-                            Console.WriteLine(bar.clef);
                         }
-                        if (ComposeView.SelectedClefName == ClefName.F) {
+                        if (ComposeView.SelectedClefName == ClefName.F)
+                        {
                             bar.clef = ClefName.F;
                             bar.MakeEmpty();
-                            Console.WriteLine(bar.clef);
                         }
                     }
                     barBegin += 375;
@@ -142,48 +144,30 @@ namespace VirtualPiano.View
                 Invalidate();
                 SetDefaultCursor();
             }
+            else {
+                foreach(Bar bar in staff.Bars)
+                {
+                    foreach(Sign sign in bar.signs)
+                    {
+                        if (sign is Note note)
+                        {
+                            if (note.x - 10 < PointToClient(Cursor.Position).X && note.x + 10 > PointToClient(Cursor.Position).X && note.y - 10 < PointToClient(Cursor.Position).Y - 63 && note.y + 10 > PointToClient(Cursor.Position).Y - 63)
+                            {
+                                note.PlaySound();
+                            }
+                        }
+                    }
+                }
+            }
         }
         
-        private int GiveYLocation(Note note, ClefName clefname) //Geeft de Y coordinaat van de noot, op basis van de noot en de sleutel
-        {
-            if(clefname == ClefName.G) 
-            {
-                if (note.tone == 'C' && note.octave == 3) return 40;
-                if (note.tone == 'D' && note.octave == 3) return 33;
-                if (note.tone == 'E' && note.octave == 3) return 26;
-                else if (note.tone == 'F' && note.octave == 3) return 19;
-                else if (note.tone == 'G' && note.octave == 3) return 10;
-                else if (note.tone == 'A' && note.octave == 3) return 4;
-                else if (note.tone == 'B' && note.octave == 3) return -3;
-                else if (note.tone == 'C' && note.octave == 4) return -11;
-                else if (note.tone == 'D' && note.octave == 4) return -19;
-                else if (note.tone == 'E' && note.octave == 4) return -26;
-                else if (note.tone == 'F' && note.octave == 4) return -34;
-                else if (note.tone == 'G' && note.octave == 4) return -42;
-            }
-
-            if (clefname == ClefName.F)
-            {
-                if (note.tone == 'E' && note.octave == 1) return 40;
-                if (note.tone == 'F' && note.octave == 1) return 33;
-                if (note.tone == 'G' && note.octave == 1) return 26;
-                else if (note.tone == 'A' && note.octave == 1) return 19;
-                else if (note.tone == 'B' && note.octave == 1) return 10;
-                else if (note.tone == 'C' && note.octave == 2) return 4;
-                else if (note.tone == 'D' && note.octave == 2) return -3;
-                else if (note.tone == 'E' && note.octave == 2) return -11;
-                else if (note.tone == 'F' && note.octave == 2) return -19;
-                else if (note.tone == 'G' && note.octave == 2) return -26;
-                else if (note.tone == 'A' && note.octave == 2) return -34;
-                else if (note.tone == 'B' && note.octave == 2) return -42;
-            }
-            return 0;
-        }
 
         private Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
         {
             char tone = ' ';
             int octave = 0;
+
+            
             if (clef == ClefName.G)
             {
                 if (y < 25 && y >= 14) { tone = 'G'; octave = 4; }
