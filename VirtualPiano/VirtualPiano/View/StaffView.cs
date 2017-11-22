@@ -109,7 +109,7 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseUp(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
         {
-            if (ComposeView.tempBool)
+            if (ComposeView.signSelected)
             {
                 int barBegin =  50;
                 int barEnd = 425;
@@ -117,18 +117,18 @@ namespace VirtualPiano.View
                 {
                     if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin )
                     {
-                        Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.tempNotename, bar.clef);
-                        Rest newRest = new Rest(ComposeView.tempRestName);
+                        Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
+                        Rest newRest = new Rest(ComposeView.SelectedRestName);
 
-                        if (bar.CheckBarSpace(newNote) && ComposeView.tempNotename != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
-                        if (bar.CheckBarSpace(newRest) && ComposeView.tempRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
-                        if (ComposeView.tempClefName == ClefName.G)
+                        if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
+                        if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
+                        if (ComposeView.SelectedClefName == ClefName.G)
                         {
                             bar.clef = ClefName.G;
                             bar.MakeEmpty();
                             Console.WriteLine(bar.clef);
                         }
-                        if (ComposeView.tempClefName == ClefName.F) {
+                        if (ComposeView.SelectedClefName == ClefName.F) {
                             bar.clef = ClefName.F;
                             bar.MakeEmpty();
                             Console.WriteLine(bar.clef);
@@ -222,28 +222,30 @@ namespace VirtualPiano.View
             return null;
 
         }
+        //methode die de cursor op default zet en alle booleans op null zet.
         private void SetDefaultCursor()
         {
             Cursor = Cursors.Default;
-            ComposeView.tempBool = false;
-            ComposeView.tempNotename = NoteName.NULL;
-            ComposeView.tempRestName = RestName.NULL;
-            ComposeView.tempClefName = ClefName.NULL;
+            ComposeView.signSelected = false;
+            ComposeView.SelectedNoteName = NoteName.NULL;
+            ComposeView.SelectedRestName = RestName.NULL;
+            ComposeView.SelectedClefName = ClefName.NULL;
         }
 
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
-            if (ComposeView.tempNotename != NoteName.NULL)
+            //wanneer de muis dit gebied binnenkomt controleren hoe de variabelen staan en zo de cursor veranderen.
+            if (ComposeView.SelectedNoteName != NoteName.NULL)
             {
-                Cursor = CursorController.ChangeCursor(ComposeView.tempNotename);
+                Cursor = CursorController.ChangeCursor(ComposeView.SelectedNoteName);
             }
-            else if(ComposeView.tempClefName != ClefName.NULL)
+            else if(ComposeView.SelectedClefName != ClefName.NULL)
             {
-                Cursor = CursorController.ChangeCursor(ComposeView.tempClefName);
+                Cursor = CursorController.ChangeCursor(ComposeView.SelectedClefName);
             }
-            else if (ComposeView.tempRestName != RestName.NULL)
+            else if (ComposeView.SelectedRestName != RestName.NULL)
             {
-                Cursor = CursorController.ChangeCursor(ComposeView.tempRestName);
+                Cursor = CursorController.ChangeCursor(ComposeView.SelectedRestName);
             }
             else
             {

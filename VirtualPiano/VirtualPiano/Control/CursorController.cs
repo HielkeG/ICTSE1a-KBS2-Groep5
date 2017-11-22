@@ -12,9 +12,13 @@ namespace VirtualPiano.Control
 {
     public static class CursorController
     {
+        //methode die cursor verandert naar een Noot.
+        //deze klasse bevat 3 overrides voor de methode.
         public static Cursor ChangeCursor(NoteName name)
         {
+            //afbeelding aanmaken
             Bitmap b = null;
+            //kijken welke afbeelding de noot moet zijn.
             switch (name)
             {
                 case NoteName.wholeNote:
@@ -34,6 +38,7 @@ namespace VirtualPiano.Control
                     b = Resources.zestiendenoot_cur;
                     break;
             }
+            //afbeelding instellen.
             b.MakeTransparent(b.GetPixel(0, 0));
             Graphics g = Graphics.FromImage(b);
             IntPtr ptr = b.GetHicon();
