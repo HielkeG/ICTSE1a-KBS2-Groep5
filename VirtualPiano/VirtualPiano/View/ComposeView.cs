@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Control;
 using VirtualPiano.Properties;
+using System.Media;
 
 namespace VirtualPiano.View
 {
@@ -22,37 +23,22 @@ namespace VirtualPiano.View
         internal static NoteName SelectedNoteName = NoteName.NULL;
         internal static RestName SelectedRestName = RestName.NULL;
         internal static ClefName SelectedClefName = ClefName.NULL;
-        private Image stop = Resources.stop;
-        private Image play = Resources.play;
-        private Image pause = Resources.pause;
-        private Image add = Resources.add;
-        private Image rewind = Resources.rewind;
-        private PictureBox playBox = new PictureBox();
-        private PictureBox stopBox = new PictureBox();
-        private PictureBox rewindBox = new PictureBox();
-        private bool isAanHetSpelen = false;
+        int tempint;
+
 
         public ComposeView()
         {
             InitializeComponent();
             ShowFirstStaffView();
 
+            tempint = 0;
 
-            rewindBox.Location = new Point(115, 30);
-            rewindBox.Image = new Bitmap(rewind);
-            rewindBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            Controls.Add(rewindBox);
+            MusicController m1 = new MusicController(Metronoom);
+            Controls.Add(MusicController.rewindBox);
+            Controls.Add(MusicController.playBox);
+            Controls.Add(MusicController.stopBox);
+            Snelheid.Text = Metronoom.Interval.ToString();
 
-            playBox.Location = new Point(150,30);
-            playBox.Image = new Bitmap(play);
-            playBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            playBox.Click += PlayGeklikt;
-            Controls.Add(playBox);
-
-            stopBox.Location = new Point(185, 30);
-            stopBox.Image = new Bitmap(stop);
-            stopBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            Controls.Add(stopBox);
         }
 
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
@@ -69,20 +55,6 @@ namespace VirtualPiano.View
 
         }
 
-        public void PlayGeklikt(Object sender, EventArgs e)
-        {
-            
-            if (isAanHetSpelen == false)
-            {
-                playBox.Image = new Bitmap(play);
-                isAanHetSpelen = true;
-            }
-            else if (isAanHetSpelen)
-            {
-                playBox.Image = new Bitmap(pause);
-                isAanHetSpelen = false;
-            }
-        }
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
@@ -257,6 +229,69 @@ namespace VirtualPiano.View
         private void Flat_Click(object sender, EventArgs e)
         {
             song.PlaySong();
+        }
+
+        public void Metronoom_Tick(object sender, EventArgs e)
+        {
+            SystemSounds.Beep.Play();
+            tempint++;
+            Invalidate();            
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            Draw(e);
+        }
+
+        public void Draw(PaintEventArgs e) //WIP
+        {
+            Pen p1 = new Pen(Color.White, 2);
+            Pen p2 = new Pen(Color.Black, 2);
+            SolidBrush s1 = new SolidBrush(Color.White);
+            SolidBrush s2 = new SolidBrush(Color.Black);
+
+            int x2 = 66;
+            for (int i = 0; i < tempint; i++)
+            {
+
+                //e.Graphics.FillRectangle(s1, 0, 0, x, 248);
+                e.Graphics.DrawRectangle(p2, 1, 1, x2, 248);
+
+                x2 = x2 + 66;
+            }
+            int locatie = 2;
+            //tempint = 1;
+
+            //if(Metronoom.)
+
+            //for (int i = 0; i < tempint; i++)
+            //{
+            //    e.Graphics.FillRectangle(s1, locatie, 2, 64, 246);
+
+            //    locatie = locatie + 66;
+
+            //    //i++;
+            //    //if (i > 0)
+            //    //{
+            //    //i = tempint;
+            //    //}
+            //}
+
+            e.Graphics.FillRectangle(s2, 46, 1, 40, 180);
+        }
+
+
+        private void Snelheid_TextChanged(object sender, EventArgs e)
+        {
+            int isNumber = 0;
+            int.TryParse(Snelheid.Text.ToString(), out isNumber);
+            if (isNumber != 0)
+            {
+                int interval = Int32.Parse(Snelheid.Text);
+                MusicController.setMetronoom(interval);
+            }
+
         }
     }
 }
