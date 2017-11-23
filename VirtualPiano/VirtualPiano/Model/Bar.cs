@@ -16,6 +16,8 @@ namespace VirtualPiano.Model
         public NoteName TimeSignatureName;
         public int duration = 0;
         public bool isFull = false;
+        public int FlatSharp;
+        public bool hasChanged;
 
         public Bar()
         {
@@ -41,5 +43,7 @@ namespace VirtualPiano.Model
             isFull = false;
             duration = 0;
         }
+
+        
     }
 }
