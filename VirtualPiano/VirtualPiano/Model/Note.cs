@@ -30,10 +30,16 @@ namespace VirtualPiano.Model
 
         public void PlaySound()
         {
-            object O = Properties.Resources.ResourceManager.GetObject($"Piano{octave}{tone}");
-            var s = (Stream)O;
-            System.Media.SoundPlayer snd = new System.Media.SoundPlayer(s);
-            snd.Play();
+            var player = new System.Windows.Media.MediaPlayer();
+            try
+            {
+                player.Open(new Uri($@"../../Resources/Geluiden/Piano/Piano{octave}{tone}.wav", UriKind.Relative));
+                player.Play();
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("File not found");
+            }
         }
 
         public void SetX(int x)
