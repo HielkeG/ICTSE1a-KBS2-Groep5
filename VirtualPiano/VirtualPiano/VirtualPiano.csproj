@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Control\CursorController.cs" />
     <Compile Include="Control\MenuBarController.cs" />
+    <Compile Include="Control\MusicController.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Rest.cs" />
