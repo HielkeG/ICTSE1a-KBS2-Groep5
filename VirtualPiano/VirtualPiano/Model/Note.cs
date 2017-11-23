@@ -111,7 +111,7 @@ namespace VirtualPiano.Model
                     if (tone == 'C') { filename = "Cis"; }
                     if (tone == 'D') { filename = "Dis"; }
                     if (tone == 'E') { filename = "F"; }
-                    if (tone == 'F') { filename = "Fis"; Console.WriteLine("Test"); }
+                    if (tone == 'F') { filename = "Fis"; }
                     if (tone == 'G') { filename = "Gis"; }
                 }
                 if (FlatSharp == -1)
@@ -121,7 +121,7 @@ namespace VirtualPiano.Model
                     if (tone == 'C') { filename = "B"; }
                     if (tone == 'D') { filename = "Cis"; }
                     if (tone == 'E') { filename = "Dis"; }
-                    if (tone == 'F') { filename = "E"; Console.WriteLine("Test"); }
+                    if (tone == 'F') { filename = "E"; }
                     if (tone == 'G') { filename = "Fis"; }
                 }
                 player.Open(new Uri($@"../../Resources/Geluiden/Piano/Piano{octave}{filename}.wav", UriKind.Relative));

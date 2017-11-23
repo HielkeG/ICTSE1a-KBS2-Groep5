@@ -19,9 +19,13 @@ namespace VirtualPiano.View
         Color barColor;
 
 
-        public StaffView(Staff staff)
+        public StaffView(Staff staff, int flatsharp)
         {
             this.staff = staff;
+            foreach (Bar bar in staff.Bars)
+            {
+                bar.FlatSharp = flatsharp;
+            }
             InitializeComponent();
         }
 

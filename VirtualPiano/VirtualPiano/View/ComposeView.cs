@@ -111,7 +111,7 @@ namespace VirtualPiano.View
             panel.Location = new Point(190, y_staff);
             panel.Size = new Size(1600, 150);
             Controls.Add(panel);
-            StaffView _staffView = new StaffView(staff)
+            StaffView _staffView = new StaffView(staff, FlatSharp)
             {
                 Dock = DockStyle.None
             };
@@ -259,14 +259,32 @@ namespace VirtualPiano.View
         {
             song.PlaySong();
             signSelected = true;
-            FlatSharp = -1;
+            FlatSharp--;
+
+            foreach (Staff staf in song.GetStaffs())
+            {
+                foreach (Bar bar in staf.Bars)
+                {
+                    bar.FlatSharp--;
+                }
+            }
+            Refresh();
         }
 
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            FlatSharp = 1;
+            FlatSharp++;
 
+            foreach(Staff staf in song.GetStaffs())
+            {
+                foreach(Bar bar in staf.Bars)
+                {
+                    bar.FlatSharp++;
+                                        
+                }
+            }
+            Refresh();
         }
     }
 }
