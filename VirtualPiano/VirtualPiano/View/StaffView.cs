@@ -113,50 +113,76 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseUp(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
         {
-            if (ComposeView.signSelected)
+            
+            if (e.Button == MouseButtons.Left)
             {
+                if (ComposeView.signSelected)
+                {
+                    int barBegin = 50;
+                    int barEnd = 425;
 
+                    foreach (Bar bar in staff.Bars)
+                    {
+                        if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
+                        {
+                            Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
+                            Rest newRest = new Rest(ComposeView.SelectedRestName);
+
+                            if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
+                            if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
+                            if (ComposeView.SelectedClefName == ClefName.G)
+                            {
+                                bar.clef = ClefName.G;
+                                bar.MakeEmpty();
+                            }
+                            if (ComposeView.SelectedClefName == ClefName.F)
+                            {
+                                bar.clef = ClefName.F;
+                                bar.MakeEmpty();
+                            }
+                        }
+                        barBegin += 375;
+                        barEnd += 375;
+                    }
+                    Invalidate();
+                    SetDefaultCursor();
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    foreach (Bar bar in staff.Bars)
+                    {
+                        foreach (Sign sign in bar.signs)
+                        {
+                            if (sign is Note note)
+                            {
+                                if (note.x - 10 < PointToClient(Cursor.Position).X && note.x + 10 > PointToClient(Cursor.Position).X && note.y - 10 < PointToClient(Cursor.Position).Y - 63 && note.y + 10 > PointToClient(Cursor.Position).Y - 63)
+                                {
+                                    note.PlaySound();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
                 int barBegin = 50;
                 int barEnd = 425;
+
                 foreach (Bar bar in staff.Bars)
                 {
                     if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                     {
-                        Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
-                        Rest newRest = new Rest(ComposeView.SelectedRestName);
-
-                        if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
-                        if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
-                        if (ComposeView.SelectedClefName == ClefName.G)
+                        if (bar.signs.Count > 0)
                         {
-                            bar.clef = ClefName.G;
-                            bar.MakeEmpty();
-                        }
-                        if (ComposeView.SelectedClefName == ClefName.F)
-                        {
-                            bar.clef = ClefName.F;
-                            bar.MakeEmpty();
+                            bar.duration = bar.duration - bar.signs.Last().duration;
+                            bar.signs.RemoveAt(bar.signs.Count() - 1);
+                            bar.isFull = false;
+                            Invalidate();
                         }
                     }
                     barBegin += 375;
                     barEnd += 375;
-                }
-                Invalidate();
-                SetDefaultCursor();
-            }
-            else {
-                foreach(Bar bar in staff.Bars)
-                {
-                    foreach(Sign sign in bar.signs)
-                    {
-                        if (sign is Note note)
-                        {
-                            if (note.x - 10 < PointToClient(Cursor.Position).X && note.x + 10 > PointToClient(Cursor.Position).X && note.y - 10 < PointToClient(Cursor.Position).Y - 63 && note.y + 10 > PointToClient(Cursor.Position).Y - 63)
-                            {
-                                note.PlaySound();
-                            }
-                        }
-                    }
                 }
             }
         }

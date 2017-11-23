@@ -149,71 +149,96 @@ namespace VirtualPiano.View
 
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
-            //deze code is voor alle mousedown events hetzelfde.
-            //boolean om aan te geven dat een noot geslepen wordt.
-            signSelected = true;
-            //de bijbehorende naam van de noot.
-            SelectedNoteName = NoteName.wholeNote;
-            //de cursor veranderen naar de gewenste afbeelding.
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            if (e.Button == MouseButtons.Left)
+            {
+                 //deze code is voor alle mousedown events hetzelfde.
+                 //boolean om aan te geven dat een noot geslepen wordt.
+                signSelected = true;
+                 //de bijbehorende naam van de noot.
+                SelectedNoteName = NoteName.wholeNote;
+                 //de cursor veranderen naar de gewenste afbeelding.
+                Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            }
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedNoteName = NoteName.halfNote;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedNoteName = NoteName.halfNote;
+                Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            }
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedNoteName = NoteName.quarterNote;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedNoteName = NoteName.quarterNote;
+                Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            }
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedNoteName = NoteName.eightNote;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedNoteName = NoteName.eightNote;
+                Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            }
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedNoteName = NoteName.sixteenthNote;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedNoteName = NoteName.sixteenthNote;
+                Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            }
         }
 
         private void FullRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedRestName = RestName.wholeRest;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
-
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedRestName = RestName.wholeRest;
+                Cursor = CursorController.ChangeCursor(SelectedRestName);
+            }
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedRestName = RestName.halfRest;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
-
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedRestName = RestName.halfRest;
+                Cursor = CursorController.ChangeCursor(SelectedRestName);
+            }
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedRestName = RestName.quarterRest;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedRestName = RestName.quarterRest;
+                Cursor = CursorController.ChangeCursor(SelectedRestName);
+            }
         }
-        
+
         private void GKey_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedClefName = ClefName.G;
-            Cursor = CursorController.ChangeCursor(SelectedClefName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedClefName = ClefName.G;
+                Cursor = CursorController.ChangeCursor(SelectedClefName);
+            }
         }
 
         private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
@@ -227,9 +252,12 @@ namespace VirtualPiano.View
         }
         private void FKey_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedClefName = ClefName.F;
-            Cursor = CursorController.ChangeCursor(SelectedClefName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedClefName = ClefName.F;
+                Cursor = CursorController.ChangeCursor(SelectedClefName);
+            }
         }
 
         private void ComposeView_MouseEnter(object sender, EventArgs e)
@@ -242,16 +270,22 @@ namespace VirtualPiano.View
 
         private void EightRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedRestName = RestName.eightRest;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedRestName = RestName.eightRest;
+                Cursor = CursorController.ChangeCursor(SelectedRestName);
+            }
         }
 
         private void SixteenthRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
-            SelectedRestName = RestName.sixteenthRest;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            if (e.Button == MouseButtons.Left)
+            {
+                signSelected = true;
+                SelectedRestName = RestName.sixteenthRest;
+                Cursor = CursorController.ChangeCursor(SelectedRestName);
+            }
         }
 
         private void Flat_Click(object sender, EventArgs e)
