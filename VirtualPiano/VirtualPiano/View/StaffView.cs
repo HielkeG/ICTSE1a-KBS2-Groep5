@@ -17,7 +17,7 @@ namespace VirtualPiano.View
     {
         public Staff staff;
         Color barColor;
-        
+        private int countto4;
 
         public StaffView(Staff staff, int flatsharp)
         {
@@ -137,15 +137,15 @@ namespace VirtualPiano.View
                     int barBegin = 50;
                     int barEnd = 425;
 
-                    if (ComposeView.FlatSharp == 1) { bar.FlatSharp++; }
-                    if (ComposeView.FlatSharp == -1) { bar.FlatSharp--; }
-                    if (countto4 == 4)
-                    {
-                        ComposeView.FlatSharp = 0;
-                    }
-
                     foreach (Bar bar in staff.Bars)
                     {
+                        if (ComposeView.FlatSharp == 1) { bar.FlatSharp++; }
+                        if (ComposeView.FlatSharp == -1) { bar.FlatSharp--; }
+                        if (countto4 == 4)
+                        {
+                            ComposeView.FlatSharp = 0;
+                        }
+
                         if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                         {
                             Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
@@ -262,11 +262,6 @@ namespace VirtualPiano.View
             ComposeView.SelectedNoteName = NoteName.NULL;
             ComposeView.SelectedRestName = RestName.NULL;
             ComposeView.SelectedClefName = ClefName.NULL;
-        }
-
-        public void Update()
-        {
-            Invalidate();
         }
 
         private void StaffView_MouseEnter(object sender, EventArgs e)

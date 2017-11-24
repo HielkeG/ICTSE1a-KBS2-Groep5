@@ -290,9 +290,8 @@ namespace VirtualPiano.View
             Refresh();
         }
 
-        private void SnapTimer_Tick(object sender, EventArgs e)
+        private void NoteSnapTimer_Tick(object sender, EventArgs e)
         {
-            
             foreach (Staff staff in song.GetStaffs())
             {
                 int barBegin = 250;
@@ -317,5 +316,5 @@ namespace VirtualPiano.View
                 }
             }
         }
-        }
+    }
     }
