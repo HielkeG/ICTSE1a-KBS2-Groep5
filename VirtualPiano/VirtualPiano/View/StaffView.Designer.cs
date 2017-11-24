@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.SnapTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // StaffView
@@ -49,7 +47,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer SnapTimer;
     }
 }

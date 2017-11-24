@@ -25,9 +25,9 @@ namespace VirtualPiano.Control
         public static PictureBox rewindBox = new PictureBox();
         public static Timer Metronoom;
         public static Timer rodeLijn;
+        public static Song song;
 
-
-        public MusicController(Timer m, Timer r)
+        public MusicController(Timer m, Timer r, Song s)
         {
             rewindBox.Location = new Point(115, 30);
             rewindBox.Image = new Bitmap(rewind);
@@ -46,13 +46,13 @@ namespace VirtualPiano.Control
             stopBox.Click += StopGeklikt;
             Metronoom = m;
             rodeLijn = r;
+            song = s;
             Metronoom.Interval = 500;
         }
 
 
         public void PlayGeklikt(Object sender, EventArgs e)
-        {
-
+        { 
             if (isAanHetSpelen == false)
             {
                 playBox.Image = new Bitmap(pause);
@@ -60,6 +60,7 @@ namespace VirtualPiano.Control
                 Metronoom.Enabled = true;
                 //int temp = Song.getDuration();
                 //Console.WriteLine(Song.getDuration());
+                song.PlaySong();
                 rodeLijn.Start();
  
                 
