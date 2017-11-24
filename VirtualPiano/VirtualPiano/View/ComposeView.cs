@@ -33,11 +33,12 @@ namespace VirtualPiano.View
 
             tempint = 0;
 
-            MusicController m1 = new MusicController(Metronoom);
+            MusicController m1 = new MusicController(Metronoom, rodeLijn);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
             Snelheid.Text = Metronoom.Interval.ToString();
+            DoubleBuffered = true;
 
         }
 
@@ -93,7 +94,7 @@ namespace VirtualPiano.View
         {
             btnAddStaff = new RoundButton();
             //btnAddStaff.Location = new Point(970, y_staff + 170);
-            btnAddStaff.Location = new Point(1800, y_staff+35);
+            btnAddStaff.Location = new Point(1800, y_staff + 35);
             btnAddStaff.Size = new Size(50, 50);
             btnAddStaff.Text = "+";
             btnAddStaff.ForeColor = Color.White;
@@ -180,7 +181,7 @@ namespace VirtualPiano.View
             SelectedRestName = RestName.quarterRest;
             Cursor = CursorController.ChangeCursor(SelectedRestName);
         }
-        
+
         private void GKey_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
@@ -195,7 +196,7 @@ namespace VirtualPiano.View
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-             
+
         }
         private void FKey_MouseDown(object sender, MouseEventArgs e)
         {
@@ -233,9 +234,9 @@ namespace VirtualPiano.View
 
         public void Metronoom_Tick(object sender, EventArgs e)
         {
-            SystemSounds.Beep.Play();
-            tempint++;
-            Invalidate();            
+            //SystemSounds.Beep.Play();
+            //tempint++;
+            Invalidate();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -247,38 +248,26 @@ namespace VirtualPiano.View
         public void Draw(PaintEventArgs e) //WIP
         {
             Pen p1 = new Pen(Color.White, 2);
-            Pen p2 = new Pen(Color.Black, 2);
+            Pen p2 = new Pen(Color.Black, 8);
             SolidBrush s1 = new SolidBrush(Color.White);
             SolidBrush s2 = new SolidBrush(Color.Black);
-
-            int x2 = 66;
-            for (int i = 0; i < tempint; i++)
-            {
-
-                //e.Graphics.FillRectangle(s1, 0, 0, x, 248);
-                e.Graphics.DrawRectangle(p2, 1, 1, x2, 248);
-
-                x2 = x2 + 66;
-            }
-            int locatie = 2;
-            //tempint = 1;
-
-            //if(Metronoom.)
-
+            
             //for (int i = 0; i < tempint; i++)
             //{
-            //    e.Graphics.FillRectangle(s1, locatie, 2, 64, 246);
 
-            //    locatie = locatie + 66;
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            e.Graphics.DrawLine(p2, new Point(200, 10), new Point(200 + tempint, 10));
+            //foreach (Staff staff in Song.staffs)
+            //    {
+            //        foreach (Bar bar in staff.Bars)
+            //        {
+            //        int temp = 0;
+            //            e.Graphics.DrawLine(p2, new Point(200, 10), new Point(200, +temp*2));
+            //        temp++;
+            //        }
+            //    }
 
-            //    //i++;
-            //    //if (i > 0)
-            //    //{
-            //    //i = tempint;
-            //    //}
             //}
-
-            e.Graphics.FillRectangle(s2, 46, 1, 40, 180);
         }
 
 
@@ -292,6 +281,22 @@ namespace VirtualPiano.View
                 MusicController.setMetronoom(interval);
             }
 
+        }
+
+        private void rodeLijn_Tick(object sender, EventArgs e)
+        {
+
+            int temp = Song.getDuration();
+            Console.WriteLine(rodeLijn.Interval);
+            tempint++;
+            Invalidate();
+
+
+
+            if (tempint >= Song.getDuration() * 25)
+            {
+                rodeLijn.Stop();
+            }
         }
     }
 }

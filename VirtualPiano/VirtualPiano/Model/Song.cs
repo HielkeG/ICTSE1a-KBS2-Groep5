@@ -9,7 +9,7 @@ namespace VirtualPiano.Model
 {
     public class Song
     {
-        private List<Staff> staffs;
+        public static List<Staff> staffs;
 
         public Song()
         {
@@ -25,6 +25,19 @@ namespace VirtualPiano.Model
         public List<Staff> GetStaffs()
         {
             return staffs;
+        }
+
+        public static int getDuration()
+        {
+            int duration = 0;
+            foreach (Staff staff in staffs)
+            {
+                foreach (Bar bar in staff.Bars)
+                {
+                    duration = duration + bar.duration;
+                }
+            }
+            return duration; // 1 maat is 16
         }
 
         public async void PlaySong()

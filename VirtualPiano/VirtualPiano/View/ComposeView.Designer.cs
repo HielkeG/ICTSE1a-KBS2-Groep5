@@ -57,6 +57,7 @@ namespace VirtualPiano.View
             this.componistLabel = new System.Windows.Forms.Label();
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rodeLijn = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -395,6 +396,11 @@ namespace VirtualPiano.View
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
+            // rodeLijn
+            // 
+            this.rodeLijn.Interval = 1;
+            this.rodeLijn.Tick += new System.EventHandler(this.rodeLijn_Tick);
+            // 
             // ComposeView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -453,5 +459,6 @@ namespace VirtualPiano.View
         private Label componistLabel;
         private TextBox TitelBox;
         private PictureBox pictureBox1;
+        public Timer rodeLijn;
     }
 }
