@@ -330,13 +330,23 @@ namespace VirtualPiano.View
                     if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin && PointToClient(Cursor.Position).Y > staff.y + 15 && PointToClient(Cursor.Position).Y < staff.y + 105)
                     {
                         int NewY = PointToClient(Cursor.Position).Y - staff.y;
-                        Note newNote = StaffView.CreateNote(NewY, ComposeView.SelectedNoteName, bar.clef);
-                        if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL)
+                        Note newNote = StaffView.CreateNote(NewY, SelectedNoteName, bar.clef);
+                        Rest newRest = new Rest(SelectedRestName);
+
+                        if (bar.CheckBarSpace(newNote) && SelectedNoteName != NoteName.NULL)
                         {
                             bar.Add(newNote);
                             bar.hasPreview = true;
                             Refresh();
                             bar.RemovePreview();
+                        }
+                        else if (bar.CheckBarSpace(newRest) && SelectedRestName != RestName.NULL)
+                        {
+                                bar.clef = ClefName.G;
+                                bar.Add(newRest);
+                                bar.hasPreview = true;
+                                Refresh();
+                                bar.RemovePreview();
                         }
                     }
                     barBegin += 375;
