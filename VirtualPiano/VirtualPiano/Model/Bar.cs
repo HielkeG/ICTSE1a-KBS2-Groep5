@@ -18,6 +18,7 @@ namespace VirtualPiano.Model
         public bool isFull = false;
         public int FlatSharp;
         public bool hasChanged;
+        internal bool hasPreview = false;
 
         public Bar()
         {
@@ -44,6 +45,12 @@ namespace VirtualPiano.Model
             duration = 0;
         }
 
-        
+        public void RemovePreview()
+        {
+            duration = duration - signs.Last().duration;
+            signs.RemoveAt(signs.Count() - 1);
+            isFull = false;
+            hasPreview = false;
+        }
     }
 }

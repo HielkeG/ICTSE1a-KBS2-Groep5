@@ -17,7 +17,7 @@ namespace VirtualPiano.View
     {
         public Staff staff;
         Color barColor;
-
+        private int countto4;
 
         public StaffView(Staff staff, int flatsharp)
         {
@@ -122,74 +122,138 @@ namespace VirtualPiano.View
                         else if(rest.restName == RestName.eightRest) Xnotelocation += 42;
                         else if(rest.restName == RestName.sixteenthRest) Xnotelocation += 21;
                     }
-                  
                 }
                 x_bar += 375; 
             }     
         }
 
-
-        private void StaffView_MouseUp(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
+        private void MouseActions(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
         {
-            if (ComposeView.signSelected)
+
+            if (e.Button == MouseButtons.Left)
             {
-
-                int barBegin = 50;
-                int barEnd = 425;
-                int countto4 = 1;
-                foreach (Bar bar in staff.Bars)
+                if (ComposeView.signSelected)
                 {
-                    if (ComposeView.FlatSharp == 1) { bar.FlatSharp++; }
-                    if (ComposeView.FlatSharp == -1) { bar.FlatSharp--; }
-                    if (countto4 == 4)
-                    {
-                        ComposeView.FlatSharp = 0;
-                    }
-                    
-                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
-                    {
-                        
-                        //Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
-                        Note newNote = new Note(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef, bar.FlatSharp);
-                        Rest newRest = new Rest(ComposeView.SelectedRestName);
+                    int barBegin = 50;
+                    int barEnd = 425;
 
-                        if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
-                        if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
-                        if (ComposeView.SelectedClefName == ClefName.G)
-                        {
-                            bar.clef = ClefName.G;
-                            bar.MakeEmpty();
-                        }
-                        if (ComposeView.SelectedClefName == ClefName.F)
-                        {
-                            bar.clef = ClefName.F;
-                            bar.MakeEmpty();
-                        }
-                    }
-                    barBegin += 375;
-                    barEnd += 375;
-                    countto4++;
-                }
-                Invalidate();
-                SetDefaultCursor();
-            }
-            else {
-                foreach(Bar bar in staff.Bars)
-                {
-                    foreach(Sign sign in bar.signs)
+                    foreach (Bar bar in staff.Bars)
                     {
-                        if (sign is Note note)
+                        if (ComposeView.FlatSharp == 1) { bar.FlatSharp++; }
+                        if (ComposeView.FlatSharp == -1) { bar.FlatSharp--; }
+                        if (countto4 == 4)
                         {
-                            if (note.x - 10 < PointToClient(Cursor.Position).X && note.x + 10 > PointToClient(Cursor.Position).X && note.y - 10 < PointToClient(Cursor.Position).Y - 63 && note.y + 10 > PointToClient(Cursor.Position).Y - 63)
+                            ComposeView.FlatSharp = 0;
+                        }
+
+                        if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
+                        {
+                            Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
+                            Rest newRest = new Rest(ComposeView.SelectedRestName);
+
+                            if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
+                            if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
+                            if (ComposeView.SelectedClefName == ClefName.G)
                             {
-                                note.PlaySound();
+                                bar.clef = ClefName.G;
+                                bar.MakeEmpty();
+                            }
+                            if (ComposeView.SelectedClefName == ClefName.F)
+                            {
+                                bar.clef = ClefName.F;
+                                bar.MakeEmpty();
+                            }
+                        }
+                        barBegin += 375;
+                        barEnd += 375;
+                        countto4++;
+                    }
+                    SetDefaultCursor();
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    foreach (Bar bar in staff.Bars)
+                    {
+                        foreach (Sign sign in bar.signs)
+                        {
+                            if (sign is Note note)
+                            {
+                                if (note.x - 10 < PointToClient(Cursor.Position).X && note.x + 10 > PointToClient(Cursor.Position).X && note.y - 10 < PointToClient(Cursor.Position).Y - 63 && note.y + 10 > PointToClient(Cursor.Position).Y - 63)
+                                {
+                                    note.PlaySound();
+                                }
                             }
                         }
                     }
                 }
             }
+            else if (e.Button == MouseButtons.Right)
+            {
+                int barBegin = 50;
+                int barEnd = 425;
+
+                foreach (Bar bar in staff.Bars)
+                {
+                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
+                    {
+                        if (bar.signs.Count > 0)
+                        {
+                            bar.duration = bar.duration - bar.signs.Last().duration;
+                            bar.signs.RemoveAt(bar.signs.Count() - 1);
+                            bar.isFull = false;
+                        }
+                    }
+                    barBegin += 375;
+                    barEnd += 375;
+                }
+            }
+            Invalidate();
+        }    
+
+        public static Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
+        {
+            char tone = ' ';
+            int octave = 0;
+            
+            if (clef == ClefName.G)
+            {
+                if (y < 25 && y >= 14) { tone = 'G'; octave = 4; }
+                if (y < 33 && y >= 25) { tone = 'F'; octave = 4; }
+                if (y < 41 && y >= 33) { tone = 'E'; octave = 4; }
+                if (y < 48 && y >= 41) { tone = 'D'; octave = 4; }
+                if (y < 55 && y >= 48) { tone = 'C'; octave = 4; }
+                if (y < 63 && y >= 55) { tone = 'B'; octave = 3; }
+                if (y < 72 && y >= 63) { tone = 'A'; octave = 3; }
+                if (y < 78 && y >= 72) { tone = 'G'; octave = 3; }
+                if (y < 86 && y >= 78) { tone = 'F'; octave = 3; }
+                if (y < 94 && y >= 86) { tone = 'E'; octave = 3; }
+                if (y < 100 && y >= 94) { tone = 'D'; octave = 3; }
+                if (y < 107 && y >= 100) { tone = 'C'; octave = 3; }
+
+                return new Note(tempNotename, tone, octave);
+
+            }
+            if (clef == ClefName.F)
+            {
+                if (y < 25 && y >= 14) { tone = 'B'; octave = 2; }
+                if (y < 33 && y >= 25) { tone = 'A'; octave = 2; }
+                if (y < 41 && y >= 33) { tone = 'G'; octave = 2; }
+                if (y < 48 && y >= 41) { tone = 'F'; octave = 2; }
+                if (y < 55 && y >= 48) { tone = 'E'; octave = 2; }
+                if (y < 63 && y >= 55) { tone = 'D'; octave = 2; }
+                if (y < 72 && y >= 63) { tone = 'C'; octave = 2; }
+                if (y < 78 && y >= 72) { tone = 'B'; octave = 1; }
+                if (y < 86 && y >= 78) { tone = 'A'; octave = 1; }
+                if (y < 94 && y >= 86) { tone = 'G'; octave = 1; }
+                if (y < 100 && y >= 94) { tone = 'F'; octave = 1; }
+                if (y < 107 && y >= 100) { tone = 'E'; octave = 1; }
+
+                return new Note(tempNotename, tone, octave);
+            }
+
+            return null;
+
         }
-        
         //methode die de cursor op default zet en alle booleans op null zet.
         private void SetDefaultCursor()
         {
