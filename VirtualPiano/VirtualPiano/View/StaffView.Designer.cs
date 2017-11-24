@@ -39,7 +39,7 @@
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "StaffView";
-            this.Size = new System.Drawing.Size(1600, 182);
+            this.Size = new System.Drawing.Size(1280, 182);
             this.MouseEnter += new System.EventHandler(this.StaffView_MouseEnter);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseActions);
             this.ResumeLayout(false);

@@ -83,7 +83,7 @@ namespace VirtualPiano.View
         {
             Panel panel = new Panel();
             panel.Location = new Point(190, y_staff);
-            panel.Size = new Size(1600, 150);
+            panel.Size = new Size(1560, 150);
             Controls.Add(panel);
             StaffView _staffView = new StaffView(staff, FlatSharp)
             {
@@ -94,33 +94,19 @@ namespace VirtualPiano.View
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
-            btnAddStaff = new RoundButton();
-            //btnAddStaff.Location = new Point(970, y_staff + 170);
-            btnAddStaff.Location = new Point(1800, y_staff + 35);
-            btnAddStaff.Size = new Size(50, 50);
-            btnAddStaff.Text = "+";
-            btnAddStaff.ForeColor = Color.White;
-            btnAddStaff.BackColor = Color.Black;
-            btnAddStaff.Font = new Font(Font.FontFamily, 20);
-            btnAddStaff.TabStop = false;
+            btnAddStaff = new Button();
+            btnAddStaff.Image = new Bitmap(Resources.add, 50, 50);
+            btnAddStaff.Location = new Point(1780, y_staff + 35);
+            btnAddStaff.Size = new Size(55, 55);
+            btnAddStaff.BackColor = Color.Transparent;
             btnAddStaff.FlatStyle = FlatStyle.Flat;
             btnAddStaff.FlatAppearance.BorderSize = 0;
+            btnAddStaff.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnAddStaff.FlatAppearance.MouseOverBackColor = Color.Transparent;
             this.Controls.Add(btnAddStaff);
             btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
-            btnAddStaff.MouseEnter += OnMouseEnterButtonAddStaff;
-            btnAddStaff.MouseLeave += OnMouseLeaveButtonAddStaff;
         }
-
-        private void OnMouseEnterButtonAddStaff(object sender, EventArgs e)
-        {
-            btnAddStaff.BackColor = Color.White;
-            btnAddStaff.ForeColor = Color.Black;
-        }
-        private void OnMouseLeaveButtonAddStaff(object sender, EventArgs e)
-        {
-            btnAddStaff.BackColor = Color.Black;
-            btnAddStaff.ForeColor = Color.White;
-        }
+        
 
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
