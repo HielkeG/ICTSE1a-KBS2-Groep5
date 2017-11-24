@@ -53,8 +53,7 @@ namespace VirtualPiano.Model
                         {
                             note.PlaySound();
                             await PutTaskDelay(note.duration * 120);
-
-                          
+                            
                         }
 
                         else if (staffs[i].Bars[b].signs[c] is Rest rest)

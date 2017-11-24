@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Control;
 using VirtualPiano.Properties;
+using System.Media;
 
 namespace VirtualPiano.View
 {
@@ -31,7 +32,7 @@ namespace VirtualPiano.View
             ShowFirstStaffView();
 
 
-            MusicController m1 = new MusicController(Metronoom, rodeLijn);
+            MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
@@ -237,9 +238,9 @@ namespace VirtualPiano.View
 
             public void Metronoom_Tick(object sender, EventArgs e)
             {
-                //SystemSounds.Beep.Play();
-                //tempint++;
-                Invalidate();
+            //SystemSounds.Beep.Play();
+            //tempint++;
+            Invalidate();
             foreach (Staff staf in song.GetStaffs())
             {
                 foreach (Bar bar in staf.Bars)
@@ -305,7 +306,7 @@ namespace VirtualPiano.View
         {
 
             int temp = Song.getDuration();
-            Console.WriteLine(rodeLijn.Interval);
+            //Console.WriteLine(rodeLijn.Interval);
             tempint++;
             Invalidate();
 

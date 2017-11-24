@@ -50,6 +50,7 @@ namespace VirtualPiano.View
 
         public void DrawBars(PaintEventArgs e) //Deze methode tekent de maten inclusief de noten en de sleutels
         {
+            int fullBar = 0;
             int x_bar = 425;
             int Xnotelocation = 20;
             ClefName latestClef = ClefName.NULL;
@@ -84,13 +85,23 @@ namespace VirtualPiano.View
                
 
                 e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90); //per maat verticale lijn tekenen
+                if (bar.isFull)
+                {
+                    barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
+                    fullBar++;
+                }
 
-                if (bar.isFull) barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
-                else barColor = Color.Red;
+                else
+                {
+                    barColor = Color.Red;
+                }
                 e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 375, 125, x_bar, 125);   
                 Xnotelocation = x_bar - 400; // De x-coördinaat van het einde van de maat
-                
-                foreach(Sign sign in bar.signs)
+                if (fullBar == 4)
+                {
+                    e.Graphics.DrawLine(new Pen(Color.WhiteSmoke, 5), 10, 125, 1550, 125);
+                }
+                foreach (Sign sign in bar.signs)
                 {
                     if (sign is Note note) 
                     {
@@ -124,7 +135,7 @@ namespace VirtualPiano.View
                     }
                 }
                 x_bar += 375; 
-            }     
+            }
         }
 
         private void MouseActions(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt

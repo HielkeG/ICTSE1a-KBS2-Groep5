@@ -35,7 +35,10 @@ namespace VirtualPiano.Model
         {
             signs.Add(sign);
             duration += sign.duration;
-            if (duration == 16) isFull = true;
+            if (duration == 16)
+            {
+                isFull = true;
+            }
         }
 
         public void MakeEmpty() //Lijst van tekens leegmaken
