@@ -163,7 +163,7 @@ namespace VirtualPiano.View
                             Rest newRest = new Rest(ComposeView.SelectedRestName);
 
                             if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
-                            if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
+                            else if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
                             if (ComposeView.SelectedClefName == ClefName.G)
                             {
                                 bar.clef = ClefName.G;
