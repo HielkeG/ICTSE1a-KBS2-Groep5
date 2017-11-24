@@ -25,23 +25,24 @@ namespace VirtualPiano.Control
         public static PictureBox rewindBox = new PictureBox();
         public static Timer Metronoom;
         public static Timer rodeLijn;
+        public static int width = 50;
+        public static int height = 50;
 
 
         public MusicController(Timer m, Timer r)
         {
-            rewindBox.Location = new Point(115, 30);
-            rewindBox.Image = new Bitmap(rewind);
+            rewindBox.Location = new Point(110, 30);
+            rewindBox.Image = new Bitmap(rewind,50,50);
             rewindBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
-
-            playBox.Location = new Point(150, 30);
-            playBox.Image = new Bitmap(play);
+            playBox.Location = new Point(170, 30);
+            playBox.Image = new Bitmap(play,width,height);
             playBox.SizeMode = PictureBoxSizeMode.AutoSize;
             playBox.Click += PlayGeklikt;
 
 
-            stopBox.Location = new Point(185, 30);
-            stopBox.Image = new Bitmap(stop);
+            stopBox.Location = new Point(230, 30);
+            stopBox.Image = new Bitmap(stop,width,height);
             stopBox.SizeMode = PictureBoxSizeMode.AutoSize;
             stopBox.Click += StopGeklikt;
             Metronoom = m;
@@ -55,7 +56,7 @@ namespace VirtualPiano.Control
 
             if (isAanHetSpelen == false)
             {
-                playBox.Image = new Bitmap(pause);
+                playBox.Image = new Bitmap(pause,width,height);
                 isAanHetSpelen = true;
                 Metronoom.Enabled = true;
                 //int temp = Song.getDuration();
@@ -66,7 +67,7 @@ namespace VirtualPiano.Control
             }
             else if (isAanHetSpelen)
             {
-                playBox.Image = new Bitmap(play);
+                playBox.Image = new Bitmap(play,width,height);
                 isAanHetSpelen = false;
                 Metronoom.Enabled = false;
                 rodeLijn.Stop();
@@ -76,7 +77,7 @@ namespace VirtualPiano.Control
 
         public void StopGeklikt(Object sender, EventArgs e)
         {
-            playBox.Image = new Bitmap(play);
+            playBox.Image = new Bitmap(play,width,height);
             isAanHetSpelen = false;
             Metronoom.Enabled = false;
         }
