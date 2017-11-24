@@ -19,9 +19,13 @@ namespace VirtualPiano.View
         Color barColor;
         
 
-        public StaffView(Staff staff)
+        public StaffView(Staff staff, int flatsharp)
         {
             this.staff = staff;
+            foreach (Bar bar in staff.Bars)
+            {
+                bar.FlatSharp = flatsharp;
+            }
             InitializeComponent();
         }
 
@@ -58,13 +62,27 @@ namespace VirtualPiano.View
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 420, 6, 60, 110); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 430, -39, 88, 185); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
+                    if (bar.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 380, 10, 30, 40); }
+                    if (bar.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 365, 33, 30, 40); }
+                    if (bar.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 365, 5, 30, 40); }
+                    if (bar.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 386, 27, 30, 40); }
+                    if (bar.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 380, 45, 30, 40); }
+
+                    if (bar.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.Mol, x_bar - 380, 32, 30, 40); }
+                    if (bar.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.Mol, x_bar - 365, 8, 30, 40); }
+                    if (bar.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.Mol, x_bar - 365, 39, 30, 40); }
+                    if (bar.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.Mol, x_bar - 386, 16, 30, 40); }
+                    if (bar.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.Mol, x_bar - 380, 47, 30, 40); }
                 } else 
                 {
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 414, 23, 40, 83); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 440, -25, 77, 155); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
                 }
-                
+                //fcgdaeb
+                //beadg
+               
+
                 e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90); //per maat verticale lijn tekenen
 
                 if (bar.isFull) barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
@@ -119,6 +137,13 @@ namespace VirtualPiano.View
                     int barBegin = 50;
                     int barEnd = 425;
 
+                    if (ComposeView.FlatSharp == 1) { bar.FlatSharp++; }
+                    if (ComposeView.FlatSharp == -1) { bar.FlatSharp--; }
+                    if (countto4 == 4)
+                    {
+                        ComposeView.FlatSharp = 0;
+                    }
+
                     foreach (Bar bar in staff.Bars)
                     {
                         if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
@@ -141,6 +166,7 @@ namespace VirtualPiano.View
                         }
                         barBegin += 375;
                         barEnd += 375;
+                        countto4++;
                     }
                     SetDefaultCursor();
                 }

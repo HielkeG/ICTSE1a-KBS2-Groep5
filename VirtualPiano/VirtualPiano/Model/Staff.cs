@@ -9,6 +9,7 @@ namespace VirtualPiano.Model
     public class Staff
     {
         public List<Bar> Bars = new List<Bar>() { new Bar(), new Bar(), new Bar(), new Bar() }; //4 maten in een notenbalk
+        public int FlatSharp;
         public int y;
     }
 }
