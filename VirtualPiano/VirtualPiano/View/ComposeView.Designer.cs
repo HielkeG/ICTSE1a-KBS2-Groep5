@@ -31,7 +31,6 @@ namespace VirtualPiano.View
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComposeView));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -61,7 +60,6 @@ namespace VirtualPiano.View
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -329,6 +327,7 @@ namespace VirtualPiano.View
             this.Sharp.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.Sharp.Size = new System.Drawing.Size(50, 50);
             this.Sharp.Text = "Kruis";
+            this.Sharp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Sharp_MouseDown);
             // 
             // Flat
             // 
@@ -406,15 +405,11 @@ namespace VirtualPiano.View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.Snelheid);
-            this.Controls.Add(this.componistLabel);
-            this.Controls.Add(this.TitelBox);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.toolStripContainer1);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ComposeView";
-            this.Size = new System.Drawing.Size(1803, 1000);
+            this.Size = new System.Drawing.Size(75, 1000);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
             this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -422,9 +417,7 @@ namespace VirtualPiano.View
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

@@ -19,9 +19,13 @@ namespace VirtualPiano.View
         Color barColor;
 
 
-        public StaffView(Staff staff)
+        public StaffView(Staff staff, int flatsharp)
         {
             this.staff = staff;
+            foreach (Bar bar in staff.Bars)
+            {
+                bar.FlatSharp = flatsharp;
+            }
             InitializeComponent();
         }
 
@@ -58,13 +62,27 @@ namespace VirtualPiano.View
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 420, 6, 60, 110); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 430, -39, 88, 185); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
+                    if (bar.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 380, 10, 30, 40); }
+                    if (bar.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 365, 33, 30, 40); }
+                    if (bar.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 365, 5, 30, 40); }
+                    if (bar.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 386, 27, 30, 40); }
+                    if (bar.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 380, 45, 30, 40); }
+
+                    if (bar.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.Mol, x_bar - 380, 32, 30, 40); }
+                    if (bar.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.Mol, x_bar - 365, 8, 30, 40); }
+                    if (bar.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.Mol, x_bar - 365, 39, 30, 40); }
+                    if (bar.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.Mol, x_bar - 386, 16, 30, 40); }
+                    if (bar.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.Mol, x_bar - 380, 47, 30, 40); }
                 } else 
                 {
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 414, 23, 40, 83); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 440, -25, 77, 155); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
                 }
-                
+                //fcgdaeb
+                //beadg
+               
+
                 e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90); //per maat verticale lijn tekenen
 
                 if (bar.isFull) barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
@@ -118,11 +136,21 @@ namespace VirtualPiano.View
 
                 int barBegin = 50;
                 int barEnd = 425;
+                int countto4 = 1;
                 foreach (Bar bar in staff.Bars)
                 {
+                    if (ComposeView.FlatSharp == 1) { bar.FlatSharp++; }
+                    if (ComposeView.FlatSharp == -1) { bar.FlatSharp--; }
+                    if (countto4 == 4)
+                    {
+                        ComposeView.FlatSharp = 0;
+                    }
+                    
                     if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                     {
-                        Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
+                        
+                        //Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
+                        Note newNote = new Note(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef, bar.FlatSharp);
                         Rest newRest = new Rest(ComposeView.SelectedRestName);
 
                         if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
@@ -140,6 +168,7 @@ namespace VirtualPiano.View
                     }
                     barBegin += 375;
                     barEnd += 375;
+                    countto4++;
                 }
                 Invalidate();
                 SetDefaultCursor();
@@ -161,53 +190,6 @@ namespace VirtualPiano.View
             }
         }
         
-
-        private Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
-        {
-            char tone = ' ';
-            int octave = 0;
-
-            
-            if (clef == ClefName.G)
-            {
-                if (y < 25 && y >= 14) { tone = 'G'; octave = 4; }
-                if (y < 33 && y >= 25) { tone = 'F'; octave = 4; }
-                if (y < 41 && y >= 33) { tone = 'E'; octave = 4; }
-                if (y < 48 && y >= 41) { tone = 'D'; octave = 4; }
-                if (y < 55 && y >= 48) { tone = 'C'; octave = 4; }
-                if (y < 63 && y >= 55) { tone = 'B'; octave = 3; }
-                if (y < 72 && y >= 63) { tone = 'A'; octave = 3; }
-                if (y < 78 && y >= 72) { tone = 'G'; octave = 3; }
-                if (y < 86 && y >= 78) { tone = 'F'; octave = 3; }
-                if (y < 94 && y >= 86) { tone = 'E'; octave = 3; }
-                if (y < 100 && y >= 94) { tone = 'D'; octave = 3; }
-                if (y < 107 && y >= 100) { tone = 'C'; octave = 3; }
-
-                return new Note(tempNotename, tone, octave);
-
-            }
-            if (clef == ClefName.F)
-            {
-                if (y < 25 && y >= 14) { tone = 'B'; octave = 2; }
-                if (y < 33 && y >= 25) { tone = 'A'; octave = 2; }
-                if (y < 41 && y >= 33) { tone = 'G'; octave = 2; }
-                if (y < 48 && y >= 41) { tone = 'F'; octave = 2; }
-                if (y < 55 && y >= 48) { tone = 'E'; octave = 2; }
-                if (y < 63 && y >= 55) { tone = 'D'; octave = 2; }
-                if (y < 72 && y >= 63) { tone = 'C'; octave = 2; }
-                if (y < 78 && y >= 72) { tone = 'B'; octave = 1; }
-                if (y < 86 && y >= 78) { tone = 'A'; octave = 1; }
-                if (y < 94 && y >= 86) { tone = 'G'; octave = 1; }
-                if (y < 100 && y >= 94) { tone = 'F'; octave = 1; }
-                if (y < 107 && y >= 100) { tone = 'E'; octave = 1; }
-
-                return new Note(tempNotename, tone, octave);
-
-            }
-
-            return null;
-
-        }
         //methode die de cursor op default zet en alle booleans op null zet.
         private void SetDefaultCursor()
         {

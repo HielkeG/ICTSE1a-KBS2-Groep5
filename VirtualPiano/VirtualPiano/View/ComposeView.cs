@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Control;
 using VirtualPiano.Properties;
-using System.Media;
 
 namespace VirtualPiano.View
 {
@@ -20,18 +19,17 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         int y_staff = 140;
         internal static bool signSelected;
+        internal static int FlatSharp = 0;
         internal static NoteName SelectedNoteName = NoteName.NULL;
         internal static RestName SelectedRestName = RestName.NULL;
         internal static ClefName SelectedClefName = ClefName.NULL;
         int tempint;
-
 
         public ComposeView()
         {
             InitializeComponent();
             ShowFirstStaffView();
 
-            tempint = 0;
 
             MusicController m1 = new MusicController(Metronoom, rodeLijn);
             Controls.Add(MusicController.rewindBox);
@@ -56,6 +54,20 @@ namespace VirtualPiano.View
 
         }
 
+        public void PlayGeklikt(Object sender, EventArgs e)
+        {
+            
+            if (isAanHetSpelen == false)
+            {
+                playBox.Image = new Bitmap(play);
+                isAanHetSpelen = true;
+            }
+            else if (isAanHetSpelen)
+            {
+                playBox.Image = new Bitmap(pause);
+                isAanHetSpelen = false;
+            }
+        }
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
@@ -83,7 +95,7 @@ namespace VirtualPiano.View
             panel.Location = new Point(190, y_staff);
             panel.Size = new Size(1600, 150);
             Controls.Add(panel);
-            StaffView _staffView = new StaffView(staff)
+            StaffView _staffView = new StaffView(staff, FlatSharp)
             {
                 Dock = DockStyle.None
             };
@@ -230,20 +242,28 @@ namespace VirtualPiano.View
         private void Flat_Click(object sender, EventArgs e)
         {
             song.PlaySong();
-        }
+            signSelected = true;
+            FlatSharp--;
 
         public void Metronoom_Tick(object sender, EventArgs e)
         {
             //SystemSounds.Beep.Play();
             //tempint++;
             Invalidate();
+            foreach (Staff staf in song.GetStaffs())
+            {
+                foreach (Bar bar in staf.Bars)
+                {
+                    bar.FlatSharp--;
+                }
+            }
+            Refresh();
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
-            base.OnPaint(e);
-            Draw(e);
-        }
+            signSelected = true;
+            FlatSharp++;
 
         public void Draw(PaintEventArgs e) //WIP
         {
