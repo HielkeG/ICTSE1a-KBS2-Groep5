@@ -9,7 +9,7 @@ namespace VirtualPiano.Model
 {
     public class Song
     {
-        private List<Staff> staffs;
+        private static List<Staff> staffs;
         public int FlatSharp;
 
         public Song()

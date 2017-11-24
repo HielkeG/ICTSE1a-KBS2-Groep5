@@ -58,8 +58,8 @@ namespace VirtualPiano.Control
                 playBox.Image = new Bitmap(pause);
                 isAanHetSpelen = true;
                 Metronoom.Enabled = true;
-                int temp = Song.getDuration();
-                Console.WriteLine(Song.getDuration());
+                //int temp = Song.getDuration();
+                //Console.WriteLine(Song.getDuration());
                 rodeLijn.Start();
  
                 

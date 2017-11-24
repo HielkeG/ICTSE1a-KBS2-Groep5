@@ -54,20 +54,6 @@ namespace VirtualPiano.View
             }
         }
 
-        public void PlayGeklikt(Object sender, EventArgs e)
-        {
-            
-            if (isAanHetSpelen == false)
-            {
-                playBox.Image = new Bitmap(play);
-                isAanHetSpelen = true;
-            }
-            else if (isAanHetSpelen)
-            {
-                playBox.Image = new Bitmap(pause);
-                isAanHetSpelen = false;
-            }
-        }
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
@@ -247,12 +233,13 @@ namespace VirtualPiano.View
             song.PlaySong();
             signSelected = true;
             FlatSharp--;
+        }
 
-        public void Metronoom_Tick(object sender, EventArgs e)
-        {
-            //SystemSounds.Beep.Play();
-            //tempint++;
-            Invalidate();
+            public void Metronoom_Tick(object sender, EventArgs e)
+            {
+                //SystemSounds.Beep.Play();
+                //tempint++;
+                Invalidate();
             foreach (Staff staf in song.GetStaffs())
             {
                 foreach (Bar bar in staf.Bars)
@@ -263,10 +250,18 @@ namespace VirtualPiano.View
             Refresh();
         }
 
+
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
             FlatSharp++;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            Draw(e);
+        }
 
         public void Draw(PaintEventArgs e) //WIP
         {
@@ -324,6 +319,7 @@ namespace VirtualPiano.View
 
         private void NoteSnapTimer_Tick(object sender, EventArgs e)
         {
+            
             foreach (Staff staff in song.GetStaffs())
             {
                 int barBegin = 250;

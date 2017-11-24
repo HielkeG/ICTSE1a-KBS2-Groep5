@@ -31,6 +31,7 @@ namespace VirtualPiano.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComposeView));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -57,9 +58,11 @@ namespace VirtualPiano.View
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.rodeLijn = new System.Windows.Forms.Timer(this.components);
+            this.NoteSnapTimer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -400,6 +403,12 @@ namespace VirtualPiano.View
             this.rodeLijn.Interval = 1;
             this.rodeLijn.Tick += new System.EventHandler(this.rodeLijn_Tick);
             // 
+            // NoteSnapTimer
+            // 
+            this.NoteSnapTimer.Enabled = true;
+            this.NoteSnapTimer.Interval = 1;
+            this.NoteSnapTimer.Tick += new System.EventHandler(this.NoteSnapTimer_Tick);
+            // 
             // ComposeView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -417,6 +426,7 @@ namespace VirtualPiano.View
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -453,5 +463,6 @@ namespace VirtualPiano.View
         private TextBox TitelBox;
         private PictureBox pictureBox1;
         public Timer rodeLijn;
+        private Timer NoteSnapTimer;
     }
 }
