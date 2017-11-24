@@ -30,15 +30,13 @@ namespace VirtualPiano.View
         {
             InitializeComponent();
             ShowFirstStaffView();
-
-
+            
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
             Snelheid.Text = Metronoom.Interval.ToString();
             DoubleBuffered = true;
-
         }
 
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
@@ -217,23 +215,11 @@ namespace VirtualPiano.View
 
         private void Flat_Click(object sender, EventArgs e)
         {
-            song.PlaySong();
-            signSelected = true;
             FlatSharp--;
         }
 
-            public void Metronoom_Tick(object sender, EventArgs e)
-            {
-            //SystemSounds.Beep.Play();
-            //tempint++;
-            Invalidate();
-            foreach (Staff staf in song.GetStaffs())
-            {
-                foreach (Bar bar in staf.Bars)
-                {
-                    bar.FlatSharp--;
-                }
-            }
+        public void Metronoom_Tick(object sender, EventArgs e)
+        {
             Refresh();
         }
 

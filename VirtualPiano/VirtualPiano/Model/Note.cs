@@ -99,7 +99,6 @@ namespace VirtualPiano.Model
 
         public void PlaySound()
         {
-            Console.WriteLine(this.FlatSharp);
             var player = new System.Windows.Media.MediaPlayer();
             try
             {

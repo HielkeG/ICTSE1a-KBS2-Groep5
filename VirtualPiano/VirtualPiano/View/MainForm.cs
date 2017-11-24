@@ -20,37 +20,6 @@ namespace VirtualPiano
             WindowState = FormWindowState.Maximized;
         }
 
-        private void formContent_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void menuBarView1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
- 
-
-        private void TitelBox_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TitelBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         //public void StartOver()
         //{
         //    formContent.Controls.Remove(_mainView);
