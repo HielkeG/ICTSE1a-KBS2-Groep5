@@ -53,9 +53,10 @@ namespace VirtualPiano.View
             this.Sharp = new System.Windows.Forms.ToolStripButton();
             this.Flat = new System.Windows.Forms.ToolStripButton();
             this.Metronoom = new System.Windows.Forms.Timer(this.components);
-            this.Snelheid = new System.Windows.Forms.TextBox();
             this.componistLabel = new System.Windows.Forms.Label();
             this.TitelBox = new System.Windows.Forms.TextBox();
+            this.SnapTimer = new System.Windows.Forms.Timer(this.components);
+            this.Snelheid = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -349,17 +350,6 @@ namespace VirtualPiano.View
             this.Metronoom.Interval = 500;
             this.Metronoom.Tick += new System.EventHandler(this.Metronoom_Tick);
             // 
-            // Snelheid
-            // 
-            this.Snelheid.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Snelheid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Snelheid.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Snelheid.Location = new System.Drawing.Point(304, 103);
-            this.Snelheid.Name = "Snelheid";
-            this.Snelheid.Size = new System.Drawing.Size(100, 23);
-            this.Snelheid.TabIndex = 16;
-            this.Snelheid.TextChanged += new System.EventHandler(this.Snelheid_TextChanged);
-            // 
             // componistLabel
             // 
             this.componistLabel.AutoSize = true;
@@ -383,6 +373,23 @@ namespace VirtualPiano.View
             this.TitelBox.TabIndex = 14;
             this.TitelBox.Text = "Titel";
             this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // SnapTimer
+            // 
+            this.SnapTimer.Enabled = true;
+            this.SnapTimer.Interval = 1;
+            this.SnapTimer.Tick += new System.EventHandler(this.SnapTimer_Tick);
+            // 
+            // Snelheid
+            // 
+            this.Snelheid.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Snelheid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Snelheid.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Snelheid.Location = new System.Drawing.Point(304, 103);
+            this.Snelheid.Name = "Snelheid";
+            this.Snelheid.Size = new System.Drawing.Size(100, 23);
+            this.Snelheid.TabIndex = 16;
+            this.Snelheid.TextChanged += new System.EventHandler(this.Snelheid_TextChanged);
             // 
             // pictureBox1
             // 
@@ -449,9 +456,10 @@ namespace VirtualPiano.View
         private System.Windows.Forms.ToolStripButton SixteenthRest;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         public Timer Metronoom;
-        private TextBox Snelheid;
         private Label componistLabel;
         private TextBox TitelBox;
+        private Timer SnapTimer;
+        private TextBox Snelheid;
         private PictureBox pictureBox1;
     }
 }

@@ -16,6 +16,7 @@ namespace VirtualPiano.Model
         public NoteName TimeSignatureName;
         public int duration = 0;
         public bool isFull = false;
+        internal bool hasPreview = false;
 
         public Bar()
         {
@@ -40,6 +41,14 @@ namespace VirtualPiano.Model
             signs = new List<Sign>();
             isFull = false;
             duration = 0;
+        }
+
+        public void RemovePreview()
+        {
+            duration = duration - signs.Last().duration;
+            signs.RemoveAt(signs.Count() - 1);
+            isFull = false;
+            hasPreview = false;
         }
     }
 }

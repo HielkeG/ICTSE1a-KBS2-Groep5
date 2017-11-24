@@ -17,7 +17,7 @@ namespace VirtualPiano.View
     {
         public Staff staff;
         Color barColor;
-
+        
 
         public StaffView(Staff staff)
         {
@@ -104,16 +104,14 @@ namespace VirtualPiano.View
                         else if(rest.restName == RestName.eightRest) Xnotelocation += 42;
                         else if(rest.restName == RestName.sixteenthRest) Xnotelocation += 21;
                     }
-                  
                 }
                 x_bar += 375; 
             }     
         }
 
-
-        private void StaffView_MouseUp(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
+        private void MouseActions(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
         {
-            
+
             if (e.Button == MouseButtons.Left)
             {
                 if (ComposeView.signSelected)
@@ -144,7 +142,6 @@ namespace VirtualPiano.View
                         barBegin += 375;
                         barEnd += 375;
                     }
-                    Invalidate();
                     SetDefaultCursor();
                 }
                 else if (e.Button == MouseButtons.Right)
@@ -164,7 +161,7 @@ namespace VirtualPiano.View
                     }
                 }
             }
-            else
+            else if (e.Button == MouseButtons.Right)
             {
                 int barBegin = 50;
                 int barEnd = 425;
@@ -178,21 +175,19 @@ namespace VirtualPiano.View
                             bar.duration = bar.duration - bar.signs.Last().duration;
                             bar.signs.RemoveAt(bar.signs.Count() - 1);
                             bar.isFull = false;
-                            Invalidate();
                         }
                     }
                     barBegin += 375;
                     barEnd += 375;
                 }
             }
-        }
-        
+            Invalidate();
+        }    
 
-        private Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
+        public static Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
         {
             char tone = ' ';
             int octave = 0;
-
             
             if (clef == ClefName.G)
             {
@@ -228,7 +223,6 @@ namespace VirtualPiano.View
                 if (y < 107 && y >= 100) { tone = 'E'; octave = 1; }
 
                 return new Note(tempNotename, tone, octave);
-
             }
 
             return null;
@@ -242,6 +236,11 @@ namespace VirtualPiano.View
             ComposeView.SelectedNoteName = NoteName.NULL;
             ComposeView.SelectedRestName = RestName.NULL;
             ComposeView.SelectedClefName = ClefName.NULL;
+        }
+
+        public void Update()
+        {
+            Invalidate();
         }
 
         private void StaffView_MouseEnter(object sender, EventArgs e)

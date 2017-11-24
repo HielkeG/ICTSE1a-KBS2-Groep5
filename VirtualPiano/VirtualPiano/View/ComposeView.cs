@@ -43,16 +43,16 @@ namespace VirtualPiano.View
 
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
         {
-            for (int x = 1; x <= song.GetStaffs().Count; x++)
+            foreach(Staff staff in song.GetStaffs())
             {
-                AddStaffView(song.GetStaffs()[x - 1]);
-                if (x == song.GetStaffs().Count)
+                staff.y = y_staff;
+                AddStaffView(staff);
+                if (staff == song.GetStaffs().Last())
                 {
                     AddStaffButton();
                 }
                 y_staff += 200;
             }
-
         }
 
 
@@ -64,12 +64,15 @@ namespace VirtualPiano.View
 
         public void AddNewStaff()   //Nieuw notenbalk aan song toevoegen
         {
-            song.AddStaff(new Staff());
-            for (int x = 1; x <= song.GetStaffs().Count; x++)
+            Staff newStaff = new Staff();
+            newStaff.y = y_staff;
+            song.AddStaff(newStaff);
+
+            foreach (Staff staff in song.GetStaffs())
             {
-                if (x == song.GetStaffs().Count)
+                if (staff == song.GetStaffs().Last())
                 {
-                    AddStaffView(song.GetStaffs()[x - 1]);
+                    AddStaffView(staff);
                     AddStaffButton();
                     y_staff += 190;
                 }
@@ -327,5 +330,33 @@ namespace VirtualPiano.View
             }
 
         }
+
+        private void SnapTimer_Tick(object sender, EventArgs e)
+        {
+            
+            foreach (Staff staff in song.GetStaffs())
+            {
+                int barBegin = 250;
+                int barEnd = 615;
+                foreach (Bar bar in staff.Bars)
+                {
+
+                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin && PointToClient(Cursor.Position).Y > staff.y + 15 && PointToClient(Cursor.Position).Y < staff.y + 105)
+                    {
+                        int NewY = PointToClient(Cursor.Position).Y - staff.y;
+                        Note newNote = StaffView.CreateNote(NewY, ComposeView.SelectedNoteName, bar.clef);
+                        if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL)
+                        {
+                            bar.Add(newNote);
+                            bar.hasPreview = true;
+                            Refresh();
+                            bar.RemovePreview();
+                        }
+                    }
+                    barBegin += 375;
+                    barEnd += 375;
+                }
+            }
+        }
+        }
     }
-}
