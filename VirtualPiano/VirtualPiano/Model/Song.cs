@@ -11,7 +11,7 @@ namespace VirtualPiano.Model
 {
     public class Song
     {
-        public static ICollection<Staff> Staffs { get; set; }
+        public List<Staff> Staffs { get; set; }
 
         public int FlatSharp;
 
@@ -72,10 +72,10 @@ namespace VirtualPiano.Model
             return isEmpty;
         }
 
-        public static int getDuration()
+        public int getDuration()
         {
             int duration = 0;
-            foreach (Staff staff in staffs)
+            foreach (Staff staff in Staffs)
             {
                 foreach (Bar bar in staff.Bars)
                 {
@@ -87,20 +87,20 @@ namespace VirtualPiano.Model
 
         public async void PlaySong()
         {
-            for(int i = 0; i < staffs.Count(); i++)
+            for(int i = 0; i < Staffs.Count(); i++)
             {
-                for(int b = 0; b <  staffs[i].Bars.Count();b++)
+                for(int b = 0; b <  Staffs[i].Bars.Count();b++)
                 {
-                    for(int c = 0; c< staffs[i].Bars[b].signs.Count();c++)
+                    for(int c = 0; c< Staffs[i].Bars[b].Signs.Count();c++)
                     {
-                        if(staffs[i].Bars[b].signs[c] is Note note)
+                        if(Staffs[i].Bars[b].Signs[c] is Note note)
                         {
                             note.PlaySound();
                             await PutTaskDelay(note.duration * 120);
                             
                         }
 
-                        else if (staffs[i].Bars[b].signs[c] is Rest rest)
+                        else if (Staffs[i].Bars[b].Signs[c] is Rest rest)
                         {
                             await PutTaskDelay(rest.duration * 120);
 

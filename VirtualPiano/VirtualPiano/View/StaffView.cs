@@ -31,6 +31,8 @@ namespace VirtualPiano.View
             
         }
 
+        
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -74,9 +76,9 @@ namespace VirtualPiano.View
                 if(staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen
                 {
                     //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
-                    if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 420, 6, 60, 110); latestClef = ClefName.G; }
-                    if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 430, -39, 88, 185); latestClef = ClefName.F; }
-                    if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
+                    if (bar.clef == ClefName.G.ToString() && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 420, 6, 60, 110); latestClef = ClefName.G; }
+                    if (bar.clef == ClefName.F.ToString() && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 430, -39, 88, 185); latestClef = ClefName.F; }
+                    if (bar.clef == ClefName.C.ToString() && latestClef != ClefName.C) { latestClef = ClefName.C; }
                     if (bar.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 380, 10, 30, 40); }
                     if (bar.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 365, 33, 30, 40); }
                     if (bar.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 365, 5, 30, 40); }
@@ -90,9 +92,9 @@ namespace VirtualPiano.View
                     if (bar.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.Mol, x_bar - 380, 47, 30, 40); }
                 } else 
                 {
-                    if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 414, 23, 40, 83); latestClef = ClefName.G; }
-                    if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 440, -25, 77, 155); latestClef = ClefName.F; }
-                    if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
+                    if (bar.clef == ClefName.G.ToString() && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 414, 23, 40, 83); latestClef = ClefName.G; }
+                    if (bar.clef == ClefName.F.ToString() && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 440, -25, 77, 155); latestClef = ClefName.F; }
+                    if (bar.clef == ClefName.C.ToString() && latestClef != ClefName.C) { latestClef = ClefName.C; }
                 }
                 //fcgdaeb
                 //beadg
@@ -115,11 +117,11 @@ namespace VirtualPiano.View
                 {
                     e.Graphics.DrawLine(new Pen(Color.WhiteSmoke, 5), 10, 125, 1550, 125);
                 }
-                foreach (Sign sign in bar.signs)
+                foreach (Sign sign in bar.Signs)
                 {
                     if (sign is Note note) 
                     {
-                        note.SetY(bar.clef);
+                        note.SetY(bar.clef.ToString());
                         int Ynotelocation = note.y; 
                         e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
                         note.SetX(Xnotelocation);
@@ -180,12 +182,12 @@ namespace VirtualPiano.View
                             else if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
                             if (ComposeView.SelectedClefName == ClefName.G)
                             {
-                                bar.clef = ClefName.G;
+                                bar.clef = ClefName.G.ToString();
                                 bar.MakeEmpty();
                             }
                             if (ComposeView.SelectedClefName == ClefName.F)
                             {
-                                bar.clef = ClefName.F;
+                                bar.clef = ClefName.F.ToString();
                                 bar.MakeEmpty();
                             }
                         }
@@ -200,7 +202,7 @@ namespace VirtualPiano.View
                 {
                     foreach (Bar bar in staff.Bars)
                     {
-                        foreach (Sign sign in bar.signs)
+                        foreach (Sign sign in bar.Signs)
                         {
                             if (sign is Note note)
                             {
@@ -222,10 +224,10 @@ namespace VirtualPiano.View
                 {
                     if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                     {
-                        if (bar.signs.Count > 0)
+                        if (bar.Signs.Count > 0)
                         {
-                            bar.duration = bar.duration - bar.signs.Last().duration;
-                            bar.signs.RemoveAt(bar.signs.Count() - 1);
+                            bar.duration = bar.duration - bar.Signs.Last().duration;
+                            bar.Signs.RemoveAt(bar.Signs.Count() - 1);
                             bar.isFull = false;
                         }
                     }
@@ -236,12 +238,12 @@ namespace VirtualPiano.View
             Invalidate();
         }    
 
-        public static Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
+        public static Note CreateNote(int y, NoteName tempNotename, string clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
         {
             string tone = " ";
             int octave = 0;
             
-            if (clef == ClefName.G)
+            if (clef == ClefName.G.ToString())
             {
                 if (y < 25 && y >= 14) { tone = "G"; octave = 4; }
                 if (y < 33 && y >= 25) { tone = "F"; octave = 4; }
@@ -259,7 +261,7 @@ namespace VirtualPiano.View
                 return new Note(tempNotename, tone, octave);
 
             }
-            if (clef == ClefName.F)
+            if (clef == ClefName.F.ToString())
             {
                 if (y < 25 && y >= 14) { tone = "B"; octave = 2; }
                 if (y < 33 && y >= 25) { tone = "A"; octave = 2; }
@@ -292,23 +294,7 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
-            //wanneer de muis dit gebied binnenkomt controleren hoe de variabelen staan en zo de cursor veranderen.
-            if (ComposeView.SelectedNoteName != NoteName.NULL)
-            {
-                Cursor = CursorController.ChangeCursor(ComposeView.SelectedNoteName);
-            }
-            else if(ComposeView.SelectedClefName != ClefName.NULL)
-            {
-                Cursor = CursorController.ChangeCursor(ComposeView.SelectedClefName);
-            }
-            else if (ComposeView.SelectedRestName != RestName.NULL)
-            {
-                Cursor = CursorController.ChangeCursor(ComposeView.SelectedRestName);
-            }
-            else
-            {
-                Cursor = Cursors.Default;
-            }
+            Cursor = Cursors.Default;
         }
     }
 }

@@ -7,13 +7,13 @@ namespace VirtualPiano.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Base : IMigrationMetadata
+    public sealed partial class _base : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Base));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_base));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711251229151_Base"; }
+            get { return "201711251342415_base"; }
         }
         
         string IMigrationMetadata.Source

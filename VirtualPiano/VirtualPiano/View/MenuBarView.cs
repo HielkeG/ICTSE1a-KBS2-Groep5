@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using VirtualPiano.Control;
 using System.Windows.Forms;
 using VirtualPiano.Model;
-using VirtualPiano.Control;
 
 namespace VirtualPiano.View
 {

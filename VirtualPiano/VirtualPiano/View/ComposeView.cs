@@ -16,7 +16,7 @@ namespace VirtualPiano.View
 {
     public partial class ComposeView : UserControl
     {
-        public Song Song = new Song();
+        public Song song = new Song();
         Button btnAddStaff = new Button();
         int y_staff = 140;
         internal static bool signSelected;
@@ -36,9 +36,7 @@ namespace VirtualPiano.View
                 ShowFirstStaffView();
                 firstStart = false;
             }
-        
-            ShowFirstStaffView();
-            
+                    
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
@@ -107,7 +105,9 @@ namespace VirtualPiano.View
             {
                 Dock = DockStyle.None
             };
+            staffViews.Add(panel);
             panel.Controls.Add(_staffView);
+            
         }
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
@@ -297,14 +297,14 @@ namespace VirtualPiano.View
         private void rodeLijn_Tick(object sender, EventArgs e)
         {
 
-            int temp = Song.getDuration();
+            int temp = song.getDuration();
             //Console.WriteLine(rodeLijn.Interval);
             tempint++;
             Invalidate();
 
 
 
-            if (tempint >= Song.getDuration() * 25)
+            if (tempint >= song.getDuration() * 25)
             {
                 rodeLijn.Stop();
             }
@@ -323,7 +323,7 @@ namespace VirtualPiano.View
                     if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin && PointToClient(Cursor.Position).Y > staff.y + 15 && PointToClient(Cursor.Position).Y < staff.y + 105)
                     {
                         int NewY = PointToClient(Cursor.Position).Y - staff.y;
-                        Note newNote = StaffView.CreateNote(NewY, SelectedNoteName, bar.clef);
+                        Note newNote = StaffView.CreateNote(NewY, SelectedNoteName, bar.clef.ToString());
                         Rest newRest = new Rest(SelectedRestName);
 
                         if (bar.CheckBarSpace(newNote) && SelectedNoteName != NoteName.NULL)
@@ -335,7 +335,7 @@ namespace VirtualPiano.View
                         }
                         else if (bar.CheckBarSpace(newRest) && SelectedRestName != RestName.NULL)
                         {
-                                bar.clef = ClefName.G;
+                                bar.clef = ClefName.G.ToString();
                                 bar.Add(newRest);
                                 bar.hasPreview = true;
                                 Refresh();

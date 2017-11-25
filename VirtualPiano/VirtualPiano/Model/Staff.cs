@@ -15,7 +15,7 @@ namespace VirtualPiano.Model
         public virtual Song song { get; set; }
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StaffId { get; set; }
-        public ICollection<Bar> Bars { get; set; } = new List<Bar>() { new Bar(), new Bar(), new Bar(), new Bar() }; //4 maten in een notenbalk
+        public List<Bar> Bars { get; set; } = new List<Bar>() { new Bar(), new Bar(), new Bar(), new Bar() }; //4 maten in een notenbalk
 
         public bool IsEmtpy()
         {

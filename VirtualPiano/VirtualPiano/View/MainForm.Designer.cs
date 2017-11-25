@@ -40,6 +40,7 @@
             this.menuBarView1.Margin = new System.Windows.Forms.Padding(0);
             this.menuBarView1.Name = "menuBarView1";
             this.menuBarView1.Size = new System.Drawing.Size(1904, 25);
+            this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 1;
             // 
             // formContent
@@ -48,10 +49,10 @@
             this.formContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.formContent.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.formContent.ForeColor = System.Drawing.Color.Transparent;
-            this.formContent.Location = new System.Drawing.Point(2, 24);
+            this.formContent.Location = new System.Drawing.Point(2, 25);
             this.formContent.Margin = new System.Windows.Forms.Padding(0);
             this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(1900, 1017);
+            this.formContent.Size = new System.Drawing.Size(1900, 1016);
             this.formContent.TabIndex = 0;
             // 
             // MainForm

@@ -3,7 +3,7 @@ namespace VirtualPiano.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Base : DbMigration
+    public partial class _base : DbMigration
     {
         public override void Up()
         {
@@ -28,6 +28,8 @@ namespace VirtualPiano.Migrations
                         SignId = c.Int(nullable: false, identity: true),
                         BarId = c.Int(nullable: false),
                         noteName = c.String(),
+                        x = c.Int(),
+                        y = c.Int(),
                         tone = c.String(),
                         octave = c.Int(),
                         restName = c.String(),

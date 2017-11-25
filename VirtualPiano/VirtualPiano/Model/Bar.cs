@@ -18,22 +18,22 @@ namespace VirtualPiano.Model
         public int StaffId { get; set; }
         [ForeignKey("StaffId")]
         public virtual Staff staff { get; set; }
-        public virtual ICollection<Sign> Signs { get; set; }
+        public virtual List<Sign> Signs { get; set; }
         [Required]
-        public ClefName clef { get; set; }
+        public String clef { get; set; }
         [NotMapped]
         public int TimeSignatureAmount { get; set; }
         [NotMapped]
         public NoteName TimeSignatureName { get; set; }
         public int duration { get; set; } = 0;
         public bool isFull { get; set; } = false;
-        public int FlatSharp;
+        public int FlatSharp { get; set; }
         public bool hasChanged;
         internal bool hasPreview = false;
 
         public Bar()
         {
-            clef = ClefName.G;
+            clef = ClefName.G.ToString();
             Signs = new List<Sign>();
         }
 
@@ -62,8 +62,8 @@ namespace VirtualPiano.Model
 
         public void RemovePreview()
         {
-            duration = duration - signs.Last().duration;
-            signs.RemoveAt(signs.Count() - 1);
+            duration = duration - Signs.Last().duration;
+            Signs.RemoveAt(Signs.Count() - 1);
             isFull = false;
             hasPreview = false;
         }

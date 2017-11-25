@@ -369,7 +369,7 @@ namespace VirtualPiano.View
             this.componistLabel.BackColor = System.Drawing.Color.Transparent;
             this.componistLabel.Font = new System.Drawing.Font("Modern No. 20", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.componistLabel.ForeColor = System.Drawing.Color.Black;
-            this.componistLabel.Location = new System.Drawing.Point(1568, 92);
+            this.componistLabel.Location = new System.Drawing.Point(500, 92);
             this.componistLabel.Name = "componistLabel";
             this.componistLabel.Size = new System.Drawing.Size(173, 38);
             this.componistLabel.TabIndex = 15;
@@ -418,7 +418,7 @@ namespace VirtualPiano.View
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ComposeView";
-            this.Size = new System.Drawing.Size(75, 1000);
+            this.Size = new System.Drawing.Size(1863, 1000);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
             this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -460,9 +460,9 @@ namespace VirtualPiano.View
         public Timer Metronoom;
         private TextBox Snelheid;
         private Label componistLabel;
-        private TextBox TitelBox;
         private PictureBox pictureBox1;
         public Timer rodeLijn;
         private Timer NoteSnapTimer;
+        public TextBox TitelBox;
     }
 }

@@ -60,9 +60,21 @@
     <Compile Include="Control\MenuBarController.cs" />
     <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />
-    <Compile Include="Migrations\201711251229151_Base.cs" />
-    <Compile Include="Migrations\201711251229151_Base.Designer.cs">
-      <DependentUpon>201711251229151_Base.cs</DependentUpon>
+    <Compile Include="Migrations\201711251342415_base.cs" />
+    <Compile Include="Migrations\201711251342415_base.Designer.cs">
+      <DependentUpon>201711251342415_base.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251346470_oijo.cs" />
+    <Compile Include="Migrations\201711251346470_oijo.Designer.cs">
+      <DependentUpon>201711251346470_oijo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251350527_oijo1.cs" />
+    <Compile Include="Migrations\201711251350527_oijo1.Designer.cs">
+      <DependentUpon>201711251350527_oijo1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251426244_update2.cs" />
+    <Compile Include="Migrations\201711251426244_update2.Designer.cs">
+      <DependentUpon>201711251426244_update2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
@@ -108,8 +120,17 @@
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\201711251229151_Base.resx">
-      <DependentUpon>201711251229151_Base.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711251342415_base.resx">
+      <DependentUpon>201711251342415_base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251346470_oijo.resx">
+      <DependentUpon>201711251346470_oijo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251350527_oijo1.resx">
+      <DependentUpon>201711251350527_oijo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251426244_update2.resx">
+      <DependentUpon>201711251426244_update2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
