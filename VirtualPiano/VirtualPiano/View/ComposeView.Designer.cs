@@ -54,11 +54,10 @@ namespace VirtualPiano.View
             this.Flat = new System.Windows.Forms.ToolStripButton();
             this.Metronoom = new System.Windows.Forms.Timer(this.components);
             this.Snelheid = new System.Windows.Forms.TextBox();
-            this.componistLabel = new System.Windows.Forms.Label();
-            this.TitelBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.rodeLijn = new System.Windows.Forms.Timer(this.components);
             this.NoteSnapTimer = new System.Windows.Forms.Timer(this.components);
+            this.TitelBox = new System.Windows.Forms.TextBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -363,30 +362,6 @@ namespace VirtualPiano.View
             this.Snelheid.TabIndex = 16;
             this.Snelheid.TextChanged += new System.EventHandler(this.Snelheid_TextChanged);
             // 
-            // componistLabel
-            // 
-            this.componistLabel.AutoSize = true;
-            this.componistLabel.BackColor = System.Drawing.Color.Transparent;
-            this.componistLabel.Font = new System.Drawing.Font("Modern No. 20", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.componistLabel.ForeColor = System.Drawing.Color.Black;
-            this.componistLabel.Location = new System.Drawing.Point(500, 92);
-            this.componistLabel.Name = "componistLabel";
-            this.componistLabel.Size = new System.Drawing.Size(173, 38);
-            this.componistLabel.TabIndex = 15;
-            this.componistLabel.Text = "Componist";
-            // 
-            // TitelBox
-            // 
-            this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(832, 4);
-            this.TitelBox.Name = "TitelBox";
-            this.TitelBox.Size = new System.Drawing.Size(153, 69);
-            this.TitelBox.TabIndex = 14;
-            this.TitelBox.Text = "Titel";
-            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -409,11 +384,24 @@ namespace VirtualPiano.View
             this.NoteSnapTimer.Interval = 1;
             this.NoteSnapTimer.Tick += new System.EventHandler(this.NoteSnapTimer_Tick);
             // 
+            // TitelBox
+            // 
+            this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitelBox.Location = new System.Drawing.Point(851, 29);
+            this.TitelBox.Name = "TitelBox";
+            this.TitelBox.Size = new System.Drawing.Size(100, 35);
+            this.TitelBox.TabIndex = 1;
+            this.TitelBox.Text = "Titel";
+            this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
+            // 
             // ComposeView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.TitelBox);
             this.Controls.Add(this.toolStripContainer1);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(0);
@@ -428,6 +416,7 @@ namespace VirtualPiano.View
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -459,7 +448,6 @@ namespace VirtualPiano.View
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         public Timer Metronoom;
         private TextBox Snelheid;
-        private Label componistLabel;
         private PictureBox pictureBox1;
         public Timer rodeLijn;
         private Timer NoteSnapTimer;

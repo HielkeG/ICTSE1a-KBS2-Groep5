@@ -366,5 +366,12 @@ namespace VirtualPiano.View
                 }
             }
         }
+
+        private void TitelBox_TextChanged(object sender, EventArgs e)
+        {
+            song.Title = TitelBox.Text;
+        }
+
+
     }
     }
