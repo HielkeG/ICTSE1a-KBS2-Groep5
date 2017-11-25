@@ -173,7 +173,7 @@
         private System.Windows.Forms.ToolStripMenuItem exporterenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem beeldToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

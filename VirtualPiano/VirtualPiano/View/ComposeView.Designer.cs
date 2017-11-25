@@ -31,6 +31,7 @@ namespace VirtualPiano.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComposeView));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -51,9 +52,17 @@ namespace VirtualPiano.View
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Sharp = new System.Windows.Forms.ToolStripButton();
             this.Flat = new System.Windows.Forms.ToolStripButton();
+            this.Metronoom = new System.Windows.Forms.Timer(this.components);
+            this.Snelheid = new System.Windows.Forms.TextBox();
+            this.componistLabel = new System.Windows.Forms.Label();
+            this.TitelBox = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rodeLijn = new System.Windows.Forms.Timer(this.components);
+            this.NoteSnapTimer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -321,6 +330,7 @@ namespace VirtualPiano.View
             this.Sharp.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.Sharp.Size = new System.Drawing.Size(50, 50);
             this.Sharp.Text = "Kruis";
+            this.Sharp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Sharp_MouseDown);
             // 
             // Flat
             // 
@@ -335,6 +345,69 @@ namespace VirtualPiano.View
             this.Flat.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.Flat.Size = new System.Drawing.Size(50, 50);
             this.Flat.Text = "Mol";
+            this.Flat.Click += new System.EventHandler(this.Flat_Click);
+            // 
+            // Metronoom
+            // 
+            this.Metronoom.Interval = 500;
+            this.Metronoom.Tick += new System.EventHandler(this.Metronoom_Tick);
+            // 
+            // Snelheid
+            // 
+            this.Snelheid.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Snelheid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Snelheid.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Snelheid.Location = new System.Drawing.Point(304, 103);
+            this.Snelheid.Name = "Snelheid";
+            this.Snelheid.Size = new System.Drawing.Size(100, 23);
+            this.Snelheid.TabIndex = 16;
+            this.Snelheid.TextChanged += new System.EventHandler(this.Snelheid_TextChanged);
+            // 
+            // componistLabel
+            // 
+            this.componistLabel.AutoSize = true;
+            this.componistLabel.BackColor = System.Drawing.Color.Transparent;
+            this.componistLabel.Font = new System.Drawing.Font("Modern No. 20", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.componistLabel.ForeColor = System.Drawing.Color.Black;
+            this.componistLabel.Location = new System.Drawing.Point(1568, 92);
+            this.componistLabel.Name = "componistLabel";
+            this.componistLabel.Size = new System.Drawing.Size(173, 38);
+            this.componistLabel.TabIndex = 15;
+            this.componistLabel.Text = "Componist";
+            // 
+            // TitelBox
+            // 
+            this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitelBox.Location = new System.Drawing.Point(832, 4);
+            this.TitelBox.Name = "TitelBox";
+            this.TitelBox.Size = new System.Drawing.Size(153, 69);
+            this.TitelBox.TabIndex = 14;
+            this.TitelBox.Text = "Titel";
+            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox1.Image = global::VirtualPiano.Properties.Resources.kwartnoot_cur;
+            this.pictureBox1.Location = new System.Drawing.Point(263, 92);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(35, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
+            // rodeLijn
+            // 
+            this.rodeLijn.Interval = 1;
+            this.rodeLijn.Tick += new System.EventHandler(this.rodeLijn_Tick);
+            // 
+            // NoteSnapTimer
+            // 
+            this.NoteSnapTimer.Enabled = true;
+            this.NoteSnapTimer.Interval = 1;
+            this.NoteSnapTimer.Tick += new System.EventHandler(this.NoteSnapTimer_Tick);
             // 
             // ComposeView
             // 
@@ -353,6 +426,7 @@ namespace VirtualPiano.View
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -383,5 +457,12 @@ namespace VirtualPiano.View
         private System.Windows.Forms.ToolStripButton EightRest;
         private System.Windows.Forms.ToolStripButton SixteenthRest;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        public Timer Metronoom;
+        private TextBox Snelheid;
+        private Label componistLabel;
+        private TextBox TitelBox;
+        private PictureBox pictureBox1;
+        public Timer rodeLijn;
+        private Timer NoteSnapTimer;
     }
 }

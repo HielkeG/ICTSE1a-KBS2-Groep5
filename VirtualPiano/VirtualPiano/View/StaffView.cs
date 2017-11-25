@@ -17,11 +17,15 @@ namespace VirtualPiano.View
     {
         public Staff staff;
         Color barColor;
+        private int countto4;
 
-
-        public StaffView(Staff staff)
+        public StaffView(Staff staff, int flatsharp)
         {
             this.staff = staff;
+            foreach (Bar bar in staff.Bars)
+            {
+                bar.FlatSharp = flatsharp;
+            }
             SetImage();
             InitializeComponent();
             
@@ -60,6 +64,7 @@ namespace VirtualPiano.View
 
         public void DrawBars(PaintEventArgs e) //Deze methode tekent de maten inclusief de noten en de sleutels
         {
+            int fullBar = 0;
             int x_bar = 425;
             int Xnotelocation = 20;
             ClefName latestClef = ClefName.NULL;
@@ -72,26 +77,52 @@ namespace VirtualPiano.View
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 420, 6, 60, 110); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 430, -39, 88, 185); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
+                    if (bar.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 380, 10, 30, 40); }
+                    if (bar.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 365, 33, 30, 40); }
+                    if (bar.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 365, 5, 30, 40); }
+                    if (bar.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 386, 27, 30, 40); }
+                    if (bar.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 380, 45, 30, 40); }
+
+                    if (bar.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.Mol, x_bar - 380, 32, 30, 40); }
+                    if (bar.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.Mol, x_bar - 365, 8, 30, 40); }
+                    if (bar.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.Mol, x_bar - 365, 39, 30, 40); }
+                    if (bar.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.Mol, x_bar - 386, 16, 30, 40); }
+                    if (bar.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.Mol, x_bar - 380, 47, 30, 40); }
                 } else 
                 {
                     if (bar.clef == ClefName.G && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 414, 23, 40, 83); latestClef = ClefName.G; }
                     if (bar.clef == ClefName.F && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 440, -25, 77, 155); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C && latestClef != ClefName.C) { latestClef = ClefName.C; }
                 }
-                
-                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90); //per maat verticale lijn tekenen
+                //fcgdaeb
+                //beadg
+               
 
-                if (bar.isFull) barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
-                else barColor = Color.Red;
+                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90); //per maat verticale lijn tekenen
+                if (bar.isFull)
+                {
+                    barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
+                    fullBar++;
+                }
+
+                else
+                {
+                    barColor = Color.Red;
+                }
                 e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 375, 125, x_bar, 125);   
                 Xnotelocation = x_bar - 400; // De x-coördinaat van het einde van de maat
-                
-                foreach(Sign sign in bar.Signs)
+                if (fullBar == 4)
+                {
+                    e.Graphics.DrawLine(new Pen(Color.WhiteSmoke, 5), 10, 125, 1550, 125);
+                }
+                foreach (Sign sign in bar.signs)
                 {
                     if (sign is Note note) 
                     {
-                        int Ynotelocation = GiveYLocation(note, bar.clef); //Deze methode berekent de Y-coordinaat obv de noot en sleutel
-                        e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130); 
+                        note.SetY(bar.clef);
+                        int Ynotelocation = note.y; 
+                        e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
+                        note.SetX(Xnotelocation);
 
                         if (note.noteName == NoteName.wholeNote.ToString()) Xnotelocation += 336; 
                         else if(note.noteName == NoteName.halfNote.ToString()) Xnotelocation += 168; //De volgende noot wordt getekent op een afstand van 168
@@ -116,89 +147,100 @@ namespace VirtualPiano.View
                         else if(rest.restName == RestName.eightRest.ToString()) Xnotelocation += 42;
                         else if(rest.restName == RestName.sixteenthRest.ToString()) Xnotelocation += 21;
                     }
-                  
                 }
                 x_bar += 375; 
-            }     
+            }
         }
 
-
-        private void StaffView_MouseUp(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
+        private void MouseActions(object sender, MouseEventArgs e) //als linkermuisknop niet meer wordt ingedrukt
         {
-            if (ComposeView.signSelected)
-            {
-                int barBegin =  50;
-                int barEnd = 425;
-                foreach(Bar bar in staff.Bars)
-                {
-                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin )
-                    {
-                        Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
-                        Rest newRest = new Rest(ComposeView.SelectedRestName);
 
-                        if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
-                        if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
-                        if (ComposeView.SelectedClefName == ClefName.G)
+            if (e.Button == MouseButtons.Left)
+            {
+                if (ComposeView.signSelected)
+                {
+                    int barBegin = 50;
+                    int barEnd = 425;
+
+                    foreach (Bar bar in staff.Bars)
+                    {
+                        if (ComposeView.FlatSharp == 1) { bar.FlatSharp++; }
+                        if (ComposeView.FlatSharp == -1) { bar.FlatSharp--; }
+                        if (countto4 == 4)
                         {
-                            bar.clef = ClefName.G;
-                            bar.MakeEmpty();
-                            Console.WriteLine(bar.clef);
+                            ComposeView.FlatSharp = 0;
                         }
-                        if (ComposeView.SelectedClefName == ClefName.F) {
-                            bar.clef = ClefName.F;
-                            bar.MakeEmpty();
-                            Console.WriteLine(bar.clef);
+
+                        if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
+                        {
+                            Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
+                            Rest newRest = new Rest(ComposeView.SelectedRestName);
+
+                            if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
+                            else if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
+                            if (ComposeView.SelectedClefName == ClefName.G)
+                            {
+                                bar.clef = ClefName.G;
+                                bar.MakeEmpty();
+                            }
+                            if (ComposeView.SelectedClefName == ClefName.F)
+                            {
+                                bar.clef = ClefName.F;
+                                bar.MakeEmpty();
+                            }
+                        }
+                        barBegin += 375;
+                        barEnd += 375;
+                        countto4++;
+                    }
+                    Invalidate();
+                    SetDefaultCursor();
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    foreach (Bar bar in staff.Bars)
+                    {
+                        foreach (Sign sign in bar.signs)
+                        {
+                            if (sign is Note note)
+                            {
+                                if (note.x - 10 < PointToClient(Cursor.Position).X && note.x + 10 > PointToClient(Cursor.Position).X && note.y - 10 < PointToClient(Cursor.Position).Y - 63 && note.y + 10 > PointToClient(Cursor.Position).Y - 63)
+                                {
+                                    note.PlaySound();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                int barBegin = 50;
+                int barEnd = 425;
+
+                foreach (Bar bar in staff.Bars)
+                {
+                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
+                    {
+                        if (bar.signs.Count > 0)
+                        {
+                            bar.duration = bar.duration - bar.signs.Last().duration;
+                            bar.signs.RemoveAt(bar.signs.Count() - 1);
+                            bar.isFull = false;
                         }
                     }
                     barBegin += 375;
                     barEnd += 375;
                 }
-                Invalidate();
-                SetDefaultCursor();
             }
-        }
-        
+            Invalidate();
+        }    
 
-        private int GiveYLocation(Note note, ClefName clefname) //Geeft de Y coordinaat van de noot, op basis van de noot en de sleutel
-        {
-            if(clefname == ClefName.G) 
-            {
-                if (note.tone == "C" && note.octave == 3) return 40;
-                if (note.tone == "D" && note.octave == 3) return 33;
-                if (note.tone == "E" && note.octave == 3) return 26;
-                else if (note.tone == "F" && note.octave == 3) return 19;
-                else if (note.tone == "G" && note.octave == 3) return 10;
-                else if (note.tone == "A" && note.octave == 3) return 4;
-                else if (note.tone == "B" && note.octave == 3) return -3;
-                else if (note.tone == "C" && note.octave == 4) return -11;
-                else if (note.tone == "D" && note.octave == 4) return -19;
-                else if (note.tone == "E" && note.octave == 4) return -26;
-                else if (note.tone == "F" && note.octave == 4) return -34;
-                else if (note.tone == "G" && note.octave == 4) return -42;
-            }
-
-            if (clefname == ClefName.F)
-            {
-                if (note.tone == "E" && note.octave == 1) return 40;
-                if (note.tone == "F" && note.octave == 1) return 33;
-                if (note.tone == "G" && note.octave == 1) return 26;
-                else if (note.tone == "A" && note.octave == 1) return 19;
-                else if (note.tone == "B" && note.octave == 1) return 10;
-                else if (note.tone == "C" && note.octave == 2) return 4;
-                else if (note.tone == "D" && note.octave == 2) return -3;
-                else if (note.tone == "E" && note.octave == 2) return -11;
-                else if (note.tone == "F" && note.octave == 2) return -19;
-                else if (note.tone == "G" && note.octave == 2) return -26;
-                else if (note.tone == "A" && note.octave == 2) return -34;
-                else if (note.tone == "B" && note.octave == 2) return -42;
-            }
-            return 0;
-        }
-
-        private Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
+        public static Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
         {
             string tone = " ";
             int octave = 0;
+            
             if (clef == ClefName.G)
             {
                 if (y < 25 && y >= 14) { tone = "G"; octave = 4; }
@@ -233,7 +275,6 @@ namespace VirtualPiano.View
                 if (y < 107 && y >= 100) { tone = "E"; octave = 1; }
 
                 return new Note(tempNotename, tone, octave);
-
             }
 
             return null;

@@ -38,6 +38,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,10 +52,13 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\Context.cs" />
     <Compile Include="Control\CursorController.cs" />
+    <Compile Include="Control\MenuBarController.cs" />
+    <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />
     <Compile Include="Migrations\201711251229151_Base.cs" />
     <Compile Include="Migrations\201711251229151_Base.Designer.cs">
@@ -64,9 +68,6 @@
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Rest.cs" />
-    <Compile Include="Model\RoundButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Model\Sign.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\Staff.cs" />
@@ -244,8 +245,59 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Knoppen\add.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\check.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\min.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\pause.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\play.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\rewind.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\zestienderust.png" />
+    <None Include="Resources\Geluiden\Piano\Piano4G.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4Fis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4F.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4E.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4Dis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4D.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4Cis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4C.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3Gis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3G.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3Fis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3F.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3E.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3Dis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3D.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3Cis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3C.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3B.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3Ais.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano3A.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2Gis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2G.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2Fis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2F.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2E.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2Dis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2D.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2Cis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2C.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2B.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2Ais.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano2A.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1Gis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1G.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1Fis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1F.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1E.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1Dis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1D.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1Cis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1C.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1B.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1Ais.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano1A.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

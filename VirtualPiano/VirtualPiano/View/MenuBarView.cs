@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtualPiano.Control;
 using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Control;
@@ -17,6 +18,8 @@ namespace VirtualPiano.View
         public Song Song { get; set; }
         public event EventHandler selectedSong;
 
+        MenuBarController mbc = new MenuBarController();
+
         public MenuBarView()
         {
 
@@ -25,14 +28,7 @@ namespace VirtualPiano.View
 
         public void GeluidAanUit(object sender, EventArgs e)
         {
-            if (geluidAanuitToolStripMenuItem.Checked)
-            {
-                geluidAanuitToolStripMenuItem.CheckState = CheckState.Unchecked;
-            }
-            else
-            {
-                geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
-            }
+            mbc.SoundToggle(this);
         }
 
         private void opslaanToolStripMenuItem_Click(object sender, EventArgs e)

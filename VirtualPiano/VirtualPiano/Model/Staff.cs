@@ -29,5 +29,7 @@ namespace VirtualPiano.Model
             }
             return empty;
         }
+        public int FlatSharp;
+        public int y;
     }
 }

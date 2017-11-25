@@ -27,7 +27,9 @@ namespace VirtualPiano.Model
         public NoteName TimeSignatureName { get; set; }
         public int duration { get; set; } = 0;
         public bool isFull { get; set; } = false;
-
+        public int FlatSharp;
+        public bool hasChanged;
+        internal bool hasPreview = false;
 
         public Bar()
         {
@@ -45,7 +47,10 @@ namespace VirtualPiano.Model
         {
             Signs.Add(sign);
             duration += sign.duration;
-            if (duration == 16) isFull = true;
+            if (duration == 16)
+            {
+                isFull = true;
+            }
         }
 
         public void MakeEmpty() //Lijst van tekens leegmaken
@@ -53,6 +58,14 @@ namespace VirtualPiano.Model
             Signs = new List<Sign>();
             isFull = false;
             duration = 0;
+        }
+
+        public void RemovePreview()
+        {
+            duration = duration - signs.Last().duration;
+            signs.RemoveAt(signs.Count() - 1);
+            isFull = false;
+            hasPreview = false;
         }
     }
 }
