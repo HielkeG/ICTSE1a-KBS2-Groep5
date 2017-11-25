@@ -97,16 +97,12 @@ namespace VirtualPiano.Model
             if (Flatsharp >= 3) { if (tone == "G") { FlatSharp = 1; } }
             if (Flatsharp >= 4) { if (tone == "D") { FlatSharp = 1; } }
             if (Flatsharp >= 5) { if (tone == "A") { FlatSharp = 1; } }
-            if (Flatsharp >= 6) { if (tone == "E") { FlatSharp = 1; } }
-            if (Flatsharp >= 7) { if (tone == "B") { FlatSharp = 1; } }
 
             if (Flatsharp <= -1) { if (tone == "B") { FlatSharp = -1; } }
             if (Flatsharp <= -2) { if (tone == "E") { FlatSharp = -1; } }
             if (Flatsharp <= -3) { if (tone == "A") { FlatSharp = -1; } }
             if (Flatsharp <= -4) { if (tone == "D") { FlatSharp = -1; } }
             if (Flatsharp <= -5) { if (tone == "G") { FlatSharp = -1; } }
-            if (Flatsharp <= -6) { if (tone == "C") { FlatSharp = -1; } }
-            if (Flatsharp <= -7) { if (tone == "F") { FlatSharp = -1; } }
 
             if (noteName == NoteName.wholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
             else if (noteName == NoteName.halfNote.ToString()) { image = Resources.halvenoot; duration = 8; }
