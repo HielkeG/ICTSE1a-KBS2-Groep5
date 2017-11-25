@@ -233,6 +233,15 @@ namespace VirtualPiano.View
             song.PlaySong();
             signSelected = true;
             FlatSharp--;
+
+            foreach (Staff staf in song.GetStaffs())
+            {
+                foreach (Bar bar in staf.Bars)
+                {
+                    bar.FlatSharp--;
+                }
+            }
+            Refresh();
         }
 
             public void Metronoom_Tick(object sender, EventArgs e)
@@ -255,6 +264,16 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             FlatSharp++;
+
+            foreach (Staff staf in song.GetStaffs())
+            {
+                foreach (Bar bar in staf.Bars)
+                {
+                    bar.FlatSharp++;
+
+                }
+            }
+            Refresh();
         }
 
         protected override void OnPaint(PaintEventArgs e)
