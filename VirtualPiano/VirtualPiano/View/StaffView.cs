@@ -96,8 +96,6 @@ namespace VirtualPiano.View
                     if (bar.clef == ClefName.F.ToString() && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 440, -25, 77, 155); latestClef = ClefName.F; }
                     if (bar.clef == ClefName.C.ToString() && latestClef != ClefName.C) { latestClef = ClefName.C; }
                 }
-                //fcgdaeb
-                //beadg
                
 
                 e.Graphics.DrawLine(new Pen(Color.Black),x_bar,30,x_bar,90); //per maat verticale lijn tekenen
