@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VirtualPiano.View;
 using System.Windows.Forms;
+using VirtualPiano.Model;
 
 namespace VirtualPiano.Control
 {
@@ -20,14 +21,12 @@ namespace VirtualPiano.Control
             if (mbv.geluidAanuitToolStripMenuItem.Checked)
             {
                 mbv.geluidAanuitToolStripMenuItem.CheckState = CheckState.Unchecked;
-                Console.WriteLine("geluid uit");
-                //mute
+                Note.SoundEnabled = false;  //mute
             }
             else
             {
                 mbv.geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
-                Console.WriteLine("geluid aan");
-                //unmute
+                Note.SoundEnabled = true;   //unmute
             }
         }
 

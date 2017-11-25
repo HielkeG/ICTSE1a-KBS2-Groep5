@@ -16,7 +16,7 @@ namespace VirtualPiano.Model
         public int FlatSharp = 0;
         public int x;
         public int y;
-       
+        public static bool SoundEnabled = true;
 
         public Note(NoteName notename, char tone, int octave) : base()
         {
@@ -99,37 +99,38 @@ namespace VirtualPiano.Model
 
         public void PlaySound()
         {
-            Console.WriteLine(this.FlatSharp);
-            var player = new System.Windows.Media.MediaPlayer();
-            try
-            {
-                string filename = (tone).ToString();
-                if (FlatSharp == 1)
+            if (SoundEnabled) {
+                var player = new System.Windows.Media.MediaPlayer();
+                try
                 {
-                    if (tone == 'A') { filename= "Ais"; }
-                    if (tone == 'B') { filename = "C"; }
-                    if (tone == 'C') { filename = "Cis"; }
-                    if (tone == 'D') { filename = "Dis"; }
-                    if (tone == 'E') { filename = "F"; }
-                    if (tone == 'F') { filename = "Fis"; }
-                    if (tone == 'G') { filename = "Gis"; }
+                    string filename = (tone).ToString();
+                    if (FlatSharp == 1)
+                    {
+                        if (tone == 'A') { filename = "Ais"; }
+                        if (tone == 'B') { filename = "C"; }
+                        if (tone == 'C') { filename = "Cis"; }
+                        if (tone == 'D') { filename = "Dis"; }
+                        if (tone == 'E') { filename = "F"; }
+                        if (tone == 'F') { filename = "Fis"; }
+                        if (tone == 'G') { filename = "Gis"; }
+                    }
+                    if (FlatSharp == -1)
+                    {
+                        if (tone == 'A') { filename = "Gis"; }
+                        if (tone == 'B') { filename = "Ais"; }
+                        if (tone == 'C') { filename = "B"; }
+                        if (tone == 'D') { filename = "Cis"; }
+                        if (tone == 'E') { filename = "Dis"; }
+                        if (tone == 'F') { filename = "E"; }
+                        if (tone == 'G') { filename = "Fis"; }
+                    }
+                    player.Open(new Uri($@"../../Resources/Geluiden/Piano/Piano{octave}{filename}.wav", UriKind.Relative));
+                    player.Play();
                 }
-                if (FlatSharp == -1)
+                catch (FileNotFoundException)
                 {
-                    if (tone == 'A') { filename = "Gis"; }
-                    if (tone == 'B') { filename = "Ais"; }
-                    if (tone == 'C') { filename = "B"; }
-                    if (tone == 'D') { filename = "Cis"; }
-                    if (tone == 'E') { filename = "Dis"; }
-                    if (tone == 'F') { filename = "E"; }
-                    if (tone == 'G') { filename = "Fis"; }
+                    Console.WriteLine("File not found");
                 }
-                player.Open(new Uri($@"../../Resources/Geluiden/Piano/Piano{octave}{filename}.wav", UriKind.Relative));
-                player.Play();
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("File not found");
             }
         }
 

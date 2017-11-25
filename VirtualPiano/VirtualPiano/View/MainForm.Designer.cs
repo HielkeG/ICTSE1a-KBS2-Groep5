@@ -41,11 +41,9 @@
             this.menuBarView1.Name = "menuBarView1";
             this.menuBarView1.Size = new System.Drawing.Size(1904, 25);
             this.menuBarView1.TabIndex = 1;
-            this.menuBarView1.Load += new System.EventHandler(this.menuBarView1_Load);
             // 
             // formContent
             // 
-            this.formContent.AutoScroll = true;
             this.formContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.formContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.formContent.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -55,7 +53,6 @@
             this.formContent.Name = "formContent";
             this.formContent.Size = new System.Drawing.Size(1900, 1017);
             this.formContent.TabIndex = 0;
-            this.formContent.Load += new System.EventHandler(this.formContent_Load);
             // 
             // MainForm
             // 
