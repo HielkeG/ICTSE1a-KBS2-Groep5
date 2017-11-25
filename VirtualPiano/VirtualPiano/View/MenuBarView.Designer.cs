@@ -85,6 +85,7 @@
             this.openenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openenToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.openenToolStripMenuItem.Text = "Openen...";
+            this.openenToolStripMenuItem.Click += new System.EventHandler(this.openenToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -97,6 +98,7 @@
             this.opslaanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.opslaanToolStripMenuItem.Text = "Opslaan";
+            this.opslaanToolStripMenuItem.Click += new System.EventHandler(this.opslaanToolStripMenuItem_Click);
             // 
             // opslaanAlsToolStripMenuItem
             // 

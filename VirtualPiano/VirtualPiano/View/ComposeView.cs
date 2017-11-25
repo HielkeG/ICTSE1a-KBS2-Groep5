@@ -14,31 +14,48 @@ namespace VirtualPiano.View
 {
     public partial class ComposeView : UserControl
     {
-        Song song = new Song();
+        public Song Song = new Song();
         Button btnAddStaff = new Button();
         int y_staff = 140;
         internal static bool signSelected;
         internal static NoteName SelectedNoteName = NoteName.NULL;
         internal static RestName SelectedRestName = RestName.NULL;
         internal static ClefName SelectedClefName = ClefName.NULL;
+        private List<Panel> staffViews = new List<Panel>();
+        private bool firstStart = true;
 
         public ComposeView()
         {
             InitializeComponent();
-            ShowFirstStaffView();
+            if (firstStart)
+            {
+                ShowFirstStaffView();
+                firstStart = false;
+            }
         }
 
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
         {
-            for (int x = 1; x <= song.GetStaffs().Count; x++)
+            for (int x = 1; x <= Song.GetStaffs().Count; x++)
             {
-                AddStaffView(song.GetStaffs()[x - 1]);
-                if (x == song.GetStaffs().Count)
+                AddStaffView(Song.GetStaffs()[x - 1]);
+                if (x == Song.GetStaffs().Count)
                 {
                     AddStaffButton();
                 }
                 y_staff += 200;
             }
+
+        }
+
+        public void RemoveStaffViews()
+        {
+            for (int i = 0; i < staffViews.Count; i++)
+            {
+                staffViews.ElementAt(i).Dispose();
+            }
+            y_staff = 140;
+            Refresh();
 
         }
 
@@ -48,14 +65,14 @@ namespace VirtualPiano.View
             AddNewStaff();
         }
 
-        public void AddNewStaff()   //Nieuw notenbalk aan song toevoegen
+        public void AddNewStaff()   //Nieuw notenbalk aan Song toevoegen
         {
-            song.AddStaff(new Staff());
-            for (int x = 1; x <= song.GetStaffs().Count; x++)
+            Song.AddStaff(new Staff());
+            for (int x = 1; x <= Song.GetStaffs().Count; x++)
             {
-                if (x == song.GetStaffs().Count)
+                if (x == Song.GetStaffs().Count)
                 {
-                    AddStaffView(song.GetStaffs()[x - 1]);
+                    AddStaffView(Song.GetStaffs()[x - 1]);
                     AddStaffButton();
                     y_staff += 190;
                 }
@@ -68,6 +85,7 @@ namespace VirtualPiano.View
             panel.Location = new Point(190, y_staff);
             panel.Size = new Size(1600, 150);
             Controls.Add(panel);
+            staffViews.Add(panel);
             StaffView _staffView = new StaffView(staff)
             {
                 Dock = DockStyle.None

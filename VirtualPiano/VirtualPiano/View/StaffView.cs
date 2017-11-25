@@ -22,7 +22,9 @@ namespace VirtualPiano.View
         public StaffView(Staff staff)
         {
             this.staff = staff;
+            SetImage();
             InitializeComponent();
+            
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -42,6 +44,18 @@ namespace VirtualPiano.View
                 e.Graphics.DrawLine(penBlack, 10, 30 + i * 15, 1550, 30 + i * 15);
                 i++;
             }
+        }
+
+        public void SetImage()
+        {
+            foreach (var bar in staff.Bars)
+            {
+                foreach (var sign in bar.Signs)
+                {
+                    sign.SetImage();
+                }
+            }
+            Refresh();
         }
 
         public void DrawBars(PaintEventArgs e) //Deze methode tekent de maten inclusief de noten en de sleutels
@@ -72,35 +86,35 @@ namespace VirtualPiano.View
                 e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 375, 125, x_bar, 125);   
                 Xnotelocation = x_bar - 400; // De x-coördinaat van het einde van de maat
                 
-                foreach(Sign sign in bar.signs)
+                foreach(Sign sign in bar.Signs)
                 {
                     if (sign is Note note) 
                     {
                         int Ynotelocation = GiveYLocation(note, bar.clef); //Deze methode berekent de Y-coordinaat obv de noot en sleutel
                         e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130); 
 
-                        if (note.noteName == NoteName.wholeNote) Xnotelocation += 336; 
-                        else if(note.noteName == NoteName.halfNote) Xnotelocation += 168; //De volgende noot wordt getekent op een afstand van 168
-                        else if(note.noteName == NoteName.quarterNote) Xnotelocation += 84;
-                        else if(note.noteName == NoteName.eightNote) Xnotelocation += 42;
-                        else if(note.noteName == NoteName.sixteenthNote) Xnotelocation += 21;
+                        if (note.noteName == NoteName.wholeNote.ToString()) Xnotelocation += 336; 
+                        else if(note.noteName == NoteName.halfNote.ToString()) Xnotelocation += 168; //De volgende noot wordt getekent op een afstand van 168
+                        else if(note.noteName == NoteName.quarterNote.ToString()) Xnotelocation += 84;
+                        else if(note.noteName == NoteName.eightNote.ToString()) Xnotelocation += 42;
+                        else if(note.noteName == NoteName.sixteenthNote.ToString()) Xnotelocation += 21;
                         
                     }
                     else if (sign is Rest rest)
                     {
-                        if (rest.restName == RestName.wholeRest) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 180, 46, 20, 10)); }
-                        else if (rest.restName == RestName.halfRest) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 110, 51, 20, 10)); }
+                        if (rest.restName == RestName.wholeRest.ToString()) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 180, 46, 20, 10)); }
+                        else if (rest.restName == RestName.halfRest.ToString()) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 110, 51, 20, 10)); }
 
 
-                        else if (rest.restName == RestName.quarterRest) e.Graphics.DrawImage(rest.image, Xnotelocation + 60, 30, 50, 61);
-                        else if (rest.restName == RestName.eightRest) e.Graphics.DrawImage(rest.image, Xnotelocation + 30, 0, 65, 115);
-                        else if (rest.restName == RestName.sixteenthRest) e.Graphics.DrawImage(rest.image, Xnotelocation + 30, 0, 65, 115);
+                        else if (rest.restName == RestName.quarterRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 60, 30, 50, 61);
+                        else if (rest.restName == RestName.eightRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 30, 0, 65, 115);
+                        else if (rest.restName == RestName.sixteenthRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 30, 0, 65, 115);
 
-                        if (rest.restName == RestName.wholeRest) Xnotelocation += 336;
-                        else if(rest.restName == RestName.halfRest) Xnotelocation += 168;
-                        else if(rest.restName == RestName.quarterRest) Xnotelocation += 84;
-                        else if(rest.restName == RestName.eightRest) Xnotelocation += 42;
-                        else if(rest.restName == RestName.sixteenthRest) Xnotelocation += 21;
+                        if (rest.restName == RestName.wholeRest.ToString()) Xnotelocation += 336;
+                        else if(rest.restName == RestName.halfRest.ToString()) Xnotelocation += 168;
+                        else if(rest.restName == RestName.quarterRest.ToString()) Xnotelocation += 84;
+                        else if(rest.restName == RestName.eightRest.ToString()) Xnotelocation += 42;
+                        else if(rest.restName == RestName.sixteenthRest.ToString()) Xnotelocation += 21;
                     }
                   
                 }
@@ -144,78 +158,79 @@ namespace VirtualPiano.View
             }
         }
         
+
         private int GiveYLocation(Note note, ClefName clefname) //Geeft de Y coordinaat van de noot, op basis van de noot en de sleutel
         {
             if(clefname == ClefName.G) 
             {
-                if (note.tone == 'C' && note.octave == 3) return 40;
-                if (note.tone == 'D' && note.octave == 3) return 33;
-                if (note.tone == 'E' && note.octave == 3) return 26;
-                else if (note.tone == 'F' && note.octave == 3) return 19;
-                else if (note.tone == 'G' && note.octave == 3) return 10;
-                else if (note.tone == 'A' && note.octave == 3) return 4;
-                else if (note.tone == 'B' && note.octave == 3) return -3;
-                else if (note.tone == 'C' && note.octave == 4) return -11;
-                else if (note.tone == 'D' && note.octave == 4) return -19;
-                else if (note.tone == 'E' && note.octave == 4) return -26;
-                else if (note.tone == 'F' && note.octave == 4) return -34;
-                else if (note.tone == 'G' && note.octave == 4) return -42;
+                if (note.tone == "C" && note.octave == 3) return 40;
+                if (note.tone == "D" && note.octave == 3) return 33;
+                if (note.tone == "E" && note.octave == 3) return 26;
+                else if (note.tone == "F" && note.octave == 3) return 19;
+                else if (note.tone == "G" && note.octave == 3) return 10;
+                else if (note.tone == "A" && note.octave == 3) return 4;
+                else if (note.tone == "B" && note.octave == 3) return -3;
+                else if (note.tone == "C" && note.octave == 4) return -11;
+                else if (note.tone == "D" && note.octave == 4) return -19;
+                else if (note.tone == "E" && note.octave == 4) return -26;
+                else if (note.tone == "F" && note.octave == 4) return -34;
+                else if (note.tone == "G" && note.octave == 4) return -42;
             }
 
             if (clefname == ClefName.F)
             {
-                if (note.tone == 'E' && note.octave == 1) return 40;
-                if (note.tone == 'F' && note.octave == 1) return 33;
-                if (note.tone == 'G' && note.octave == 1) return 26;
-                else if (note.tone == 'A' && note.octave == 1) return 19;
-                else if (note.tone == 'B' && note.octave == 1) return 10;
-                else if (note.tone == 'C' && note.octave == 2) return 4;
-                else if (note.tone == 'D' && note.octave == 2) return -3;
-                else if (note.tone == 'E' && note.octave == 2) return -11;
-                else if (note.tone == 'F' && note.octave == 2) return -19;
-                else if (note.tone == 'G' && note.octave == 2) return -26;
-                else if (note.tone == 'A' && note.octave == 2) return -34;
-                else if (note.tone == 'B' && note.octave == 2) return -42;
+                if (note.tone == "E" && note.octave == 1) return 40;
+                if (note.tone == "F" && note.octave == 1) return 33;
+                if (note.tone == "G" && note.octave == 1) return 26;
+                else if (note.tone == "A" && note.octave == 1) return 19;
+                else if (note.tone == "B" && note.octave == 1) return 10;
+                else if (note.tone == "C" && note.octave == 2) return 4;
+                else if (note.tone == "D" && note.octave == 2) return -3;
+                else if (note.tone == "E" && note.octave == 2) return -11;
+                else if (note.tone == "F" && note.octave == 2) return -19;
+                else if (note.tone == "G" && note.octave == 2) return -26;
+                else if (note.tone == "A" && note.octave == 2) return -34;
+                else if (note.tone == "B" && note.octave == 2) return -42;
             }
             return 0;
         }
 
         private Note CreateNote(int y, NoteName tempNotename, ClefName clef) //Geeft een noot op basis van y-coordinaat, nootnaam en muzieksleutel.
         {
-            char tone = ' ';
+            string tone = " ";
             int octave = 0;
             if (clef == ClefName.G)
             {
-                if (y < 25 && y >= 14) { tone = 'G'; octave = 4; }
-                if (y < 33 && y >= 25) { tone = 'F'; octave = 4; }
-                if (y < 41 && y >= 33) { tone = 'E'; octave = 4; }
-                if (y < 48 && y >= 41) { tone = 'D'; octave = 4; }
-                if (y < 55 && y >= 48) { tone = 'C'; octave = 4; }
-                if (y < 63 && y >= 55) { tone = 'B'; octave = 3; }
-                if (y < 72 && y >= 63) { tone = 'A'; octave = 3; }
-                if (y < 78 && y >= 72) { tone = 'G'; octave = 3; }
-                if (y < 86 && y >= 78) { tone = 'F'; octave = 3; }
-                if (y < 94 && y >= 86) { tone = 'E'; octave = 3; }
-                if (y < 100 && y >= 94) { tone = 'D'; octave = 3; }
-                if (y < 107 && y >= 100) { tone = 'C'; octave = 3; }
+                if (y < 25 && y >= 14) { tone = "G"; octave = 4; }
+                if (y < 33 && y >= 25) { tone = "F"; octave = 4; }
+                if (y < 41 && y >= 33) { tone = "E"; octave = 4; }
+                if (y < 48 && y >= 41) { tone = "D"; octave = 4; }
+                if (y < 55 && y >= 48) { tone = "C"; octave = 4; }
+                if (y < 63 && y >= 55) { tone = "B"; octave = 3; }
+                if (y < 72 && y >= 63) { tone = "A"; octave = 3; }
+                if (y < 78 && y >= 72) { tone = "G"; octave = 3; }
+                if (y < 86 && y >= 78) { tone = "F"; octave = 3; }
+                if (y < 94 && y >= 86) { tone = "E"; octave = 3; }
+                if (y < 100 && y >= 94) { tone = "D"; octave = 3; }
+                if (y < 107 && y >= 100) { tone = "C"; octave = 3; }
 
                 return new Note(tempNotename, tone, octave);
 
             }
             if (clef == ClefName.F)
             {
-                if (y < 25 && y >= 14) { tone = 'B'; octave = 2; }
-                if (y < 33 && y >= 25) { tone = 'A'; octave = 2; }
-                if (y < 41 && y >= 33) { tone = 'G'; octave = 2; }
-                if (y < 48 && y >= 41) { tone = 'F'; octave = 2; }
-                if (y < 55 && y >= 48) { tone = 'E'; octave = 2; }
-                if (y < 63 && y >= 55) { tone = 'D'; octave = 2; }
-                if (y < 72 && y >= 63) { tone = 'C'; octave = 2; }
-                if (y < 78 && y >= 72) { tone = 'B'; octave = 1; }
-                if (y < 86 && y >= 78) { tone = 'A'; octave = 1; }
-                if (y < 94 && y >= 86) { tone = 'G'; octave = 1; }
-                if (y < 100 && y >= 94) { tone = 'F'; octave = 1; }
-                if (y < 107 && y >= 100) { tone = 'E'; octave = 1; }
+                if (y < 25 && y >= 14) { tone = "B"; octave = 2; }
+                if (y < 33 && y >= 25) { tone = "A"; octave = 2; }
+                if (y < 41 && y >= 33) { tone = "G"; octave = 2; }
+                if (y < 48 && y >= 41) { tone = "F"; octave = 2; }
+                if (y < 55 && y >= 48) { tone = "E"; octave = 2; }
+                if (y < 63 && y >= 55) { tone = "D"; octave = 2; }
+                if (y < 72 && y >= 63) { tone = "C"; octave = 2; }
+                if (y < 78 && y >= 72) { tone = "B"; octave = 1; }
+                if (y < 86 && y >= 78) { tone = "A"; octave = 1; }
+                if (y < 94 && y >= 86) { tone = "G"; octave = 1; }
+                if (y < 100 && y >= 94) { tone = "F"; octave = 1; }
+                if (y < 107 && y >= 100) { tone = "E"; octave = 1; }
 
                 return new Note(tempNotename, tone, octave);
 
