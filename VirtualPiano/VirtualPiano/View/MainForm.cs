@@ -27,16 +27,10 @@ namespace VirtualPiano
         //song veranderen op het moment dat het event selectedsong uitgevoerd wordt.
         private void ChangeSong(object sender, EventArgs e)
         {
-            formContent.song = menuBarView1.Song;
             MusicController.song = menuBarView1.Song;
             formContent.TitelBox.Text = menuBarView1.Song.Title;
             //oorspronkelijke notenbalken verwijderen.
-            formContent.RemoveStaffViews();
-            foreach (var item in formContent.song.Staffs)
-            {
-                formContent.AddStaffView(item);
-
-            }
+            formContent.SetLoadedSong(menuBarView1.Song);
 
         }
     }

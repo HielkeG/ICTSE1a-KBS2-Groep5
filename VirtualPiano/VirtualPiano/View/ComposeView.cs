@@ -60,20 +60,40 @@ namespace VirtualPiano.View
 
         }
 
-        public void RemoveStaffViews()
+        private void RemoveStaffViews()
         {
             for (int i = 0; i < staffViews.Count; i++)
             {
                 staffViews.ElementAt(i).Dispose();
             }
+            btnAddStaff.Dispose();
             y_staff = 140;
             Refresh();
 
         }
 
+        public void SetLoadedSong(Song newSong)
+        {
+            RemoveStaffViews();
+
+            song = newSong;
+
+            foreach (var item in song.GetStaffs())
+            {
+                AddStaffView(item);
+                if (item == song.GetStaffs().Last())
+                {
+                    AddStaffButton();
+                }
+                y_staff += 200;
+            }
+            Refresh();
+        }
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
+            Console.WriteLine("button press");
+
             btnAddStaff.Dispose();
             AddNewStaff();
         }
@@ -133,6 +153,9 @@ namespace VirtualPiano.View
             signSelected = true;
             //de bijbehorende naam van de noot.
             SelectedNoteName = NoteName.wholeNote;
+            //beide andere namen op null zetten. Wanneer de gebruiker dan een ander teken aanklikt wordt dit goed gereset. 
+            SelectedRestName = RestName.NULL;
+            SelectedClefName = ClefName.NULL;
             //de cursor veranderen naar de gewenste afbeelding.
             Cursor = CursorController.ChangeCursor(SelectedNoteName);
         }
@@ -141,6 +164,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedNoteName = NoteName.halfNote;
+            SelectedRestName = RestName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedNoteName);
         }
 
@@ -148,6 +173,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedNoteName = NoteName.quarterNote;
+            SelectedRestName = RestName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedNoteName);
         }
 
@@ -155,6 +182,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedNoteName = NoteName.eightNote;
+            SelectedRestName = RestName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedNoteName);
         }
 
@@ -162,6 +191,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedNoteName = NoteName.sixteenthNote;
+            SelectedRestName = RestName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedNoteName);
         }
 
@@ -169,6 +200,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedRestName = RestName.wholeRest;
+            SelectedNoteName = NoteName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedRestName);
 
         }
@@ -177,6 +210,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedRestName = RestName.halfRest;
+            SelectedNoteName = NoteName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedRestName);
 
         }
@@ -185,6 +220,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedRestName = RestName.quarterRest;
+            SelectedNoteName = NoteName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedRestName);
         }
 
@@ -192,6 +229,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedClefName = ClefName.G;
+            SelectedNoteName = NoteName.NULL;
+            SelectedRestName = RestName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedClefName);
         }
 
@@ -208,6 +247,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedClefName = ClefName.F;
+            SelectedNoteName = NoteName.NULL;
+            SelectedRestName = RestName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedClefName);
         }
 
@@ -223,6 +264,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedRestName = RestName.eightRest;
+            SelectedNoteName = NoteName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedRestName);
         }
 
@@ -230,6 +273,8 @@ namespace VirtualPiano.View
         {
             signSelected = true;
             SelectedRestName = RestName.sixteenthRest;
+            SelectedNoteName = NoteName.NULL;
+            SelectedClefName = ClefName.NULL;
             Cursor = CursorController.ChangeCursor(SelectedRestName);
         }
 
