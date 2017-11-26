@@ -16,7 +16,7 @@ namespace VirtualPiano.View
     {
         public Song Song { get; set; }
         public event EventHandler selectedSong;
-
+        public event EventHandler newSong;
         MenuBarController mbc = new MenuBarController();
 
         public MenuBarView()
@@ -97,6 +97,11 @@ namespace VirtualPiano.View
         private void MessageBoxSavedSong()
         {
             MessageBox.Show("Het nummer is opgeslagen.", "Melding", MessageBoxButtons.OK);
+        }
+
+        private void nieuwToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            newSong(this, e);
         }
     }
 }

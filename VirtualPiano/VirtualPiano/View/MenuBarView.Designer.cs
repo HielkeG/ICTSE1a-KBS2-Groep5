@@ -34,10 +34,6 @@
             this.openenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.opslaanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opslaanAlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.exporterenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.beeldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -49,7 +45,6 @@
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bestandToolStripMenuItem,
-            this.beeldToolStripMenuItem,
             this.geluidToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -64,10 +59,7 @@
             this.nieuwToolStripMenuItem,
             this.openenToolStripMenuItem,
             this.toolStripSeparator1,
-            this.opslaanToolStripMenuItem,
-            this.opslaanAlsToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.exporterenToolStripMenuItem});
+            this.opslaanToolStripMenuItem});
             this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
             this.bestandToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.bestandToolStripMenuItem.Text = "Bestand";
@@ -78,6 +70,7 @@
             this.nieuwToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.nieuwToolStripMenuItem.Text = "Nieuw...";
+            this.nieuwToolStripMenuItem.Click += new System.EventHandler(this.nieuwToolStripMenuItem_Click);
             // 
             // openenToolStripMenuItem
             // 
@@ -99,33 +92,6 @@
             this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.opslaanToolStripMenuItem.Text = "Opslaan";
             this.opslaanToolStripMenuItem.Click += new System.EventHandler(this.opslaanToolStripMenuItem_Click);
-            // 
-            // opslaanAlsToolStripMenuItem
-            // 
-            this.opslaanAlsToolStripMenuItem.Name = "opslaanAlsToolStripMenuItem";
-            this.opslaanAlsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.opslaanAlsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.opslaanAlsToolStripMenuItem.Text = "Opslaan als...";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(212, 6);
-            // 
-            // exporterenToolStripMenuItem
-            // 
-            this.exporterenToolStripMenuItem.Name = "exporterenToolStripMenuItem";
-            this.exporterenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.E)));
-            this.exporterenToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.exporterenToolStripMenuItem.Text = "Exporteren...";
-            // 
-            // beeldToolStripMenuItem
-            // 
-            this.beeldToolStripMenuItem.Name = "beeldToolStripMenuItem";
-            this.beeldToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
-            this.beeldToolStripMenuItem.Text = "Beeld";
             // 
             // geluidToolStripMenuItem
             // 
@@ -169,11 +135,7 @@
         private System.Windows.Forms.ToolStripMenuItem openenToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem opslaanToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opslaanAlsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exporterenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem beeldToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

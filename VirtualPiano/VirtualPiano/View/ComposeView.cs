@@ -72,6 +72,13 @@ namespace VirtualPiano.View
 
         }
 
+        public void SetNewSong()
+        {
+            song = new Song();
+            RemoveStaffViews();
+            ShowFirstStaffView();
+        }
+
         public void SetLoadedSong(Song newSong)
         {
             RemoveStaffViews();
@@ -92,8 +99,6 @@ namespace VirtualPiano.View
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
-            Console.WriteLine("button press");
-
             btnAddStaff.Dispose();
             AddNewStaff();
         }
@@ -421,6 +426,9 @@ namespace VirtualPiano.View
         private void TitelBox_TextChanged(object sender, EventArgs e)
         {
             song.Title = TitelBox.Text;
+            Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
+            TitelBox.Width = size.Width;
+            TitelBox.Height = size.Height;
         }
 
 

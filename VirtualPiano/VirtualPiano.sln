@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualPiano", "VirtualPian
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{66065147-248F-4496-B813-D90CFFB737DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCodeFirstDemo", "..\..\..\Google Drive\School\Jaar 2\Periode 1\week 7\c#\EfCodeFirstDemo\EfCodeFirstDemo.csproj", "{0498253F-6F87-4194-A847-5593F2D4DA66}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{66065147-248F-4496-B813-D90CFFB737DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66065147-248F-4496-B813-D90CFFB737DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66065147-248F-4496-B813-D90CFFB737DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0498253F-6F87-4194-A847-5593F2D4DA66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0498253F-6F87-4194-A847-5593F2D4DA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0498253F-6F87-4194-A847-5593F2D4DA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0498253F-6F87-4194-A847-5593F2D4DA66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

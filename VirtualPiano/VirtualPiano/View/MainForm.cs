@@ -21,7 +21,13 @@ namespace VirtualPiano
             WindowState = FormWindowState.Maximized;
             menuBarView1.Song = formContent.song;
             menuBarView1.selectedSong += ChangeSong;
+            menuBarView1.newSong += NewSong;
             DatabaseController.InitializeDatabase();
+        }
+
+        private void NewSong(object sender, EventArgs e)
+        {
+            formContent.SetNewSong();
         }
 
         //song veranderen op het moment dat het event selectedsong uitgevoerd wordt.
