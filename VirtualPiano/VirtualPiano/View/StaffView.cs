@@ -17,7 +17,6 @@ namespace VirtualPiano.View
     {
         public Staff staff;
         Color barColor;
-        private int countto4;
 
         public StaffView(Staff staff, int flatsharp)
         {
@@ -164,20 +163,13 @@ namespace VirtualPiano.View
 
                     foreach (Bar bar in staff.Bars)
                     {
-                        if (ComposeView.FlatSharp == 1) { bar.FlatSharp++; }
-                        if (ComposeView.FlatSharp == -1) { bar.FlatSharp--; }
-                        if (countto4 == 4)
-                        {
-                            ComposeView.FlatSharp = 0;
-                        }
-
                         if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                         {
-                            Note newNote = CreateNote(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef);
+                            Note newNote = new Note(PointToClient(Cursor.Position).Y, ComposeView.SelectedNoteName, bar.clef, bar.FlatSharp);
                             Rest newRest = new Rest(ComposeView.SelectedRestName);
 
                             if (bar.CheckBarSpace(newNote) && ComposeView.SelectedNoteName != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
-                            else if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimt is
+                            else if (bar.CheckBarSpace(newRest) && ComposeView.SelectedRestName != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimte is
                             if (ComposeView.SelectedClefName == ClefName.G)
                             {
                                 bar.clef = ClefName.G.ToString();
@@ -191,7 +183,6 @@ namespace VirtualPiano.View
                         }
                         barBegin += 375;
                         barEnd += 375;
-                        countto4++;
                     }
                     Invalidate();
                     SetDefaultCursor();
