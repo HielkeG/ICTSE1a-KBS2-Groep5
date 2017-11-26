@@ -114,7 +114,11 @@ namespace VirtualPiano.Model
         {
             await Task.Delay(delay);
         }
-       
+        
+        public void SetStaffs(List<Staff> staffs)
+        {
+            Staffs = staffs;
+        }
 
     }
 }

@@ -16,6 +16,8 @@ namespace VirtualPiano.Model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StaffId { get; set; }
         public List<Bar> Bars { get; set; } = new List<Bar>() { new Bar(), new Bar(), new Bar(), new Bar() }; //4 maten in een notenbalk
+        public int FlatSharp { get; set; }
+        public int y { get; set; }
 
         public bool IsEmtpy()
         {
@@ -29,7 +31,6 @@ namespace VirtualPiano.Model
             }
             return empty;
         }
-        public int FlatSharp { get; set; }
-        public int y { get; set; }
+
     }
 }

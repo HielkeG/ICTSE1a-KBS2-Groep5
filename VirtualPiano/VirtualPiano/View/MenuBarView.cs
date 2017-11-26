@@ -40,11 +40,13 @@ namespace VirtualPiano.View
                 if (result == DialogResult.Yes)
                 {
                     DatabaseController.UpdateSong(Song);
+                    MessageBoxSavedSong();
                 }
             }
             else
             {
                 DatabaseController.AddSong(Song);
+                MessageBoxSavedSong();
             }
         }
 
@@ -89,6 +91,12 @@ namespace VirtualPiano.View
                     selectedSong(this, e);
                 }
             }
+        }
+
+
+        private void MessageBoxSavedSong()
+        {
+            MessageBox.Show("Het nummer is opgeslagen.", "Melding", MessageBoxButtons.OK);
         }
     }
 }

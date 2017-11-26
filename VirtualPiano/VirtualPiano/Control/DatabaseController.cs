@@ -33,18 +33,16 @@ namespace VirtualPiano.Control
         {
             using (var context = new Context())
             {
-                try
-                {
-                    var original = context.Songs.Where(n => n.Title == song.Title).Single();
-                    original.Staffs.Clear();
-                    original.Staffs = song.Staffs;
-                    context.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error: "+e);
-                }
+                context.Configuration.LazyLoadingEnabled = false;
 
+                var original = context.Songs.Where(n => n.Title == song.Title).Single();
+                Song replacingSong = new Song();
+                replacingSong.Title = song.Title;
+                replacingSong.Staffs = song.Staffs;
+                replacingSong.SongId = song.SongId;
+                context.Songs.Remove(original);
+                context.Songs.Add(replacingSong);
+                context.SaveChanges();
             }
         }
 
