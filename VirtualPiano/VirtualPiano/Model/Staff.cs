@@ -29,7 +29,7 @@ namespace VirtualPiano.Model
             }
             return empty;
         }
-        public int FlatSharp;
-        public int y;
+        public int FlatSharp { get; set; }
+        public int y { get; set; }
     }
 }

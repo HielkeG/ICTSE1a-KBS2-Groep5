@@ -13,9 +13,10 @@ namespace VirtualPiano.Migrations
                     {
                         BarId = c.Int(nullable: false, identity: true),
                         StaffId = c.Int(nullable: false),
-                        clef = c.Int(nullable: false),
+                        clef = c.String(nullable: false),
                         duration = c.Int(nullable: false),
                         isFull = c.Boolean(nullable: false),
+                        FlatSharp = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.BarId)
                 .ForeignKey("dbo.Staffs", t => t.StaffId, cascadeDelete: true)
@@ -28,6 +29,7 @@ namespace VirtualPiano.Migrations
                         SignId = c.Int(nullable: false, identity: true),
                         BarId = c.Int(nullable: false),
                         noteName = c.String(),
+                        FlatSharp = c.Int(),
                         x = c.Int(),
                         y = c.Int(),
                         tone = c.String(),
@@ -45,6 +47,8 @@ namespace VirtualPiano.Migrations
                     {
                         StaffId = c.Int(nullable: false, identity: true),
                         SongId = c.Int(nullable: false),
+                        FlatSharp = c.Int(nullable: false),
+                        y = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.StaffId)
                 .ForeignKey("dbo.Songs", t => t.SongId, cascadeDelete: true)

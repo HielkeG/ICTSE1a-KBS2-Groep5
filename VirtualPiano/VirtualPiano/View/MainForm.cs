@@ -37,6 +37,7 @@ namespace VirtualPiano
                 formContent.AddStaffView(item);
 
             }
+            formContent.Focus();
 
         }
     }

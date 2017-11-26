@@ -37,9 +37,9 @@ namespace VirtualPiano.View
                 //bericht tonen met waarschuwing dat het nummer al bestaat. Optie geven om te overschrijven
                 string message = "Er bestaat al een nummer met deze titel. Wilt u het bestaande nummer overschrijven?.";
                 var result = MessageBox.Show(message, "Fout", MessageBoxButtons.YesNo);
-                if (result == DialogResult.OK)
+                if (result == DialogResult.Yes)
                 {
-                    DatabaseController.AddSong(Song);
+                    DatabaseController.UpdateSong(Song);
                 }
             }
             else

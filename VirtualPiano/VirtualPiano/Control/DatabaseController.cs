@@ -19,11 +19,31 @@ namespace VirtualPiano.Control
             using (var context = new Context())
             {
                 //song toevoegen aan database
-                
+                context.Configuration.LazyLoadingEnabled = false;
+
                 context.Songs.Add(song);
                 context.SaveChanges();
                 
 
+
+            }
+        }
+
+        public static void UpdateSong(Song song)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    var original = context.Songs.Where(n => n.Title == song.Title).Single();
+                    original.Staffs.Clear();
+                    original.Staffs = song.Staffs;
+                    context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: "+e);
+                }
 
             }
         }

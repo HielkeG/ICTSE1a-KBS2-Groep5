@@ -450,7 +450,7 @@ namespace VirtualPiano.View
         private TextBox Snelheid;
         private PictureBox pictureBox1;
         public Timer rodeLijn;
-        private Timer NoteSnapTimer;
         public TextBox TitelBox;
+        public Timer NoteSnapTimer;
     }
 }

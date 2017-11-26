@@ -13,7 +13,7 @@ namespace VirtualPiano.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711251342415_base"; }
+            get { return "201711261047537_base"; }
         }
         
         string IMigrationMetadata.Source
