@@ -141,8 +141,8 @@ namespace VirtualPiano.View
         public void AddStaffView(Staff staff)   //nieuwe notenbalkpanel maken en vullen
         {
             Panel panel = new Panel();
-            panel.Location = new Point(190, y_staff);
-            panel.Size = new Size(1560, 150);
+            panel.Location = new Point(100, y_staff);
+            panel.Size = new Size(1800, 150);
             Controls.Add(panel);
             StaffView _staffView = new StaffView(staff, FlatSharp)
             {
@@ -157,7 +157,7 @@ namespace VirtualPiano.View
         {
             btnAddStaff = new Button();
             btnAddStaff.Image = new Bitmap(Resources.add, 50, 50);
-            btnAddStaff.Location = new Point(1780, y_staff + 35);
+            btnAddStaff.Location = new Point(977, y_staff + 160);
             btnAddStaff.Size = new Size(55, 55);
             btnAddStaff.BackColor = Color.Transparent;
             btnAddStaff.FlatStyle = FlatStyle.Flat;
@@ -306,14 +306,7 @@ namespace VirtualPiano.View
             if (FlatSharp > -5)
             {
                 FlatSharp--;
-
-                foreach (Staff staf in song.GetStaffs())
-                {
-                    foreach (Bar bar in staf.Bars)
-                    {
-                        bar.FlatSharp--;
-                    }
-                }
+                song.ChangeSharpFlat(FlatSharp);
                 Refresh();
             }
         }
@@ -328,17 +321,9 @@ namespace VirtualPiano.View
         {
             if (FlatSharp < 5)
             {
-                signSelected = true;
+                
                 FlatSharp++;
-
-                foreach (Staff staf in song.GetStaffs())
-                {
-                    foreach (Bar bar in staf.Bars)
-                    {
-                        bar.FlatSharp++;
-
-                    }
-                }
+                song.ChangeSharpFlat(FlatSharp);
                 Refresh();
             }
         }
@@ -394,9 +379,7 @@ namespace VirtualPiano.View
             //Console.WriteLine(rodeLijn.Interval);
             tempint++;
             Invalidate();
-
-
-
+            
             if (tempint >= song.getDuration() * 25)
             {
                 rodeLijn.Stop();
@@ -408,15 +391,15 @@ namespace VirtualPiano.View
             
             foreach (Staff staff in song.GetStaffs())
             {
-                int barBegin = 250;
-                int barEnd = 615;
+                int barBegin = 145;
+                int barEnd = 575;
                 foreach (Bar bar in staff.Bars)
                 {
 
-                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin && PointToClient(Cursor.Position).Y > staff.y + 15 && PointToClient(Cursor.Position).Y < staff.y + 105)
+                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin && PointToClient(Cursor.Position).Y > staff.y && PointToClient(Cursor.Position).Y < staff.y + 135)
                     {
                         int NewY = PointToClient(Cursor.Position).Y - staff.y;
-                        Note newNote = StaffView.CreateNote(NewY, SelectedNoteName, bar.clef.ToString());
+                        Note newNote = new Note(NewY, SelectedNoteName, bar.clef.ToString(),bar.FlatSharp);
                         Rest newRest = new Rest(SelectedRestName);
 
                         if (bar.CheckBarSpace(newNote) && SelectedNoteName != NoteName.NULL)
@@ -435,8 +418,8 @@ namespace VirtualPiano.View
                                 bar.RemovePreview();
                         }
                     }
-                    barBegin += 375;
-                    barEnd += 375;
+                    barBegin += 430;
+                    barEnd += 430;
                 }
             }
         }
@@ -445,8 +428,6 @@ namespace VirtualPiano.View
         {
             song.Title = TitelBox.Text;
             Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
-            TitelBox.Width = size.Width;
-            TitelBox.Height = size.Height;
         }
 
 

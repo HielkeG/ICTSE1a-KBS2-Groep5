@@ -93,6 +93,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap achtstenootflipped {
+            get {
+                object obj = ResourceManager.GetObject("achtstenootflipped", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap achtsterust {
             get {
                 object obj = ResourceManager.GetObject("achtsterust", resourceCulture);
@@ -223,6 +233,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap halvenootflipped {
+            get {
+                object obj = ResourceManager.GetObject("halvenootflipped", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap halverust_icon {
             get {
                 object obj = ResourceManager.GetObject("halverust_icon", resourceCulture);
@@ -296,6 +316,16 @@ namespace VirtualPiano.Properties {
         internal static System.Drawing.Bitmap kwartnoot_icon {
             get {
                 object obj = ResourceManager.GetObject("kwartnoot_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kwartnootflipped {
+            get {
+                object obj = ResourceManager.GetObject("kwartnootflipped", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -677,6 +707,33 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Piano4A {
+            get {
+                return ResourceManager.GetStream("Piano4A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Piano4Ais {
+            get {
+                return ResourceManager.GetStream("Piano4Ais", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Piano4B {
+            get {
+                return ResourceManager.GetStream("Piano4B", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Piano4C {
             get {
                 return ResourceManager.GetStream("Piano4C", resourceCulture);
@@ -747,6 +804,24 @@ namespace VirtualPiano.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Piano4Gis {
+            get {
+                return ResourceManager.GetStream("Piano4Gis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Piano5C {
+            get {
+                return ResourceManager.GetStream("Piano5C", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap play {
@@ -812,6 +887,16 @@ namespace VirtualPiano.Properties {
         internal static System.Drawing.Bitmap zestiendenoot_icon {
             get {
                 object obj = ResourceManager.GetObject("zestiendenoot_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zestiendenootflipped {
+            get {
+                object obj = ResourceManager.GetObject("zestiendenootflipped", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

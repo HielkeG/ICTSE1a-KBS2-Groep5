@@ -389,11 +389,13 @@ namespace VirtualPiano.View
             this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(769, 30);
+            this.TitelBox.Location = new System.Drawing.Point(384, 37);
+            this.TitelBox.MaxLength = 1230;
             this.TitelBox.Name = "TitelBox";
-            this.TitelBox.Size = new System.Drawing.Size(100, 35);
+            this.TitelBox.Size = new System.Drawing.Size(1230, 35);
             this.TitelBox.TabIndex = 1;
             this.TitelBox.Text = "Titel";
+            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
             // 
             // ComposeView
