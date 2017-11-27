@@ -50,7 +50,7 @@ namespace VirtualPiano.View
         {
             Panel pianokeypanel = new Panel();
             pianokeypanel.Location = new Point(350, 740);
-            pianokeypanel.Size = new Size(1600, 235);
+            pianokeypanel.Size = new Size(1080, 235);
             Controls.Add(pianokeypanel);
             PianoKeysView _PianoKeysView = new PianoKeysView()
             {
