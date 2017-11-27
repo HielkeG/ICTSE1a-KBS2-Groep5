@@ -36,13 +36,27 @@ namespace VirtualPiano.View
                 ShowFirstStaffView();
                 firstStart = false;
             }
-                    
+            ShowPianoKeysView();
+
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
             Snelheid.Text = Metronoom.Interval.ToString();
             DoubleBuffered = true;
+        }
+
+        public void ShowPianoKeysView()
+        {
+            Panel pianokeypanel = new Panel();
+            pianokeypanel.Location = new Point(350, 740);
+            pianokeypanel.Size = new Size(1080, 235);
+            Controls.Add(pianokeypanel);
+            PianoKeysView _PianoKeysView = new PianoKeysView()
+            {
+                Dock = DockStyle.None
+            };
+            pianokeypanel.Controls.Add(_PianoKeysView);
         }
 
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
