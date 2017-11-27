@@ -74,8 +74,10 @@ namespace VirtualPiano.View
 
         public void SetNewSong()
         {
-            song = new Song();
             RemoveStaffViews();
+            song = new Song();
+            MusicController.song = song;
+
             ShowFirstStaffView();
         }
 

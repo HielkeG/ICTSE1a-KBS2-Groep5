@@ -285,5 +285,6 @@ namespace VirtualPiano.View
         {
             Cursor = Cursors.Default;
         }
+
     }
 }

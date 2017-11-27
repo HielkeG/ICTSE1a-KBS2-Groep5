@@ -66,6 +66,7 @@ namespace VirtualPiano.Model
             Signs.RemoveAt(Signs.Count() - 1);
             isFull = false;
             hasPreview = false;
+            
         }
     }
 }
