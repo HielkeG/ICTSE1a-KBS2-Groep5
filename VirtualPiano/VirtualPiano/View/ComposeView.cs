@@ -304,14 +304,7 @@ namespace VirtualPiano.View
             if (FlatSharp > -5)
             {
                 FlatSharp--;
-
-                foreach (Staff staf in song.GetStaffs())
-                {
-                    foreach (Bar bar in staf.Bars)
-                    {
-                        bar.FlatSharp--;
-                    }
-                }
+                song.ChangeSharpFlat(FlatSharp);
                 Refresh();
             }
         }
@@ -326,17 +319,9 @@ namespace VirtualPiano.View
         {
             if (FlatSharp < 5)
             {
-                signSelected = true;
+                
                 FlatSharp++;
-
-                foreach (Staff staf in song.GetStaffs())
-                {
-                    foreach (Bar bar in staf.Bars)
-                    {
-                        bar.FlatSharp++;
-
-                    }
-                }
+                song.ChangeSharpFlat(FlatSharp);
                 Refresh();
             }
         }
