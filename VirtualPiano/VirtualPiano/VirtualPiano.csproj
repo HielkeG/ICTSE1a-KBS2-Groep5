@@ -67,6 +67,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
+    <Compile Include="Model\PianoKeys.cs" />
     <Compile Include="Model\Rest.cs" />
     <Compile Include="Model\Sign.cs" />
     <Compile Include="Model\Song.cs" />
@@ -101,6 +102,12 @@
     </Compile>
     <Compile Include="View\MenuBarView.Designer.cs">
       <DependentUpon>MenuBarView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PianoKeysView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PianoKeysView.Designer.cs">
+      <DependentUpon>PianoKeysView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\StaffView.cs">
       <SubType>UserControl</SubType>
