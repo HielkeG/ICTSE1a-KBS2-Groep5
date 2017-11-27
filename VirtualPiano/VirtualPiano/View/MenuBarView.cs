@@ -101,7 +101,12 @@ namespace VirtualPiano.View
 
         private void nieuwToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            newSong(this, e);
+            var result = MessageBox.Show("Uw huidige nummer zal verloren gaan. Wilt u doorgaan?", "Waarschuwing", MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
+            {
+                newSong(this, e);
+
+            }
         }
     }
 }
