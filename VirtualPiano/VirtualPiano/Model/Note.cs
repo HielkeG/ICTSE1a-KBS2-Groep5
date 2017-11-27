@@ -26,6 +26,7 @@ namespace VirtualPiano.Model
         public string tone { get; set; }
         public int octave { get; set; }
         public Note() : base() { }
+
         public Note(NoteName notename, string tone, int octave) : base()
         {
             noteName = notename.ToString();
@@ -50,48 +51,46 @@ namespace VirtualPiano.Model
 
         public Note(int y, NoteName tempNotename, string clef, int Flatsharp) :base()
         {
-           
             noteName = tempNotename.ToString();
 
 
             if (clef == ClefName.G.ToString())
             {
-                
-
-                if (y < 16 && y >= 8) { tone = "A"; octave = 4; }
-                if (y < 25 && y >= 16) { tone = "G"; octave = 4; }
-                if (y < 33 && y >= 25) { tone = "F"; octave = 4; }
-                if (y < 41 && y >= 33) { tone = "E"; octave = 4; }
-                if (y < 48 && y >= 41) { tone = "D"; octave = 4; }
-                if (y < 55 && y >= 48) { tone = "C"; octave = 4; }
-                if (y < 63 && y >= 55) { tone = "B"; octave = 3; }
-                if (y < 72 && y >= 63) { tone = "A"; octave = 3; }
-                if (y < 78 && y >= 72) { tone = "G"; octave = 3; }
-                if (y < 86 && y >= 78) { tone = "F"; octave = 3; }
-                if (y < 94 && y >= 86) { tone = "E"; octave = 3; }
-                if (y < 100 && y >= 94) { tone = "D"; octave = 3; }
-                if (y < 107 && y >= 100) { tone = "C"; octave = 3; }
-
+                if (y < 23) { tone = "C"; octave = 5; }
+                if (y >= 23 && y < 31) { tone = "B"; octave = 4; }
+                if (y >= 31 && y < 38) { tone = "A"; octave = 4; }
+                if (y >= 38 && y < 46) { tone = "G"; octave = 4; }
+                if (y >= 46 && y < 53) { tone = "F"; octave = 4; }
+                if (y >= 53 && y < 60) { tone = "E"; octave = 4; }
+                if (y >= 60 && y < 68) { tone = "D"; octave = 4; }
+                if (y >= 68 && y < 75) { tone = "C"; octave = 4; }
+                if (y >= 75  && y < 83) { tone = "B"; octave = 3; }
+                if (y >= 83 && y < 91) { tone = "A"; octave = 3; }
+                if (y >= 91 && y < 98) { tone = "G"; octave = 3; }
+                if (y >= 98 && y < 106 ) { tone = "F"; octave = 3; }
+                if (y >= 106 && y < 113) { tone = "E"; octave = 3; }
+                if (y >= 113 && y < 121) { tone = "D"; octave = 3; }
+                if (y >= 121) { tone = "C"; octave = 3; }
             }
             if (clef == ClefName.F.ToString())
             {
-                if (y < 16 && y >= 8) { tone = "C"; octave = 3; }
-                if (y < 25 && y >= 16) { tone = "B"; octave = 2; }
-                if (y < 33 && y >= 25) { tone = "A"; octave = 2; }
-                if (y < 41 && y >= 33) { tone = "G"; octave = 2; }
-                if (y < 48 && y >= 41) { tone = "F"; octave = 2; }
-                if (y < 55 && y >= 48) { tone = "E"; octave = 2; }
-                if (y < 63 && y >= 55) { tone = "D"; octave = 2; }
-                if (y < 72 && y >= 63) { tone = "C"; octave = 2; }
-                if (y < 78 && y >= 72) { tone = "B"; octave = 1; }
-                if (y < 86 && y >= 78) { tone = "A"; octave = 1; }
-                if (y < 94 && y >= 86) { tone = "G"; octave = 1; }
-                if (y < 100 && y >= 94) { tone = "F"; octave = 1; }
-                if (y < 107 && y >= 100) { tone = "E"; octave = 1; }
-
-                
-                
+                if (y < 23) { tone = "E"; octave = 3; }
+                if (y >= 23 && y < 31) { tone = "D"; octave = 3; }
+                if (y >= 31 && y < 38) { tone = "C"; octave = 3; }
+                if (y >= 38 && y < 46) { tone = "B"; octave = 2; }
+                if (y >= 46 && y < 53) { tone = "A"; octave = 2; }
+                if (y >= 53 && y < 60) { tone = "G"; octave = 2; }
+                if (y >= 60 && y < 68) { tone = "F"; octave = 2; }
+                if (y >= 68 && y < 75) { tone = "E"; octave = 2; }
+                if (y >= 75 && y < 83) { tone = "D"; octave = 2; }
+                if (y >= 83 && y < 91) { tone = "C"; octave = 2; }
+                if (y >= 91 && y < 98) { tone = "B"; octave = 1; }
+                if (y >= 98 && y < 106) { tone = "A"; octave = 1; }
+                if (y >= 106 && y < 113) { tone = "G"; octave = 1; }
+                if (y >= 113 && y < 121) { tone = "F"; octave = 1; }
+                if (y >= 121) { tone = "E"; octave = 1; }
             }
+
             if (Flatsharp >= 1) { if (tone == "F") { FlatSharp = 1; } }
             if (Flatsharp >= 2) { if (tone == "C") { FlatSharp = 1; } }
             if (Flatsharp >= 3) { if (tone == "G") { FlatSharp = 1; } }
@@ -105,10 +104,10 @@ namespace VirtualPiano.Model
             if (Flatsharp <= -5) { if (tone == "G") { FlatSharp = -1; } }
 
             if (noteName == NoteName.wholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
-            else if (noteName == NoteName.halfNote.ToString()) { image = Resources.halvenoot; duration = 8; }
-            else if (noteName == NoteName.quarterNote.ToString()) { image = Resources.kwartnoot; duration = 4; }
-            else if (noteName == NoteName.eightNote.ToString()) { image = Resources.achtstenoot; duration = 2; }
-            else if (noteName == NoteName.sixteenthNote.ToString()) { image = Resources.zestiendenoot; duration = 1; }
+            else if (noteName == NoteName.halfNote.ToString()) { if (y <= 53) { image = Resources.halvenootflipped; } else { image = Resources.halvenoot; } duration = 8; }
+            else if (noteName == NoteName.quarterNote.ToString()) { if (y <= 53) { image = Resources.kwartnootflipped; } else { image = Resources.kwartnoot; } duration = 4; }
+            else if (noteName == NoteName.eightNote.ToString()) { if (y <= 53) { image = Resources.achtstenootflipped; } else { image = Resources.achtstenoot; } duration = 2; }
+            else if (noteName == NoteName.sixteenthNote.ToString()) { if (y <= 53) { image = Resources.zestiendenootflipped; } else { image = Resources.zestiendenoot; } duration = 1; }
         }
 
         public void PlaySound()
@@ -157,36 +156,40 @@ namespace VirtualPiano.Model
         {
             if (clefname == ClefName.G.ToString())
             {
-                if (tone == "C" && octave == 3) y=  40;
-                if (tone == "D" && octave == 3) y =  33;
-                if (tone == "E" && octave == 3) y =  26;
-                else if (tone == "F" && octave == 3) y =  19;
-                else if (tone == "G" && octave == 3) y =  10;
-                else if (tone == "A" && octave == 3) y =  4;
-                else if (tone == "B" && octave == 3) y =  -3;
-                else if (tone == "C" && octave == 4) y =  -11;
-                else if (tone == "D" && octave == 4) y =  -19;
-                else if (tone == "E" && octave == 4) y =  -26;
-                else if (tone == "F" && octave == 4) y =  -34;
-                else if (tone == "G" && octave == 4) y =  -42;
-                else if (tone == "A" && octave == 4) y = -54;
+                if (tone == "C" && octave == 3) y = 60;
+                else if (tone == "D" && octave == 3) y = 53;
+                else if (tone == "E" && octave == 3) y = 45;
+                else if (tone == "F" && octave == 3) y = 38;
+                else if (tone == "G" && octave == 3) y = 31;
+                else if (tone == "A" && octave == 3) y = 24;
+                else if (tone == "B" && octave == 3) y = 17;
+                else if (tone == "C" && octave == 4) y = 8;
+                else if (tone == "D" && octave == 4) y = 1;
+                else if (tone == "E" && octave == 4) y = -7;
+                else if (tone == "F" && octave == 4) y = -15;
+                else if (tone == "G" && octave == 4) y = -21;
+                else if (tone == "A" && octave == 4) y = -27;
+                else if (tone == "B" && octave == 4) y = -34;
+                else if (tone == "C" && octave == 5) y = -41;
             }
 
             if (clefname == ClefName.F.ToString())
             {
-                if (tone == "E" && octave == 1) y =  40;
-                if (tone == "F" && octave == 1) y =  33;
-                if (tone == "G" && octave == 1) y =  26;
-                else if (tone == "A" && octave == 1) y =  19;
-                else if (tone == "B" && octave == 1) y =  10;
-                else if (tone == "C" && octave == 2) y =  4;
-                else if (tone == "D" && octave == 2) y =  -3;
-                else if (tone == "E" && octave == 2) y =  -11;
-                else if (tone == "F" && octave == 2) y =  -19;
-                else if (tone == "G" && octave == 2) y =  -26;
-                else if (tone == "A" && octave == 2) y =  -34;
-                else if (tone == "B" && octave == 2) y =  -42;
-                else if (tone == "C" && octave == 3) y = -54;
+                if (tone == "E" && octave == 1) y =  60;
+                else if (tone == "F" && octave == 1) y =  53;
+                else if (tone == "G" && octave == 1) y =  45;
+                else if (tone == "A" && octave == 1) y =  38;
+                else if (tone == "B" && octave == 1) y =  31;
+                else if (tone == "C" && octave == 2) y =  24;
+                else if (tone == "D" && octave == 2) y =  17;
+                else if (tone == "E" && octave == 2) y =  8;
+                else if (tone == "F" && octave == 2) y =  1;
+                else if (tone == "G" && octave == 2) y =  -7;
+                else if (tone == "A" && octave == 2) y =  -15;
+                else if (tone == "B" && octave == 2) y =  -21;
+                else if (tone == "C" && octave == 3) y = -27;
+                else if (tone == "D" && octave == 3) y = -34;
+                else if (tone == "E" && octave == 3) y = -41;
             }
         }
     }

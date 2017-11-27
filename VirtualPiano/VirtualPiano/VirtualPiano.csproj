@@ -245,6 +245,11 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Geluiden\Piano\Piano4B.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano5C.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4Gis.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4Ais.wav" />
+    <None Include="Resources\Geluiden\Piano\Piano4A.wav" />
     <None Include="Resources\Afbeeldingen\Knoppen\add.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\check.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\min.png" />
@@ -252,7 +257,11 @@
     <None Include="Resources\Afbeeldingen\Knoppen\play.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\rewind.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\zestiendenootflipped.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\zestienderust.png" />
     <None Include="Resources\Geluiden\Piano\Piano4G.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4Fis.wav" />

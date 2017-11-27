@@ -337,7 +337,7 @@
   <data name="Piano4G" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Geluiden\Piano\Piano4G.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-    <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Knoppen\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -357,5 +357,32 @@
   </data>
   <data name="stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Afbeeldingen\Knoppen\stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="achtstenootflipped" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="halvenootflipped" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kwartnootflipped" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Piano4A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4A.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4Ais" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4Ais.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4B.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano4Gis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano4Gis.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Piano5C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Geluiden\Piano\Piano5C.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="zestiendenootflipped" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Afbeeldingen\Muzieknoten\zestiendenootflipped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
