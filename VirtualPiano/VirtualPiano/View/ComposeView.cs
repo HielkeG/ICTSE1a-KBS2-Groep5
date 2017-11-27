@@ -38,10 +38,12 @@ namespace VirtualPiano.View
             }
             ShowPianoKeysView();
 
+            PianoKeysController p1 = new PianoKeysController();
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
+            Controls.Add(PianoKeysController.pianoKeysBox);
             Snelheid.Text = Metronoom.Interval.ToString();
             DoubleBuffered = true;
         }
@@ -49,8 +51,8 @@ namespace VirtualPiano.View
         public void ShowPianoKeysView()
         {
             Panel pianokeypanel = new Panel();
-            pianokeypanel.Location = new Point(350, 740);
-            pianokeypanel.Size = new Size(1080, 235);
+            pianokeypanel.Location = new Point(400, 740);
+            pianokeypanel.Size = new Size(1060, 235);
             Controls.Add(pianokeypanel);
             PianoKeysView _PianoKeysView = new PianoKeysView()
             {
