@@ -38,7 +38,6 @@ namespace VirtualPiano.View
             }
             //ShowPianoKeysView();
 
-            PianoKeysController p1 = new PianoKeysController();
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             //Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
