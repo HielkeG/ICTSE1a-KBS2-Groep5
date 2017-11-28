@@ -14,7 +14,7 @@ namespace VirtualPiano.Control
 {
     public class MusicController
     {
-        private bool isAanHetSpelen = false;
+        public static bool isAanHetSpelen = false;
         public static Image stop = Resources.stop;
         public static Image play = Resources.play;
         public static Image pause = Resources.pause;
@@ -62,7 +62,7 @@ namespace VirtualPiano.Control
                 //int temp = Song.getDuration();
                 //Console.WriteLine(Song.getDuration());
                 song.PlaySong();
-                rodeLijn.Start();
+                //rodeLijn.Start();
  
                 
             }
@@ -71,7 +71,8 @@ namespace VirtualPiano.Control
                 playBox.Image = new Bitmap(play,width,height);
                 isAanHetSpelen = false;
                 Metronoom.Enabled = false;
-                rodeLijn.Stop();
+                
+                //rodeLijn.Stop();
             }
         }
 

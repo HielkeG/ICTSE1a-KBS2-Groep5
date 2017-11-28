@@ -36,12 +36,12 @@ namespace VirtualPiano.View
                 ShowFirstStaffView();
                 firstStart = false;
             }
-            ShowPianoKeysView();
+            //ShowPianoKeysView();
 
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
-            Controls.Add(MusicController.rewindBox);
+            //Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
-            Controls.Add(MusicController.stopBox);
+            //Controls.Add(MusicController.stopBox);
             Snelheid.Text = Metronoom.Interval.ToString();
             DoubleBuffered = true;
         }
@@ -316,10 +316,7 @@ namespace VirtualPiano.View
             }
         }
 
-        public void Metronoom_Tick(object sender, EventArgs e)
-        {
-            Refresh();
-        }
+        public void Metronoom_Tick(object sender, EventArgs e) {        }
 
 
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
