@@ -268,6 +268,8 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
+    <None Include="Resources\Afbeeldingen\logo_icon.ico" />
+    <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />
