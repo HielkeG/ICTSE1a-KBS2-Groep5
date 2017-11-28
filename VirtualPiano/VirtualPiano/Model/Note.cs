@@ -117,26 +117,13 @@ namespace VirtualPiano.Model
                 try
                 {
                     string filename = (tone).ToString();
-                    if (FlatSharp == 1)
-                    {
-                        if (tone == "A") { filename = "Ais"; }
-                        if (tone == "B") { filename = "C"; }
-                        if (tone == "C") { filename = "Cis"; }
-                        if (tone == "D") { filename = "Dis"; }
-                        if (tone == "E") { filename = "F"; }
-                        if (tone == "F") { filename = "Fis"; }
-                        if (tone == "G") { filename = "Gis"; }
-                    }
-                    if (FlatSharp == -1)
-                    {
-                        if (tone == "A") { filename = "Gis"; }
-                        if (tone == "B") { filename = "Ais"; }
-                        if (tone == "C") { filename = "B"; }
-                        if (tone == "D") { filename = "Cis"; }
-                        if (tone == "E") { filename = "Dis"; }
-                        if (tone == "F") { filename = "E"; }
-                        if (tone == "G") { filename = "Fis"; }
-                    }
+                    
+                        if (tone == "Bes") { filename = "Ais"; }
+                        if (tone == "Des") { filename = "Cis"; }
+                        if (tone == "Es") { filename = "Dis"; }
+                        if (tone == "Ges") { filename = "Fis"; }
+                        if (tone == "As") { filename = "Gis"; }
+
                     player.Open(new Uri($@"../../Resources/Geluiden/Piano/Piano{octave}{filename}.wav", UriKind.Relative));
                     player.Play();
                 }
@@ -156,7 +143,7 @@ namespace VirtualPiano.Model
         {
             if (clefname == ClefName.G.ToString())
             {
-                if (tone == "C" && octave == 3) y = 60;
+                if (tone == "C" && octave == 3) y = 59;
                 else if (tone == "D" && octave == 3) y = 53;
                 else if (tone == "E" && octave == 3) y = 45;
                 else if (tone == "F" && octave == 3) y = 38;
@@ -168,9 +155,9 @@ namespace VirtualPiano.Model
                 else if (tone == "E" && octave == 4) y = -7;
                 else if (tone == "F" && octave == 4) y = -15;
                 else if (tone == "G" && octave == 4) y = -21;
-                else if (tone == "A" && octave == 4) y = -27;
-                else if (tone == "B" && octave == 4) y = -34;
-                else if (tone == "C" && octave == 5) y = -41;
+                else if (tone == "A" && octave == 4) y = -28;
+                else if (tone == "B" && octave == 4) y = -36;
+                else if (tone == "C" && octave == 5) y = -43;
             }
 
             if (clefname == ClefName.F.ToString())

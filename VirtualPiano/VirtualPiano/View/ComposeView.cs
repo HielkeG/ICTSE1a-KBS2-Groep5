@@ -38,6 +38,7 @@ namespace VirtualPiano.View
             }
             //ShowPianoKeysView();
 
+            PianoKeysController p1 = new PianoKeysController();
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             //Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
@@ -49,8 +50,8 @@ namespace VirtualPiano.View
         public void ShowPianoKeysView()
         {
             Panel pianokeypanel = new Panel();
-            pianokeypanel.Location = new Point(350, 740);
-            pianokeypanel.Size = new Size(1080, 235);
+            pianokeypanel.Location = new Point(400, 740);
+            pianokeypanel.Size = new Size(1060, 235);
             Controls.Add(pianokeypanel);
             PianoKeysView _PianoKeysView = new PianoKeysView()
             {
@@ -304,14 +305,7 @@ namespace VirtualPiano.View
             if (FlatSharp > -5)
             {
                 FlatSharp--;
-
-                foreach (Staff staf in song.GetStaffs())
-                {
-                    foreach (Bar bar in staf.Bars)
-                    {
-                        bar.FlatSharp--;
-                    }
-                }
+                song.ChangeSharpFlat(FlatSharp);
                 Refresh();
             }
         }
@@ -323,17 +317,9 @@ namespace VirtualPiano.View
         {
             if (FlatSharp < 5)
             {
-                signSelected = true;
+                
                 FlatSharp++;
-
-                foreach (Staff staf in song.GetStaffs())
-                {
-                    foreach (Bar bar in staf.Bars)
-                    {
-                        bar.FlatSharp++;
-
-                    }
-                }
+                song.ChangeSharpFlat(FlatSharp);
                 Refresh();
             }
         }

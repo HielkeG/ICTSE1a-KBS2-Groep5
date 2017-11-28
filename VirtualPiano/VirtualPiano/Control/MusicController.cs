@@ -32,7 +32,7 @@ namespace VirtualPiano.Control
         public MusicController(Timer m, Timer r, Song s)
         {
             rewindBox.Location = new Point(110, 30);
-            rewindBox.Image = new Bitmap(rewind,50,50);
+            rewindBox.Image = new Bitmap(rewind,width,height);
             rewindBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
             playBox.Location = new Point(170, 30);

@@ -60,6 +60,7 @@
     <Compile Include="Control\MenuBarController.cs" />
     <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />
+    <Compile Include="Control\PianoKeysController.cs" />
     <Compile Include="Migrations\201711261047537_base.cs" />
     <Compile Include="Migrations\201711261047537_base.Designer.cs">
       <DependentUpon>201711261047537_base.cs</DependentUpon>
@@ -265,6 +266,8 @@
     <None Include="Resources\Afbeeldingen\Knoppen\rewind.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
+    <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
+    <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />

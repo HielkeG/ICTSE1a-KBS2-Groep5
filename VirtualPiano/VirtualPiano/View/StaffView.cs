@@ -119,6 +119,20 @@ namespace VirtualPiano.View
                     {
                         note.SetY(bar.clef.ToString());
                         int Ynotelocation = note.y; 
+                        if(note.y <= -25)
+                        {
+                            e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation +30, 36, Xnotelocation + 70, 36);
+                        }
+                        if (note.y <= - 40)
+                        {
+                            e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 22, Xnotelocation + 70, 22);
+                        }
+                        if (note.y >= 55)
+                        {
+                            e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 124, Xnotelocation + 70, 124);
+                        }
+
+
                         e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
                         note.SetX(Xnotelocation);
 
