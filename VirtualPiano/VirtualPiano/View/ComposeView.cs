@@ -40,11 +40,12 @@ namespace VirtualPiano.View
                 ShowFirstStaffView();
                 firstStart = false;
             }
-            //ShowPianoKeysView();
             MusicController.SongStarted += StartLineTimer;
             MusicController.SongStopped += StopTimer;
+            ShowPianoKeysView();
+
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
-            //Controls.Add(MusicController.rewindBox);
+            Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
             Snelheid.Text = Metronoom.Interval.ToString();
