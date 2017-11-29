@@ -19,6 +19,7 @@ namespace VirtualPiano.View
 
         public PianoKeysView()
         {
+            DoubleBuffered = true;
             InitializeComponent();
         }
 
