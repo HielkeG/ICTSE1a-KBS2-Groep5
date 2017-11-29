@@ -84,6 +84,8 @@ namespace VirtualPiano.Control
             playBox.Image = new Bitmap(play,width,height);
             isPlayingSong = false;
             Metronoom.Enabled = false;
+            ComposeView.CurrentPlayingStaff = 0;
+            ComposeView.RedLineX = 0;
             SongStopped(this, e);
         }
 

@@ -30,6 +30,7 @@ namespace VirtualPiano.View
         public static int CurrentPlayingStaff = 0;
         private static bool RunningTimer { get; set; }
 
+
         public static int RedLineX { get; set; }
 
         public ComposeView()
@@ -67,15 +68,21 @@ namespace VirtualPiano.View
 
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
         {
-            foreach(Staff staff in song.GetStaffs())
+            foreach (Staff staff in song.GetStaffs())
             {
+
                 staff.y = y_staff;
                 AddStaffView(staff);
+                if (staff == song.GetStaffs().First())
+                {
+                    staff.IsBeingPlayed = true;
+                }
                 if (staff == song.GetStaffs().Last())
                 {
                     AddStaffButton();
                 }
                 y_staff += 200;
+
             }
 
         }
@@ -107,9 +114,14 @@ namespace VirtualPiano.View
 
             song = newSong;
 
+
             foreach (var item in song.GetStaffs())
             {
                 AddStaffView(item);
+                if (item == song.GetStaffs().First())
+                {
+                    item.IsBeingPlayed = true;
+                }
                 if (item == song.GetStaffs().Last())
                 {
                     AddStaffButton();
@@ -130,7 +142,6 @@ namespace VirtualPiano.View
             Staff newStaff = new Staff();
             newStaff.y = y_staff;
             song.AddStaff(newStaff);
-
             foreach (Staff staff in song.GetStaffs())
             {
                 if (staff == song.GetStaffs().Last())
@@ -345,7 +356,10 @@ namespace VirtualPiano.View
             //for (int i = 0; i < tempint; i++)
             //{
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            e.Graphics.DrawLine(p2, new Point(200, 10), new Point(200 + RedLineX, 10));
+            if (ComposeView.RedLineX == 1450)
+            {
+                e.Graphics.DrawLine(p2, new Point(400, 10), new Point(400 + RedLineX, 10));
+            }
             //foreach (Staff staff in Song.staffs)
             //    {
             //        foreach (Bar bar in staff.Bars)
@@ -447,7 +461,6 @@ namespace VirtualPiano.View
         {
             if (MusicController.isPlayingSong)
             {
-                Console.WriteLine("test");
                 RedLineX = RedLineX + 4;
                 InvalidateStaffviews();
                 song.PlayNote();
@@ -494,6 +507,5 @@ namespace VirtualPiano.View
                 item.Invalidate();
             }
         }
-
     }
-    }
+}

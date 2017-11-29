@@ -31,8 +31,6 @@ namespace VirtualPiano.View
             
         }
 
-        
-
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
