@@ -26,7 +26,11 @@ namespace VirtualPiano.View
         internal static ClefName SelectedClefName = ClefName.NULL;
         private List<Panel> staffViews = new List<Panel>();
         private bool firstStart = true;
-        int tempint;
+        public static System.Timers.Timer t;
+        public static int CurrentPlayingStaff = 0;
+        private static bool RunningTimer { get; set; }
+
+        public static int RedLineX { get; set; }
 
         public ComposeView()
         {
@@ -36,6 +40,8 @@ namespace VirtualPiano.View
                 ShowFirstStaffView();
                 firstStart = false;
             }
+            MusicController.SongStarted += StartLineTimer;
+            MusicController.SongStopped += StopTimer;
             ShowPianoKeysView();
 
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
@@ -305,7 +311,7 @@ namespace VirtualPiano.View
             {
                 FlatSharp--;
                 song.ChangeSharpFlat(FlatSharp);
-                Refresh();
+                InvalidateStaffviews();
             }
         }
 
@@ -319,7 +325,7 @@ namespace VirtualPiano.View
                 
                 FlatSharp++;
                 song.ChangeSharpFlat(FlatSharp);
-                Refresh();
+                InvalidateStaffviews();
             }
         }
 
@@ -340,7 +346,7 @@ namespace VirtualPiano.View
             //{
 
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            e.Graphics.DrawLine(p2, new Point(200, 10), new Point(200 + tempint, 10));
+            e.Graphics.DrawLine(p2, new Point(200, 10), new Point(200 + RedLineX, 10));
             //foreach (Staff staff in Song.staffs)
             //    {
             //        foreach (Bar bar in staff.Bars)
@@ -372,10 +378,10 @@ namespace VirtualPiano.View
 
             int temp = song.getDuration();
             //Console.WriteLine(rodeLijn.Interval);
-            tempint++;
+            RedLineX++;
             Invalidate();
             
-            if (tempint >= song.getDuration() * 25)
+            if (RedLineX >= song.getDuration() * 25)
             {
                 rodeLijn.Stop();
             }
@@ -425,6 +431,66 @@ namespace VirtualPiano.View
             Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
         }
 
+        public void StartLineTimer(object sender, EventArgs e)
+        {
+            if (RunningTimer == false)
+            {
+                RunningTimer = true;
+                t = new System.Timers.Timer();
+                t.Interval = 1;
+                t.Elapsed += TimerTick;
+                t.Start();
+            }
+        }
 
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            if (MusicController.isPlayingSong)
+            {
+                RedLineX = RedLineX + 4;
+                InvalidateStaffviews();
+                song.PlayNote();
+                if (RedLineX >= 1450 && song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
+                {
+                    RedLineX = 0;
+                    song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
+                    //rodeLijn.Stop();
+                    CurrentPlayingStaff++;
+
+                    song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
+
+                }
+            }
+        }
+
+        private void InvalidateStaffviews()
+        {
+            foreach (var item in staffViews)
+            {
+                item.Invalidate();
+            }
+        }
+
+        public void StopTimer(object sender, EventArgs e)
+        {
+
+            t.Dispose();
+            foreach (var item in song.Staffs)
+            {
+                if (item != song.Staffs[0])
+                {
+                    item.IsBeingPlayed = false;
+                }
+                else
+                {
+                    item.IsBeingPlayed = true;
+                }
+
+            }
+            Refresh();
+            CurrentPlayingStaff = 0;
+            RunningTimer = false;
+        }
     }
     }

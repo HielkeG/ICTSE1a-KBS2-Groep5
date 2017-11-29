@@ -100,29 +100,6 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void DoAddSong_WhenSongIsValidWithBars()
-        {
-
-            List<Song> songs = new List<Song>();
-            Song song = new Song();
-            songs.Clear();
-
-            using (var context = new Context())
-            {
-                songs = context.Songs.ToList();
-                foreach (var item in songs)
-                {
-                    context.Songs.Remove(item);
-                }
-                context.SaveChanges();
-                context.Songs.Add(song);
-                context.SaveChanges();
-                songs = context.Songs.ToList();
-            }
-
-            Assert.AreEqual(1, songs.Count);
-        }
-        [TestMethod]
         public void GetSongFromDatabase_WhenFilled()
         {
             List<Song> songs = new List<Song>();
