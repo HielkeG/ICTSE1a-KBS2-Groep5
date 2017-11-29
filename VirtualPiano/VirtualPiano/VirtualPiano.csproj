@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201711261047537_base.Designer.cs">
       <DependentUpon>201711261047537_base.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711290951479_update.cs" />
+    <Compile Include="Migrations\201711290951479_update.Designer.cs">
+      <DependentUpon>201711290951479_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -118,6 +122,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201711261047537_base.resx">
       <DependentUpon>201711261047537_base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711290951479_update.resx">
+      <DependentUpon>201711290951479_update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>

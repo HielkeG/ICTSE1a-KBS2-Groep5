@@ -25,6 +25,7 @@ namespace VirtualPiano.View
             {
                 bar.FlatSharp = flatsharp;
             }
+            DoubleBuffered = true;
             SetImage();
             InitializeComponent();
             
@@ -36,7 +37,8 @@ namespace VirtualPiano.View
         {
             base.OnPaint(e);
             Drawlines(e);
-            DrawBars(e);     
+            DrawBars(e);
+            DrawRedLine(e);
         }
 
         private void Drawlines(PaintEventArgs e)    //Lijnen van notenbalk tekenen
@@ -49,6 +51,16 @@ namespace VirtualPiano.View
                 e.Graphics.DrawLine(penBlack, 10, 50 + i * 15, 1764, 50 + i * 15);
                 i++;
             }
+        }
+
+        public void DrawRedLine(PaintEventArgs e)
+        {
+            if (staff.IsBeingPlayed)
+            {
+                Pen penRed = new Pen(Color.Red, 4);
+                e.Graphics.DrawLine(penRed, new Point(65 + ComposeView.RedLineX, 50), new Point(65 + ComposeView.RedLineX, 110));
+            }
+
         }
 
         public void SetImage()
