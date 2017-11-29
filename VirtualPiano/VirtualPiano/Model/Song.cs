@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Control;
+using VirtualPiano.View;
 
 namespace VirtualPiano.Model
 {
@@ -94,7 +95,7 @@ namespace VirtualPiano.Model
                 {
                     for(int c = 0; c< Staffs[i].Bars[b].Signs.Count();c++)
                     {
-                        if(Staffs[i].Bars[b].Signs[c] is Note note&&MusicController.isAanHetSpelen)
+                        if(Staffs[i].Bars[b].Signs[c] is Note note&&MusicController.isPlayingSong)
                         {
                             note.PlaySound();
                             await PutTaskDelay(note.duration * 120);
@@ -105,6 +106,26 @@ namespace VirtualPiano.Model
                         {
                             await PutTaskDelay(rest.duration * 120);
 
+                        }
+                    }
+                }
+            }
+        }
+
+        public void PlayNote()
+        {
+            foreach (var staff in Staffs)
+            {
+                if (staff.IsBeingPlayed)
+                {
+                    foreach (var bar in staff.Bars)
+                    {
+                        foreach (var sign in bar.Signs)
+                        {
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            {
+                                note.PlaySound();
+                            }
                         }
                     }
                 }

@@ -18,6 +18,8 @@ namespace VirtualPiano.Model
         public List<Bar> Bars { get; set; } = new List<Bar>() { new Bar(), new Bar(), new Bar(), new Bar() }; //4 maten in een notenbalk
         public int FlatSharp { get; set; }
         public int y { get; set; }
+        public bool IsBeingPlayed { get; set; } = false;
+
 
         public bool IsEmtpy()
         {

@@ -14,7 +14,7 @@ namespace VirtualPiano.Control
 {
     public class MusicController
     {
-        public static bool isAanHetSpelen = false;
+        public static bool isPlayingSong = false;
         public static Image stop = Resources.stop;
         public static Image play = Resources.play;
         public static Image pause = Resources.pause;
@@ -28,6 +28,8 @@ namespace VirtualPiano.Control
         public static Song song;
         public static int width = 50;
         public static int height = 50;
+        public static event EventHandler SongStarted;
+        public static event EventHandler SongStopped;
 
         public MusicController(Timer m, Timer r, Song s)
         {
@@ -54,22 +56,22 @@ namespace VirtualPiano.Control
 
         public void PlayGeklikt(Object sender, EventArgs e)
         { 
-            if (isAanHetSpelen == false)
+            if (isPlayingSong == false)
             {
                 playBox.Image = new Bitmap(pause,width,height);
-                isAanHetSpelen = true;
+                isPlayingSong = true;
                 Metronoom.Enabled = true;
                 //int temp = Song.getDuration();
                 //Console.WriteLine(Song.getDuration());
-                song.PlaySong();
+                SongStarted(this, e);
                 //rodeLijn.Start();
  
                 
             }
-            else if (isAanHetSpelen)
+            else if (isPlayingSong)
             {
                 playBox.Image = new Bitmap(play,width,height);
-                isAanHetSpelen = false;
+                isPlayingSong = false;
                 Metronoom.Enabled = false;
                 
                 //rodeLijn.Stop();
@@ -80,8 +82,9 @@ namespace VirtualPiano.Control
         public void StopGeklikt(Object sender, EventArgs e)
         {
             playBox.Image = new Bitmap(play,width,height);
-            isAanHetSpelen = false;
+            isPlayingSong = false;
             Metronoom.Enabled = false;
+            SongStopped(this, e);
         }
 
         public static void setMetronoom(int snelheid)
