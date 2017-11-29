@@ -46,7 +46,7 @@ namespace VirtualPiano.View
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             //Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
-            //Controls.Add(MusicController.stopBox);
+            Controls.Add(MusicController.stopBox);
             Snelheid.Text = Metronoom.Interval.ToString();
             DoubleBuffered = true;
         }
@@ -343,8 +343,7 @@ namespace VirtualPiano.View
             
             //for (int i = 0; i < tempint; i++)
             //{
-
-                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             e.Graphics.DrawLine(p2, new Point(200, 10), new Point(200 + RedLineX, 10));
             //foreach (Staff staff in Song.staffs)
             //    {
@@ -375,15 +374,15 @@ namespace VirtualPiano.View
         private void rodeLijn_Tick(object sender, EventArgs e)
         {
 
-            int temp = song.getDuration();
-            //Console.WriteLine(rodeLijn.Interval);
-            RedLineX++;
-            Invalidate();
+            //int temp = song.getDuration();
+            ////Console.WriteLine(rodeLijn.Interval);
+            //RedLineX++;
+            //Invalidate();
             
-            if (RedLineX >= song.getDuration() * 25)
-            {
-                rodeLijn.Stop();
-            }
+            //if (RedLineX >= song.getDuration() * 25)
+            //{
+            //    rodeLijn.Stop();
+            //}
         }
 
         private void NoteSnapTimer_Tick(object sender, EventArgs e)
@@ -447,6 +446,7 @@ namespace VirtualPiano.View
         {
             if (MusicController.isPlayingSong)
             {
+                Console.WriteLine("test");
                 RedLineX = RedLineX + 4;
                 InvalidateStaffviews();
                 song.PlayNote();
@@ -463,13 +463,7 @@ namespace VirtualPiano.View
             }
         }
 
-        private void InvalidateStaffviews()
-        {
-            foreach (var item in staffViews)
-            {
-                item.Invalidate();
-            }
-        }
+        
 
         public void StopTimer(object sender, EventArgs e)
         {
@@ -491,5 +485,14 @@ namespace VirtualPiano.View
             CurrentPlayingStaff = 0;
             RunningTimer = false;
         }
+
+        private void InvalidateStaffviews()
+        {
+            foreach (var item in staffViews)
+            {
+                item.Invalidate();
+            }
+        }
+
     }
     }
