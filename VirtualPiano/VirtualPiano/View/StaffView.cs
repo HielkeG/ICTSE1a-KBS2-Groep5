@@ -128,7 +128,6 @@ namespace VirtualPiano.View
                 {
                     if (sign is Note note) 
                     {
-                        note.SetY(bar.clef.ToString());
                         int Ynotelocation = note.y; 
                         if(note.y <= -25)
                         {
@@ -266,3 +265,4 @@ namespace VirtualPiano.View
         }
     }
 }
+
