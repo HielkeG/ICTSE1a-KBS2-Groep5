@@ -62,10 +62,17 @@ namespace VirtualPiano.Model
 
         public void RemovePreview()
         {
-            duration = duration - Signs.Last().duration;
-            Signs.RemoveAt(Signs.Count() - 1);
-            isFull = false;
-            hasPreview = false;
+            try
+            {
+                duration = duration - Signs.Last().duration;
+                Signs.RemoveAt(Signs.Count() - 1);
+                isFull = false;
+                hasPreview = false;
+            }
+            catch (Exception e)
+            {
+
+            }
             
         }
     }

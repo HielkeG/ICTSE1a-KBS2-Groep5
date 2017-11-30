@@ -56,7 +56,6 @@ namespace VirtualPiano.View
             this.Snelheid = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.rodeLijn = new System.Windows.Forms.Timer(this.components);
-            this.NoteSnapTimer = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -378,12 +377,6 @@ namespace VirtualPiano.View
             this.rodeLijn.Interval = 1;
             this.rodeLijn.Tick += new System.EventHandler(this.rodeLijn_Tick);
             // 
-            // NoteSnapTimer
-            // 
-            this.NoteSnapTimer.Enabled = true;
-            this.NoteSnapTimer.Interval = 1;
-            this.NoteSnapTimer.Tick += new System.EventHandler(this.NoteSnapTimer_Tick);
-            // 
             // TitelBox
             // 
             this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -453,6 +446,5 @@ namespace VirtualPiano.View
         private PictureBox pictureBox1;
         public Timer rodeLijn;
         public TextBox TitelBox;
-        public Timer NoteSnapTimer;
     }
 }

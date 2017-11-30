@@ -3,16 +3,16 @@ namespace VirtualPiano.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _234 : DbMigration
+    public partial class hoi : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Signs", "FlatSharp", c => c.Int());
+            DropColumn("dbo.Signs", "FlatSharp");
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Signs", "FlatSharp");
+            AddColumn("dbo.Signs", "FlatSharp", c => c.Int());
         }
     }
 }
