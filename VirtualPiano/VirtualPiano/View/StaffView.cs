@@ -180,8 +180,8 @@ namespace VirtualPiano.View
             {
                 if (ComposeView.signSelected)
                 {
-                    int barBegin = 0;
-                    int barEnd = 430;
+                    int barBegin = 45;
+                    int barEnd = 475;
 
                     foreach (Bar bar in staff.Bars)
                     {
@@ -203,8 +203,8 @@ namespace VirtualPiano.View
                                 bar.MakeEmpty();
                             }
                         }
-                        barBegin += 416;
-                        barEnd += 416;
+                        barBegin += 430;
+                        barEnd += 430;
                     }
                     Invalidate();
                     SetDefaultCursor();
