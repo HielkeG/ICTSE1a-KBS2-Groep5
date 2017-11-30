@@ -26,11 +26,14 @@ namespace VirtualPiano.View
         internal static ClefName SelectedClefName = ClefName.NULL;
         private List<Panel> staffViews = new List<Panel>();
         private bool firstStart = true;
+        //timer die de x van de rode lijn verhoogt en noten afspeelt. 
+        //Aparte timer zodat deze meerdere threads gebruikt.
         public static System.Timers.Timer t = new System.Timers.Timer();
-
+        //huide nummer van afgespeelde staff. Zodat de rode lijn hier overheen loopt.
         public static int CurrentPlayingStaff = 0;
+        //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         private static bool RunningTimer { get; set; }
-
+        //locatie van de rode lijn
         public static int RedLineX { get; set; }
 
         public ComposeView()
@@ -44,6 +47,7 @@ namespace VirtualPiano.View
                 ShowFirstStaffView();
                 firstStart = false;
             }
+            //methodes koppelen aan het starten en stoppen vna het afspelen.
             MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
             MusicController.SongStarted += StartNoteSnapTimer;
@@ -92,7 +96,7 @@ namespace VirtualPiano.View
 
         }
 
-        private void RemoveStaffViews()
+        private void RemoveStaffViews()//alle staffviews weghalen
         {
             for (int i = 0; i < staffViews.Count; i++)
             {
@@ -113,7 +117,7 @@ namespace VirtualPiano.View
             ShowFirstStaffView();
         }
 
-        public void SetLoadedSong(Song newSong)
+        public void SetLoadedSong(Song newSong) // nummer laden uit database
         {
             RemoveStaffViews();
             CurrentPlayingStaff = 0;
@@ -391,6 +395,7 @@ namespace VirtualPiano.View
 
         }
 
+        //methode die alle staffviews invalidate. Zodat de rode lijn beweegt.
         private void rodeLijn_Tick(object sender, EventArgs e)
         {
             if (MusicController.isPlayingSong)
@@ -453,6 +458,7 @@ namespace VirtualPiano.View
             Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
         }
 
+        //timer starten, reageert op songstarted in MusicController
         public void StartTimer(object sender, EventArgs e)
         {
             if (RunningTimer == false)
@@ -468,9 +474,11 @@ namespace VirtualPiano.View
         {
             if (MusicController.isPlayingSong)
             {
+                //als het nummer afspeelt de redline verplaatsen met 4 pixels.
                 RedLineX = RedLineX + 4;
                 if (RedLineX >= 1700)
                 {
+                    //als de lijn het einde van een staff bereikt. De lijn verplaatsen naar de volgende staff
                     RedLineX = 0;
                     if (song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
                     {

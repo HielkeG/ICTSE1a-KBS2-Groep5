@@ -33,10 +33,6 @@ namespace VirtualPiano.Control
 
         public MusicController(Timer m, Timer r, Song s)
         {
-            rewindBox.Location = new Point(110, 30);
-            rewindBox.Image = new Bitmap(rewind,width,height);
-            rewindBox.SizeMode = PictureBoxSizeMode.AutoSize;
-
             playBox.Location = new Point(170, 30);
             playBox.Image = new Bitmap(play,width,height);
             playBox.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -52,7 +48,6 @@ namespace VirtualPiano.Control
             song = s;
             Metronoom.Interval = 500;
         }
-
 
         public void PlayGeklikt(Object sender, EventArgs e)
         { 
@@ -81,6 +76,7 @@ namespace VirtualPiano.Control
 
         public void StopGeklikt(Object sender, EventArgs e)
         {
+            //wanneer de stopknop ingedrukt wordt. lijn opnieuw aan het begin zetten.
             playBox.Image = new Bitmap(play,width,height);
             isPlayingSong = false;
             Metronoom.Enabled = false;

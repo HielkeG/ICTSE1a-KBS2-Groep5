@@ -61,10 +61,6 @@
     <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />
     <Compile Include="Control\PianoKeysController.cs" />
-    <Compile Include="Migrations\201711301053154_update.cs" />
-    <Compile Include="Migrations\201711301053154_update.Designer.cs">
-      <DependentUpon>201711301053154_update.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -116,9 +112,6 @@
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\201711301053154_update.resx">
-      <DependentUpon>201711301053154_update.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
     </EmbeddedResource>
