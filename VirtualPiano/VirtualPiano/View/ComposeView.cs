@@ -46,8 +46,6 @@ namespace VirtualPiano.View
             }
             MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
-            MusicController.SongStarted += StartNoteSnapTimer;
-            MusicController.SongStopped += StopNoteSnapTimer;
             ShowPianoKeysView();
 
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
@@ -399,53 +397,7 @@ namespace VirtualPiano.View
             }
 
         }
-        public void StartNoteSnapTimer(object sender, EventArgs e)
-        {
-            NoteSnapTimer.Start();
-        }
 
-        public void StopNoteSnapTimer(object sender, EventArgs e)
-        {
-            NoteSnapTimer.Stop();
-        }
-
-        private void NoteSnapTimer_Tick(object sender, EventArgs e)
-        {
-            
-            foreach (Staff staff in song.GetStaffs())
-            {
-                int barBegin = 145;
-                int barEnd = 575;
-                foreach (Bar bar in staff.Bars)
-                {
-
-                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin && PointToClient(Cursor.Position).Y > staff.y && PointToClient(Cursor.Position).Y < staff.y + 135)
-                    {
-                        int NewY = PointToClient(Cursor.Position).Y - staff.y;
-                        Note newNote = new Note(NewY, SelectedNoteName, bar.clef.ToString(),bar.FlatSharp);
-                        Rest newRest = new Rest(SelectedRestName);
-
-                        if (bar.CheckBarSpace(newNote) && SelectedNoteName != NoteName.NULL)
-                        {
-                            bar.Add(newNote);
-                            bar.hasPreview = true;
-                            Refresh();
-                            bar.RemovePreview();
-                        }
-                        else if (bar.CheckBarSpace(newRest) && SelectedRestName != RestName.NULL)
-                        {
-                                bar.clef = ClefName.G.ToString();
-                                bar.Add(newRest);
-                                bar.hasPreview = true;
-                                Refresh();
-                                bar.RemovePreview();
-                        }
-                    }
-                    barBegin += 430;
-                    barEnd += 430;
-                }
-            }
-        }
 
         private void TitelBox_TextChanged(object sender, EventArgs e)
         {
