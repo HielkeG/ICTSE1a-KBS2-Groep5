@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuBarView));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.bestandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nieuwToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,6 +37,9 @@
             this.opslaanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.instrumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gitaarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +49,8 @@
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bestandToolStripMenuItem,
-            this.geluidToolStripMenuItem});
+            this.geluidToolStripMenuItem,
+            this.instrumentToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -68,7 +73,7 @@
             // 
             this.nieuwToolStripMenuItem.Name = "nieuwToolStripMenuItem";
             this.nieuwToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.nieuwToolStripMenuItem.Text = "Nieuw...";
             this.nieuwToolStripMenuItem.Click += new System.EventHandler(this.nieuwToolStripMenuItem_Click);
             // 
@@ -76,20 +81,20 @@
             // 
             this.openenToolStripMenuItem.Name = "openenToolStripMenuItem";
             this.openenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openenToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.openenToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.openenToolStripMenuItem.Text = "Openen...";
             this.openenToolStripMenuItem.Click += new System.EventHandler(this.openenToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(212, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(165, 6);
             // 
             // opslaanToolStripMenuItem
             // 
             this.opslaanToolStripMenuItem.Name = "opslaanToolStripMenuItem";
             this.opslaanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.opslaanToolStripMenuItem.Text = "Opslaan";
             this.opslaanToolStripMenuItem.Click += new System.EventHandler(this.opslaanToolStripMenuItem_Click);
             // 
@@ -110,6 +115,42 @@
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
             this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.GeluidAanUit);
+            // 
+            // instrumentToolStripMenuItem
+            // 
+            this.instrumentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pianoToolStripMenuItem,
+            this.gitaarToolStripMenuItem});
+            this.instrumentToolStripMenuItem.Name = "instrumentToolStripMenuItem";
+            this.instrumentToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
+            this.instrumentToolStripMenuItem.Text = "Instrument";
+            // 
+            // pianoToolStripMenuItem
+            // 
+            this.pianoToolStripMenuItem.AccessibleName = "Instrument";
+            this.pianoToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.pianoToolStripMenuItem.AutoSize = false;
+            this.pianoToolStripMenuItem.Checked = true;
+            this.pianoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pianoToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.pianoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pianoToolStripMenuItem.Image")));
+            this.pianoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.pianoToolStripMenuItem.Name = "pianoToolStripMenuItem";
+            this.pianoToolStripMenuItem.Size = new System.Drawing.Size(262, 128);
+            this.pianoToolStripMenuItem.Text = "Piano";
+            this.pianoToolStripMenuItem.Click += new System.EventHandler(this.pianoToolStripMenuItem_Click);
+            // 
+            // gitaarToolStripMenuItem
+            // 
+            this.gitaarToolStripMenuItem.AccessibleName = "Instrument";
+            this.gitaarToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.gitaarToolStripMenuItem.AutoSize = false;
+            this.gitaarToolStripMenuItem.Image = global::VirtualPiano.Properties.Resources.Gitaar;
+            this.gitaarToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.gitaarToolStripMenuItem.Name = "gitaarToolStripMenuItem";
+            this.gitaarToolStripMenuItem.Size = new System.Drawing.Size(152, 32);
+            this.gitaarToolStripMenuItem.Text = "Gitaar";
+            this.gitaarToolStripMenuItem.Click += new System.EventHandler(this.gitaarToolStripMenuItem_Click);
             // 
             // MenuBarView
             // 
@@ -137,5 +178,8 @@
         private System.Windows.Forms.ToolStripMenuItem opslaanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem instrumentToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem pianoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem gitaarToolStripMenuItem;
     }
 }

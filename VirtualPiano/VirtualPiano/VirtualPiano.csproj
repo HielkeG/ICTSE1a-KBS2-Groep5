@@ -253,6 +253,11 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Gitaar.png" />
+    <None Include="Resources\piano.png" />
+    <None Include="Resources\Gitaar.jpg" />
+    <None Include="Resources\Piano.jpg" />
+    <None Include="Resources\Gitaar.ico" />
     <None Include="Resources\Geluiden\Piano\Piano4B.wav" />
     <None Include="Resources\Geluiden\Piano\Piano5C.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4Gis.wav" />

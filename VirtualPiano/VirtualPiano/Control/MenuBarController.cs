@@ -30,6 +30,22 @@ namespace VirtualPiano.Control
             }
         }
 
+        public void ChangeInstrument(MenuBarView mbv, string instrument)
+        {
+            if(instrument == "Piano")
+            {
+                mbv.pianoToolStripMenuItem.CheckState = CheckState.Checked;
+                mbv.gitaarToolStripMenuItem.CheckState = CheckState.Unchecked;
+                ComposeView.instrument = "Piano";
+                
+            } else if( instrument == "Gitaar")
+            {
+                mbv.pianoToolStripMenuItem.CheckState = CheckState.Unchecked;
+                mbv.gitaarToolStripMenuItem.CheckState = CheckState.Checked;
+                ComposeView.instrument = "Guitar";
+            }
+        }
+
 
     }
 

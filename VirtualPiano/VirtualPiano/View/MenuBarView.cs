@@ -108,5 +108,15 @@ namespace VirtualPiano.View
 
             }
         }
+
+        private void pianoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mbc.ChangeInstrument(this, "Piano");
+        }
+
+        private void gitaarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mbc.ChangeInstrument(this, "Gitaar");
+        }
     }
 }

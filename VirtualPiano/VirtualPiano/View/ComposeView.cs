@@ -27,6 +27,7 @@ namespace VirtualPiano.View
         private List<Panel> staffViews = new List<Panel>();
         private bool firstStart = true;
         public static System.Timers.Timer t = new System.Timers.Timer();
+        public static string instrument = "Piano";
 
         public static int CurrentPlayingStaff = 0;
         private static bool RunningTimer { get; set; }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Media;
 using VirtualPiano.Properties;
+using VirtualPiano.View;
 
 namespace VirtualPiano.Model
 {
@@ -123,7 +124,7 @@ namespace VirtualPiano.Model
                         else if (tone == "Ges") { filename = "Fis"; }
                         else if (tone == "As") { filename = "Gis"; }
 
-                    player.Open(new Uri($@"../../Resources/Geluiden/Piano/Piano{octave}{filename}.wav", UriKind.Relative));
+                    player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{ComposeView.instrument}{octave}{filename}.wav", UriKind.Relative));
                     player.Play();
                 }
                 catch (FileNotFoundException)
