@@ -46,8 +46,6 @@ namespace VirtualPiano.View
             }
             MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
-            MusicController.SongStarted += StartNoteSnapTimer;
-            MusicController.SongStopped += StopNoteSnapTimer;
             ShowPianoKeysView();
 
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
@@ -398,15 +396,6 @@ namespace VirtualPiano.View
                 InvalidateStaffviews();
             }
 
-        }
-        public void StartNoteSnapTimer(object sender, EventArgs e)
-        {
-            NoteSnapTimer.Start();
-        }
-
-        public void StopNoteSnapTimer(object sender, EventArgs e)
-        {
-            NoteSnapTimer.Stop();
         }
 
 
