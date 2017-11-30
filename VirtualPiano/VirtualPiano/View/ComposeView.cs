@@ -408,6 +408,7 @@ namespace VirtualPiano.View
         {
             song.Title = TitelBox.Text;
             Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
+            TitelBox.Size = size;
         }
 
         //timer starten, reageert op songstarted in MusicController
@@ -439,6 +440,12 @@ namespace VirtualPiano.View
                         CurrentPlayingStaff++;
 
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
+                    }
+                    else
+                    {
+                        song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
+                        song.Staffs[0].IsBeingPlayed = true;
+                        MusicController.isPlayingSong = false;
                     }
                     
 
@@ -475,6 +482,7 @@ namespace VirtualPiano.View
             foreach (var item in staffViews)
             {
                 item.Invalidate();
+                
             }
         }
     }
