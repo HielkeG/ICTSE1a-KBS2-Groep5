@@ -374,7 +374,7 @@ namespace VirtualPiano.View
             // 
             // rodeLijn
             // 
-            this.rodeLijn.Interval = 1;
+            this.rodeLijn.Interval = 18;
             this.rodeLijn.Tick += new System.EventHandler(this.rodeLijn_Tick);
             // 
             // TitelBox

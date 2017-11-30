@@ -64,7 +64,7 @@ namespace VirtualPiano.Control
                 //int temp = Song.getDuration();
                 //Console.WriteLine(Song.getDuration());
                 SongStarted(this, e);
-                //rodeLijn.Start();
+                rodeLijn.Start();
  
                 
             }
@@ -74,7 +74,7 @@ namespace VirtualPiano.Control
                 isPlayingSong = false;
                 Metronoom.Enabled = false;
                 
-                //rodeLijn.Stop();
+                rodeLijn.Stop();
             }
         }
 
@@ -86,6 +86,7 @@ namespace VirtualPiano.Control
             Metronoom.Enabled = false;
             ComposeView.CurrentPlayingStaff = 0;
             ComposeView.RedLineX = 0;
+            rodeLijn.Stop();
             SongStopped(this, e);
         }
 

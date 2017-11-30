@@ -26,23 +26,28 @@ namespace VirtualPiano.View
         internal static ClefName SelectedClefName = ClefName.NULL;
         private List<Panel> staffViews = new List<Panel>();
         private bool firstStart = true;
-        public static System.Timers.Timer t;
+        public static System.Timers.Timer t = new System.Timers.Timer();
+
         public static int CurrentPlayingStaff = 0;
         private static bool RunningTimer { get; set; }
-
 
         public static int RedLineX { get; set; }
 
         public ComposeView()
         {
+            t.Interval = 5;
+            t.Elapsed +=  TimerTick;
+            
             InitializeComponent();
             if (firstStart)
             {
                 ShowFirstStaffView();
                 firstStart = false;
             }
-            MusicController.SongStarted += StartLineTimer;
+            MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
+            MusicController.SongStarted += StartNoteSnapTimer;
+            MusicController.SongStopped += StopNoteSnapTimer;
             ShowPianoKeysView();
 
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
@@ -104,14 +109,14 @@ namespace VirtualPiano.View
             RemoveStaffViews();
             song = new Song();
             MusicController.song = song;
-
+            CurrentPlayingStaff = 0;
             ShowFirstStaffView();
         }
 
         public void SetLoadedSong(Song newSong)
         {
             RemoveStaffViews();
-
+            CurrentPlayingStaff = 0;
             song = newSong;
 
 
@@ -388,16 +393,20 @@ namespace VirtualPiano.View
 
         private void rodeLijn_Tick(object sender, EventArgs e)
         {
+            if (MusicController.isPlayingSong)
+            {
+                InvalidateStaffviews();
+            }
 
-            //int temp = song.getDuration();
-            ////Console.WriteLine(rodeLijn.Interval);
-            //RedLineX++;
-            //Invalidate();
-            
-            //if (RedLineX >= song.getDuration() * 25)
-            //{
-            //    rodeLijn.Stop();
-            //}
+        }
+        public void StartNoteSnapTimer(object sender, EventArgs e)
+        {
+            NoteSnapTimer.Start();
+        }
+
+        public void StopNoteSnapTimer(object sender, EventArgs e)
+        {
+            NoteSnapTimer.Stop();
         }
 
 
@@ -407,15 +416,13 @@ namespace VirtualPiano.View
             Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
         }
 
-        public void StartLineTimer(object sender, EventArgs e)
+        public void StartTimer(object sender, EventArgs e)
         {
             if (RunningTimer == false)
             {
                 RunningTimer = true;
-                t = new System.Timers.Timer();
-                t.Interval = 1;
-                t.Elapsed += TimerTick;
                 t.Start();
+                rodeLijn.Start();
             }
         }
 
@@ -425,27 +432,30 @@ namespace VirtualPiano.View
             if (MusicController.isPlayingSong)
             {
                 RedLineX = RedLineX + 4;
-                InvalidateStaffviews();
-                song.PlayNote();
-                if (RedLineX >= 1450 && song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
+                if (RedLineX >= 1700)
                 {
                     RedLineX = 0;
-                    song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
-                    //rodeLijn.Stop();
-                    CurrentPlayingStaff++;
+                    if (song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
+                    {
+                        song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
+                        //rodeLijn.Stop();
+                        CurrentPlayingStaff++;
 
-                    song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
+                        song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
+                    }
+                    
 
                 }
+                song.PlayNote();
             }
         }
 
-        
 
         public void StopTimer(object sender, EventArgs e)
         {
-
-            t.Dispose();
+            
+            t.Stop();
+            rodeLijn.Stop();
             foreach (var item in song.Staffs)
             {
                 if (item != song.Staffs[0])
