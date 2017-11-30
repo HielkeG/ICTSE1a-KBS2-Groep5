@@ -39,6 +39,7 @@ namespace VirtualPiano.View
             DrawRedLine(e);
         }
 
+
         private void Drawlines(PaintEventArgs e)    //Lijnen van notenbalk tekenen
         {
             Pen penBlack = new Pen(Color.Black);
