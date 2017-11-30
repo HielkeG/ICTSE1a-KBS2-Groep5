@@ -252,10 +252,6 @@ namespace VirtualPiano.View
         private void SetDefaultCursor()
         {
             Cursor = Cursors.Default;
-            ComposeView.signSelected = false;
-            ComposeView.SelectedNoteName = NoteName.NULL;
-            ComposeView.SelectedRestName = RestName.NULL;
-            ComposeView.SelectedClefName = ClefName.NULL;
         }
 
         private void StaffView_MouseEnter(object sender, EventArgs e)
