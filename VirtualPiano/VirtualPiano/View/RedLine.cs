@@ -18,14 +18,14 @@ namespace VirtualPiano.View
         {
             InitializeComponent();
             Visible = false;
-            
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             e.Graphics.DrawLine(penRed, new Point(65 + ComposeView.RedLineX, 50), new Point(65 + ComposeView.RedLineX, 110));
-    
+
         }
     }
 }

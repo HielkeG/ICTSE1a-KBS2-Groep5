@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Properties;
 using VirtualPiano.Control;
+using VirtualPiano.View;
 
 namespace VirtualPiano.View
 {
@@ -59,7 +60,7 @@ namespace VirtualPiano.View
             {
                 redLine.Visible = true;
                 redLine.Invalidate();
-                
+
             }
         }
 

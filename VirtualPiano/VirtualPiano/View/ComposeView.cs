@@ -446,7 +446,6 @@ namespace VirtualPiano.View
             }
         }
 
-
         private void TitelBox_TextChanged(object sender, EventArgs e)
         {
             song.Title = TitelBox.Text;
@@ -482,21 +481,24 @@ namespace VirtualPiano.View
             
             Songtimer.Stop();
             RedLine.Stop();
-            foreach (var item in song.Staffs)
+            foreach (var item in staffViews)
             {
-                if (item != song.Staffs[0])
+                if(item != staffViews.First())
                 {
-                    item.IsBeingPlayed = false;
+                    item.staff.IsBeingPlayed = false;
+                    item.redLine.Visible = false;
                 }
                 else
                 {
-                    item.IsBeingPlayed = true;
-                }
+                    item.staff.IsBeingPlayed = true;
 
+                    item.redLine.Visible = true;
+                }
             }
-            Refresh();
             CurrentPlayingStaff = 0;
             RunningTimer = false;
+            Refresh();
+
         }
 
         private void InvalidateRedLine()

@@ -38,7 +38,6 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.DoubleBuffered = true;
             this.Name = "RedLine";
-            this.Size = new System.Drawing.Size(1800, 60);
             this.ResumeLayout(false);
 
         }
