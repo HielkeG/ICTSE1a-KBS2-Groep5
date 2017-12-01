@@ -16,9 +16,7 @@ namespace VirtualPiano.View
 
         public RedLine()
         {
-            InitializeComponent();
-            Visible = false;
-            
+            InitializeComponent();            
         }
 
         protected override void OnPaint(PaintEventArgs e)
