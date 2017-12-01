@@ -28,7 +28,7 @@ namespace VirtualPiano.View
         private bool firstStart = true;
         //timer die de x van de rode lijn verhoogt en noten afspeelt. 
         //Aparte timer zodat deze meerdere threads gebruikt.
-        public static System.Timers.Timer t = new System.Timers.Timer();
+        public static System.Timers.Timer Songtimer = new System.Timers.Timer();
         //huide nummer van afgespeelde staff. Zodat de rode lijn hier overheen loopt.
         public static int CurrentPlayingStaff = 0;
         //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
@@ -38,8 +38,8 @@ namespace VirtualPiano.View
 
         public ComposeView()
         {
-            t.Interval = 5;
-            t.Elapsed +=  TimerTick;
+            Songtimer.Interval = 5;
+            Songtimer.Elapsed +=  TimerTick;
             
             InitializeComponent();
             if (firstStart)
@@ -458,7 +458,7 @@ namespace VirtualPiano.View
             if (RunningTimer == false)
             {
                 RunningTimer = true;
-                t.Start();
+                Songtimer.Start();
                 RedLine.Start();
             }
         }
@@ -478,7 +478,7 @@ namespace VirtualPiano.View
         public void StopTimer(object sender, EventArgs e)
         {
             
-            t.Stop();
+            Songtimer.Stop();
             RedLine.Stop();
             foreach (var item in song.Staffs)
             {
