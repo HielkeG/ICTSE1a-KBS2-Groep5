@@ -383,6 +383,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap marimba {
+            get {
+                object obj = ResourceManager.GetObject("marimba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap min {
             get {
                 object obj = ResourceManager.GetObject("min", resourceCulture);
@@ -413,9 +423,9 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Piano {
+        internal static System.Drawing.Bitmap piano {
             get {
-                object obj = ResourceManager.GetObject("Piano", resourceCulture);
+                object obj = ResourceManager.GetObject("piano", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
