@@ -36,6 +36,7 @@
             this.opslaanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verwijderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +59,7 @@
             this.bestandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nieuwToolStripMenuItem,
             this.openenToolStripMenuItem,
+            this.verwijderToolStripMenuItem,
             this.toolStripSeparator1,
             this.opslaanToolStripMenuItem});
             this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
@@ -68,7 +70,7 @@
             // 
             this.nieuwToolStripMenuItem.Name = "nieuwToolStripMenuItem";
             this.nieuwToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.nieuwToolStripMenuItem.Text = "Nieuw...";
             this.nieuwToolStripMenuItem.Click += new System.EventHandler(this.nieuwToolStripMenuItem_Click);
             // 
@@ -76,20 +78,20 @@
             // 
             this.openenToolStripMenuItem.Name = "openenToolStripMenuItem";
             this.openenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openenToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.openenToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.openenToolStripMenuItem.Text = "Openen...";
             this.openenToolStripMenuItem.Click += new System.EventHandler(this.openenToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(212, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(165, 6);
             // 
             // opslaanToolStripMenuItem
             // 
             this.opslaanToolStripMenuItem.Name = "opslaanToolStripMenuItem";
             this.opslaanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.opslaanToolStripMenuItem.Text = "Opslaan";
             this.opslaanToolStripMenuItem.Click += new System.EventHandler(this.opslaanToolStripMenuItem_Click);
             // 
@@ -110,6 +112,14 @@
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
             this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.GeluidAanUit);
+            // 
+            // verwijderToolStripMenuItem
+            // 
+            this.verwijderToolStripMenuItem.Name = "verwijderToolStripMenuItem";
+            this.verwijderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.verwijderToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.verwijderToolStripMenuItem.Text = "Verwijder..";
+            this.verwijderToolStripMenuItem.Click += new System.EventHandler(this.verwijderToolStripMenuItem_Click);
             // 
             // MenuBarView
             // 
@@ -137,5 +147,6 @@
         private System.Windows.Forms.ToolStripMenuItem opslaanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verwijderToolStripMenuItem;
     }
 }

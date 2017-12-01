@@ -20,12 +20,8 @@ namespace VirtualPiano.Control
             {
                 //song toevoegen aan database
                 context.Configuration.LazyLoadingEnabled = false;
-
                 context.Songs.Add(song);
                 context.SaveChanges();
-                
-
-
             }
         }
 
@@ -148,6 +144,17 @@ namespace VirtualPiano.Control
             {
                 context.Configuration.LazyLoadingEnabled = false;
                 context.Database.Initialize(false);
+            }
+        }
+
+        //nummer verwijderen uit de database
+        public static void RemoveSong(string title)
+        {
+            using(var context = new Context())
+            {
+                var s = context.Songs.Where(n => n.Title == title).Single();
+                context.Songs.Remove(s);
+                context.SaveChanges();
             }
         }
     }

@@ -12,17 +12,17 @@ using VirtualPiano.Model;
 
 namespace VirtualPiano.View
 {
-    public partial class DatabaseFileExplorer : Form
+    public partial class DatabaseFileRemover : Form
     {
         private ListBox originalList = new ListBox();
         private bool createdBackup = false;
         public Song Song { get; set; }
-        public DatabaseFileExplorer()
+
+        public DatabaseFileRemover()
         {
             InitializeComponent();
         }
 
-        //alleen overeenkomende nummers tonen.
         private void ZoekOpdracht_TextChanged(object sender, EventArgs e)
         {
             ListBox toReturn = new ListBox();
@@ -47,6 +47,7 @@ namespace VirtualPiano.View
 
             }
         }
+
         private void CreateOriginalList()
         {
             foreach (var item in ItemsList.Items)
@@ -55,18 +56,20 @@ namespace VirtualPiano.View
             }
         }
 
-        private void Selecteer_Click(object sender, EventArgs e)
+        private void Verwijder_Click(object sender, EventArgs e)
         {
+            if (ItemsList.SelectedItem != null)
+            {
                 List<Song> songs = DatabaseController.GetSongs();
                 foreach (var item in songs)
                 {
                     if ((string)ItemsList.SelectedItem == item.Title)
                     {
-                        Song = DatabaseController.FillSong(item);
-
+                        Song = new Song();
+                        Song.Title = (string)ItemsList.SelectedItem;
                     }
                 }
-            
+            }
         }
     }
 }

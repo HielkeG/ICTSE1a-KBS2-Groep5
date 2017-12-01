@@ -85,10 +85,14 @@ namespace VirtualPiano.View
 
                 }
                 databaseFileExplorer.ShowDialog();
-                if (DialogResult.OK == databaseFileExplorer.DialogResult)
+                if (DialogResult.OK == databaseFileExplorer.DialogResult && databaseFileExplorer.Song!=null)
                 {
                     Song = databaseFileExplorer.Song;
                     selectedSong(this, e);
+                }
+                else
+                {
+                    MessageBox.Show("Er is geen nummer geselecteerd.", "Melding", MessageBoxButtons.OK);
                 }
             }
         }
@@ -106,6 +110,34 @@ namespace VirtualPiano.View
             {
                 newSong(this, e);
 
+            }
+        }
+
+        private void verwijderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Song> songs = DatabaseController.GetSongs();
+            DatabaseFileRemover databaseFileRemover = new DatabaseFileRemover();
+            foreach (Song song in songs)
+            {
+                databaseFileRemover.ItemsList.Items.Add(song.Title);
+
+            }
+            databaseFileRemover.ShowDialog();
+            if (DialogResult.OK == databaseFileRemover.DialogResult)
+            {
+                if (databaseFileRemover.Song != null)
+                {
+                    var result = MessageBox.Show("Weet u zeker dat u dit nummer wilt verwijderen.", "Waarschuwing", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        DatabaseController.RemoveSong(databaseFileRemover.Song.Title);
+                        MessageBox.Show("Het nummer is verwijderd.", "Melding", MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Er is geen nummer geselecteerd.", "Melding", MessageBoxButtons.OK);
+                }
             }
         }
     }
