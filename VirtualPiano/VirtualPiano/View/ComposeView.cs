@@ -436,6 +436,7 @@ namespace VirtualPiano.View
                         staffViews.ElementAt(0).redLine.Visible = true;
                         song.Staffs[0].IsBeingPlayed = true;
                         MusicController.isPlayingSong = false;
+                        MusicController.ResetLine();
                     }
 
 

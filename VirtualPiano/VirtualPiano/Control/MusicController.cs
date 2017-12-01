@@ -49,6 +49,16 @@ namespace VirtualPiano.Control
             Metronoom.Interval = 500;
         }
 
+        public static void ResetLine()
+        {
+            playBox.Image = new Bitmap(play, width, height);
+            isPlayingSong = false;
+            Metronoom.Enabled = false;
+            ComposeView.CurrentPlayingStaff = 0;
+            ComposeView.RedLineX = 0;
+            rodeLijn.Stop();
+        }
+
         public void PlayGeklikt(Object sender, EventArgs e)
         { 
             if (isPlayingSong == false)
