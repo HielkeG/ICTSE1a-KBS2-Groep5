@@ -124,7 +124,7 @@ namespace VirtualPiano.Model
                         else if (tone == "Ges") { filename = "Fis"; }
                         else if (tone == "As") { filename = "Gis"; }
 
-                    player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{ComposeView.instrument}{octave}{filename}.wav", UriKind.Relative));
+                    player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
                     player.Play();
                 }
                 catch (FileNotFoundException)
