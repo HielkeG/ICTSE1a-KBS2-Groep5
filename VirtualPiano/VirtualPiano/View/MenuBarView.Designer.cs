@@ -37,6 +37,10 @@
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verwijderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.instrumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gitaarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.marimbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +50,8 @@
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bestandToolStripMenuItem,
-            this.geluidToolStripMenuItem});
+            this.geluidToolStripMenuItem,
+            this.instrumentToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -121,6 +126,54 @@
             this.verwijderToolStripMenuItem.Text = "Verwijder..";
             this.verwijderToolStripMenuItem.Click += new System.EventHandler(this.verwijderToolStripMenuItem_Click);
             // 
+            // instrumentToolStripMenuItem
+            // 
+            this.instrumentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pianoToolStripMenuItem,
+            this.gitaarToolStripMenuItem1,
+            this.marimbaToolStripMenuItem});
+            this.instrumentToolStripMenuItem.Name = "instrumentToolStripMenuItem";
+            this.instrumentToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
+            this.instrumentToolStripMenuItem.Text = "Instrument";
+            // 
+            // pianoToolStripMenuItem
+            // 
+            this.pianoToolStripMenuItem.AccessibleName = "Instrument";
+            this.pianoToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.pianoToolStripMenuItem.Checked = true;
+            this.pianoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pianoToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.pianoToolStripMenuItem.Image = global::VirtualPiano.Properties.Resources.piano;
+            this.pianoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.pianoToolStripMenuItem.Name = "pianoToolStripMenuItem";
+            this.pianoToolStripMenuItem.Size = new System.Drawing.Size(217, 82);
+            this.pianoToolStripMenuItem.Text = "Piano";
+            this.pianoToolStripMenuItem.Click += new System.EventHandler(this.pianoToolStripMenuItem_Click);
+            // 
+            // gitaarToolStripMenuItem1
+            // 
+            this.gitaarToolStripMenuItem1.AccessibleName = "Instrument";
+            this.gitaarToolStripMenuItem1.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.gitaarToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.gitaarToolStripMenuItem1.Image = global::VirtualPiano.Properties.Resources.Gitaar;
+            this.gitaarToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.gitaarToolStripMenuItem1.Name = "gitaarToolStripMenuItem1";
+            this.gitaarToolStripMenuItem1.Size = new System.Drawing.Size(217, 82);
+            this.gitaarToolStripMenuItem1.Text = "Gitaar";
+            this.gitaarToolStripMenuItem1.Click += new System.EventHandler(this.gitaarToolStripMenuItem1_Click);
+            // 
+            // marimbaToolStripMenuItem
+            // 
+            this.marimbaToolStripMenuItem.AccessibleName = "Instrument";
+            this.marimbaToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.marimbaToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.marimbaToolStripMenuItem.Image = global::VirtualPiano.Properties.Resources.marimba;
+            this.marimbaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.marimbaToolStripMenuItem.Name = "marimbaToolStripMenuItem";
+            this.marimbaToolStripMenuItem.Size = new System.Drawing.Size(217, 82);
+            this.marimbaToolStripMenuItem.Text = "Marimba";
+            this.marimbaToolStripMenuItem.Click += new System.EventHandler(this.marimbaToolStripMenuItem_Click);
+            // 
             // MenuBarView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,5 +201,9 @@
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verwijderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem instrumentToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem pianoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem marimbaToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem gitaarToolStripMenuItem1;
     }
 }

@@ -272,8 +272,8 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseMove(object sender, MouseEventArgs e)
         {
-            int barBegin = 0;
-            int barEnd = 430;
+            int barBegin = 50;
+            int barEnd = 475;
 
             foreach (Bar bar in staff.Bars)
             {

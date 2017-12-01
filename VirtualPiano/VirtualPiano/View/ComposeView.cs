@@ -30,6 +30,8 @@ namespace VirtualPiano.View
         //Aparte timer zodat deze meerdere threads gebruikt.
         public static System.Timers.Timer Songtimer = new System.Timers.Timer();
         //huide nummer van afgespeelde staff. Zodat de rode lijn hier overheen loopt.
+        public static string instrument = "Piano";
+
         public static int CurrentPlayingStaff = 0;
         //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         private static bool RunningTimer { get; set; }

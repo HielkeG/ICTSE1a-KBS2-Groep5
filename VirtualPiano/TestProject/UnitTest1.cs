@@ -4,7 +4,7 @@ using VirtualPiano.Model;
 using VirtualPiano.Control;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Entity;
+using VirtualPiano.View;
 
 
 namespace TestProject
@@ -101,6 +101,20 @@ namespace TestProject
             Assert.AreEqual(Expect, bar.CheckBarSpace(new Note(NoteName.halfNote, "A", 2)));
         }
 
+
+        [TestMethod]
+        public void ChangeInstrument_FromPianoToGuitar()
+        {
+            //Arrange
+            MenuBarController mbc = new MenuBarController();
+            ComposeView.instrument = "Piano";
+
+            //Act
+            mbc.ChangeInstrument(new MenuBarView(), "Gitaar");
+
+            //Assert
+            Assert.AreEqual("Guitar", ComposeView.instrument);
+        }
 
 
     }

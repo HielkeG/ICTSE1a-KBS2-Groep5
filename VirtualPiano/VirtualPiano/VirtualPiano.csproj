@@ -278,6 +278,9 @@
     <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\piano.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\marimba.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
