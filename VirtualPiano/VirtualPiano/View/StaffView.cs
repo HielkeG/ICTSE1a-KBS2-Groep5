@@ -16,6 +16,7 @@ namespace VirtualPiano.View
     public partial class StaffView : UserControl
     {
         public Staff staff;
+        public RedLine redLine;
         Color barColor;
 
         public StaffView(Staff staff, int flatsharp)
@@ -28,7 +29,9 @@ namespace VirtualPiano.View
             DoubleBuffered = true;
             SetImage();
             InitializeComponent();
-            
+            redLine = new RedLine();
+            BringToFront();
+            Controls.Add(redLine);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -36,7 +39,6 @@ namespace VirtualPiano.View
             base.OnPaint(e);
             Drawlines(e);
             DrawBars(e);
-            DrawRedLine(e);
         }
 
 
@@ -51,15 +53,14 @@ namespace VirtualPiano.View
                 i++;
             }
         }
-
-        public void DrawRedLine(PaintEventArgs e)
+        public void InvalidateRedLine()
         {
             if (staff.IsBeingPlayed)
             {
-                Pen penRed = new Pen(Color.Red, 4);
-                e.Graphics.DrawLine(penRed, new Point(65 + ComposeView.RedLineX, 50), new Point(65 + ComposeView.RedLineX, 110));
+                redLine.Visible = true;
+                redLine.Invalidate();
+                
             }
-
         }
 
         public void SetImage()

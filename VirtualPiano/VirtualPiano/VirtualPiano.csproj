@@ -106,6 +106,12 @@
     <Compile Include="View\PianoKeysView.Designer.cs">
       <DependentUpon>PianoKeysView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\RedLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RedLine.Designer.cs">
+      <DependentUpon>RedLine.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\StaffView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MenuBarView.resx">
       <DependentUpon>MenuBarView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RedLine.resx">
+      <DependentUpon>RedLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\StaffView.resx">
       <DependentUpon>StaffView.cs</DependentUpon>
