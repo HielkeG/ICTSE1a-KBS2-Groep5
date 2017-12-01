@@ -115,6 +115,7 @@ namespace VirtualPiano.View
 
         private void verwijderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //zoeklijst invullen
             List<Song> songs = DatabaseController.GetSongs();
             DatabaseFileRemover databaseFileRemover = new DatabaseFileRemover();
             foreach (Song song in songs)
@@ -122,9 +123,11 @@ namespace VirtualPiano.View
                 databaseFileRemover.ItemsList.Items.Add(song.Title);
 
             }
+            //explorer laten zien
             databaseFileRemover.ShowDialog();
             if (DialogResult.OK == databaseFileRemover.DialogResult)
             {
+                //als de song niet null is wordt deze verwijderd.
                 if (databaseFileRemover.Song != null)
                 {
                     var result = MessageBox.Show("Weet u zeker dat u dit nummer wilt verwijderen.", "Waarschuwing", MessageBoxButtons.YesNo);
@@ -134,6 +137,7 @@ namespace VirtualPiano.View
                         MessageBox.Show("Het nummer is verwijderd.", "Melding", MessageBoxButtons.OK);
                     }
                 }
+                //anders krijgt de gebruiker een melding te zien.
                 else
                 {
                     MessageBox.Show("Er is geen nummer geselecteerd.", "Melding", MessageBoxButtons.OK);

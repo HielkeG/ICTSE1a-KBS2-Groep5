@@ -32,9 +32,11 @@ namespace VirtualPiano.Control
                 try
                 {
                     context.Configuration.LazyLoadingEnabled = false;
-
+                    //origineel nummer ophalen.
                     var original = context.Songs.Where(n => n.Title == song.Title).Single();
+                    //vervangende song aanmaken
                     Song replacingSong = new Song();
+                    //gegevens overzetten
                     replacingSong.Title = song.Title;
                     replacingSong.Staffs = song.Staffs;
                     replacingSong.SongId = song.SongId;
@@ -152,6 +154,7 @@ namespace VirtualPiano.Control
         {
             using(var context = new Context())
             {
+                //nummer opzoeken met overeenkomende titel
                 var s = context.Songs.Where(n => n.Title == title).Single();
                 context.Songs.Remove(s);
                 context.SaveChanges();

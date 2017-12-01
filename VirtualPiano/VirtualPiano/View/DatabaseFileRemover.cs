@@ -34,6 +34,7 @@ namespace VirtualPiano.View
             }
             foreach (string item in originalList.Items)
             {
+                //tijdelijke string om te vergelijken, ook als de hoofdletters verschillen
                 string tempItem = item.ToLower();
                 if (tempItem.Contains(ZoekOpdracht.Text))
                 {
@@ -58,6 +59,7 @@ namespace VirtualPiano.View
 
         private void Verwijder_Click(object sender, EventArgs e)
         {
+            //als de gebruiker een item heeft aangeklikt wordt het nummer geupdatet.
             if (ItemsList.SelectedItem != null)
             {
                 List<Song> songs = DatabaseController.GetSongs();
