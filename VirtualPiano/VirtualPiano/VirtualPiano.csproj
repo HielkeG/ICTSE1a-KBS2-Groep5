@@ -253,6 +253,11 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Gitaar.png" />
+    <None Include="Resources\piano.png" />
+    <None Include="Resources\Gitaar.jpg" />
+    <None Include="Resources\Piano.jpg" />
+    <None Include="Resources\Gitaar.ico" />
     <None Include="Resources\Geluiden\Piano\Piano4B.wav" />
     <None Include="Resources\Geluiden\Piano\Piano5C.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4Gis.wav" />
@@ -267,9 +272,6 @@
     <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
-    <None Include="Resources\Afbeeldingen\Knoppen\piano.png" />
-    <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
-    <None Include="Resources\Afbeeldingen\Knoppen\marimba.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />

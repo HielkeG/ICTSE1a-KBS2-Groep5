@@ -118,15 +118,5 @@ namespace VirtualPiano.View
         {
             mbc.ChangeInstrument(this, "Gitaar");
         }
-
-        private void instrumentToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripComboBox1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
