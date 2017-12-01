@@ -17,6 +17,7 @@ namespace VirtualPiano.View
         public Song Song { get; set; }
         public event EventHandler selectedSong;
         public event EventHandler newSong;
+        public event EventHandler newStaffView;
         MenuBarController mbc = new MenuBarController();
 
         public MenuBarView()
@@ -159,6 +160,11 @@ namespace VirtualPiano.View
         private void gitaarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             mbc.ChangeInstrument(this, "Gitaar");
+        }
+
+        private void toevoegenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            newStaffView(this, e);
         }
     }
 }

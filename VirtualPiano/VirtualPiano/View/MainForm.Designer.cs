@@ -29,31 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.formContent = new VirtualPiano.View.ComposeView();
             this.SuspendLayout();
-            // 
-            // menuBarView1
-            // 
-            this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.menuBarView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.menuBarView1.Location = new System.Drawing.Point(0, 0);
-            this.menuBarView1.Margin = new System.Windows.Forms.Padding(0);
-            this.menuBarView1.Name = "menuBarView1";
-            this.menuBarView1.Size = new System.Drawing.Size(1904, 25);
-            this.menuBarView1.Song = null;
-            this.menuBarView1.TabIndex = 1;
             // 
             // formContent
             // 
             this.formContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.formContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.formContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.formContent.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.formContent.ForeColor = System.Drawing.Color.Transparent;
-            this.formContent.Location = new System.Drawing.Point(2, 25);
+            this.formContent.Location = new System.Drawing.Point(0, 0);
             this.formContent.Margin = new System.Windows.Forms.Padding(0);
             this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(1900, 1016);
+            this.formContent.Size = new System.Drawing.Size(1904, 1041);
             this.formContent.TabIndex = 0;
             // 
             // MainForm
@@ -61,7 +50,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.menuBarView1);
             this.Controls.Add(this.formContent);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -77,7 +65,6 @@
         #endregion
 
         public View.ComposeView formContent;
-        private View.MenuBarView menuBarView1;
     }
 }
 

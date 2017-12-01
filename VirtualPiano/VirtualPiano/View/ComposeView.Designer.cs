@@ -57,6 +57,7 @@ namespace VirtualPiano.View
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.RedLine = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
+            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -75,13 +76,13 @@ namespace VirtualPiano.View
             this.toolStripContainer1.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer1.ContentPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(66, 1000);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(66, 979);
             this.toolStripContainer1.ContentPanel.Load += new System.EventHandler(this.toolStripContainer1_ContentPanel_Load);
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 4);
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 25);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(66, 1000);
+            this.toolStripContainer1.Size = new System.Drawing.Size(66, 979);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
@@ -115,10 +116,10 @@ namespace VirtualPiano.View
             this.Sharp,
             this.Flat});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(-1, 5);
+            this.toolStrip1.Location = new System.Drawing.Point(-1, 16);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(66, 950);
+            this.toolStrip1.Size = new System.Drawing.Size(66, 928);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
@@ -390,11 +391,23 @@ namespace VirtualPiano.View
             this.TitelBox.Text = "Titel";
             this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
             // 
+            // menuBarView1
+            // 
+            this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.menuBarView1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.menuBarView1.Location = new System.Drawing.Point(0, 0);
+            this.menuBarView1.Margin = new System.Windows.Forms.Padding(0);
+            this.menuBarView1.Name = "menuBarView1";
+            this.menuBarView1.Size = new System.Drawing.Size(342, 25);
+            this.menuBarView1.Song = null;
+            this.menuBarView1.TabIndex = 2;
+            // 
             // ComposeView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.menuBarView1);
             this.Controls.Add(this.TitelBox);
             this.Controls.Add(this.toolStripContainer1);
             this.ForeColor = System.Drawing.Color.Black;
@@ -445,5 +458,6 @@ namespace VirtualPiano.View
         private PictureBox pictureBox1;
         public Timer RedLine;
         public TextBox TitelBox;
+        private MenuBarView menuBarView1;
     }
 }

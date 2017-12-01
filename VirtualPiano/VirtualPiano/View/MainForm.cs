@@ -19,25 +19,11 @@ namespace VirtualPiano
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
-            menuBarView1.Song = formContent.song;
-            menuBarView1.selectedSong += ChangeSong;
-            menuBarView1.newSong += NewSong;
             DatabaseController.InitializeDatabase();
         }
 
-        private void NewSong(object sender, EventArgs e)
-        {
-            formContent.SetNewSong();
-        }
+        
 
-        //song veranderen op het moment dat het event selectedsong uitgevoerd wordt.
-        private void ChangeSong(object sender, EventArgs e)
-        {
-            MusicController.song = menuBarView1.Song;
-            formContent.TitelBox.Text = menuBarView1.Song.Title;
-            //oorspronkelijke notenbalken verwijderen.
-            formContent.SetLoadedSong(menuBarView1.Song);
 
-        }
     }
 }

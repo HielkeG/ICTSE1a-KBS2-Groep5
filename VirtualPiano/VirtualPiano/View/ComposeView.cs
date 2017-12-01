@@ -53,13 +53,31 @@ namespace VirtualPiano.View
             MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
             ShowPianoKeysView();
-
+            menuBarView1.Song = song;
+            menuBarView1.selectedSong += ChangeSong;
+            menuBarView1.newSong += NewSong;
+            menuBarView1.newStaffView += newStaffView;
             MusicController m1 = new MusicController(Metronome, RedLine, song);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
             Snelheid.Text = Metronome.Interval.ToString();
             DoubleBuffered = true;
+        }
+
+        //song veranderen op het moment dat het event selectedsong uitgevoerd wordt.
+        private void ChangeSong(object sender, EventArgs e)
+        {
+            MusicController.song = menuBarView1.Song;
+            TitelBox.Text = menuBarView1.Song.Title;
+            //oorspronkelijke notenbalken verwijderen.
+            SetLoadedSong(menuBarView1.Song);
+
+        }
+
+        private void NewSong(object sender, EventArgs e)
+        {
+            SetNewSong();
         }
 
         public void ShowPianoKeysView()
@@ -505,6 +523,13 @@ namespace VirtualPiano.View
         {
             staffViews.ElementAt(CurrentPlayingStaff).InvalidateRedLine();
 
+        }
+
+        //luistert naar event uit menubar, zodat een nieuwe staff toegevoegd wordt.
+        private void newStaffView(object sender, EventArgs e)
+        {
+            btnAddStaff.Dispose();
+            AddNewStaff();
         }
     }
 }

@@ -55,6 +55,11 @@ namespace VirtualPiano.Control
             }
         }
 
+        public void AddStaffView(MenuBarView mbv)
+        {
+            
+        }
+
 
     }
 
