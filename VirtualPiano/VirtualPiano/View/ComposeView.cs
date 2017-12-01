@@ -24,14 +24,18 @@ namespace VirtualPiano.View
         internal static NoteName SelectedNoteName = NoteName.NULL;
         internal static RestName SelectedRestName = RestName.NULL;
         internal static ClefName SelectedClefName = ClefName.NULL;
-        private List<Panel> staffViews = new List<Panel>();
+        private List<StaffView> staffViews = new List<StaffView>();
         private bool firstStart = true;
-        public static System.Timers.Timer t = new System.Timers.Timer();
+        //timer die de x van de rode lijn verhoogt en noten afspeelt. 
+        //Aparte timer zodat deze meerdere threads gebruikt.
+        public static System.Timers.Timer Songtimer = new System.Timers.Timer();
+        //huide nummer van afgespeelde staff. Zodat de rode lijn hier overheen loopt.
         public static string instrument = "Piano";
 
         public static int CurrentPlayingStaff = 0;
+        //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         private static bool RunningTimer { get; set; }
-
+        //locatie van de rode lijn
         public static int RedLineX { get; set; }
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
@@ -45,15 +49,16 @@ namespace VirtualPiano.View
 
         public ComposeView()
         {
-            t.Interval = 5;
-            t.Elapsed += TimerTick;
-
+            Songtimer.Interval = 5;
+            Songtimer.Elapsed +=  TimerTick;
+            
             InitializeComponent();
             if (firstStart)
             {
                 ShowFirstStaffView();
                 firstStart = false;
             }
+            //methodes koppelen aan het starten en stoppen vna het afspelen.
             MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
 
@@ -62,11 +67,11 @@ namespace VirtualPiano.View
             keypanel.Controls.Add(pkv1);
 
 
-            MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
+            MusicController m1 = new MusicController(Metronome, RedLine, song);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
-            Snelheid.Text = Metronoom.Interval.ToString();
+            Snelheid.Text = Metronome.Interval.ToString();
             DoubleBuffered = true;
         }
 
@@ -96,12 +101,24 @@ namespace VirtualPiano.View
 
         }
 
-        private void RemoveStaffViews()
+        private void RemoveStaffViews()//alle staffviews weghalen
         {
-            for (int i = 0; i < staffViews.Count; i++)
+            foreach (var item in staffViews)
             {
-                staffViews.ElementAt(i).Dispose();
+                item.Dispose();
             }
+            foreach (var item in Controls)
+            {
+                if (item.GetType() == typeof(Panel))
+                {
+                    Panel panel = (Panel)item;
+                    if (panel.Name == "staff")
+                    {
+                        panel.Dispose();
+                    }
+                }
+            }
+            staffViews.Clear();
             btnAddStaff.Dispose();
             y_staff = 140;
             Refresh();
@@ -117,12 +134,12 @@ namespace VirtualPiano.View
             ShowFirstStaffView();
         }
 
-        public void SetLoadedSong(Song newSong)
+        public void SetLoadedSong(Song newSong) // nummer laden uit database
         {
             RemoveStaffViews();
             CurrentPlayingStaff = 0;
             song = newSong;
-
+            RedLineX = 0;
 
             foreach (var item in song.GetStaffs())
             {
@@ -166,13 +183,15 @@ namespace VirtualPiano.View
         {
             Panel panel = new Panel();
             panel.Location = new Point(100, y_staff);
+            panel.Name = "staff";
+
             panel.Size = new Size(1800, 150);
             Controls.Add(panel);
             StaffView _staffView = new StaffView(staff, FlatSharp)
             {
                 Dock = DockStyle.None
             };
-            staffViews.Add(panel);
+            staffViews.Add(_staffView);
             panel.Controls.Add(_staffView);
 
         }
@@ -331,7 +350,7 @@ namespace VirtualPiano.View
             {
                 FlatSharp--;
                 song.ChangeSharpFlat(FlatSharp);
-                InvalidateStaffviews();
+                InvalidateRedLine();
             }
         }
 
@@ -345,7 +364,7 @@ namespace VirtualPiano.View
 
                 FlatSharp++;
                 song.ChangeSharpFlat(FlatSharp);
-                InvalidateStaffviews();
+                InvalidateRedLine();
             }
         }
 
@@ -395,29 +414,58 @@ namespace VirtualPiano.View
 
         }
 
-        private void rodeLijn_Tick(object sender, EventArgs e)
+        //methode die alle staffviews invalidate. Zodat de rode lijn beweegt.
+        private void RedLine_Tick(object sender, EventArgs e)
         {
             if (MusicController.isPlayingSong)
             {
-                InvalidateStaffviews();
+
+                InvalidateRedLine();
+                //als het nummer afspeelt de redline verplaatsen met 4 pixels.
+                if (RedLineX >= 1700)
+                {
+                    //als de lijn het einde van een staff bereikt. De lijn verplaatsen naar de volgende staff
+                    RedLineX = 0;
+                    if (song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
+                    {
+                        song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
+                        //rodeLijn.Stop();
+                        staffViews[CurrentPlayingStaff].redLine.Visible = false;
+                        CurrentPlayingStaff++;
+                        song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
+                        staffViews[CurrentPlayingStaff].redLine.Visible = true;
+
+                    }
+                    else
+                    {
+                        song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
+                        staffViews.ElementAt(CurrentPlayingStaff).redLine.Visible = false;
+                        staffViews.ElementAt(0).redLine.Visible = true;
+                        song.Staffs[0].IsBeingPlayed = true;
+                        MusicController.isPlayingSong = false;
+                        MusicController.ResetLine();
+                    }
+
+
+                }
             }
-
         }
-
 
         private void TitelBox_TextChanged(object sender, EventArgs e)
         {
             song.Title = TitelBox.Text;
             Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
+            TitelBox.Size = size;
         }
 
+        //timer starten, reageert op songstarted in MusicController
         public void StartTimer(object sender, EventArgs e)
         {
             if (RunningTimer == false)
             {
                 RunningTimer = true;
-                t.Start();
-                rodeLijn.Start();
+                Songtimer.Start();
+                RedLine.Start();
             }
         }
 
@@ -427,20 +475,7 @@ namespace VirtualPiano.View
             if (MusicController.isPlayingSong)
             {
                 RedLineX = RedLineX + 4;
-                if (RedLineX >= 1700)
-                {
-                    RedLineX = 0;
-                    if (song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
-                    {
-                        song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
-                        //rodeLijn.Stop();
-                        CurrentPlayingStaff++;
 
-                        song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
-                    }
-
-
-                }
                 song.PlayNote();
             }
         }
@@ -448,32 +483,33 @@ namespace VirtualPiano.View
 
         public void StopTimer(object sender, EventArgs e)
         {
-
-            t.Stop();
-            rodeLijn.Stop();
-            foreach (var item in song.Staffs)
+            
+            Songtimer.Stop();
+            RedLine.Stop();
+            foreach (var item in staffViews)
             {
-                if (item != song.Staffs[0])
+                if(item != staffViews.First())
                 {
-                    item.IsBeingPlayed = false;
+                    item.staff.IsBeingPlayed = false;
+                    item.redLine.Visible = false;
                 }
                 else
                 {
-                    item.IsBeingPlayed = true;
-                }
+                    item.staff.IsBeingPlayed = true;
 
+                    item.redLine.Visible = true;
+                }
             }
-            Refresh();
             CurrentPlayingStaff = 0;
             RunningTimer = false;
+            Refresh();
+
         }
 
-        private void InvalidateStaffviews()
+        private void InvalidateRedLine()
         {
-            foreach (var item in staffViews)
-            {
-                item.Invalidate();
-            }
+            staffViews.ElementAt(CurrentPlayingStaff).InvalidateRedLine();
+
         }
     }
 }

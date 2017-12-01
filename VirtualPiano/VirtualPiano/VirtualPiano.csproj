@@ -61,10 +61,6 @@
     <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />
     <Compile Include="Control\PianoKeysController.cs" />
-    <Compile Include="Migrations\201711300944491_hoi.cs" />
-    <Compile Include="Migrations\201711300944491_hoi.Designer.cs">
-      <DependentUpon>201711300944491_hoi.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -82,6 +78,12 @@
     </Compile>
     <Compile Include="View\DatabaseFileExplorer.Designer.cs">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DatabaseFileRemover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DatabaseFileRemover.Designer.cs">
+      <DependentUpon>DatabaseFileRemover.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
@@ -109,17 +111,23 @@
     <Compile Include="View\PianoKeysView.Designer.cs">
       <DependentUpon>PianoKeysView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\RedLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RedLine.Designer.cs">
+      <DependentUpon>RedLine.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\StaffView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\201711300944491_hoi.resx">
-      <DependentUpon>201711300944491_hoi.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DatabaseFileRemover.resx">
+      <DependentUpon>DatabaseFileRemover.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -134,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MenuBarView.resx">
       <DependentUpon>MenuBarView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RedLine.resx">
+      <DependentUpon>RedLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\StaffView.resx">
       <DependentUpon>StaffView.cs</DependentUpon>

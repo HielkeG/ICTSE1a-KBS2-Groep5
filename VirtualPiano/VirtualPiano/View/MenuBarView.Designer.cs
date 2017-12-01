@@ -36,6 +36,7 @@
             this.opslaanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verwijderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.instrumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitaarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +64,7 @@
             this.bestandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nieuwToolStripMenuItem,
             this.openenToolStripMenuItem,
+            this.verwijderToolStripMenuItem,
             this.toolStripSeparator1,
             this.opslaanToolStripMenuItem});
             this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
@@ -115,6 +117,14 @@
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
             this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.GeluidAanUit);
+            // 
+            // verwijderToolStripMenuItem
+            // 
+            this.verwijderToolStripMenuItem.Name = "verwijderToolStripMenuItem";
+            this.verwijderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.verwijderToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.verwijderToolStripMenuItem.Text = "Verwijder..";
+            this.verwijderToolStripMenuItem.Click += new System.EventHandler(this.verwijderToolStripMenuItem_Click);
             // 
             // instrumentToolStripMenuItem
             // 
@@ -190,6 +200,7 @@
         private System.Windows.Forms.ToolStripMenuItem opslaanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verwijderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem instrumentToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem pianoToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem marimbaToolStripMenuItem;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VirtualPiano.View;
 
+
 namespace TestProject
 {
     [TestClass]
@@ -100,16 +101,6 @@ namespace TestProject
             Assert.AreEqual(Expect, bar.CheckBarSpace(new Note(NoteName.halfNote, "A", 2)));
         }
 
-        [TestMethod]
-        public void GetSongFromDatabase_WhenFilled()
-        {
-            List<Song> songs = new List<Song>();
-
-            using (var context = new Context())
-            {
-                //songs = context.Songs;   
-            }
-        }
 
         [TestMethod]
         public void ChangeInstrument_FromPianoToGuitar()

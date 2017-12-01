@@ -52,10 +52,10 @@ namespace VirtualPiano.View
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Sharp = new System.Windows.Forms.ToolStripButton();
             this.Flat = new System.Windows.Forms.ToolStripButton();
-            this.Metronoom = new System.Windows.Forms.Timer(this.components);
+            this.Metronome = new System.Windows.Forms.Timer(this.components);
             this.Snelheid = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.rodeLijn = new System.Windows.Forms.Timer(this.components);
+            this.RedLine = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -127,7 +127,7 @@ namespace VirtualPiano.View
             this.GKey.AutoSize = false;
             this.GKey.BackColor = System.Drawing.Color.Transparent;
             this.GKey.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.GKey.Image = global::VirtualPiano.Properties.Resources.Gsleutel_icon;
+            this.GKey.Image = ((System.Drawing.Image)(resources.GetObject("GKey.Image")));
             this.GKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.GKey.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GKey.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -141,7 +141,7 @@ namespace VirtualPiano.View
             // 
             this.FKey.AutoSize = false;
             this.FKey.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FKey.Image = global::VirtualPiano.Properties.Resources.fsleutel_icon;
+            this.FKey.Image = ((System.Drawing.Image)(resources.GetObject("FKey.Image")));
             this.FKey.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FKey.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FKey.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -164,7 +164,7 @@ namespace VirtualPiano.View
             this.FullNote.AutoSize = false;
             this.FullNote.BackColor = System.Drawing.Color.Transparent;
             this.FullNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FullNote.Image = global::VirtualPiano.Properties.Resources.helenoot_icon;
+            this.FullNote.Image = ((System.Drawing.Image)(resources.GetObject("FullNote.Image")));
             this.FullNote.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FullNote.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.FullNote.Name = "FullNote";
@@ -178,7 +178,7 @@ namespace VirtualPiano.View
             this.HalfNote.AutoSize = false;
             this.HalfNote.BackColor = System.Drawing.Color.Transparent;
             this.HalfNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.HalfNote.Image = global::VirtualPiano.Properties.Resources.halvenoot_icon;
+            this.HalfNote.Image = ((System.Drawing.Image)(resources.GetObject("HalfNote.Image")));
             this.HalfNote.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HalfNote.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.HalfNote.Name = "HalfNote";
@@ -206,7 +206,7 @@ namespace VirtualPiano.View
             this.EightNote.AutoSize = false;
             this.EightNote.BackColor = System.Drawing.Color.Transparent;
             this.EightNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EightNote.Image = global::VirtualPiano.Properties.Resources.achtstenoot_icon;
+            this.EightNote.Image = ((System.Drawing.Image)(resources.GetObject("EightNote.Image")));
             this.EightNote.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EightNote.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.EightNote.Name = "EightNote";
@@ -220,7 +220,7 @@ namespace VirtualPiano.View
             this.SixteenthNote.AutoSize = false;
             this.SixteenthNote.BackColor = System.Drawing.Color.Transparent;
             this.SixteenthNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SixteenthNote.Image = global::VirtualPiano.Properties.Resources.zestiendenoot_icon;
+            this.SixteenthNote.Image = ((System.Drawing.Image)(resources.GetObject("SixteenthNote.Image")));
             this.SixteenthNote.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SixteenthNote.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.SixteenthNote.Name = "SixteenthNote";
@@ -269,7 +269,7 @@ namespace VirtualPiano.View
             // 
             this.QuarterRest.AutoSize = false;
             this.QuarterRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.QuarterRest.Image = global::VirtualPiano.Properties.Resources.KwartRust;
+            this.QuarterRest.Image = ((System.Drawing.Image)(resources.GetObject("QuarterRest.Image")));
             this.QuarterRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.QuarterRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.QuarterRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -283,7 +283,7 @@ namespace VirtualPiano.View
             // 
             this.EightRest.AutoSize = false;
             this.EightRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EightRest.Image = global::VirtualPiano.Properties.Resources.achtsterust_icon;
+            this.EightRest.Image = ((System.Drawing.Image)(resources.GetObject("EightRest.Image")));
             this.EightRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.EightRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EightRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -297,7 +297,7 @@ namespace VirtualPiano.View
             // 
             this.SixteenthRest.AutoSize = false;
             this.SixteenthRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SixteenthRest.Image = global::VirtualPiano.Properties.Resources.zestienderust_icon;
+            this.SixteenthRest.Image = ((System.Drawing.Image)(resources.GetObject("SixteenthRest.Image")));
             this.SixteenthRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.SixteenthRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SixteenthRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -320,7 +320,7 @@ namespace VirtualPiano.View
             this.Sharp.AutoSize = false;
             this.Sharp.BackColor = System.Drawing.Color.Transparent;
             this.Sharp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Sharp.Image = global::VirtualPiano.Properties.Resources.Kruis;
+            this.Sharp.Image = ((System.Drawing.Image)(resources.GetObject("Sharp.Image")));
             this.Sharp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Sharp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Sharp.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -335,7 +335,7 @@ namespace VirtualPiano.View
             this.Flat.AutoSize = false;
             this.Flat.BackColor = System.Drawing.Color.Transparent;
             this.Flat.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Flat.Image = global::VirtualPiano.Properties.Resources.Mol;
+            this.Flat.Image = ((System.Drawing.Image)(resources.GetObject("Flat.Image")));
             this.Flat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Flat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Flat.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -345,10 +345,10 @@ namespace VirtualPiano.View
             this.Flat.Text = "Mol";
             this.Flat.Click += new System.EventHandler(this.Flat_Click);
             // 
-            // Metronoom
+            // Metronome
             // 
-            this.Metronoom.Interval = 500;
-            this.Metronoom.Tick += new System.EventHandler(this.Metronoom_Tick);
+            this.Metronome.Interval = 500;
+            this.Metronome.Tick += new System.EventHandler(this.Metronoom_Tick);
             // 
             // Snelheid
             // 
@@ -364,7 +364,7 @@ namespace VirtualPiano.View
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox1.Image = global::VirtualPiano.Properties.Resources.kwartnoot_cur;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(263, 92);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(35, 70);
@@ -372,23 +372,22 @@ namespace VirtualPiano.View
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
-            // rodeLijn
+            // RedLine
             // 
-            this.rodeLijn.Interval = 18;
-            this.rodeLijn.Tick += new System.EventHandler(this.rodeLijn_Tick);
+            this.RedLine.Interval = 20;
+            this.RedLine.Tick += new System.EventHandler(this.RedLine_Tick);
             // 
             // TitelBox
             // 
             this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(384, 37);
+            this.TitelBox.Location = new System.Drawing.Point(933, 32);
             this.TitelBox.MaxLength = 1230;
             this.TitelBox.Name = "TitelBox";
-            this.TitelBox.Size = new System.Drawing.Size(1230, 35);
+            this.TitelBox.Size = new System.Drawing.Size(200, 35);
             this.TitelBox.TabIndex = 1;
             this.TitelBox.Text = "Titel";
-            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
             // 
             // ComposeView
@@ -441,10 +440,10 @@ namespace VirtualPiano.View
         private System.Windows.Forms.ToolStripButton EightRest;
         private System.Windows.Forms.ToolStripButton SixteenthRest;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        public Timer Metronoom;
+        public Timer Metronome;
         private TextBox Snelheid;
         private PictureBox pictureBox1;
-        public Timer rodeLijn;
+        public Timer RedLine;
         public TextBox TitelBox;
     }
 }
