@@ -52,11 +52,11 @@ namespace VirtualPiano.View
             MusicController.SongStopped += StopTimer;
             ShowPianoKeysView();
 
-            MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
+            MusicController m1 = new MusicController(Metronome, RedLine, song);
             Controls.Add(MusicController.rewindBox);
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
-            Snelheid.Text = Metronoom.Interval.ToString();
+            Snelheid.Text = Metronome.Interval.ToString();
             DoubleBuffered = true;
         }
 
@@ -408,7 +408,7 @@ namespace VirtualPiano.View
         }
 
         //methode die alle staffviews invalidate. Zodat de rode lijn beweegt.
-        private void rodeLijn_Tick(object sender, EventArgs e)
+        private void RedLine_Tick(object sender, EventArgs e)
         {
             if (MusicController.isPlayingSong)
             {
@@ -459,7 +459,7 @@ namespace VirtualPiano.View
             {
                 RunningTimer = true;
                 t.Start();
-                rodeLijn.Start();
+                RedLine.Start();
             }
         }
 
@@ -479,7 +479,7 @@ namespace VirtualPiano.View
         {
             
             t.Stop();
-            rodeLijn.Stop();
+            RedLine.Stop();
             foreach (var item in song.Staffs)
             {
                 if (item != song.Staffs[0])
