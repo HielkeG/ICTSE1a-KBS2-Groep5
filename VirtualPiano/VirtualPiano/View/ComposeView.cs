@@ -33,12 +33,21 @@ namespace VirtualPiano.View
         private static bool RunningTimer { get; set; }
 
         public static int RedLineX { get; set; }
+        public PianoKeysController pkc1 = new PianoKeysController();
+        public static PianoKeysView pkv1 = new PianoKeysView();
+        public static Panel keypanel = new Panel()
+        {
+            Location = new Point(190, 730),
+            Size = new Size(1400, 250),
+            Dock = DockStyle.Bottom,
+            Visible = true
+        };
 
         public ComposeView()
         {
             t.Interval = 5;
-            t.Elapsed +=  TimerTick;
-            
+            t.Elapsed += TimerTick;
+
             InitializeComponent();
             if (firstStart)
             {
@@ -47,7 +56,11 @@ namespace VirtualPiano.View
             }
             MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
-            ShowPianoKeysView();
+
+            Controls.Add(PianoKeysController.pianoKeysBox);
+            Controls.Add(keypanel);
+            keypanel.Controls.Add(pkv1);
+
 
             MusicController m1 = new MusicController(Metronoom, rodeLijn, song);
             Controls.Add(MusicController.rewindBox);
@@ -59,15 +72,7 @@ namespace VirtualPiano.View
 
         public void ShowPianoKeysView()
         {
-            Panel pianokeypanel = new Panel();
-            pianokeypanel.Location = new Point(400, 740);
-            pianokeypanel.Size = new Size(1060, 235);
-            Controls.Add(pianokeypanel);
-            PianoKeysView _PianoKeysView = new PianoKeysView()
-            {
-                Dock = DockStyle.None
-            };
-            pianokeypanel.Controls.Add(_PianoKeysView);
+
         }
 
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
@@ -169,7 +174,7 @@ namespace VirtualPiano.View
             };
             staffViews.Add(panel);
             panel.Controls.Add(_staffView);
-            
+
         }
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
@@ -186,7 +191,7 @@ namespace VirtualPiano.View
             this.Controls.Add(btnAddStaff);
             btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
         }
-        
+
 
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
@@ -330,14 +335,14 @@ namespace VirtualPiano.View
             }
         }
 
-        public void Metronoom_Tick(object sender, EventArgs e) {        }
+        public void Metronoom_Tick(object sender, EventArgs e) { }
 
 
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
             if (FlatSharp < 5)
             {
-                
+
                 FlatSharp++;
                 song.ChangeSharpFlat(FlatSharp);
                 InvalidateStaffviews();
@@ -356,7 +361,7 @@ namespace VirtualPiano.View
             Pen p2 = new Pen(Color.Black, 8);
             SolidBrush s1 = new SolidBrush(Color.White);
             SolidBrush s2 = new SolidBrush(Color.Black);
-            
+
             //for (int i = 0; i < tempint; i++)
             //{
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
@@ -433,7 +438,7 @@ namespace VirtualPiano.View
 
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
                     }
-                    
+
 
                 }
                 song.PlayNote();
@@ -443,7 +448,7 @@ namespace VirtualPiano.View
 
         public void StopTimer(object sender, EventArgs e)
         {
-            
+
             t.Stop();
             rodeLijn.Stop();
             foreach (var item in song.Staffs)
