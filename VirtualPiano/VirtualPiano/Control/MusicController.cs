@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -47,6 +48,29 @@ namespace VirtualPiano.Control
             rodeLijn = r;
             song = s;
             Metronoom.Interval = 500;
+        }
+
+        public static void PlaySound(int octave, string tone)
+        {
+            var player = new System.Windows.Media.MediaPlayer();
+            try
+            {
+                string filename = (tone).ToString();
+
+                if (tone == "Bes") { filename = "Ais"; }
+                else if (tone == "Des") { filename = "Cis"; }
+                else if (tone == "Es") { filename = "Dis"; }
+                else if (tone == "Ges") { filename = "Fis"; }
+                else if (tone == "As") { filename = "Gis"; }
+
+                player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
+                player.Play();
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("File not found");
+            }
+            
         }
 
         public static void ResetLine()

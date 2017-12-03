@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Control\Context.cs" />
     <Compile Include="Control\CursorController.cs" />
+    <Compile Include="Control\KeyBinds.cs" />
     <Compile Include="Control\MenuBarController.cs" />
     <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />

@@ -22,8 +22,11 @@ namespace VirtualPiano
             DatabaseController.InitializeDatabase();
         }
 
-        
 
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyBinds.PianoKeys(e);
 
+        }
     }
 }
