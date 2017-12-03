@@ -44,11 +44,8 @@ namespace VirtualPiano.Model
         }
         public Song()
         {
-
                 Staffs = new List<Staff>();
                 Staffs.Add(new Staff());
-            
-
         }
 
         public void AddStaff(Staff s)
@@ -118,9 +115,9 @@ namespace VirtualPiano.Model
             {
                 if (staff.IsBeingPlayed)
                 {
-                    foreach (var bar in staff.Bars)
+                    if (ComposeView.RedLineX <= 425)
                     {
-                        foreach (var sign in bar.Signs)
+                        foreach (var sign in staff.Bars.ElementAt(0).Signs)
                         {
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
@@ -128,6 +125,46 @@ namespace VirtualPiano.Model
                             }
                         }
                     }
+                    else if(ComposeView.RedLineX > 425 && ComposeView.RedLineX <= 850)
+                    {
+                        foreach (var sign in staff.Bars.ElementAt(1).Signs)
+                        {
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            {
+                                note.PlaySound();
+                            }
+                        }
+                    }
+                    else if (ComposeView.RedLineX > 850 && ComposeView.RedLineX <= 1275)
+                    {
+                        foreach (var sign in staff.Bars.ElementAt(2).Signs)
+                        {
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            {
+                                note.PlaySound();
+                            }
+                        }
+                    }
+                    else if (ComposeView.RedLineX > 1275)
+                    {
+                        foreach (var sign in staff.Bars.ElementAt(3).Signs)
+                        {
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            {
+                                note.PlaySound();
+                            }
+                        }
+                    }
+                    //foreach (var bar in staff.Bars)
+                    //{
+                    //    foreach (var sign in bar.Signs)
+                    //    {
+                    //        if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                    //        {
+                    //            note.PlaySound();
+                    //        }
+                    //    }
+                    //}
                 }
             }
         }
