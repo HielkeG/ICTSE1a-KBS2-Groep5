@@ -19,6 +19,9 @@ namespace VirtualPiano.View
         public Song song = new Song();
         Button btnAddStaff = new Button();
         int y_staff = 140;
+        public static bool ConnectSelected = false;
+        public static Note selectedNote1;
+        public static Note selectedNote2;
         internal static bool signSelected;
         internal static int FlatSharp = 0;
         internal static NoteName SelectedNoteName = NoteName.NULL;
@@ -365,12 +368,7 @@ namespace VirtualPiano.View
 
         private void Flat_Click(object sender, EventArgs e)
         {
-            if (FlatSharp > -5)
-            {
-                FlatSharp--;
-                song.ChangeSharpFlat(FlatSharp);
-                InvalidateRedLine();
-            }
+
         }
 
         public void Metronoom_Tick(object sender, EventArgs e) { }
@@ -536,6 +534,30 @@ namespace VirtualPiano.View
         {
             btnAddStaff.Dispose();
             AddNewStaff();
+        }
+
+        private void ComposeView_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Cursor = Cursors.Default;
+                signSelected = false;
+                SelectedNoteName = NoteName.NULL;
+                SelectedRestName = RestName.NULL;
+                SelectedClefName = ClefName.NULL;
+                ComposeView.ConnectSelected = false;
+                Invalidate();
+            }
+
+        }
+
+        private void Connect_Click(object sender, EventArgs e)
+        {
+            SelectedNoteName = NoteName.NULL;
+            SelectedRestName = RestName.NULL;
+            SelectedClefName = ClefName.NULL;
+            signSelected = true;
+            ConnectSelected = true;
         }
     }
 }

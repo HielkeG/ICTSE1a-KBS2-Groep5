@@ -58,6 +58,8 @@ namespace VirtualPiano.View
             this.RedLine = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -114,6 +116,8 @@ namespace VirtualPiano.View
             this.SixteenthRest,
             this.toolStripSeparator3,
             this.Sharp,
+            this.toolStripButton1,
+            this.toolStripSeparator4,
             this.Flat});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(-1, 16);
@@ -343,8 +347,8 @@ namespace VirtualPiano.View
             this.Flat.Name = "Flat";
             this.Flat.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.Flat.Size = new System.Drawing.Size(50, 50);
-            this.Flat.Text = "Mol";
-            this.Flat.Click += new System.EventHandler(this.Flat_Click);
+            this.Flat.Text = "Noten samenvoegen";
+            this.Flat.Click += new System.EventHandler(this.Connect_Click);
             // 
             // Metronome
             // 
@@ -401,6 +405,28 @@ namespace VirtualPiano.View
             this.menuBarView1.Size = new System.Drawing.Size(342, 25);
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.AutoSize = false;
+            this.toolStripButton1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.toolStripButton1.Size = new System.Drawing.Size(50, 50);
+            this.toolStripButton1.Text = "Mol";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.AutoSize = false;
+            this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(1);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.toolStripSeparator4.Size = new System.Drawing.Size(50, 6);
             // 
             // ComposeView
             // 
@@ -459,5 +485,7 @@ namespace VirtualPiano.View
         public Timer RedLine;
         public TextBox TitelBox;
         private MenuBarView menuBarView1;
+        private ToolStripButton toolStripButton1;
+        private ToolStripSeparator toolStripSeparator4;
     }
 }
