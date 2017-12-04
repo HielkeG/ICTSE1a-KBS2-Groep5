@@ -17,6 +17,7 @@ namespace VirtualPiano.Model
 
     public class Note : Sign
     {
+        public Note ConnectionNote;
         public String noteName { get; set; }
         public bool IsBeingPlayed;
         public int x { get; set; }
@@ -104,10 +105,10 @@ namespace VirtualPiano.Model
             if (Flatsharp <= -5) { if (tone == "G") { tone = "Ges"; } }
 
             if (noteName == NoteName.wholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
-            else if (noteName == NoteName.halfNote.ToString()) { if (y <= 53) { image = Resources.halvenootflipped; } else { image = Resources.halvenoot; } duration = 8; }
-            else if (noteName == NoteName.quarterNote.ToString()) { if (y <= 53) { image = Resources.kwartnootflipped; } else { image = Resources.kwartnoot; } duration = 4; }
-            else if (noteName == NoteName.eightNote.ToString()) { if (y <= 53) { image = Resources.achtstenootflipped; } else { image = Resources.achtstenoot; } duration = 2; }
-            else if (noteName == NoteName.sixteenthNote.ToString()) { if (y <= 53) { image = Resources.zestiendenootflipped; } else { image = Resources.zestiendenoot; } duration = 1; }
+            else if (noteName == NoteName.halfNote.ToString()) { if (y <= 52) { image = Resources.halvenootflipped; } else { image = Resources.halvenoot; } duration = 8; }
+            else if (noteName == NoteName.quarterNote.ToString()) { if (y <= 52) { image = Resources.kwartnootflipped; } else { image = Resources.kwartnoot; } duration = 4; }
+            else if (noteName == NoteName.eightNote.ToString()) { if (y <= 52) { image = Resources.achtstenootflipped; } else { image = Resources.achtstenoot; } duration = 2; }
+            else if (noteName == NoteName.sixteenthNote.ToString()) { if (y <= 52) { image = Resources.zestiendenootflipped; } else { image = Resources.zestiendenoot; } duration = 1; }
         }
 
         public void PlaySound()
@@ -139,6 +140,10 @@ namespace VirtualPiano.Model
             this.x = x + 50;
         }
 
-        
+        public bool isLocation(int y, int x)
+        {
+            return (this.x - 10 < x && this.x + 10 > x && this.y - 10 < y - 63 && this.y + 10 > y - 63);
+        }
+
     }
 }

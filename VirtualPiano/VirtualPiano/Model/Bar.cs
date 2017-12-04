@@ -71,7 +71,7 @@ namespace VirtualPiano.Model
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e);
             }
             
         }
