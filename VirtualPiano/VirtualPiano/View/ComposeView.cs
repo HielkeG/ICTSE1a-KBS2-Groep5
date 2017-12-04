@@ -37,9 +37,11 @@ namespace VirtualPiano.View
 
         public static int CurrentPlayingStaff = 0;
         //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
-        private static bool RunningTimer { get; set; }
+        private static bool RunningTimer;
         //locatie van de rode lijn
-        public static int RedLineX { get; set; }
+        public static int RedLineX;
+        public int StaffCounter = 0;
+
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Panel keypanel = new Panel()
@@ -181,8 +183,10 @@ namespace VirtualPiano.View
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
+            StaffCounter++;
             btnAddStaff.Dispose();
             AddNewStaff();
+            
         }
 
         public void AddNewStaff()   //Nieuw notenbalk aan Song toevoegen
@@ -195,7 +199,7 @@ namespace VirtualPiano.View
                 if (staff == song.GetStaffs().Last())
                 {
                     AddStaffView(staff);
-                    AddStaffButton();
+                    if(StaffCounter < 2)AddStaffButton();
                     y_staff += 190;
                 }
             }
@@ -551,7 +555,7 @@ namespace VirtualPiano.View
                 SelectedNoteName = NoteName.NULL;
                 SelectedRestName = RestName.NULL;
                 SelectedClefName = ClefName.NULL;
-                ComposeView.ConnectSelected = false;
+                ConnectSelected = false;
                 Invalidate();
             }
 
@@ -564,6 +568,7 @@ namespace VirtualPiano.View
             SelectedClefName = ClefName.NULL;
             signSelected = true;
             ConnectSelected = true;
+            Cursor = CursorController.ChangeCursor("Connect");
         }
     }
 }

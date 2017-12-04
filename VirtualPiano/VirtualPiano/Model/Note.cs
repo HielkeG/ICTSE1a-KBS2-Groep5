@@ -17,7 +17,7 @@ namespace VirtualPiano.Model
 
     public class Note : Sign
     {
-        public Note ConnectionNote;
+        public Note ConnectionNote = null;
         public String noteName { get; set; }
         public bool IsBeingPlayed;
         public int x { get; set; }
