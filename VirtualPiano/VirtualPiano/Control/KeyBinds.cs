@@ -13,6 +13,7 @@ namespace VirtualPiano.Control
         {
             switch (e.KeyCode)
             {
+                //octaaf 3
                 case Keys.Q:
                     MusicController.PlaySound(3, "C");
                     break;
@@ -49,8 +50,43 @@ namespace VirtualPiano.Control
                 case Keys.U:
                     MusicController.PlaySound(3, "B");
                     break;
-                
-                
+                //octaaf 4
+                case Keys.V:
+                    MusicController.PlaySound(4, "C");
+                    break;
+                case Keys.G:
+                    MusicController.PlaySound(4, "Cis");
+                    break;
+                case Keys.B:
+                    MusicController.PlaySound(4, "D");
+                    break;
+                case Keys.H:
+                    MusicController.PlaySound(4, "Dis");
+                    break;
+                case Keys.N:
+                    MusicController.PlaySound(4, "E");
+                    break;
+                case Keys.M:
+                    MusicController.PlaySound(4, "F");
+                    break;
+                case Keys.K:
+                    MusicController.PlaySound(4, "Fis");
+                    break;
+                case Keys.Oemcomma:
+                    MusicController.PlaySound(4, "G");
+                    break;
+                case Keys.OemPeriod:
+                    MusicController.PlaySound(4, "A");
+                    break;
+                case Keys.L:
+                    MusicController.PlaySound(4, "Gis");
+                    break;
+                case Keys.OemSemicolon:
+                    MusicController.PlaySound(4, "Ais");
+                    break;
+                case Keys.OemBackslash:
+                    MusicController.PlaySound(4, "B");
+                    break;
                 default:
                     break;
             }
