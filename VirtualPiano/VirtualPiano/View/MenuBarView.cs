@@ -19,7 +19,7 @@ namespace VirtualPiano.View
         public event EventHandler newSong;
         public event EventHandler newStaffView;
         MenuBarController mbc = new MenuBarController();
-
+        public static bool IsPlayingKeyboard = false;
         public MenuBarView()
         {
 
@@ -165,6 +165,11 @@ namespace VirtualPiano.View
         private void toevoegenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newStaffView(this, e);
+        }
+
+        private void PlayingKeyboard_Click(object sender, EventArgs e)
+        {
+            mbc.TogglePlayingPiano(this);
         }
     }
 }
