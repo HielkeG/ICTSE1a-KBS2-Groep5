@@ -470,9 +470,16 @@ namespace VirtualPiano.View
 
         private void TitelBox_TextChanged(object sender, EventArgs e)
         {
-            song.Title = TitelBox.Text;
-            Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
-            TitelBox.Size = size;
+            if (TitelBox.Text != "")
+            {
+                song.Title = TitelBox.Text;
+                Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
+                TitelBox.Size = size;
+            }
+            else
+            {
+                song.Title = " ";
+            }
         }
 
         //timer starten, reageert op songstarted in MusicController
