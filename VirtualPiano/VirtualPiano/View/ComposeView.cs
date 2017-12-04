@@ -24,9 +24,8 @@ namespace VirtualPiano.View
         public static Note selectedNote2;
         internal static bool signSelected;
         internal static int FlatSharp = 0;
-        internal static NoteName SelectedNoteName = NoteName.NULL;
-        internal static RestName SelectedRestName = RestName.NULL;
-        internal static ClefName SelectedClefName = ClefName.NULL;
+        public static string SelectedSign = null;
+        internal static string SelectedSharpFlat = null;
         private List<StaffView> staffViews = new List<StaffView>();
         private bool firstStart = true;
         //timer die de x van de rode lijn verhoogt en noten afspeelt. 
@@ -98,12 +97,7 @@ namespace VirtualPiano.View
         {
             SetNewSong();
         }
-
-        public void ShowPianoKeysView()
-        {
-
-        }
-
+        
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
         {
             foreach (Staff staff in song.GetStaffs())
@@ -120,7 +114,6 @@ namespace VirtualPiano.View
                     AddStaffButton();
                 }
                 y_staff += 200;
-
             }
 
         }
@@ -146,7 +139,6 @@ namespace VirtualPiano.View
             btnAddStaff.Dispose();
             y_staff = 140;
             Refresh();
-
         }
 
         public void SetNewSong()
@@ -244,104 +236,74 @@ namespace VirtualPiano.View
             //boolean om aan te geven dat een noot geslepen wordt.
             signSelected = true;
             //de bijbehorende naam van de noot.
-            SelectedNoteName = NoteName.wholeNote;
-            //beide andere namen op null zetten. Wanneer de gebruiker dan een ander teken aanklikt wordt dit goed gereset. 
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
+            SelectedSign = "WholeNote";
             //de cursor veranderen naar de gewenste afbeelding.
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedNoteName = NoteName.halfNote;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            SelectedSign = "HalfNote";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedNoteName = NoteName.quarterNote;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            SelectedSign = "QuarterNote";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedNoteName = NoteName.eightNote;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            SelectedSign = "EightNote";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedNoteName = NoteName.sixteenthNote;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            SelectedSign = "SixteenthNote";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void FullRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.wholeRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            SelectedSign = "WholeRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
 
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.halfRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            SelectedSign = "HalfRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
 
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.quarterRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            SelectedSign = "QuarterRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void GKey_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedClefName = ClefName.G;
-            SelectedNoteName = NoteName.NULL;
-            SelectedRestName = RestName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedClefName);
+            SelectedSign = "G";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
-
-        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+        
         private void FKey_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedClefName = ClefName.F;
-            SelectedNoteName = NoteName.NULL;
-            SelectedRestName = RestName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedClefName);
+            SelectedSign = "F";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void ComposeView_MouseEnter(object sender, EventArgs e)
@@ -355,24 +317,15 @@ namespace VirtualPiano.View
         private void EightRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.eightRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            SelectedSign = "EightRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void SixteenthRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.sixteenthRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
-        }
-
-        private void Flat_Click(object sender, EventArgs e)
-        {
-
+            SelectedSign = "SixteenthRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         public void Metronoom_Tick(object sender, EventArgs e) { }
@@ -380,13 +333,16 @@ namespace VirtualPiano.View
 
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
-            if (FlatSharp < 5)
-            {
+            signSelected = true;
+            SelectedSign = "Sharp";
+            Cursor = CursorController.ChangeCursor("Sharp");
+        }
 
-                FlatSharp++;
-                song.ChangeSharpFlat(FlatSharp);
-                InvalidateRedLine();
-            }
+        private void Flat_MouseDown(object sender, MouseEventArgs e)
+        {
+            signSelected = true;
+            SelectedSign = "Flat";
+            Cursor = CursorController.ChangeCursor("Flat");
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -409,17 +365,6 @@ namespace VirtualPiano.View
             {
                 e.Graphics.DrawLine(p2, new Point(400, 10), new Point(400 + RedLineX, 10));
             }
-            //foreach (Staff staff in Song.staffs)
-            //    {
-            //        foreach (Bar bar in staff.Bars)
-            //        {
-            //        int temp = 0;
-            //            e.Graphics.DrawLine(p2, new Point(200, 10), new Point(200, +temp*2));
-            //        temp++;
-            //        }
-            //    }
-
-            //}
         }
 
 
@@ -545,9 +490,7 @@ namespace VirtualPiano.View
             {
                 Cursor = Cursors.Default;
                 signSelected = false;
-                SelectedNoteName = NoteName.NULL;
-                SelectedRestName = RestName.NULL;
-                SelectedClefName = ClefName.NULL;
+                SelectedSign = null;
                 ConnectSelected = false;
                 Invalidate();
             }
@@ -556,12 +499,12 @@ namespace VirtualPiano.View
 
         private void Connect_Click(object sender, EventArgs e)
         {
-            SelectedNoteName = NoteName.NULL;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
+            SelectedSign = null;
             signSelected = true;
             ConnectSelected = true;
             Cursor = CursorController.ChangeCursor("Connect");
         }
+
+     
     }
 }
