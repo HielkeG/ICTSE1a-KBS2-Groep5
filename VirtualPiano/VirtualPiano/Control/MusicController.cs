@@ -31,6 +31,8 @@ namespace VirtualPiano.Control
         public static int height = 50;
         public static event EventHandler SongStarted;
         public static event EventHandler SongStopped;
+        private static int currentOctave = 0;
+        private static string currentTone = "";
 
         public MusicController(Timer m, Timer r, Song s)
         {
@@ -52,25 +54,26 @@ namespace VirtualPiano.Control
 
         public static void PlaySound(int octave, string tone)
         {
-            var player = new System.Windows.Media.MediaPlayer();
-            try
-            {
-                string filename = (tone).ToString();
+                var player = new System.Windows.Media.MediaPlayer();
+                try
+                {
+                    string filename = (tone).ToString();
 
-                if (tone == "Bes") { filename = "Ais"; }
-                else if (tone == "Des") { filename = "Cis"; }
-                else if (tone == "Es") { filename = "Dis"; }
-                else if (tone == "Ges") { filename = "Fis"; }
-                else if (tone == "As") { filename = "Gis"; }
+                    if (tone == "Bes") { filename = "Ais"; }
+                    else if (tone == "Des") { filename = "Cis"; }
+                    else if (tone == "Es") { filename = "Dis"; }
+                    else if (tone == "Ges") { filename = "Fis"; }
+                    else if (tone == "As") { filename = "Gis"; }
 
-                player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
-                player.Play();
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("File not found");
-            }
-            
+                    player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
+                    player.Play();
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("File not found");
+                }
+                currentOctave = octave;
+                currentTone = tone;
         }
 
         public static void ResetLine()
