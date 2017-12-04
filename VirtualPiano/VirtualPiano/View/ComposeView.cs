@@ -503,19 +503,18 @@ namespace VirtualPiano.View
             
             Songtimer.Stop();
             RedLine.Stop();
+            
             foreach (var item in staffViews)
             {
                 if(item != staffViews.First())
                 {
                     item.staff.IsBeingPlayed = false;
-                    item.redLine.Visible = false;
                 }
                 else
                 {
                     item.staff.IsBeingPlayed = true;
-
-                    item.redLine.Visible = true;
                 }
+                item.redLine.Enabled = false;
             }
             CurrentPlayingStaff = 0;
             RunningTimer = false;
