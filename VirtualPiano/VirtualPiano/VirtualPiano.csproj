@@ -288,6 +288,8 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestiendenootflipped.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\ConnectNote.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\ConnectNote_icon.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\zestienderust.png" />
     <None Include="Resources\Geluiden\Piano\Piano4G.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4Fis.wav" />

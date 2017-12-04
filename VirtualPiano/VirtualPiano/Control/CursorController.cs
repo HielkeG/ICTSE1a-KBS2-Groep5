@@ -94,5 +94,16 @@ namespace VirtualPiano.Control
             Cursor cur = new System.Windows.Forms.Cursor(ptr);
             return cur;
         }
+
+        public static Cursor ChangeCursor(string s)
+        {
+            Bitmap b = null;
+            if (s == "Connect") b = Resources.ConnectNote_icon;
+            b.MakeTransparent(b.GetPixel(0, 0));
+            Graphics g = Graphics.FromImage(b);
+            IntPtr ptr = b.GetHicon();
+            Cursor cur = new System.Windows.Forms.Cursor(ptr);
+            return cur;
+        }
     }
 }

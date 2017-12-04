@@ -217,9 +217,9 @@ namespace VirtualPiano.View
                                 {
                                     if (sign is Note note)
                                     {
-                                        if (note.isLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
+                                        if (note.isLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && note.noteName == NoteName.eightNote.ToString() && note != ComposeView.selectedNote1)
                                         {
-
+                                            Console.WriteLine("hier kom ik!");
                                             if (ComposeView.selectedNote1 == null && note.ConnectionNote == null) ComposeView.selectedNote1 = note;
                                             else if (note.ConnectionNote == null) ComposeView.selectedNote2 = note;
 
@@ -229,6 +229,7 @@ namespace VirtualPiano.View
                                                 ComposeView.selectedNote1.image = Resources.kwartnoot;
                                                 ComposeView.selectedNote2.image = Resources.kwartnoot;
                                                 ComposeView.selectedNote1.ConnectionNote = ComposeView.selectedNote2;
+                                                ComposeView.selectedNote2.ConnectionNote = ComposeView.selectedNote1;
                                                 Invalidate();
                                                 ComposeView.selectedNote1 = null;
                                                 ComposeView.selectedNote2 = null;
