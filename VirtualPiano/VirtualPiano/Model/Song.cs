@@ -155,16 +155,6 @@ namespace VirtualPiano.Model
                             }
                         }
                     }
-                    //foreach (var bar in staff.Bars)
-                    //{
-                    //    foreach (var sign in bar.Signs)
-                    //    {
-                    //        if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
-                    //        {
-                    //            note.PlaySound();
-                    //        }
-                    //    }
-                    //}
                 }
             }
         }
