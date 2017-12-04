@@ -28,10 +28,10 @@ namespace VirtualPiano.Control
             else if (s == "QuarterRest") b = Resources.kwartrust_icon;
             else if (s == "EightRest") b = Resources.achtsterust_icon;
             else if (s == "SixteenthRest") b = Resources.zestienderust_icon;
-            else if (s == "GClef") b = Resources.Gsleutel_icon;
-            else if (s == "FClef") b = Resources.fsleutel_icon;
+            else if (s == "G") b = Resources.Gsleutel_icon;
+            else if (s == "F") b = Resources.fsleutel_icon;
             else if (s == "Sharp") b = Resources.Kruis;
-            else if (s == "Mol") b = Resources.Mol;
+            else if (s == "Flat") b = Resources.Mol;
             else if (s == "Connect") b = Resources.ConnectNote_icon;
             else return Cursors.Default;
 

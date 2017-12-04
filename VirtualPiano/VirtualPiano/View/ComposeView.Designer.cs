@@ -50,16 +50,16 @@ namespace VirtualPiano.View
             this.EightRest = new System.Windows.Forms.ToolStripButton();
             this.SixteenthRest = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.Flat = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.Connect = new System.Windows.Forms.ToolStripButton();
             this.Metronome = new System.Windows.Forms.Timer(this.components);
             this.Snelheid = new System.Windows.Forms.TextBox();
             this.RedLine = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
-            this.Connect = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -318,6 +318,21 @@ namespace VirtualPiano.View
             this.toolStripSeparator3.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator3.Size = new System.Drawing.Size(50, 6);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.AutoSize = false;
+            this.toolStripButton1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.toolStripButton1.Size = new System.Drawing.Size(50, 50);
+            this.toolStripButton1.Text = "Kruis";
+            this.toolStripButton1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Sharp_MouseDown);
+            // 
             // Flat
             // 
             this.Flat.AutoSize = false;
@@ -340,6 +355,20 @@ namespace VirtualPiano.View
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator4.Size = new System.Drawing.Size(50, 6);
+            // 
+            // Connect
+            // 
+            this.Connect.AutoSize = false;
+            this.Connect.BackColor = System.Drawing.Color.Transparent;
+            this.Connect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Connect.Image = global::VirtualPiano.Properties.Resources.ConnectNote_icon;
+            this.Connect.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Connect.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.Connect.Name = "Connect";
+            this.Connect.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.Connect.Size = new System.Drawing.Size(50, 50);
+            this.Connect.Text = "Noten samenvoegen";
+            this.Connect.Click += new System.EventHandler(this.Connect_Click);
             // 
             // Metronome
             // 
@@ -397,34 +426,6 @@ namespace VirtualPiano.View
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
             // 
-            // Connect
-            // 
-            this.Connect.AutoSize = false;
-            this.Connect.BackColor = System.Drawing.Color.Transparent;
-            this.Connect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Connect.Image = global::VirtualPiano.Properties.Resources.ConnectNote_icon;
-            this.Connect.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Connect.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.Connect.Name = "Connect";
-            this.Connect.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.Connect.Size = new System.Drawing.Size(50, 50);
-            this.Connect.Text = "Noten samenvoegen";
-            this.Connect.Click += new System.EventHandler(this.Connect_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.AutoSize = false;
-            this.toolStripButton1.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.toolStripButton1.Size = new System.Drawing.Size(50, 50);
-            this.toolStripButton1.Text = "Kruis";
-            // 
             // ComposeView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -437,6 +438,7 @@ namespace VirtualPiano.View
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ComposeView";
             this.Size = new System.Drawing.Size(1863, 1000);
+            this.Load += new System.EventHandler(this.ComposeView_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
             this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseUp);

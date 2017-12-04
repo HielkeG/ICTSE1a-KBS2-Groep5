@@ -186,11 +186,33 @@ namespace VirtualPiano.View
                 //Als er een teken geselecteerd is
                 if (ComposeView.signSelected)
                 {
+                    
                     int barBegin = 45;
                     int barEnd = 475;
 
                     foreach (Bar bar in staff.Bars)
                     {
+                        if (PointToClient(Cursor.Position).X < 100 && ComposeView.SelectedSign == "Sharp")
+                        {
+
+                            Invalidate();
+                            if(bar.FlatSharp < 0)
+                            {
+                                bar.FlatSharp = 0;
+                            }
+                            bar.FlatSharp ++;
+                        }
+                        if (PointToClient(Cursor.Position).X < 100 && ComposeView.SelectedSign == "Flat")
+                        {
+
+                            Invalidate();
+                            if (bar.FlatSharp > 0)
+                            {
+                                bar.FlatSharp = 0;
+                            }
+                            bar.FlatSharp--;
+                        }
+
                         //Als de positie van de muis binnen de positie van de maat valt. (bar = maat)
                         if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                         {
@@ -324,6 +346,7 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
+            
             Cursor = Cursors.Default;
         }
 

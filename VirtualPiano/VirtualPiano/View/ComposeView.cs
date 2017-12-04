@@ -512,6 +512,9 @@ namespace VirtualPiano.View
             Cursor = CursorController.ChangeCursor("Connect");
         }
 
-     
+        private void ComposeView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
