@@ -102,7 +102,6 @@ namespace VirtualPiano.Control
                 playBox.Image = new Bitmap(play,width,height);
                 isPlayingSong = false;
                 Metronoom.Enabled = false;
-                
                 rodeLijn.Stop();
             }
         }
