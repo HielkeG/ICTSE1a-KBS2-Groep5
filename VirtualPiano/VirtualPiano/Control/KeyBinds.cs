@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VirtualPiano.View;
 
 namespace VirtualPiano.Control
 {
@@ -19,9 +20,13 @@ namespace VirtualPiano.Control
                 
                 case Keys.Q:
                     MusicController.PlaySound(3, "C");
+                    ComposeView.pkv1.KeyPressed(3, "C");
+                    ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D2:
                     MusicController.PlaySound(3, "Cis");
+                    ComposeView.pkv1.KeyPressed(3, "Cis");
+                    ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.W:
                     MusicController.PlaySound(3, "D");

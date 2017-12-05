@@ -122,6 +122,7 @@ namespace VirtualPiano.Model
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
                                 note.PlaySound();
+                                break;
                             }
                         }
                     }
@@ -132,6 +133,7 @@ namespace VirtualPiano.Model
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
                                 note.PlaySound();
+                                break;
                             }
                         }
                     }
@@ -142,6 +144,7 @@ namespace VirtualPiano.Model
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
                                 note.PlaySound();
+                                break;
                             }
                         }
                     }
@@ -152,6 +155,7 @@ namespace VirtualPiano.Model
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
                                 note.PlaySound();
+                                break;
                             }
                         }
                     }
