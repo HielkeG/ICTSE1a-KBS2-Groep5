@@ -51,7 +51,7 @@ namespace VirtualPiano.View
                     {
                         WhiteKey wk = new WhiteKey(KeyList[i] + o);
                         PianoKeyList.Add(wk);
-                        BlackKey bk = new BlackKey(KeyList[i] + "#");
+                        BlackKey bk = new BlackKey(KeyList[i] + "#"+o);
                         PianoKeyList.Add(bk);
                     }
 
@@ -125,6 +125,17 @@ namespace VirtualPiano.View
             }
         }
 
+        public void KeyUnpressed(int octave, string tone)
+        {
+            foreach (var item in PianoKeyList)
+            {
+                if (item.keyname == tone.ToString() + octave)
+                {
+                    item.isGray = false;
+                }
+            }
+        }
+
     }
 
     public abstract class PianoKeys
@@ -142,6 +153,8 @@ namespace VirtualPiano.View
     {
         Pen penBlack = new Pen(Color.Black, 2);
         SolidBrush BlackBrush = new SolidBrush(Color.Black);
+        SolidBrush GrayBrush = new SolidBrush(Color.Gray);
+
         SolidBrush WhiteBrush = new SolidBrush(Color.White);
 
         private Font f = new Font("Times New Roman", 24, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -152,7 +165,14 @@ namespace VirtualPiano.View
         public override void DrawKey(PaintEventArgs e, string name, int xLocation, int yLocation, int Width, int Height)
         {
             Rectangle rectangle = new Rectangle(xLocation, yLocation, Width, Height);
-            e.Graphics.FillRectangle(WhiteBrush, rectangle);
+            if (isGray)
+            {
+                e.Graphics.FillRectangle(GrayBrush, rectangle);
+            }
+            else
+            {
+                e.Graphics.FillRectangle(WhiteBrush, rectangle);
+            }
             e.Graphics.DrawRectangle(penBlack, rectangle);
 
             e.Graphics.DrawString(name, f, BlackBrush, new PointF(xLocation + 5, 200));
@@ -165,6 +185,7 @@ namespace VirtualPiano.View
         Pen penWhite = new Pen(Color.White, 2);
         SolidBrush brushWhite = new SolidBrush(Color.White);
         SolidBrush brushBlack = new SolidBrush(Color.Black);
+        SolidBrush GrayBrush = new SolidBrush(Color.Gray);
 
         private Font f = new Font("Times New Roman", 16, FontStyle.Regular, GraphicsUnit.Pixel);
 
@@ -174,8 +195,16 @@ namespace VirtualPiano.View
         public override void DrawKey(PaintEventArgs e, string name, int xLocation, int yLocation, int Width, int Height)
         {
             Rectangle rectangle = new Rectangle(xLocation, yLocation, 26, 150);
-            e.Graphics.FillRectangle(brushBlack, rectangle);
-            e.Graphics.DrawString(name, f, brushWhite, new PointF(xLocation + 1, 10));
+            if (isGray)
+            {
+                e.Graphics.FillRectangle(GrayBrush, rectangle);
+            }
+            else
+            {
+                e.Graphics.FillRectangle(brushBlack, rectangle);
+            }
+            
+            e.Graphics.DrawString(name.Substring(0,2), f, brushWhite, new PointF(xLocation + 1, 10));
         }
 
     }

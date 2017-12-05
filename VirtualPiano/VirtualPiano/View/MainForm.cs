@@ -29,10 +29,18 @@ namespace VirtualPiano
             if (MenuBarView.IsPlayingKeyboard)
             {
                 //toetsaanslagen opvangen.
-                KeyBinds.PianoKeys(e);
+                KeyBinds.PressPianoKeys(e);
 
             }
 
+        }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (MenuBarView.IsPlayingKeyboard)
+            {
+                KeyBinds.UnpressPianoKeys(e);
+            }
         }
     }
 }
