@@ -11,6 +11,7 @@ using VirtualPiano.Model;
 using VirtualPiano.Properties;
 using VirtualPiano.Control;
 using VirtualPiano.View;
+using System.Threading;
 
 namespace VirtualPiano.View
 {
@@ -299,8 +300,13 @@ namespace VirtualPiano.View
                                 //Speelt de aangeklikt noot af
                                 if (note.isLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
                                 {
-                                    note.PlaySound();
+                                    ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                    ComposeView.pkv1.Invalidate();
+                                    note.PlaySound();                                    
+                                    break;
                                 }
+                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
                             }
                         }
                     }
@@ -414,6 +420,26 @@ namespace VirtualPiano.View
             foreach (Bar bar in staff.Bars)
             {
                 if (bar.hasPreview) bar.RemovePreview();
+            }
+        }
+
+        private void StaffView_MouseDown(object sender, MouseEventArgs e)
+        {
+            foreach (Bar bar in staff.Bars)
+            {
+                foreach (Sign sign in bar.Signs)
+                {
+                    if (sign is Note note)
+                    {
+                        //Speelt de aangeklikt noot af
+                        if (note.isLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
+                        {
+                            ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                            ComposeView.pkv1.Invalidate();
+                            break;
+                        }
+                    }
+                }
             }
         }
     }

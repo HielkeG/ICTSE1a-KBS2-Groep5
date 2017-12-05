@@ -17,7 +17,6 @@ namespace VirtualPiano.Control
             switch (e.KeyCode)
             {
                 //octaaf 2
-                
                 case Keys.Q:
                     MusicController.PlaySound(ComposeView.CurrentOctave, "C");
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "C");

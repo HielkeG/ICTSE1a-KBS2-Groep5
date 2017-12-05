@@ -122,6 +122,7 @@ namespace VirtualPiano.View
                 if(item.keyname == tone.ToString() + octave)
                 {
                     item.isGray = true;
+                    break;
                 }
             }
         }
@@ -133,6 +134,7 @@ namespace VirtualPiano.View
                 if (item.keyname == tone.ToString() + octave)
                 {
                     item.isGray = false;
+                    break;
                 }
             }
         }
