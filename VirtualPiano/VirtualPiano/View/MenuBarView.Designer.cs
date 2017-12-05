@@ -44,6 +44,10 @@
             this.marimbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notenbalkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toevoegenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gebruikershandleidingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keybindingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.overigeInformatieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +60,8 @@
             this.bestandToolStripMenuItem,
             this.geluidToolStripMenuItem,
             this.instrumentToolStripMenuItem,
-            this.notenbalkToolStripMenuItem});
+            this.notenbalkToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -214,6 +219,34 @@
             this.toevoegenToolStripMenuItem.Text = "Toevoegen";
             this.toevoegenToolStripMenuItem.Click += new System.EventHandler(this.AddStaffView_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gebruikershandleidingToolStripMenuItem,
+            this.keybindingsToolStripMenuItem,
+            this.overigeInformatieToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // gebruikershandleidingToolStripMenuItem
+            // 
+            this.gebruikershandleidingToolStripMenuItem.Name = "gebruikershandleidingToolStripMenuItem";
+            this.gebruikershandleidingToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.gebruikershandleidingToolStripMenuItem.Text = "Gebruikershandleiding";
+            // 
+            // keybindingsToolStripMenuItem
+            // 
+            this.keybindingsToolStripMenuItem.Name = "keybindingsToolStripMenuItem";
+            this.keybindingsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.keybindingsToolStripMenuItem.Text = "Keybindings";
+            // 
+            // overigeInformatieToolStripMenuItem
+            // 
+            this.overigeInformatieToolStripMenuItem.Name = "overigeInformatieToolStripMenuItem";
+            this.overigeInformatieToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.overigeInformatieToolStripMenuItem.Text = "Overige informatie";
+            // 
             // MenuBarView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,5 +282,9 @@
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem PlayingKeyboard;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem keybindingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem overigeInformatieToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem gebruikershandleidingToolStripMenuItem;
     }
 }
