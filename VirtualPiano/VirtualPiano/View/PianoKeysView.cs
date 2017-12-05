@@ -114,6 +114,7 @@ namespace VirtualPiano.View
             }
         }
 
+        //key grijs maken.
         public void KeyPressed(int octave, string tone)
         {
             foreach (var item in PianoKeyList)
@@ -124,7 +125,7 @@ namespace VirtualPiano.View
                 }
             }
         }
-
+        //wanneer de key losgelaten wordt, wordt hij weer de originele kleur.
         public void KeyUnpressed(int octave, string tone)
         {
             foreach (var item in PianoKeyList)
@@ -165,6 +166,8 @@ namespace VirtualPiano.View
         public override void DrawKey(PaintEventArgs e, string name, int xLocation, int yLocation, int Width, int Height)
         {
             Rectangle rectangle = new Rectangle(xLocation, yLocation, Width, Height);
+
+            //als de boolean true is wordt de key in het grijs getekend. Anders in de standaard kleur.
             if (isGray)
             {
                 e.Graphics.FillRectangle(GrayBrush, rectangle);
@@ -173,8 +176,9 @@ namespace VirtualPiano.View
             {
                 e.Graphics.FillRectangle(WhiteBrush, rectangle);
             }
+            //randen tekenen
             e.Graphics.DrawRectangle(penBlack, rectangle);
-
+            //naam tekenen
             e.Graphics.DrawString(name, f, BlackBrush, new PointF(xLocation + 5, 200));
 
         }
@@ -195,6 +199,7 @@ namespace VirtualPiano.View
         public override void DrawKey(PaintEventArgs e, string name, int xLocation, int yLocation, int Width, int Height)
         {
             Rectangle rectangle = new Rectangle(xLocation, yLocation, 26, 150);
+            //als de boolean true is wordt de key in het grijs getekend. Anders in de standaard kleur.
             if (isGray)
             {
                 e.Graphics.FillRectangle(GrayBrush, rectangle);
@@ -203,7 +208,7 @@ namespace VirtualPiano.View
             {
                 e.Graphics.FillRectangle(brushBlack, rectangle);
             }
-            
+            //naam tekenen
             e.Graphics.DrawString(name.Substring(0,2), f, brushWhite, new PointF(xLocation + 1, 10));
         }
 
