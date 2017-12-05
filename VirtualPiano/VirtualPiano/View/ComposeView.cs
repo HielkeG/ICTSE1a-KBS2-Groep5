@@ -18,7 +18,7 @@ namespace VirtualPiano.View
     {
         public Song song = new Song();
         Button btnAddStaff = new Button();
-
+        
         int y_staff = 140;
         public static bool ConnectSelected = false;
         public static Note selectedNote1;

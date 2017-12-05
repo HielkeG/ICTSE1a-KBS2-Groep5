@@ -20,6 +20,8 @@ namespace VirtualPiano.View
         public event EventHandler newStaffView;
         MenuBarController mbc = new MenuBarController();
         public static bool IsPlayingKeyboard = false;
+
+
         public MenuBarView()
         {
 
@@ -28,7 +30,7 @@ namespace VirtualPiano.View
 
         public void ToggleSound(object sender, EventArgs e)
         {
-            mbc.SoundToggle(this);
+            mbc.SoundToggle();
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -153,18 +155,18 @@ namespace VirtualPiano.View
 
         private void Piano_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this, "Piano");
+            mbc.ChangeInstrument("Piano");
         }
         
 
         private void Marimba_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this, "Marimba");
+            mbc.ChangeInstrument("Marimba");
         }
 
         private void Gitaar_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this, "Gitaar");
+            mbc.ChangeInstrument("Gitaar");
         }
 
         private void AddStaffView_Click(object sender, EventArgs e)
@@ -174,7 +176,12 @@ namespace VirtualPiano.View
 
         private void PlayingKeyboard_Click(object sender, EventArgs e)
         {
-            mbc.TogglePlayingPiano(this);
+            mbc.TogglePlayingPiano();
         }
+
+        //public void Gebruikershandleiding_Click(object sender, EventArgs e)
+        //{
+        //    laat handleiding zine in andere window
+        //}
     }
 }
