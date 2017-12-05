@@ -59,7 +59,20 @@ namespace VirtualPiano.Control
         {
             
         }
-
+        
+        public void TogglePlayingPiano(MenuBarView mbv)
+        {
+            if(mbv.PlayingKeyboard.CheckState == CheckState.Checked)
+            {
+                MenuBarView.IsPlayingKeyboard = false;
+                mbv.PlayingKeyboard.CheckState = CheckState.Unchecked;
+            }
+            else
+            {
+                MenuBarView.IsPlayingKeyboard = true;
+                mbv.PlayingKeyboard.CheckState = CheckState.Checked;
+            }
+        }
 
     }
 

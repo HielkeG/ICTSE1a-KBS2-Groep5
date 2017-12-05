@@ -9,8 +9,10 @@ namespace VirtualPiano.Control
 {
     public static class KeyBinds
     {
+        //alle noten gebonden aan toetsenbordtoetsen.
         public static void PianoKeys(KeyEventArgs e)
         {
+            //kijk naar welke toets ingedrukt is en zoek bijbehorende case op.
             switch (e.KeyCode)
             {
                 //octaaf 3

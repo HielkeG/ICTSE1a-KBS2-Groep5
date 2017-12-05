@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VirtualPiano.Model
 {
-    public enum ClefName { G, F, C, NULL }
+    public enum ClefName { NULL, G, F}
 
     public class Bar
     {

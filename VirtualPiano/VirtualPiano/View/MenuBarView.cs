@@ -19,21 +19,25 @@ namespace VirtualPiano.View
         public event EventHandler newSong;
         public event EventHandler newStaffView;
         MenuBarController mbc = new MenuBarController();
-
+        public static bool IsPlayingKeyboard = false;
         public MenuBarView()
         {
 
             InitializeComponent();
         }
 
-        public void GeluidAanUit(object sender, EventArgs e)
+        public void ToggleSound(object sender, EventArgs e)
         {
             mbc.SoundToggle(this);
         }
 
-        private void opslaanToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
-            if (DatabaseController.SongExists(Song))
+            if(Song.Title == " ")
+            {
+                MessageBox.Show("De titel is leeg. Vul een titel in.", "Fout", MessageBoxButtons.OK);
+            }
+            else if (DatabaseController.SongExists(Song))
             {
                 //bericht tonen met waarschuwing dat het nummer al bestaat. Optie geven om te overschrijven
                 string message = "Er bestaat al een nummer met deze titel. Wilt u het bestaande nummer overschrijven?.";
@@ -44,6 +48,7 @@ namespace VirtualPiano.View
                     MessageBoxSavedSong();
                 }
             }
+            
             else
             {
                 DatabaseController.AddSong(Song);
@@ -51,7 +56,7 @@ namespace VirtualPiano.View
             }
         }
 
-        private void openenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Open_Click(object sender, EventArgs e)
         {
             //als de notenbalk gevuld is een fout tonen. Zodat de gebruiker niet ineens het werk kwijt is.
             if (!Song.IsEmpty())
@@ -114,7 +119,7 @@ namespace VirtualPiano.View
             }
         }
 
-        private void verwijderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Remove_Click(object sender, EventArgs e)
         {
             //zoeklijst invullen
             List<Song> songs = DatabaseController.GetSongs();
@@ -146,25 +151,30 @@ namespace VirtualPiano.View
             }
         }
 
-        private void pianoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Piano_Click(object sender, EventArgs e)
         {
             mbc.ChangeInstrument(this, "Piano");
         }
         
 
-        private void marimbaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Marimba_Click(object sender, EventArgs e)
         {
             mbc.ChangeInstrument(this, "Marimba");
         }
 
-        private void gitaarToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void Gitaar_Click(object sender, EventArgs e)
         {
             mbc.ChangeInstrument(this, "Gitaar");
         }
 
-        private void toevoegenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddStaffView_Click(object sender, EventArgs e)
         {
             newStaffView(this, e);
+        }
+
+        private void PlayingKeyboard_Click(object sender, EventArgs e)
+        {
+            mbc.TogglePlayingPiano(this);
         }
     }
 }

@@ -17,8 +17,8 @@ namespace TestProject
         {
             //Arrange
             Bar bar = new Bar();
-            bar.Add(new Note(NoteName.halfNote, "A", 2));
-            bar.Add(new Note(NoteName.halfNote, "B", 2));
+            bar.Add(new Note(NoteName.HalfNote, "A", 2));
+            bar.Add(new Note(NoteName.HalfNote, "B", 2));
             bar.MakeEmpty();
 
 
@@ -50,7 +50,7 @@ namespace TestProject
             Bar bar = new Bar();
 
             //Act
-            bar.Add(new Note(NoteName.halfNote, "A", 2));
+            bar.Add(new Note(NoteName.HalfNote, "A", 2));
 
             //Assert
             Assert.AreEqual(1, bar.Signs.Count);            
@@ -63,9 +63,9 @@ namespace TestProject
             Bar bar = new Bar();
 
             //Act
-            bar.Add(new Note(NoteName.halfNote, "A", 2));
-            bar.Add(new Note(NoteName.quarterNote, "C", 2));
-            bar.Add(new Note(NoteName.quarterNote, "A", 2));
+            bar.Add(new Note(NoteName.HalfNote, "A", 2));
+            bar.Add(new Note(NoteName.QuarterNote, "C", 2));
+            bar.Add(new Note(NoteName.QuarterNote, "A", 2));
 
             //Assert
             Assert.AreEqual(3, bar.Signs.Count);
@@ -81,7 +81,7 @@ namespace TestProject
             bool Expect = true;
 
             //Assert
-            Assert.AreEqual(Expect, bar.CheckBarSpace(new Note(NoteName.wholeNote, "A", 2)));
+            Assert.AreEqual(Expect, bar.CheckBarSpace(new Note(NoteName.WholeNote, "A", 2)));
         }
 
 
@@ -90,15 +90,15 @@ namespace TestProject
         {
             //Arrange
             Bar bar = new Bar();
-            bar.Add(new Note(NoteName.quarterNote, "C", 2));
-            bar.Add(new Note(NoteName.quarterNote, "A", 2));
-            bar.Add(new Note(NoteName.quarterNote, "B", 2));
+            bar.Add(new Note(NoteName.QuarterNote, "C", 2));
+            bar.Add(new Note(NoteName.QuarterNote, "A", 2));
+            bar.Add(new Note(NoteName.QuarterNote, "B", 2));
 
             //Act
             bool Expect = false;
 
             //Assert
-            Assert.AreEqual(Expect, bar.CheckBarSpace(new Note(NoteName.halfNote, "A", 2)));
+            Assert.AreEqual(Expect, bar.CheckBarSpace(new Note(NoteName.HalfNote, "A", 2)));
         }
 
 
