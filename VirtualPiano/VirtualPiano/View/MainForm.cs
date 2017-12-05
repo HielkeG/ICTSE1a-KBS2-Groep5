@@ -39,7 +39,7 @@ namespace VirtualPiano
         {
             if (MenuBarView.IsPlayingKeyboard)
             {
-                KeyBinds.UnpressPianoKeys(e);
+                KeyBinds.ReleasePianoKeys(e);
             }
         }
     }

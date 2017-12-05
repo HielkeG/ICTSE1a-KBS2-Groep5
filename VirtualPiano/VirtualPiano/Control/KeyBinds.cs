@@ -144,7 +144,7 @@ namespace VirtualPiano.Control
             }
         }
 
-        public static void UnpressPianoKeys(KeyEventArgs e)
+        public static void ReleasePianoKeys(KeyEventArgs e)
         {
             //kijk naar welke toets ingedrukt is en zoek bijbehorende case op.
             switch (e.KeyCode)
@@ -152,100 +152,100 @@ namespace VirtualPiano.Control
                 //octaaf 2
 
                 case Keys.Q:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "C");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "C");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D2:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "C#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "C#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.W:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "D");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "D");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D3:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "D#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "D#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.E:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "E");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "E");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.R:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "F");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "F");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D5:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "F#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "F#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.T:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "G");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "G");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D6:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "G#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "G#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.Y:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "A");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "A");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D7:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "A#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "A#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.U:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave, "B");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "B");
                     ComposeView.pkv1.Invalidate();
                     break;
                 //octaaf 3
                 case Keys.V:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "C");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "C");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.G:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "C#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "C#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.B:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "D");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "D");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.H:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "D#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "D#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.N:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "E");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "E");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.M:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "F");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "F");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.K:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "F#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "F#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.Oemcomma:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "G");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "G");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemPeriod:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "A");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "A");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.L:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "G#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "G#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemSemicolon:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "A#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "A#");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemQuestion:
-                    ComposeView.pkv1.KeyUnpressed(ComposeView.CurrentOctave+1, "B");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "B");
                     ComposeView.pkv1.Invalidate();
                     break;
                 default:

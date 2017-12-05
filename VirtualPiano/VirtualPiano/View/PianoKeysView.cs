@@ -16,7 +16,7 @@ namespace VirtualPiano.View
     public partial class PianoKeysView : UserControl
     {
         List<string> KeyList = new List<string> { "C", "D", "E", "F", "G", "A", "B" };
-        List<PianoKeys> PianoKeyList = new List<PianoKeys>();
+        List<PianoKey> PianoKeyList = new List<PianoKey>();
         public bool showPiano = true;
 
 
@@ -126,7 +126,7 @@ namespace VirtualPiano.View
             }
         }
         //wanneer de key losgelaten wordt, wordt hij weer de originele kleur.
-        public void KeyUnpressed(int octave, string tone)
+        public void KeyReleased(int octave, string tone)
         {
             foreach (var item in PianoKeyList)
             {
@@ -139,18 +139,18 @@ namespace VirtualPiano.View
 
     }
 
-    public abstract class PianoKeys
+    public abstract class PianoKey
     {
         public string keyname;
         public bool isGray;
-        public PianoKeys(string k)
+        public PianoKey(string k)
         {
             keyname = k;
         }
         public abstract void DrawKey(PaintEventArgs e, string name, int xLocatie, int yLocatie, int Breedte, int Hoogte);
         
     }
-    public class WhiteKey : PianoKeys
+    public class WhiteKey : PianoKey
     {
         Pen penBlack = new Pen(Color.Black, 2);
         SolidBrush BlackBrush = new SolidBrush(Color.Black);
@@ -184,7 +184,7 @@ namespace VirtualPiano.View
         }
     }
 
-    public class BlackKey : PianoKeys
+    public class BlackKey : PianoKey
     {
         Pen penWhite = new Pen(Color.White, 2);
         SolidBrush brushWhite = new SolidBrush(Color.White);
