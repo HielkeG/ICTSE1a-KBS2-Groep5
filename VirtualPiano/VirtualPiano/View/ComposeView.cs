@@ -18,6 +18,7 @@ namespace VirtualPiano.View
     {
         public Song song = new Song();
         Button btnAddStaff = new Button();
+
         int y_staff = 140;
         public static bool ConnectSelected = false;
         public static Note selectedNote1;
@@ -40,14 +41,19 @@ namespace VirtualPiano.View
         private static bool RunningTimer { get; set; }
         //locatie van de rode lijn
         public static int RedLineX { get; set; }
+
+
+
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Panel keypanel = new Panel()
         {
-            Location = new Point(190, 730),
-            Size = new Size(1400, 250),
+            Location = new Point(300, 730),
+            Size = new Size(1400, 240),
+            //Location = new Point(this.ClientSize.Width / 2 - Size.Width / 2, this.ClientSize.Height / 2 - Size.Height / 2),
+            Anchor = AnchorStyles.None,
             Dock = DockStyle.Bottom,
-            Visible = true
+            Visible = false
         };
 
         public ComposeView()
@@ -69,18 +75,53 @@ namespace VirtualPiano.View
             menuBarView1.newSong += NewSong;
             menuBarView1.newStaffView += newStaffView;
 
-            Controls.Add(PianoKeysController.pianoKeysBox);
+            Controls.Add(PianoKeysController.pianoKeysBtn);
             Controls.Add(keypanel);
             keypanel.Controls.Add(pkv1);
 
-
+            //voeg muziekknoppen toe en metronoom
             MusicController m1 = new MusicController(Metronome, RedLine, song);
-            Controls.Add(MusicController.rewindBox);
-            Controls.Add(MusicController.playBox);
-            Controls.Add(MusicController.stopBox);
-            Snelheid.Text = Metronome.Interval.ToString();
+            Controls.Add(MusicController.rewindBtn);
+            Controls.Add(MusicController.playBtn);
+            Controls.Add(MusicController.stopBtn);
+            //voeg hover, enter, leave effecten toe op de muziekknoppen
+            PianoKeysController.pianoKeysBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            PianoKeysController.pianoKeysBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            PianoKeysController.pianoKeysBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.playBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.playBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.playBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.stopBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.stopBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.stopBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            btnAddStaff.MouseEnter += new EventHandler(AllButtons_Enter);
+            btnAddStaff.MouseHover += new EventHandler(AllButtons_Hover);
+            btnAddStaff.MouseLeave += new EventHandler(AllButtons_Leave);
+            
+
+            Snelheid.Text = Metronome.Interval.ToString(); 
             DoubleBuffered = true;
         }
+
+        //methodes voor effecten op Buttons
+        public void AllButtons_Enter(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, Color.Black);
+        }
+        public void AllButtons_Hover(object sender, EventArgs e)
+        {
+            //gebruiker _Hover voor tooltips etc.
+        }
+        public void AllButtons_Down(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, Color.Black);
+        }
+        public void AllButtons_Leave(object sender, EventArgs e)
+        {
+        }
+
 
         //song veranderen op het moment dat het event selectedsong uitgevoerd wordt.
         private void ChangeSong(object sender, EventArgs e)

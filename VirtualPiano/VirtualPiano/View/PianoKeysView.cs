@@ -34,7 +34,8 @@ namespace VirtualPiano.View
 
         public void DrawKeys(PaintEventArgs e)
         {
-            int x2 = 50; //pianobreedte
+            int x1 = 50;
+            int x2 = 40; //pianobreedte
             int y2 = 230; // pianohoogte;
             for (int o = 1; o < 4; o++) //aantal octaven om te tekenen
             {
@@ -42,17 +43,17 @@ namespace VirtualPiano.View
                 {
                     if (KeyList[i] == "E" || KeyList[i] == "B")
                     {
-                        WhiteKey wk = new WhiteKey(e, KeyList[i] + o, 1, 1, x2, y2);
+                        WhiteKey wk = new WhiteKey(e, KeyList[i] + o, x1, 1, x2, y2);
                         PianoKeyList.Add(wk);
                     }
                     else
                     {
-                        WhiteKey wk = new WhiteKey(e, KeyList[i] + o, 0, 1, x2, y2);
+                        WhiteKey wk = new WhiteKey(e, KeyList[i] + o, x1, 1, x2, y2);
                         PianoKeyList.Add(wk);
-                        BlackKey bk = new BlackKey(e, KeyList[i] + "#", x2 - 13, 2);
+                        BlackKey bk = new BlackKey(e, KeyList[i] + "#", x1 - 13, 2);
                         PianoKeyList.Add(bk);
                     }
-                    x2 = x2 + 50; //pianobreedte 
+                    x1 = x1 + x2; //pianobreedte 
 
                 }
             }

@@ -387,8 +387,8 @@ namespace VirtualPiano.View
             this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(933, 32);
-            this.TitelBox.MaxLength = 1230;
+            this.TitelBox.Location = new System.Drawing.Point(933, 45);
+            this.TitelBox.MaxLength = 128;
             this.TitelBox.Name = "TitelBox";
             this.TitelBox.Size = new System.Drawing.Size(200, 35);
             this.TitelBox.TabIndex = 1;
