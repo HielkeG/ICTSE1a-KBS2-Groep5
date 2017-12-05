@@ -425,22 +425,26 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseDown(object sender, MouseEventArgs e)
         {
-            foreach (Bar bar in staff.Bars)
+            if (!ComposeView.signSelected)
             {
-                foreach (Sign sign in bar.Signs)
+                foreach (Bar bar in staff.Bars)
                 {
-                    if (sign is Note note)
+                    foreach (Sign sign in bar.Signs)
                     {
-                        //Speelt de aangeklikt noot af
-                        if (note.isLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
+                        if (sign is Note note)
                         {
-                            ComposeView.pkv1.KeyPressed(note.octave, note.tone);
-                            ComposeView.pkv1.Invalidate();
-                            break;
+                            //Speelt de aangeklikt noot af
+                            if (note.isLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
+                            {
+                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
+                                break;
+                            }
                         }
                     }
                 }
             }
+
         }
     }
 }
