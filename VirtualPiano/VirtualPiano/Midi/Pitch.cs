@@ -51,6 +51,9 @@ namespace VirtualPiano
     /// </remarks>
     /// <seealso cref="Note"/>
     /// <seealso cref="Interval"/>
+
+
+
     public enum Pitch
     {
         /// <summary>C in octave -1.</summary>
