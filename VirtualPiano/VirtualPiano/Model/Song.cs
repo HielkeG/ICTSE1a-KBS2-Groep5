@@ -16,7 +16,7 @@ namespace VirtualPiano.Model
     {
         public List<Staff> Staffs { get; set; }
 
-        public int FlatSharp;
+
         OutputDevice outputDevice = OutputDevice.InstalledDevices[0];
 
 
