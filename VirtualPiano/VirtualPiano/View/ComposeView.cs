@@ -11,6 +11,7 @@ using VirtualPiano.Model;
 using VirtualPiano.Control;
 using VirtualPiano.Properties;
 using System.Media;
+using System.Reflection;
 
 namespace VirtualPiano.View
 {
@@ -397,9 +398,19 @@ namespace VirtualPiano.View
 
         private void Connect_Click(object sender, EventArgs e)
         {
-            SelectedSign = "Connect";
-            signSelected = true;
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            if(selectedNote1 == null)
+            {
+                SelectedSign = "Connect1";
+                signSelected = true;
+                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect1));
+            } else if (selectedNote1 != null)
+            {
+                SelectedSign = "Connect2";
+                signSelected = true;
+                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
+            }
+            
+
         }
 
         private void Bin_Click(object sender, EventArgs e)
@@ -430,6 +441,10 @@ namespace VirtualPiano.View
         private void ComposeView_MouseEnter(object sender, EventArgs e)
         {
             if (signSelected == false) Cursor = Cursors.Default;
+            if(SelectedSign == "Connect2")
+            {
+                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
+            }
         }
 
         public void Draw(PaintEventArgs e) //WIP
