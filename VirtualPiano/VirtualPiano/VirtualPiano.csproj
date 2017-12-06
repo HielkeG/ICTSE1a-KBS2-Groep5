@@ -77,6 +77,10 @@
     <Compile Include="Midi\Pitch.cs" />
     <Compile Include="Midi\ShortMsg.cs" />
     <Compile Include="Midi\Win32API.cs" />
+    <Compile Include="Migrations\201712061300382_oijo.cs" />
+    <Compile Include="Migrations\201712061300382_oijo.Designer.cs">
+      <DependentUpon>201712061300382_oijo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -145,6 +149,9 @@
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Migrations\201712061300382_oijo.resx">
+      <DependentUpon>201712061300382_oijo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
     </EmbeddedResource>
@@ -291,6 +298,7 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Geluiden\BinSound.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4B.wav" />
     <None Include="Resources\Geluiden\Piano\Piano5C.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4Gis.wav" />
@@ -317,6 +325,9 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestiendenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\ConnectNote.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\ConnectNote_icon.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\bin.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\bin_open.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\blank.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\zestienderust.png" />
     <None Include="Resources\Geluiden\Piano\Piano4G.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4Fis.wav" />
