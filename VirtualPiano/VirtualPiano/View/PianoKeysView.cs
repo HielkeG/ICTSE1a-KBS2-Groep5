@@ -138,7 +138,6 @@ namespace VirtualPiano.View
                 }
             }
         }
-
     }
 
     public abstract class PianoKey

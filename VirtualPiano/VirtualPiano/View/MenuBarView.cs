@@ -20,7 +20,6 @@ namespace VirtualPiano.View
         public event EventHandler newStaffView;
         public event EventHandler togglePianoVisible;
         MenuBarController mbc = new MenuBarController();
-        public static bool IsPlayingKeyboard = false;
         public static MidiConnect m1 = new MidiConnect();
         public MenuBarView()
         {
@@ -28,10 +27,6 @@ namespace VirtualPiano.View
             InitializeComponent();
         }
 
-        public void ToggleSound(object sender, EventArgs e)
-        {
-            mbc.SoundToggle(this);
-        }
 
         private void Save_Click(object sender, EventArgs e)
         {
@@ -172,11 +167,6 @@ namespace VirtualPiano.View
         private void AddStaffView_Click(object sender, EventArgs e)
         {
             newStaffView(this, e);
-        }
-
-        private void PlayingKeyboard_Click(object sender, EventArgs e)
-        {
-            mbc.TogglePlayingPiano(this);
         }
 
         private void midiToolStripMenuItem_Click(object sender, EventArgs e)

@@ -41,6 +41,7 @@ namespace VirtualPiano.View
         //locatie van de rode lijn
         public static int RedLineX;
         public int StaffCounter = 0;
+        public static bool PlayingKeyboard = false;
         
 
         public PianoKeysController pkc1 = new PianoKeysController();
@@ -146,7 +147,8 @@ namespace VirtualPiano.View
                 pkv1.Visible = false;
                 menuBarView1.ToonToolstrip.CheckState = CheckState.Unchecked;
                 pkc1.ChangeImage();
-
+                Note.SoundEnabled = false;
+                PlayingKeyboard = false;
             }
             else
             {
@@ -154,6 +156,8 @@ namespace VirtualPiano.View
                 pkv1.Visible = true;
                 menuBarView1.ToonToolstrip.CheckState = CheckState.Checked;
                 pkc1.ChangeImage();
+                Note.SoundEnabled = true;
+                PlayingKeyboard = true;
             }
         }
 

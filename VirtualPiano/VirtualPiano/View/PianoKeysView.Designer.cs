@@ -28,19 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.PianoTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
-            // VirtualPiano
+            // PianoKeysView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Name = "VirtualPiano";
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Name = "PianoKeysView";
             this.Size = new System.Drawing.Size(1037, 211);
+            this.PianoTooltip.SetToolTip(this, "Begin met typen om te spelen. Raadpleeg de handleiding om de toetsindeling te zie" +
+        "n.");
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.ToolTip PianoTooltip;
     }
 }

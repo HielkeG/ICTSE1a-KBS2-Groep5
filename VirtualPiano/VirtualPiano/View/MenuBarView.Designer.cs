@@ -37,7 +37,6 @@
             this.opslaanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PlayingKeyboard = new System.Windows.Forms.ToolStripMenuItem();
             this.instrumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitaarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,8 +127,7 @@
             // 
             this.geluidToolStripMenuItem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.geluidToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.geluidAanuitToolStripMenuItem,
-            this.PlayingKeyboard});
+            this.geluidAanuitToolStripMenuItem});
             this.geluidToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.geluidToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.geluidToolStripMenuItem.Name = "geluidToolStripMenuItem";
@@ -144,14 +142,6 @@
             this.geluidAanuitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
-            this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.ToggleSound);
-            // 
-            // PlayingKeyboard
-            // 
-            this.PlayingKeyboard.Name = "PlayingKeyboard";
-            this.PlayingKeyboard.Size = new System.Drawing.Size(191, 22);
-            this.PlayingKeyboard.Text = "Typend spelen";
-            this.PlayingKeyboard.Click += new System.EventHandler(this.PlayingKeyboard_Click);
             // 
             // instrumentToolStripMenuItem
             // 
@@ -249,7 +239,7 @@
             // ToonToolstrip
             // 
             this.ToonToolstrip.Name = "ToonToolstrip";
-            this.ToonToolstrip.Size = new System.Drawing.Size(152, 22);
+            this.ToonToolstrip.Size = new System.Drawing.Size(124, 22);
             this.ToonToolstrip.Text = "Zichtbaar";
             this.ToonToolstrip.Click += new System.EventHandler(this.Zichtbaar_Click);
             // 
@@ -287,7 +277,6 @@
         private System.Windows.Forms.ToolStripMenuItem nieuwToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem PlayingKeyboard;
         private System.Windows.Forms.ToolStripMenuItem midiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem keyboardVerbindenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem virtueelKeyboardToolStripMenuItem;

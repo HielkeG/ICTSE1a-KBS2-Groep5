@@ -168,6 +168,9 @@
     <EmbeddedResource Include="View\MidiConnect.resx">
       <DependentUpon>MidiConnect.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\PianoKeysView.resx">
+      <DependentUpon>PianoKeysView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\RedLine.resx">
       <DependentUpon>RedLine.cs</DependentUpon>
     </EmbeddedResource>

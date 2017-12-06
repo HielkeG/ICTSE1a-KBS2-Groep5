@@ -26,7 +26,7 @@ namespace VirtualPiano
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             //als de gebruiker typend spelen aan heeft staan.
-            if (MenuBarView.IsPlayingKeyboard)
+            if (ComposeView.PlayingKeyboard)
             {
                 VirtualPiano.Control.KeyBinds.PressPianoKeys(e);
                 //toetsaanslagen opvangen.
@@ -38,7 +38,7 @@ namespace VirtualPiano
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-            if (MenuBarView.IsPlayingKeyboard)
+            if (ComposeView.PlayingKeyboard)
             {
                 KeyBinds.ReleasePianoKeys(e);
             }
