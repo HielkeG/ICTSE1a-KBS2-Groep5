@@ -120,8 +120,9 @@ namespace VirtualPiano.Model
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
+
                                 //75 milliseconden wachten
-                                await PutTaskDelay(75);
+                                //await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
