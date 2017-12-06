@@ -190,6 +190,26 @@ namespace VirtualPiano.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Connect1 {
+            get {
+                object obj = ResourceManager.GetObject("Connect1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Connect2 {
+            get {
+                object obj = ResourceManager.GetObject("Connect2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ConnectNote {
@@ -206,6 +226,16 @@ namespace VirtualPiano.Properties {
             get {
                 object obj = ResourceManager.GetObject("ConnectNote_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] defaultcursor {
+            get {
+                object obj = ResourceManager.GetObject("defaultcursor", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -316,6 +346,16 @@ namespace VirtualPiano.Properties {
             get {
                 object obj = ResourceManager.GetObject("halverust_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] HandOpen {
+            get {
+                object obj = ResourceManager.GetObject("HandOpen", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
