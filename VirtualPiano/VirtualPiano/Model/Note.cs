@@ -17,42 +17,44 @@ namespace VirtualPiano.Model
 
     public class Note : Sign
     {
-        public Note ConnectionNote = null;
-        public String noteName { get; set; }
-        public bool IsBeingPlayed;
         public int x { get; set; }
         public int y { get; set; }
-        public static bool SoundEnabled = true;
-
         public string tone { get; set; }
         public int octave { get; set; }
+        public bool sharp;
+        public bool flat;
+        public Note ConnectionNote = null;
+        public bool IsBeingPlayed;
+        public static bool SoundEnabled = true;
+
+        
         public Note() : base() { }
 
         public Note(NoteName notename, string tone, int octave) : base()
         {
-            noteName = notename.ToString();
+            name = notename.ToString();
             this.octave = octave;
             this.tone = tone;
-            if (noteName == NoteName.WholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
-            else if (noteName == NoteName.HalfNote.ToString()) { image = Resources.halvenoot; duration = 8; }
-            else if (noteName == NoteName.QuarterNote.ToString()) { image = Resources.kwartnoot; duration = 4; }
-            else if (noteName == NoteName.EightNote.ToString()) { image = Resources.achtstenoot; duration = 2; }
-            else if (noteName == NoteName.SixteenthNote.ToString()) { image = Resources.zestiendenoot; duration = 1; }
+            if (name == NoteName.WholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
+            else if (name == NoteName.HalfNote.ToString()) { image = Resources.halvenoot; duration = 8; }
+            else if (name == NoteName.QuarterNote.ToString()) { image = Resources.kwartnoot; duration = 4; }
+            else if (name == NoteName.EightNote.ToString()) { image = Resources.achtstenoot; duration = 2; }
+            else if (name == NoteName.SixteenthNote.ToString()) { image = Resources.zestiendenoot; duration = 1; }
         }
 
         public override void SetImage()
         {
             
-            if (noteName == NoteName.WholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
-            else if (noteName == NoteName.HalfNote.ToString()) { image = Resources.halvenoot; duration = 8;  }
-            else if (noteName == NoteName.QuarterNote.ToString()) { image = Resources.kwartnoot; duration = 4; }
-            else if (noteName == NoteName.EightNote.ToString()) { image = Resources.achtstenoot; duration = 2;  }
-            else if (noteName == NoteName.SixteenthNote.ToString()) { image = Resources.zestiendenoot; duration = 1;}
+            if (name == NoteName.WholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
+            else if (name == NoteName.HalfNote.ToString()) { image = Resources.halvenoot; duration = 8;  }
+            else if (name == NoteName.QuarterNote.ToString()) { image = Resources.kwartnoot; duration = 4; }
+            else if (name == NoteName.EightNote.ToString()) { image = Resources.achtstenoot; duration = 2;  }
+            else if (name == NoteName.SixteenthNote.ToString()) { image = Resources.zestiendenoot; duration = 1;}
         }
 
         public Note(int y, NoteName tempNotename, string clef, int Flatsharp) :base()
         {
-            noteName = tempNotename.ToString();
+            name = tempNotename.ToString();
 
 
             if (clef == ClefName.G.ToString())
@@ -104,11 +106,11 @@ namespace VirtualPiano.Model
             if (Flatsharp <= -4) { if (tone == "D") { tone = "Des"; } }
             if (Flatsharp <= -5) { if (tone == "G") { tone = "Ges"; } }
 
-            if (noteName == NoteName.WholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
-            else if (noteName == NoteName.HalfNote.ToString()) { if (y <= 52) { image = Resources.halvenootflipped; } else { image = Resources.halvenoot; } duration = 8; }
-            else if (noteName == NoteName.QuarterNote.ToString()) { if (y <= 52) { image = Resources.kwartnootflipped; } else { image = Resources.kwartnoot; } duration = 4; }
-            else if (noteName == NoteName.EightNote.ToString()) { if (y <= 52) { image = Resources.achtstenootflipped; } else { image = Resources.achtstenoot; } duration = 2; }
-            else if (noteName == NoteName.SixteenthNote.ToString()) { if (y <= 52) { image = Resources.zestiendenootflipped; } else { image = Resources.zestiendenoot; } duration = 1; }
+            if (name == NoteName.WholeNote.ToString()) { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
+            else if (name == NoteName.HalfNote.ToString()) { if (y <= 52) { image = Resources.halvenootflipped; } else { image = Resources.halvenoot; } duration = 8; }
+            else if (name == NoteName.QuarterNote.ToString()) { if (y <= 52) { image = Resources.kwartnootflipped; } else { image = Resources.kwartnoot; } duration = 4; }
+            else if (name == NoteName.EightNote.ToString()) { if (y <= 52) { image = Resources.achtstenootflipped; } else { image = Resources.achtstenoot; } duration = 2; }
+            else if (name == NoteName.SixteenthNote.ToString()) { if (y <= 52) { image = Resources.zestiendenootflipped; } else { image = Resources.zestiendenoot; } duration = 1; }
         }
 
         public void PlaySound()
@@ -135,15 +137,38 @@ namespace VirtualPiano.Model
             }
         }
 
+        public override bool IsLocation(int y, int x)
+        {
+            return (this.x - 10 < x && this.x + 10 > x && this.y - 10 < y - 63 && this.y + 10 > y - 63);
+        }
+
         public void SetX(int x)
         {
             this.x = x + 50;
         }
 
-        public bool isLocation(int y, int x)
+        public void SetSharp()
         {
-            return (this.x - 10 < x && this.x + 10 > x && this.y - 10 < y - 63 && this.y + 10 > y - 63);
+            sharp = true;
+            flat = false;
+            { if (tone == "F" || tone == "Fes") { tone = "Fis"; } }
+            { if (tone == "C") { tone = "Cis"; } }
+            { if (tone == "G" || tone == "Ges") { tone = "Gis"; } }
+            { if (tone == "D" || tone == "Des") { tone = "Dis"; } }
+            { if (tone == "A" || tone == "As") { tone = "Ais"; } }
+
+            
         }
 
+        public void SetFlat()
+        {
+            sharp = false;
+            flat = true;
+            { if (tone == "B") { tone = "Bes"; } }
+            { if (tone == "E") { tone = "Es"; } }
+            { if (tone == "A" || tone == "Ais") { tone = "As"; } }
+            { if (tone == "D" || tone == "Dis") { tone = "Des"; } }
+            { if (tone == "G" || tone == "Gis") { tone = "Ges"; } }
+        }
     }
 }

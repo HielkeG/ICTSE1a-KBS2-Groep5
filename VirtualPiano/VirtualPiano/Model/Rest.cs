@@ -14,11 +14,14 @@ namespace VirtualPiano.Model
 
     public class Rest : Sign
     {
-        public String restName { get; set; }
+        
+        public int x { get; set; }
+        public int y { get; set; }
+
         public Rest() : base() { }
         public Rest(RestName restName)
         {
-            this.restName = restName.ToString();
+            this.name = restName.ToString();
             if (restName == RestName.WholeRest) { duration = 16; }
             else if (restName == RestName.HalfRest) {duration = 8; }
             else if (restName == RestName.QuarterRest) { image = Resources.KwartRust; duration = 4; }
@@ -28,11 +31,17 @@ namespace VirtualPiano.Model
 
         public override void SetImage()
         {
-            if (restName == RestName.WholeRest.ToString()) { duration = 16; }
-            else if (restName == RestName.HalfRest.ToString()) { duration = 8; }
-            else if (restName == RestName.QuarterRest.ToString()) { image = Resources.KwartRust; duration = 4; }
-            else if (restName == RestName.EightRest.ToString()) { image = Resources.achtsterust; duration = 2; }
-            else if (restName == RestName.SixteenthRest.ToString()) { image = Resources.zestienderust; duration = 1; }
+            if (name == RestName.WholeRest.ToString()) { duration = 16; }
+            else if (name == RestName.HalfRest.ToString()) { duration = 8; }
+            else if (name == RestName.QuarterRest.ToString()) { image = Resources.KwartRust; duration = 4; }
+            else if (name == RestName.EightRest.ToString()) { image = Resources.achtsterust; duration = 2; }
+            else if (name == RestName.SixteenthRest.ToString()) { image = Resources.zestienderust; duration = 1; }
         }
+
+        public override bool IsLocation(int y, int x)
+        {
+            return (this.x - 10 < x && this.x + 10 > x && this.y - 10 < y - 63 && this.y + 10 > y - 63);
+        }
+
     }
 }
