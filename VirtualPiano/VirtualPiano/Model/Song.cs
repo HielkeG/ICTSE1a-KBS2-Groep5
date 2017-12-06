@@ -85,30 +85,6 @@ namespace VirtualPiano.Model
             return duration; // 1 maat is 16
         }
 
-        public async void PlaySong()
-        {
-            for(int i = 0; i < Staffs.Count(); i++)
-            {
-                for(int b = 0; b <  Staffs[i].Bars.Count();b++)
-                {
-                    for(int c = 0; c< Staffs[i].Bars[b].Signs.Count();c++)
-                    {
-                        if(Staffs[i].Bars[b].Signs[c] is Note note&&MusicController.isPlayingSong)
-                        {
-                            note.PlaySound();
-                            await PutTaskDelay(note.duration * 120);
-                            
-                        }
-
-                        else if (Staffs[i].Bars[b].Signs[c] is Rest rest)
-                        {
-                            await PutTaskDelay(rest.duration * 120);
-
-                        }
-                    }
-                }
-            }
-        }
 
         public async void PlayNote()
         {
