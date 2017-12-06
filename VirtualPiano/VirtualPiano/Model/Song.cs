@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Control;
@@ -108,7 +109,7 @@ namespace VirtualPiano.Model
             }
         }
 
-        public void PlayNote()
+        public async void PlayNote()
         {
             foreach (var staff in Staffs)
             {
@@ -120,7 +121,14 @@ namespace VirtualPiano.Model
                         {
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
+                                //toetsenbordkey op laten lichten
+                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
+                                await PutTaskDelay(75);
+                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
+                                break;
                             }
                         }
                     }
@@ -130,7 +138,15 @@ namespace VirtualPiano.Model
                         {
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
+                                //toetsenbordkey op laten lichten
+
+                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
+                                await PutTaskDelay(75);
+                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
+                                break;
                             }
                         }
                     }
@@ -140,7 +156,15 @@ namespace VirtualPiano.Model
                         {
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
+                                //toetsenbordkey op laten lichten
+
+                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
+                                await PutTaskDelay(75);
+                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
+                                break;
                             }
                         }
                     }
@@ -150,7 +174,15 @@ namespace VirtualPiano.Model
                         {
                             if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
                             {
+                                //toetsenbordkey op laten lichten
+
+                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
+                                await PutTaskDelay(75);
+                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
+                                break;
                             }
                         }
                     }

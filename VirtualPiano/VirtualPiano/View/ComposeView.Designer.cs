@@ -65,7 +65,6 @@ namespace VirtualPiano.View
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -334,7 +333,7 @@ namespace VirtualPiano.View
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripButton1.Size = new System.Drawing.Size(50, 50);
-            this.toolStripButton1.Text = "Kruis";
+            this.toolStripButton1.Text = "Mol";
             this.toolStripButton1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Sharp_MouseDown);
             // 
             // Flat
@@ -424,8 +423,8 @@ namespace VirtualPiano.View
             this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(933, 32);
-            this.TitelBox.MaxLength = 1230;
+            this.TitelBox.Location = new System.Drawing.Point(933, 45);
+            this.TitelBox.MaxLength = 128;
             this.TitelBox.Name = "TitelBox";
             this.TitelBox.Size = new System.Drawing.Size(200, 35);
             this.TitelBox.TabIndex = 1;
@@ -474,7 +473,6 @@ namespace VirtualPiano.View
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,11 +506,12 @@ namespace VirtualPiano.View
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         public Timer Metronome;
         private TextBox Snelheid;
-        private PictureBox pictureBox1;
         public Timer RedLine;
         public TextBox TitelBox;
         private MenuBarView menuBarView1;
+        private ToolStripButton toolStripButton1;
         private ToolStripSeparator toolStripSeparator4;
+        private ToolStripButton Connect;
         private ToolStripButton toolStripButton1;
         private ToolStripButton Bin;
         private ToolStripButton toolStripButton2;

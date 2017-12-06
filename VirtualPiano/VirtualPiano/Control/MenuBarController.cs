@@ -16,21 +16,7 @@ namespace VirtualPiano.Control
         {
         }
 
-        public void SoundToggle(MenuBarView mbv)
-        {
-            if (mbv.geluidAanuitToolStripMenuItem.Checked)
-            {
-                mbv.geluidAanuitToolStripMenuItem.CheckState = CheckState.Unchecked;
-                Note.SoundEnabled = false;  //mute
-            }
-            else
-            {
-                mbv.geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
-                Note.SoundEnabled = true;   //unmute
-            }
-        }
-
-        public void ChangeInstrument(MenuBarView mbv, string instrument)
+        public void ChangeInstrument(MenuBarView mbv,string instrument)
         {
             if(instrument == "Piano")
             {
@@ -54,26 +40,6 @@ namespace VirtualPiano.Control
                 ComposeView.instrument = "Marimba";
             }
         }
-
-        public void AddStaffView(MenuBarView mbv)
-        {
-            
-        }
-        
-        public void TogglePlayingPiano(MenuBarView mbv)
-        {
-            if(mbv.PlayingKeyboard.CheckState == CheckState.Checked)
-            {
-                MenuBarView.IsPlayingKeyboard = false;
-                mbv.PlayingKeyboard.CheckState = CheckState.Unchecked;
-            }
-            else
-            {
-                MenuBarView.IsPlayingKeyboard = true;
-                mbv.PlayingKeyboard.CheckState = CheckState.Checked;
-            }
-        }
-
     }
 
 }

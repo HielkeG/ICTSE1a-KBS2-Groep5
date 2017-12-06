@@ -18,18 +18,15 @@ namespace VirtualPiano.View
         public event EventHandler selectedSong;
         public event EventHandler newSong;
         public event EventHandler newStaffView;
+        public event EventHandler togglePianoVisible;
         MenuBarController mbc = new MenuBarController();
-        public static bool IsPlayingKeyboard = false;
+        public static MidiConnect m1 = new MidiConnect();
         public MenuBarView()
         {
 
             InitializeComponent();
         }
 
-        public void ToggleSound(object sender, EventArgs e)
-        {
-            mbc.SoundToggle(this);
-        }
 
         private void Save_Click(object sender, EventArgs e)
         {
@@ -65,7 +62,7 @@ namespace VirtualPiano.View
                 var result = MessageBox.Show(message, "Bericht", MessageBoxButtons.YesNo);
                 if(result == DialogResult.Yes)
                 {
-                    List<Song> songs = DatabaseController.GetSongs();
+                    List<Song> songs = VirtualPiano.Control.DatabaseController.GetSongs();
                     DatabaseFileExplorer databaseFileExplorer = new DatabaseFileExplorer();
                     foreach (Song song in songs)
                     {
@@ -83,7 +80,7 @@ namespace VirtualPiano.View
             }
             else
             {
-                List<Song> songs = DatabaseController.GetSongs();
+                List<Song> songs = VirtualPiano.Control.DatabaseController.GetSongs();
                 DatabaseFileExplorer databaseFileExplorer = new DatabaseFileExplorer();
                 foreach (Song song in songs)
                 {
@@ -122,7 +119,7 @@ namespace VirtualPiano.View
         private void Remove_Click(object sender, EventArgs e)
         {
             //zoeklijst invullen
-            List<Song> songs = DatabaseController.GetSongs();
+            List<Song> songs = VirtualPiano.Control.DatabaseController.GetSongs();
             DatabaseFileRemover databaseFileRemover = new DatabaseFileRemover();
             foreach (Song song in songs)
             {
@@ -139,7 +136,7 @@ namespace VirtualPiano.View
                     var result = MessageBox.Show("Weet u zeker dat u dit nummer wilt verwijderen.", "Waarschuwing", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        DatabaseController.RemoveSong(databaseFileRemover.Song.Title);
+                        VirtualPiano.Control.DatabaseController.RemoveSong(databaseFileRemover.Song.Title);
                         MessageBox.Show("Het nummer is verwijderd.", "Melding", MessageBoxButtons.OK);
                     }
                 }
@@ -153,18 +150,18 @@ namespace VirtualPiano.View
 
         private void Piano_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this, "Piano");
+            mbc.ChangeInstrument(this,"Piano");
         }
         
 
         private void Marimba_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this, "Marimba");
+            mbc.ChangeInstrument(this,"Marimba");
         }
 
         private void Gitaar_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this, "Gitaar");
+            mbc.ChangeInstrument(this,"Gitaar");
         }
 
         private void AddStaffView_Click(object sender, EventArgs e)
@@ -172,9 +169,36 @@ namespace VirtualPiano.View
             newStaffView(this, e);
         }
 
-        private void PlayingKeyboard_Click(object sender, EventArgs e)
+        private void midiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mbc.TogglePlayingPiano(this);
+
+        }
+
+        private void keyboardVerbindenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m1.ShowDialog();
+        }
+
+        private void toonKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Zichtbaar_Click(object sender, EventArgs e)
+        {
+            if(ComposeView.pkv1.Visible == false)
+            {
+                ComposeView.pkv1.Visible = true;
+                ToonToolstrip.CheckState = CheckState.Checked;
+                togglePianoVisible(this, e);
+            }
+            else
+            {
+                ComposeView.pkv1.Visible = false;
+                ToonToolstrip.CheckState = CheckState.Unchecked;
+                togglePianoVisible(this, e);
+
+            }
         }
     }
 }

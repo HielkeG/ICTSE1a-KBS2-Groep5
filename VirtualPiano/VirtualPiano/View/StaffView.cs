@@ -11,6 +11,7 @@ using VirtualPiano.Model;
 using VirtualPiano.Properties;
 using VirtualPiano.Control;
 using VirtualPiano.View;
+using System.Threading;
 
 namespace VirtualPiano.View
 {
@@ -439,6 +440,8 @@ namespace VirtualPiano.View
                                         }
                                     }
                                 }
+                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
                             }
                         }
                         barBegin += 430;

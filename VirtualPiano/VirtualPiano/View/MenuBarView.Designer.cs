@@ -37,13 +37,16 @@
             this.opslaanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geluidAanuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PlayingKeyboard = new System.Windows.Forms.ToolStripMenuItem();
             this.instrumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitaarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.marimbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notenbalkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toevoegenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.midiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keyboardVerbindenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.virtueelKeyboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToonToolstrip = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +59,9 @@
             this.bestandToolStripMenuItem,
             this.geluidToolStripMenuItem,
             this.instrumentToolStripMenuItem,
-            this.notenbalkToolStripMenuItem});
+            this.notenbalkToolStripMenuItem,
+            this.midiToolStripMenuItem,
+            this.virtueelKeyboardToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -122,8 +127,7 @@
             // 
             this.geluidToolStripMenuItem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.geluidToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.geluidAanuitToolStripMenuItem,
-            this.PlayingKeyboard});
+            this.geluidAanuitToolStripMenuItem});
             this.geluidToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.geluidToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.geluidToolStripMenuItem.Name = "geluidToolStripMenuItem";
@@ -138,14 +142,6 @@
             this.geluidAanuitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
-            this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.ToggleSound);
-            // 
-            // PlayingKeyboard
-            // 
-            this.PlayingKeyboard.Name = "PlayingKeyboard";
-            this.PlayingKeyboard.Size = new System.Drawing.Size(191, 22);
-            this.PlayingKeyboard.Text = "Typend spelen";
-            this.PlayingKeyboard.Click += new System.EventHandler(this.PlayingKeyboard_Click);
             // 
             // instrumentToolStripMenuItem
             // 
@@ -214,6 +210,39 @@
             this.toevoegenToolStripMenuItem.Text = "Toevoegen";
             this.toevoegenToolStripMenuItem.Click += new System.EventHandler(this.AddStaffView_Click);
             // 
+            // midiToolStripMenuItem
+            // 
+            this.midiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.keyboardVerbindenToolStripMenuItem});
+            this.midiToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.midiToolStripMenuItem.Name = "midiToolStripMenuItem";
+            this.midiToolStripMenuItem.Size = new System.Drawing.Size(43, 24);
+            this.midiToolStripMenuItem.Text = "Midi";
+            this.midiToolStripMenuItem.Click += new System.EventHandler(this.midiToolStripMenuItem_Click);
+            // 
+            // keyboardVerbindenToolStripMenuItem
+            // 
+            this.keyboardVerbindenToolStripMenuItem.Name = "keyboardVerbindenToolStripMenuItem";
+            this.keyboardVerbindenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.keyboardVerbindenToolStripMenuItem.Text = "Keyboard verbinden";
+            this.keyboardVerbindenToolStripMenuItem.Click += new System.EventHandler(this.keyboardVerbindenToolStripMenuItem_Click);
+            // 
+            // virtueelKeyboardToolStripMenuItem
+            // 
+            this.virtueelKeyboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToonToolstrip});
+            this.virtueelKeyboardToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.virtueelKeyboardToolStripMenuItem.Name = "virtueelKeyboardToolStripMenuItem";
+            this.virtueelKeyboardToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.virtueelKeyboardToolStripMenuItem.Text = "Virtueel keyboard";
+            // 
+            // ToonToolstrip
+            // 
+            this.ToonToolstrip.Name = "ToonToolstrip";
+            this.ToonToolstrip.Size = new System.Drawing.Size(124, 22);
+            this.ToonToolstrip.Text = "Zichtbaar";
+            this.ToonToolstrip.Click += new System.EventHandler(this.Zichtbaar_Click);
+            // 
             // MenuBarView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +277,9 @@
         private System.Windows.Forms.ToolStripMenuItem nieuwToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem PlayingKeyboard;
+        private System.Windows.Forms.ToolStripMenuItem midiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem keyboardVerbindenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem virtueelKeyboardToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ToonToolstrip;
     }
 }

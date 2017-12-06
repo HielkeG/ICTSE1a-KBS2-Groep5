@@ -57,12 +57,12 @@ namespace VirtualPiano.View
 
         private void Selecteer_Click(object sender, EventArgs e)
         {
-                List<Song> songs = DatabaseController.GetSongs();
+                List<Song> songs = VirtualPiano.Control.DatabaseController.GetSongs();
                 foreach (var item in songs)
                 {
                     if ((string)ItemsList.SelectedItem == item.Title)
                     {
-                        Song = DatabaseController.FillSong(item);
+                        Song = VirtualPiano.Control.DatabaseController.FillSong(item);
 
                     }
                 }
