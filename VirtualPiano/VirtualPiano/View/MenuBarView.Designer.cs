@@ -225,6 +225,7 @@
             this.gebruikershandleidingToolStripMenuItem,
             this.keybindingsToolStripMenuItem,
             this.overigeInformatieToolStripMenuItem});
+            this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.helpToolStripMenuItem.Text = "Help";
