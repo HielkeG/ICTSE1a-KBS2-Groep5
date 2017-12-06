@@ -18,16 +18,15 @@ namespace VirtualPiano.View
     {
         public Staff staff;
         public RedLine redLine;
+        public Song song;
+        
         Color barColor;
 
 
-        public StaffView(Staff staff, int flatsharp)
+        public StaffView(Staff staff, Song song)
         {
             this.staff = staff;
-            foreach (Bar bar in staff.Bars)
-            {
-                bar.FlatSharp = flatsharp;
-            }
+            this.song = song;
             DoubleBuffered = true;
             SetImage();
             InitializeComponent();
@@ -86,32 +85,33 @@ namespace VirtualPiano.View
             foreach (Bar bar in staff.Bars) // Elke bar in de notenbalk wordt langsgegaan
             {
                 //Sleutels tekenen
-                if(staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen en kruizen/mollen tekenen
+                if (staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen en kruizen/mollen tekenen
                 {
                     //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
                     if (bar.clef == ClefName.G.ToString() && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 470, 26, 60, 110); latestClef = ClefName.G; }
                     else if (bar.clef == ClefName.F.ToString() && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 483, -19, 88, 185); latestClef = ClefName.F; }
 
                     //Hieronder worden de kruizen en de mollen getekent. afhankelijk van het aantal
-                    if (bar.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 420, 30, 30, 40); }
-                    if (bar.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 405, 53, 30, 40); }
-                    if (bar.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 405, 25, 30, 40); }
-                    if (bar.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 426, 47, 30, 40); }
-                    if (bar.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 420, 65, 30, 40); }
+                    if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 420, 30, 30, 40); }
+                    if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 405, 53, 30, 40); }
+                    if (song.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 405, 25, 30, 40); }
+                    if (song.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 426, 47, 30, 40); }
+                    if (song.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 420, 65, 30, 40); }
 
-                    if (bar.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.Mol, x_bar - 420, 52, 30, 40); }
-                    if (bar.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.Mol, x_bar - 405, 28, 30, 40); }
-                    if (bar.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.Mol, x_bar - 405, 59, 30, 40); }
-                    if (bar.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.Mol, x_bar - 426, 36, 30, 40); }
-                    if (bar.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.Mol, x_bar - 420, 67, 30, 40); }
-                } else 
+                    if (song.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.Mol, x_bar - 420, 52, 30, 40); }
+                    if (song.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.Mol, x_bar - 405, 28, 30, 40); }
+                    if (song.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.Mol, x_bar - 405, 59, 30, 40); }
+                    if (song.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.Mol, x_bar - 426, 36, 30, 40); }
+                    if (song.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.Mol, x_bar - 420, 67, 30, 40); }
+                }
+                else
                 {
                     if (bar.clef == ClefName.G.ToString() && latestClef != ClefName.G) { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 470, 43, 40, 83); latestClef = ClefName.G; }
                     else if (bar.clef == ClefName.F.ToString() && latestClef != ClefName.F) { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 493, -5, 77, 155); latestClef = ClefName.F; }
                 }
 
-                e.Graphics.DrawLine(new Pen(Color.Black),x_bar,50,x_bar,110); //per maat verticale lijn tekenen
-                if (bar.isFull)
+                e.Graphics.DrawLine(new Pen(Color.Black), x_bar, 50, x_bar, 110); //per maat verticale lijn tekenen
+                if (bar.duration == 16)
                 {
                     barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
                     fullBar++;
@@ -121,7 +121,7 @@ namespace VirtualPiano.View
                 {
                     barColor = Color.Red;
                 }
-                e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 430, 145, x_bar, 145);   
+                e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 430, 145, x_bar, 145);
                 Xnotelocation = x_bar - 450; // De x-coördinaat van het einde van de maat
                 if (fullBar == 4)
                 {
@@ -132,136 +132,265 @@ namespace VirtualPiano.View
                 foreach (Sign sign in bar.Signs)
                 {
                     //Noten
-                    if (sign is Note note) { 
+                    if (sign is Note note)
+                    {
 
                         if (note.ConnectionNote != null)     //noten die aan elkaar zitten tekenen
                         {
                             e.Graphics.DrawLine(new Pen(Color.Black, 8), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
                         }
 
-                    int Ynotelocation = note.y; 
+                        int Ynotelocation = note.y;
 
                         //Als de noten te hoog of te heel laag zijn voor de notenbalk, worden er hulplijnen getkent.
-                        if(note.y <= -25){ e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation +30, 36, Xnotelocation + 70, 36);}
-                        if (note.y <= - 40){ e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 22, Xnotelocation + 70, 22);}
-                        else if (note.y >= 55){ e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 124, Xnotelocation + 70, 124); }
+                        if (note.y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 36, Xnotelocation + 70, 36); }
+                        if (note.y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 22, Xnotelocation + 70, 22); }
+                        else if (note.y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 124, Xnotelocation + 70, 124); }
 
 
                         e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
+                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, Xnotelocation + 15, Ynotelocation + 40, 30, 40); }
+                        else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, Xnotelocation + 15, Ynotelocation + 40, 30, 40); }
                         note.SetX(Xnotelocation);
 
                         // De volgende noot wordt getekent op een afstand afhankelijk van de lengte van deze noot
-                        if (note.noteName == NoteName.WholeNote.ToString()) Xnotelocation += 400; 
-                        else if(note.noteName == NoteName.HalfNote.ToString()) Xnotelocation += 200; //De volgende noot wordt getekent op een afstand van 200
-                        else if(note.noteName == NoteName.QuarterNote.ToString()) Xnotelocation += 100;
-                        else if(note.noteName == NoteName.EightNote.ToString()) Xnotelocation += 50;
-                        else if(note.noteName == NoteName.SixteenthNote.ToString()) Xnotelocation += 25;
-                        
+                        if (note.name == NoteName.WholeNote.ToString()) Xnotelocation += 400;
+                        else if (note.name == NoteName.HalfNote.ToString()) Xnotelocation += 200; //De volgende noot wordt getekent op een afstand van 200
+                        else if (note.name == NoteName.QuarterNote.ToString()) Xnotelocation += 100;
+                        else if (note.name == NoteName.EightNote.ToString()) Xnotelocation += 50;
+                        else if (note.name == NoteName.SixteenthNote.ToString()) Xnotelocation += 25;
+
                     }
                     else if (sign is Rest rest)
                     {
-                        if (rest.restName == RestName.WholeRest.ToString()) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 220, 66, 20, 10)); }
-                        else if (rest.restName == RestName.HalfRest.ToString()) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 115, 71, 20, 10)); }
-                        else if (rest.restName == RestName.QuarterRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 60, 50, 50, 61);
-                        else if (rest.restName == RestName.EightRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 30, 20, 65, 115);
-                        else if (rest.restName == RestName.SixteenthRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 50, 20, 65, 115);
+                        if (rest.name == RestName.WholeRest.ToString()) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 220, 66, 20, 10)); }
+                        else if (rest.name == RestName.HalfRest.ToString()) { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 115, 71, 20, 10)); }
+                        else if (rest.name == RestName.QuarterRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 60, 50, 50, 61);
+                        else if (rest.name == RestName.EightRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 30, 20, 65, 115);
+                        else if (rest.name == RestName.SixteenthRest.ToString()) e.Graphics.DrawImage(rest.image, Xnotelocation + 50, 20, 65, 115);
 
                         // De volgende noot wordt getekent op een afstand afhankelijk van de lengte van deze rust
-                        if (rest.restName == RestName.WholeRest.ToString()) Xnotelocation += 400;
-                        else if (rest.restName == RestName.HalfRest.ToString()) Xnotelocation += 200;
-                        else if (rest.restName == RestName.QuarterRest.ToString()) Xnotelocation += 100;
-                        else if (rest.restName == RestName.EightRest.ToString()) Xnotelocation += 50;
-                        else if (rest.restName == RestName.SixteenthRest.ToString()) Xnotelocation += 25;
+                        if (rest.name == RestName.WholeRest.ToString()) Xnotelocation += 400;
+                        else if (rest.name == RestName.HalfRest.ToString()) Xnotelocation += 200;
+                        else if (rest.name == RestName.QuarterRest.ToString()) Xnotelocation += 100;
+                        else if (rest.name == RestName.EightRest.ToString()) Xnotelocation += 50;
+                        else if (rest.name == RestName.SixteenthRest.ToString()) Xnotelocation += 25;
                     }
                 }
-                x_bar += 430; 
+                x_bar += 430;
             }
         }
 
-        private void MouseActions(object sender, MouseEventArgs e)
+        private void StaffView_MouseUp(object sender, MouseEventArgs e)
         {
+            if (ComposeView.draggingSign != null)
+            {
+                if (ComposeView.draggingSign.name == NoteName.WholeNote.ToString()) { ComposeView.draggingSign.image = Resources.helenoot; }
+                else if (ComposeView.draggingSign.name == NoteName.HalfNote.ToString()) { ComposeView.draggingSign.image = Resources.halvenoot; }
+                else if (ComposeView.draggingSign.name == NoteName.QuarterNote.ToString()) { ComposeView.draggingSign.image = Resources.kwartnoot; }
+                else if (ComposeView.draggingSign.name == NoteName.EightNote.ToString()) { ComposeView.draggingSign.image = Resources.achtstenoot; }
+                else if (ComposeView.draggingSign.name == NoteName.SixteenthNote.ToString()) { ComposeView.draggingSign.image = Resources.zestiendenoot; }
+            }
+            ComposeView.cursorIsDown = false;
+            ComposeView.SelectedSign = "";
+            SetDefaultCursor();
+        }
+
+        //methode die de cursor op default zet en alle booleans op null zet.
+        private void SetDefaultCursor()
+        {
+            Cursor = Cursors.Default;
+        }
+
+        private void StaffView_MouseEnter(object sender, EventArgs e)
+        {
+            if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F" || ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect" || ComposeView.SelectedSign == "Bin") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+            else { SetDefaultCursor(); }
+        }
+
+        private void StaffView_MouseLeave(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
+
+        private void StaffView_MouseMove(object sender, MouseEventArgs e)
+        {
+            int barBegin = 50;
+            int barEnd = 475;
+
+            foreach (Bar bar in staff.Bars)
+            {
+
+                if (bar.duration < 16 && ComposeView.signSelected)
+                {
+                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
+                    {
+                        int Y = PointToClient(Cursor.Position).Y;
+
+                        // ------Note-----
+                        if (ComposeView.SelectedSign.Contains("Note"))
+                        {
+                            NoteName EnumNote = (NoteName)Enum.Parse(typeof(NoteName), ComposeView.SelectedSign);
+                            Note newNote = new Note(PointToClient(Cursor.Position).Y, EnumNote, bar.clef, song.FlatSharp);
+                            if (bar.CheckBarSpace(newNote) && EnumNote != NoteName.NULL)
+                            {
+                                bar.Add(newNote);
+                                bar.hasPreview = true;
+                            }  //note toevoegen als er ruimte is
+                        }
+                        // -----Rest-----
+                        else if (ComposeView.SelectedSign.Contains("Rest"))
+                        {
+                            RestName EnumRest = (RestName)Enum.Parse(typeof(RestName), ComposeView.SelectedSign);
+                            Rest newRest = new Rest(EnumRest);
+                            if (bar.CheckBarSpace(newRest) && EnumRest != RestName.NULL)
+                            {
+                                bar.Add(newRest);
+                                bar.hasPreview = true;
+                            }
+                            //rest toevoegen als er ruimte is
+                        }
+                        // -----Clef----
+                        //else if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F")
+                        //{
+                        //    ClefName EnumClef = (ClefName)Enum.Parse(typeof(ClefName), ComposeView.SelectedSign);
+
+                        //    if (EnumClef == ClefName.G)
+                        //    {
+                        //        bar.clef = ClefName.G.ToString();
+                        //        bar.MakeEmpty();
+                        //    }
+                        //    if (EnumClef == ClefName.F)
+                        //    {
+                        //        bar.clef = ClefName.F.ToString();
+                        //        bar.MakeEmpty();
+                        //    }
+                        //}
+                    }
+                }
+                barBegin += 430;
+                barEnd += 430;
+            }
+
+            Invalidate();
+            Update();
+
+            foreach (Bar bar in staff.Bars)
+            {
+                if (bar.hasPreview) bar.RemovePreview();
+            }
+        }
+
+        private async void StaffView_MouseDown(object sender, MouseEventArgs e)
+        {
+            ComposeView.cursorIsDown = true;
+            if (ComposeView.signSelected == false && e.Button == MouseButtons.Left)
+            {
+                foreach (Bar bar in staff.Bars)
+                {
+                    for (int i = 0; i < bar.Signs.Count(); i++)
+                    {
+                        Sign sign = bar.Signs[i];
+
+                        if (sign.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
+                        {
+                            if (sign is Note note)
+                            {
+                                note.PlaySound();
+                            }
+                            await PutTaskDelay(300);
+
+                            if (ComposeView.cursorIsDown == true)
+                            {
+                                Cursor = CursorController.ChangeCursor(sign.name);
+                                ComposeView.SelectedSign = sign.name;
+                                sign.image = Resources.blank;
+                                ComposeView.draggingSign = sign;
+                                Console.WriteLine(ComposeView.draggingSign.name);
+                                Invalidate();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void StaffView_MouseClick(object sender, MouseEventArgs e)
+        {
+
             //Als er met de linkermuisknop geklikt is
             if (e.Button == MouseButtons.Left)
             {
                 //Als er een teken geselecteerd is
                 if (ComposeView.signSelected)
                 {
-                    
+
                     int barBegin = 45;
                     int barEnd = 475;
 
+                    //Kruizen en Mollen toevoegen aan het begin
+                    if (PointToClient(Cursor.Position).X < 100 && ComposeView.SelectedSign == "Sharp")
+                    {
+                        if (song.FlatSharp < 0) { song.FlatSharp = 0; }
+                        song.FlatSharp++;
+                        song.ChangeSharpFlat(song.FlatSharp);
+                    }
+                    if (PointToClient(Cursor.Position).X < 100 && ComposeView.SelectedSign == "Flat")
+                    {
+                        if (song.FlatSharp > 0) { song.FlatSharp = 0; }
+                        song.FlatSharp--;
+                        song.ChangeSharpFlat(song.FlatSharp);
+                    }
+
+
                     foreach (Bar bar in staff.Bars)
                     {
-                        if (PointToClient(Cursor.Position).X < 100 && ComposeView.SelectedSign == "Sharp")
-                        {
-
-                            Invalidate();
-                            if(bar.FlatSharp < 0)
-                            {
-                                bar.FlatSharp = 0;
-                            }
-                            bar.FlatSharp ++;
-                        }
-                        if (PointToClient(Cursor.Position).X < 100 && ComposeView.SelectedSign == "Flat")
-                        {
-
-                            Invalidate();
-                            if (bar.FlatSharp > 0)
-                            {
-                                bar.FlatSharp = 0;
-                            }
-                            bar.FlatSharp--;
-                        }
 
                         //Als de positie van de muis binnen de positie van de maat valt. (bar = maat)
                         if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                         {
-                            NoteName EnumNote = NoteName.NULL;
-                            RestName EnumRest = RestName.NULL;
-                            ClefName EnumClef = ClefName.NULL;
 
-                            try
+                            // ------Note-----
+                            if (ComposeView.SelectedSign.Contains("Note"))
                             {
-                                EnumNote = (NoteName)Enum.Parse(typeof(NoteName), ComposeView.SelectedSign);
+                                NoteName EnumNote = (NoteName)Enum.Parse(typeof(NoteName), ComposeView.SelectedSign);
+                                Note newNote = new Note(PointToClient(Cursor.Position).Y, EnumNote, bar.clef, song.FlatSharp);
+                                if (bar.CheckBarSpace(newNote) && EnumNote != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
                             }
-                            catch (Exception) { }
-                            try
+                            // -----Rest-----
+                            else if (ComposeView.SelectedSign.Contains("Rest"))
                             {
-                                EnumRest = (RestName)Enum.Parse(typeof(RestName), ComposeView.SelectedSign);
+                                RestName EnumRest = (RestName)Enum.Parse(typeof(RestName), ComposeView.SelectedSign);
+                                Rest newRest = new Rest(EnumRest);
+                                if (bar.CheckBarSpace(newRest) && EnumRest != RestName.NULL) bar.Add(newRest);  //rest toevoegen als er ruimte is
                             }
-                            catch (Exception) { }
-                            try
+                            // -----Clef----
+                            else if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F")
                             {
-                                EnumClef = (ClefName)Enum.Parse(typeof(ClefName), ComposeView.SelectedSign);
-                            }
-                            catch (Exception) { }
-                               
-                               
-                            
+                                ClefName EnumClef = (ClefName)Enum.Parse(typeof(ClefName), ComposeView.SelectedSign);
 
-                            Note newNote = new Note(PointToClient(Cursor.Position).Y, EnumNote, bar.clef, bar.FlatSharp);
-                            Rest newRest = new Rest(EnumRest);
-
-                            if (bar.CheckBarSpace(newNote) && EnumNote != NoteName.NULL) bar.Add(newNote);  //note toevoegen als er ruimte is
-                            else if (bar.CheckBarSpace(newRest) && EnumRest != RestName.NULL) bar.Add(newRest);  //rust toevoegen als er ruimte is
-                            if (EnumClef == ClefName.G)
-                            {
-                                bar.clef = ClefName.G.ToString();
-                                bar.MakeEmpty();
-                            }
-                            if (EnumClef == ClefName.F)
-                            {
-                                bar.clef = ClefName.F.ToString();
-                                bar.MakeEmpty();
-                            }
-
-                            if (ComposeView.ConnectSelected)
-                            {
-                                foreach (Sign sign in bar.Signs)
+                                if (EnumClef == ClefName.G)
                                 {
-                                    if (sign is Note note)
+                                    bar.clef = ClefName.G.ToString();
+                                    bar.MakeEmpty();
+                                }
+                                if (EnumClef == ClefName.F)
+                                {
+                                    bar.clef = ClefName.F.ToString();
+                                    bar.MakeEmpty();
+                                }
+                            }
+
+                            foreach (Sign sign in bar.Signs)
+                            {
+                                if (sign is Note note)
+                                {
+
+                                    // -----Connect----
+                                    if (ComposeView.SelectedSign == "Connect")
                                     {
-                                        if (note.isLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && note.noteName == NoteName.EightNote.ToString() && note != ComposeView.selectedNote1)
+
+                                        if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && note.name == NoteName.EightNote.ToString() && note != ComposeView.selectedNote1)
                                         {
                                             if (ComposeView.selectedNote1 == null && note.ConnectionNote == null) ComposeView.selectedNote1 = note;
                                             else if (note.ConnectionNote == null) ComposeView.selectedNote2 = note;
@@ -277,6 +406,36 @@ namespace VirtualPiano.View
                                                 ComposeView.selectedNote1 = null;
                                                 ComposeView.selectedNote2 = null;
                                             }
+
+                                        }
+                                    }
+
+                                    // ----- Sharp / Flat --------
+                                    if (ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat")
+                                    {
+                                        if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
+                                        {
+                                            if (ComposeView.SelectedSign == "Sharp")
+                                            {
+                                                note.SetSharp();
+                                            }
+                                            if (ComposeView.SelectedSign == "Flat")
+                                            {
+                                                note.SetFlat();
+                                            }
+                                        }
+                                    }
+                                    // ------Bin------
+                                    if (ComposeView.SelectedSign == "Bin")
+                                    {
+                                        if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
+                                        {
+                                            if (note.flat == true || note.sharp == true)
+                                            {
+                                                note.flat = false;
+                                                note.sharp = false;
+                                            }
+
                                         }
                                     }
                                 }
@@ -284,25 +443,6 @@ namespace VirtualPiano.View
                         }
                         barBegin += 430;
                         barEnd += 430;
-                    }
-                    SetDefaultCursor();
-                }
-                //Als er geen teken geselecteerd is
-                else
-                {
-                    foreach (Bar bar in staff.Bars)
-                    {
-                        foreach (Sign sign in bar.Signs)
-                        {
-                            if (sign is Note note)
-                            {
-                                //Speelt de aangeklikt noot af
-                                if (note.isLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
-                                {
-                                    note.PlaySound();
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -321,9 +461,7 @@ namespace VirtualPiano.View
                         {
                             if (bar.Signs.Count > 0)
                             {//Laatste noot verwijderen
-                                bar.duration = bar.duration - bar.Signs.Last().duration;
-                                bar.Signs.RemoveAt(bar.Signs.Count() - 1);
-                                bar.isFull = false;
+                                bar.RemoveSign(bar.Signs[bar.Signs.Count() - 1]);
                             }
                         }
                         barBegin += 430;
@@ -331,91 +469,21 @@ namespace VirtualPiano.View
                     }
                 }
                 ComposeView.signSelected = false;
-                ComposeView.SelectedSign = null;
+                ComposeView.SelectedSign = "";
                 ComposeView.selectedNote1 = null;
                 ComposeView.selectedNote2 = null;
             }
-            Invalidate();
-        }    
-
-    //methode die de cursor op default zet en alle booleans op null zet.
-        private void SetDefaultCursor()
-        {
-            Cursor = Cursors.Default;
-        }
-
-        private void StaffView_MouseEnter(object sender, EventArgs e)
-        {
-            
-            Cursor = Cursors.Default;
-        }
-
-        private void StaffView_MouseLeave(object sender, EventArgs e)
-        {
+            ComposeView.signSelected = false;
+            ComposeView.SelectedSign = "";
             Invalidate();
         }
 
-        private void StaffView_MouseMove(object sender, MouseEventArgs e)
+        async Task PutTaskDelay(int delay)
         {
-            int barBegin = 50;
-            int barEnd = 475;
-
-                foreach (Bar bar in staff.Bars)
-                {
-
-                    if (bar.isFull == false && ComposeView.signSelected)
-                    {
-                        if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
-                        {
-                            int Y = PointToClient(Cursor.Position).Y;
-                        NoteName EnumNote = NoteName.NULL;
-                        RestName EnumRest = RestName.NULL;
-                        ClefName EnumClef = ClefName.NULL;
-
-                        try
-                        {
-                            EnumNote = (NoteName)Enum.Parse(typeof(NoteName), ComposeView.SelectedSign);
-                        }
-                        catch (Exception) { }
-                        try
-                        {
-                            EnumRest = (RestName)Enum.Parse(typeof(RestName), ComposeView.SelectedSign);
-                        }
-                        catch (Exception) { }
-                        try
-                        {
-                            EnumClef = (ClefName)Enum.Parse(typeof(ClefName), ComposeView.SelectedSign);
-                        }
-                        catch (Exception) { }
-
-                        Note newNote = new Note(Y, EnumNote, bar.clef.ToString(), bar.FlatSharp);
-                            Rest newRest = new Rest(EnumRest);
-
-                            if (bar.CheckBarSpace(newNote) && EnumNote != NoteName.NULL)
-                            {
-                                bar.Add(newNote);
-                                bar.hasPreview = true;
-                            }
-                            else if (bar.CheckBarSpace(newRest) && EnumRest != RestName.NULL)
-                            {
-                                bar.clef = ClefName.G.ToString();
-                                bar.Add(newRest);
-                                bar.hasPreview = true;
-                            }
-                        }
-                    }
-                barBegin += 430;
-                barEnd += 430;
-            }
-
-            Invalidate();
-            Update();
-
-            foreach (Bar bar in staff.Bars)
-            {
-                if (bar.hasPreview) bar.RemovePreview();
-            }
+            await Task.Delay(delay);
         }
+
     }
+
 }
 

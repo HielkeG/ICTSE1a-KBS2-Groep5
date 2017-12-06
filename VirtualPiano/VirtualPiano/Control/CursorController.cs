@@ -33,6 +33,7 @@ namespace VirtualPiano.Control
             else if (s == "Sharp") b = Resources.Kruis;
             else if (s == "Flat") b = Resources.Mol;
             else if (s == "Connect") b = Resources.ConnectNote_icon;
+            else if (s == "Bin") b = Resources.bin;
             else return Cursors.Default;
 
             b.MakeTransparent(b.GetPixel(0, 0));
