@@ -27,6 +27,7 @@ namespace VirtualPiano.View
         public static string SelectedSign = "";
         public static bool cursorIsDown;
         private List<StaffView> staffViews = new List<StaffView>();
+        private List<Panel> staffViewsPanels = new List<Panel>();
         private bool firstStart = true;
         public static System.Timers.Timer Songtimer = new System.Timers.Timer();  //Aparte timer zodat deze meerdere threads gebruikt.
         public static string instrument = "Piano";
@@ -185,16 +186,9 @@ namespace VirtualPiano.View
             {
                 item.Dispose();
             }
-            foreach (var item in Controls)
+            foreach (var item in staffViewsPanels)
             {
-                if (item.GetType() == typeof(Panel))
-                {
-                    Panel panel = (Panel)item;
-                    if (panel.Name == "staff")
-                    {
-                        panel.Dispose();
-                    }
-                }
+                item.Dispose();
             }
             staffViews.Clear();
             btnAddStaff.Dispose();
@@ -236,7 +230,6 @@ namespace VirtualPiano.View
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
-            StaffCounter++;
             btnAddStaff.Dispose();
             AddNewStaff();
 
@@ -247,15 +240,13 @@ namespace VirtualPiano.View
             Staff newStaff = new Staff();
             newStaff.y = y_staff;
             song.AddStaff(newStaff);
-            foreach (Staff staff in song.GetStaffs())
+            AddStaffView(newStaff);
+            if (staffViews.Count <= 2)
             {
-                if (staff == song.GetStaffs().Last())
-                {
-                    AddStaffView(staff);
-                    if (staffViews.Count <= 2) AddStaffButton();
-                    y_staff += 190;
-                }
+                AddStaffButton();
             }
+            y_staff += 190;
+
         }
 
         public void AddStaffView(Staff staff)   //nieuwe notenbalkpanel maken en vullen
@@ -263,16 +254,15 @@ namespace VirtualPiano.View
             Panel panel = new Panel();
             panel.Location = new Point(100, y_staff);
             panel.Name = "staff";
-
             panel.Size = new Size(1800, 150);
-            Controls.Add(panel);
             StaffView _staffView = new StaffView(staff, song)
             {
                 Dock = DockStyle.None
             };
             staffViews.Add(_staffView);
+            staffViewsPanels.Add(panel);
             panel.Controls.Add(_staffView);
-
+            Controls.Add(panel);
         }
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
