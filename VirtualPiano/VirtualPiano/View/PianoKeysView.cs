@@ -38,7 +38,7 @@ namespace VirtualPiano.View
         private void CreateKeys()
         {
                         
-            for (int o = 1; o < 4; o++) //aantal octaven om te tekenen
+            for (int o = 2; o < 6; o++) //aantal octaven om te tekenen
             {
                 for (int i = 0; i < KeyList.Count(); i++) //teken whitekeys en dan blackkeys
                 {

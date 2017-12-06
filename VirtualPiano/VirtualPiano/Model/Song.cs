@@ -110,7 +110,7 @@ namespace VirtualPiano.Model
             }
         }
 
-        public void PlayNote()
+        public async void PlayNote()
         {
             foreach (var staff in Staffs)
             {
@@ -126,7 +126,7 @@ namespace VirtualPiano.Model
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
-                                Thread.Sleep(100);
+                                await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
@@ -144,7 +144,7 @@ namespace VirtualPiano.Model
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
-                                Thread.Sleep(100);
+                                await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
@@ -162,7 +162,7 @@ namespace VirtualPiano.Model
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
-                                Thread.Sleep(100);
+                                await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
@@ -180,7 +180,7 @@ namespace VirtualPiano.Model
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 note.PlaySound();
-                                Thread.Sleep(100);
+                                await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;

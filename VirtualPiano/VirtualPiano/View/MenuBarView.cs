@@ -30,7 +30,7 @@ namespace VirtualPiano.View
 
         public void ToggleSound(object sender, EventArgs e)
         {
-            mbc.SoundToggle();
+            mbc.SoundToggle(this);
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -155,18 +155,18 @@ namespace VirtualPiano.View
 
         private void Piano_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument("Piano");
+            mbc.ChangeInstrument(this,"Piano");
         }
         
 
         private void Marimba_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument("Marimba");
+            mbc.ChangeInstrument(this,"Marimba");
         }
 
         private void Gitaar_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument("Gitaar");
+            mbc.ChangeInstrument(this,"Gitaar");
         }
 
         private void AddStaffView_Click(object sender, EventArgs e)
@@ -176,12 +176,7 @@ namespace VirtualPiano.View
 
         private void PlayingKeyboard_Click(object sender, EventArgs e)
         {
-            mbc.TogglePlayingPiano();
+            mbc.TogglePlayingPiano(this);
         }
-
-        //public void Gebruikershandleiding_Click(object sender, EventArgs e)
-        //{
-        //    laat handleiding zine in andere window
-        //}
     }
 }

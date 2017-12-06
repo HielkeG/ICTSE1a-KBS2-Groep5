@@ -11,14 +11,13 @@ namespace VirtualPiano.Control
 {
     public class MenuBarController
     {
-        public MenuBarView mbv;
 
         public MenuBarController()
         {
             //mbv.gebruikershandleidingToolStripMenuItem.Click += mbv.Gebruikershandleiding_Click;
         }
 
-        public void SoundToggle()
+        public void SoundToggle(MenuBarView mbv)
         {
             if (mbv.geluidAanuitToolStripMenuItem.Checked)
             {
@@ -32,7 +31,7 @@ namespace VirtualPiano.Control
             }
         }
 
-        public void ChangeInstrument(string instrument)
+        public void ChangeInstrument(MenuBarView mbv,string instrument)
         {
             if(instrument == "Piano")
             {
@@ -62,7 +61,7 @@ namespace VirtualPiano.Control
             
         }
         
-        public void TogglePlayingPiano()
+        public void TogglePlayingPiano(MenuBarView mbv)
         {
             if(mbv.PlayingKeyboard.CheckState == CheckState.Checked)
             {
