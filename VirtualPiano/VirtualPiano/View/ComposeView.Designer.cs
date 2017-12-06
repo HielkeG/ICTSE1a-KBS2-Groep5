@@ -61,7 +61,6 @@ namespace VirtualPiano.View
             this.RedLine = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -441,17 +440,7 @@ namespace VirtualPiano.View
             this.menuBarView1.Size = new System.Drawing.Size(342, 25);
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(263, 92);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 70);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
+            
             // 
             // ComposeView
             // 
@@ -512,7 +501,6 @@ namespace VirtualPiano.View
         private ToolStripButton toolStripButton1;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripButton Connect;
-        private ToolStripButton toolStripButton1;
         private ToolStripButton Bin;
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator5;

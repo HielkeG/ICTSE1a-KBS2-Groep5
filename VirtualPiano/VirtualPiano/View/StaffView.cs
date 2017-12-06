@@ -439,9 +439,10 @@ namespace VirtualPiano.View
 
                                         }
                                     }
+                                    ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                    ComposeView.pkv1.Invalidate();
                                 }
-                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
-                                ComposeView.pkv1.Invalidate();
+                                
                             }
                         }
                         barBegin += 430;
