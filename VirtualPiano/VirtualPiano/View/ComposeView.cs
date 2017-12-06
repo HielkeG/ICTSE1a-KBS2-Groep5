@@ -18,15 +18,15 @@ namespace VirtualPiano.View
     {
         public Song song = new Song();
         Button btnAddStaff = new Button();
+        
         int y_staff = 140;
         public static bool ConnectSelected = false;
         public static Note selectedNote1;
         public static Note selectedNote2;
         internal static bool signSelected;
         internal static int FlatSharp = 0;
-        internal static NoteName SelectedNoteName = NoteName.NULL;
-        internal static RestName SelectedRestName = RestName.NULL;
-        internal static ClefName SelectedClefName = ClefName.NULL;
+        public static string SelectedSign = null;
+        internal static string SelectedSharpFlat = null;
         private List<StaffView> staffViews = new List<StaffView>();
         private bool firstStart = true;
         //timer die de x van de rode lijn verhoogt en noten afspeelt. 
@@ -34,20 +34,24 @@ namespace VirtualPiano.View
         public static System.Timers.Timer Songtimer = new System.Timers.Timer();
         //huide nummer van afgespeelde staff. Zodat de rode lijn hier overheen loopt.
         public static string instrument = "Piano";
-
+        public static int CurrentOctave = 3;
         public static int CurrentPlayingStaff = 0;
         //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
-        private static bool RunningTimer { get; set; }
+        private static bool RunningTimer;
         //locatie van de rode lijn
-        public static int RedLineX { get; set; }
+        public static int RedLineX;
+        public int StaffCounter = 0;
+
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Panel keypanel = new Panel()
         {
-            Location = new Point(190, 730),
-            Size = new Size(1400, 250),
+            Location = new Point(300, 730),
+            Size = new Size(1400, 240),
+            //Location = new Point(this.ClientSize.Width / 2 - Size.Width / 2, this.ClientSize.Height / 2 - Size.Height / 2),
+            Anchor = AnchorStyles.None,
             Dock = DockStyle.Bottom,
-            Visible = true
+            Visible = false
         };
 
         public ComposeView()
@@ -69,22 +73,53 @@ namespace VirtualPiano.View
             menuBarView1.newSong += NewSong;
             menuBarView1.newStaffView += newStaffView;
 
-            Controls.Add(PianoKeysController.pianoKeysBox);
+            Controls.Add(PianoKeysController.pianoKeysBtn);
             Controls.Add(keypanel);
             keypanel.Controls.Add(pkv1);
 
-
+            //voeg muziekknoppen toe en metronoom
             MusicController m1 = new MusicController(Metronome, RedLine, song);
-            Controls.Add(MusicController.rewindBox);
-            Controls.Add(MusicController.playBox);
-            Controls.Add(MusicController.stopBox);
-            Snelheid.Text = Metronome.Interval.ToString();
-
+            Controls.Add(MusicController.rewindBtn);
+            Controls.Add(MusicController.playBtn);
+            Controls.Add(MusicController.stopBtn);
+            //voeg hover, enter, leave effecten toe op de muziekknoppen
+            PianoKeysController.pianoKeysBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            PianoKeysController.pianoKeysBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            PianoKeysController.pianoKeysBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.playBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.playBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.playBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.stopBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.stopBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.stopBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            btnAddStaff.MouseEnter += new EventHandler(AllButtons_Enter);
+            btnAddStaff.MouseHover += new EventHandler(AllButtons_Hover);
+            btnAddStaff.MouseLeave += new EventHandler(AllButtons_Leave);
             
 
-
+            Snelheid.Text = Metronome.Interval.ToString(); 
             DoubleBuffered = true;
         }
+
+        //methodes voor effecten op Buttons
+        public void AllButtons_Enter(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, Color.Black);
+        }
+        public void AllButtons_Hover(object sender, EventArgs e)
+        {
+            //gebruiker _Hover voor tooltips etc.
+        }
+        public void AllButtons_Down(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, Color.Black);
+        }
+        public void AllButtons_Leave(object sender, EventArgs e)
+        {
+        }
+
 
         //song veranderen op het moment dat het event selectedsong uitgevoerd wordt.
         private void ChangeSong(object sender, EventArgs e)
@@ -100,12 +135,7 @@ namespace VirtualPiano.View
         {
             SetNewSong();
         }
-
-        public void ShowPianoKeysView()
-        {
-
-        }
-
+        
         public void ShowFirstStaffView()    //Eerste notenbalk laten zien
         {
             foreach (Staff staff in song.GetStaffs())
@@ -122,7 +152,6 @@ namespace VirtualPiano.View
                     AddStaffButton();
                 }
                 y_staff += 200;
-
             }
 
         }
@@ -148,7 +177,6 @@ namespace VirtualPiano.View
             btnAddStaff.Dispose();
             y_staff = 140;
             Refresh();
-
         }
 
         public void SetNewSong()
@@ -185,8 +213,10 @@ namespace VirtualPiano.View
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
+            StaffCounter++;
             btnAddStaff.Dispose();
             AddNewStaff();
+            
         }
 
         public void AddNewStaff()   //Nieuw notenbalk aan Song toevoegen
@@ -199,7 +229,7 @@ namespace VirtualPiano.View
                 if (staff == song.GetStaffs().Last())
                 {
                     AddStaffView(staff);
-                    AddStaffButton();
+                    if(StaffCounter < 2)AddStaffButton();
                     y_staff += 190;
                 }
             }
@@ -244,104 +274,74 @@ namespace VirtualPiano.View
             //boolean om aan te geven dat een noot geslepen wordt.
             signSelected = true;
             //de bijbehorende naam van de noot.
-            SelectedNoteName = NoteName.wholeNote;
-            //beide andere namen op null zetten. Wanneer de gebruiker dan een ander teken aanklikt wordt dit goed gereset. 
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
+            SelectedSign = "WholeNote";
             //de cursor veranderen naar de gewenste afbeelding.
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedNoteName = NoteName.halfNote;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            SelectedSign = "HalfNote";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedNoteName = NoteName.quarterNote;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            SelectedSign = "QuarterNote";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedNoteName = NoteName.eightNote;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            SelectedSign = "EightNote";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedNoteName = NoteName.sixteenthNote;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedNoteName);
+            SelectedSign = "SixteenthNote";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void FullRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.wholeRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            SelectedSign = "WholeRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
 
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.halfRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            SelectedSign = "HalfRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
 
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.quarterRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            SelectedSign = "QuarterRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void GKey_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedClefName = ClefName.G;
-            SelectedNoteName = NoteName.NULL;
-            SelectedRestName = RestName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedClefName);
+            SelectedSign = "G";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
-
-        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+        
         private void FKey_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedClefName = ClefName.F;
-            SelectedNoteName = NoteName.NULL;
-            SelectedRestName = RestName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedClefName);
+            SelectedSign = "F";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void ComposeView_MouseEnter(object sender, EventArgs e)
@@ -355,24 +355,15 @@ namespace VirtualPiano.View
         private void EightRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.eightRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
+            SelectedSign = "EightRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void SixteenthRest_MouseDown(object sender, MouseEventArgs e)
         {
             signSelected = true;
-            SelectedRestName = RestName.sixteenthRest;
-            SelectedNoteName = NoteName.NULL;
-            SelectedClefName = ClefName.NULL;
-            Cursor = CursorController.ChangeCursor(SelectedRestName);
-        }
-
-        private void Flat_Click(object sender, EventArgs e)
-        {
-
+            SelectedSign = "SixteenthRest";
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         public void Metronoom_Tick(object sender, EventArgs e) { }
@@ -380,13 +371,16 @@ namespace VirtualPiano.View
 
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
-            if (FlatSharp < 5)
-            {
+            signSelected = true;
+            SelectedSign = "Sharp";
+            Cursor = CursorController.ChangeCursor("Sharp");
+        }
 
-                FlatSharp++;
-                song.ChangeSharpFlat(FlatSharp);
-                InvalidateRedLine();
-            }
+        private void Flat_MouseDown(object sender, MouseEventArgs e)
+        {
+            signSelected = true;
+            SelectedSign = "Flat";
+            Cursor = CursorController.ChangeCursor("Flat");
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -409,17 +403,6 @@ namespace VirtualPiano.View
             {
                 e.Graphics.DrawLine(p2, new Point(400, 10), new Point(400 + RedLineX, 10));
             }
-            //foreach (Staff staff in Song.staffs)
-            //    {
-            //        foreach (Bar bar in staff.Bars)
-            //        {
-            //        int temp = 0;
-            //            e.Graphics.DrawLine(p2, new Point(200, 10), new Point(200, +temp*2));
-            //        temp++;
-            //        }
-            //    }
-
-            //}
         }
 
 
@@ -474,9 +457,16 @@ namespace VirtualPiano.View
 
         private void TitelBox_TextChanged(object sender, EventArgs e)
         {
-            song.Title = TitelBox.Text;
-            Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
-            TitelBox.Size = size;
+            if (TitelBox.Text != "")
+            {
+                song.Title = TitelBox.Text;
+                Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
+                TitelBox.Size = size;
+            }
+            else
+            {
+                song.Title = " ";
+            }
         }
 
         //timer starten, reageert op songstarted in MusicController
@@ -545,10 +535,8 @@ namespace VirtualPiano.View
             {
                 Cursor = Cursors.Default;
                 signSelected = false;
-                SelectedNoteName = NoteName.NULL;
-                SelectedRestName = RestName.NULL;
-                SelectedClefName = ClefName.NULL;
-                ComposeView.ConnectSelected = false;
+                SelectedSign = null;
+                ConnectSelected = false;
                 Invalidate();
             }
 
@@ -556,11 +544,15 @@ namespace VirtualPiano.View
 
         private void Connect_Click(object sender, EventArgs e)
         {
-            SelectedNoteName = NoteName.NULL;
-            SelectedRestName = RestName.NULL;
-            SelectedClefName = ClefName.NULL;
+            SelectedSign = null;
             signSelected = true;
             ConnectSelected = true;
+            Cursor = CursorController.ChangeCursor("Connect");
+        }
+
+        private void ComposeView_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

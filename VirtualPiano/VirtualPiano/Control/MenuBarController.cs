@@ -14,6 +14,7 @@ namespace VirtualPiano.Control
 
         public MenuBarController()
         {
+            //mbv.gebruikershandleidingToolStripMenuItem.Click += mbv.Gebruikershandleiding_Click;
         }
 
         public void SoundToggle(MenuBarView mbv)
@@ -30,7 +31,7 @@ namespace VirtualPiano.Control
             }
         }
 
-        public void ChangeInstrument(MenuBarView mbv, string instrument)
+        public void ChangeInstrument(MenuBarView mbv,string instrument)
         {
             if(instrument == "Piano")
             {
@@ -55,7 +56,7 @@ namespace VirtualPiano.Control
             }
         }
 
-        public void AddStaffView(MenuBarView mbv)
+        public void AddStaffView()
         {
             
         }

@@ -21,9 +21,11 @@ namespace VirtualPiano.Control
         public static Image pause = Resources.pause;
         public static Image add = Resources.add;
         public static Image rewind = Resources.rewind;
-        public static PictureBox playBox = new PictureBox();
-        public static PictureBox stopBox = new PictureBox();
-        public static PictureBox rewindBox = new PictureBox();
+
+        public static Button playBtn = new Button();
+        public static Button stopBtn = new Button();
+        public static Button rewindBtn= new Button();
+
         public static Timer Metronoom;
         public static Timer rodeLijn;
         public static Song song;
@@ -36,16 +38,23 @@ namespace VirtualPiano.Control
 
         public MusicController(Timer m, Timer r, Song s)
         {
-            playBox.Location = new Point(170, 30);
-            playBox.Image = new Bitmap(play,width,height);
-            playBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            playBox.Click += PlayGeklikt;
+            playBtn.Image = new Bitmap(Resources.play, 50, 50);
+            playBtn.Location = new Point(110, 40);
+            playBtn.Size = new Size(55, 55);
+            playBtn.BackColor = Color.Transparent;
+            playBtn.FlatStyle = FlatStyle.Flat;
+            playBtn.FlatAppearance.BorderSize = 0;
+            playBtn.FlatAppearance.BorderColor = Color.FromArgb(255,255,255, 0);
+            playBtn.Click += PlayGeklikt;
 
+            stopBtn.Location = new Point(170, 40);
+            stopBtn.Image = new Bitmap(Resources.stop, 50, 50);
+            stopBtn.Size = new Size(55, 55);
+            playBtn.BackColor = Color.Transparent;
+            stopBtn.FlatStyle = FlatStyle.Flat;
+            stopBtn.FlatAppearance.BorderSize = 0;
+            stopBtn.Click += StopGeklikt;
 
-            stopBox.Location = new Point(230, 30);
-            stopBox.Image = new Bitmap(stop,width,height);
-            stopBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            stopBox.Click += StopGeklikt;
             Metronoom = m;
             rodeLijn = r;
             song = s;
@@ -78,7 +87,7 @@ namespace VirtualPiano.Control
 
         public static void ResetLine()
         {
-            playBox.Image = new Bitmap(play, width, height);
+            playBtn.Image = new Bitmap(play, width, height);
             isPlayingSong = false;
             Metronoom.Enabled = false;
             ComposeView.CurrentPlayingStaff = 0;
@@ -90,7 +99,7 @@ namespace VirtualPiano.Control
         { 
             if (isPlayingSong == false)
             {
-                playBox.Image = new Bitmap(pause,width,height);
+                playBtn.Image = new Bitmap(pause,width,height);
                 isPlayingSong = true;
                 Metronoom.Enabled = true;
                 //int temp = Song.getDuration();
@@ -102,7 +111,7 @@ namespace VirtualPiano.Control
             }
             else if (isPlayingSong)
             {
-                playBox.Image = new Bitmap(play,width,height);
+                playBtn.Image = new Bitmap(play,width,height);
                 isPlayingSong = false;
                 Metronoom.Enabled = false;
                 rodeLijn.Stop();
@@ -113,7 +122,7 @@ namespace VirtualPiano.Control
         public void StopGeklikt(Object sender, EventArgs e)
         {
             //wanneer de stopknop ingedrukt wordt. lijn opnieuw aan het begin zetten.
-            playBox.Image = new Bitmap(play,width,height);
+            playBtn.Image = new Bitmap(play,width,height);
             isPlayingSong = false;
             Metronoom.Enabled = false;
             ComposeView.CurrentPlayingStaff = 0;

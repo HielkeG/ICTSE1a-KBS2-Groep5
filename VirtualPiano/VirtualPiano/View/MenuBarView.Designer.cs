@@ -98,7 +98,7 @@
             this.openenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openenToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.openenToolStripMenuItem.Text = "Openen...";
-            this.openenToolStripMenuItem.Click += new System.EventHandler(this.openenToolStripMenuItem_Click);
+            this.openenToolStripMenuItem.Click += new System.EventHandler(this.Open_Click);
             // 
             // verwijderToolStripMenuItem
             // 
@@ -106,7 +106,7 @@
             this.verwijderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.verwijderToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.verwijderToolStripMenuItem.Text = "Verwijder..";
-            this.verwijderToolStripMenuItem.Click += new System.EventHandler(this.verwijderToolStripMenuItem_Click);
+            this.verwijderToolStripMenuItem.Click += new System.EventHandler(this.Remove_Click);
             // 
             // toolStripSeparator1
             // 
@@ -119,7 +119,7 @@
             this.opslaanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.opslaanToolStripMenuItem.Text = "Opslaan";
-            this.opslaanToolStripMenuItem.Click += new System.EventHandler(this.opslaanToolStripMenuItem_Click);
+            this.opslaanToolStripMenuItem.Click += new System.EventHandler(this.Save_Click);
             // 
             // geluidToolStripMenuItem
             // 
@@ -141,7 +141,7 @@
             this.geluidAanuitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
-            this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.GeluidAanUit);
+            this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.ToggleSound);
             // 
             // PlayingKeyboard
             // 
@@ -174,7 +174,7 @@
             this.pianoToolStripMenuItem.Name = "pianoToolStripMenuItem";
             this.pianoToolStripMenuItem.Size = new System.Drawing.Size(217, 82);
             this.pianoToolStripMenuItem.Text = "Piano";
-            this.pianoToolStripMenuItem.Click += new System.EventHandler(this.pianoToolStripMenuItem_Click);
+            this.pianoToolStripMenuItem.Click += new System.EventHandler(this.Piano_Click);
             // 
             // gitaarToolStripMenuItem1
             // 
@@ -186,7 +186,7 @@
             this.gitaarToolStripMenuItem1.Name = "gitaarToolStripMenuItem1";
             this.gitaarToolStripMenuItem1.Size = new System.Drawing.Size(217, 82);
             this.gitaarToolStripMenuItem1.Text = "Gitaar";
-            this.gitaarToolStripMenuItem1.Click += new System.EventHandler(this.gitaarToolStripMenuItem1_Click);
+            this.gitaarToolStripMenuItem1.Click += new System.EventHandler(this.Gitaar_Click);
             // 
             // marimbaToolStripMenuItem
             // 
@@ -198,7 +198,7 @@
             this.marimbaToolStripMenuItem.Name = "marimbaToolStripMenuItem";
             this.marimbaToolStripMenuItem.Size = new System.Drawing.Size(217, 82);
             this.marimbaToolStripMenuItem.Text = "Marimba";
-            this.marimbaToolStripMenuItem.Click += new System.EventHandler(this.marimbaToolStripMenuItem_Click);
+            this.marimbaToolStripMenuItem.Click += new System.EventHandler(this.Marimba_Click);
             // 
             // notenbalkToolStripMenuItem
             // 
@@ -215,7 +215,7 @@
             this.toevoegenToolStripMenuItem.Name = "toevoegenToolStripMenuItem";
             this.toevoegenToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.toevoegenToolStripMenuItem.Text = "Toevoegen";
-            this.toevoegenToolStripMenuItem.Click += new System.EventHandler(this.toevoegenToolStripMenuItem_Click);
+            this.toevoegenToolStripMenuItem.Click += new System.EventHandler(this.AddStaffView_Click);
             // 
             // midiToolStripMenuItem
             // 

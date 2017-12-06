@@ -25,12 +25,23 @@ namespace VirtualPiano
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            //als de gebruiker typend spelen aan heeft staan.
             if (MenuBarView.IsPlayingKeyboard)
             {
                 VirtualPiano.Control.KeyBinds.PianoKeys(e);
+                //toetsaanslagen opvangen.
+                KeyBinds.PressPianoKeys(e);
 
             }
 
+        }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (MenuBarView.IsPlayingKeyboard)
+            {
+                KeyBinds.ReleasePianoKeys(e);
+            }
         }
     }
 }
