@@ -17,6 +17,7 @@ namespace VirtualPiano.Control
         public static Image openpiano = Resources.openpiano;
         public static Image close = Resources.close;
         public static Button pianoKeysBtn = new Button();
+        public event EventHandler ToggledPianoVisible;
 
         public PianoKeysController()
         {
@@ -35,31 +36,26 @@ namespace VirtualPiano.Control
         {
             if (ComposeView.keypanel.Visible)
             {
+                ToggledPianoVisible(this, e);
+            }
+            else
+            {
+
+                ToggledPianoVisible(this, e);
+            }
+        }
+
+        public void ChangeImage()
+        {
+            if (ComposeView.keypanel.Visible==false)
+            {
                 pianoKeysBtn.Image = new Bitmap(Resources.openpiano, 50, 50);
-                ComposeView.keypanel.Visible = false;
+
             }
             else
             {
                 pianoKeysBtn.Image = new Bitmap(Resources.close, 50, 50);
-                ComposeView.keypanel.Visible = true;
-
             }
         }
     }
-
-
-    //public void ShowPianoGeklikt(Object sender, EventArgs e)
-    //{
-    //    if (showPianoKeys == false)
-    //    {
-    //        pianoKeysBox.Image = new Bitmap(add, width, height);
-    //        showPianoKeys = true;
-
-    //    }
-    //    else if (showPianoKeys)
-    //    {
-    //        pianoKeysBox.Image = new Bitmap(add, width, height);
-    //        showPianoKeys = false;
-    //    }
-    //}
 }

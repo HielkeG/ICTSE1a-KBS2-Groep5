@@ -409,7 +409,7 @@ namespace VirtualPiano.View
             this.menuBarView1.Location = new System.Drawing.Point(0, 0);
             this.menuBarView1.Margin = new System.Windows.Forms.Padding(0);
             this.menuBarView1.Name = "menuBarView1";
-            this.menuBarView1.Size = new System.Drawing.Size(342, 25);
+            this.menuBarView1.Size = new System.Drawing.Size(1505, 25);
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
             // 
@@ -466,7 +466,6 @@ namespace VirtualPiano.View
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         public Timer Metronome;
         private TextBox Snelheid;
-        private PictureBox pictureBox1;
         public Timer RedLine;
         public TextBox TitelBox;
         private MenuBarView menuBarView1;

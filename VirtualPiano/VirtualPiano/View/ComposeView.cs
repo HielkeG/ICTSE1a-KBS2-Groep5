@@ -41,12 +41,14 @@ namespace VirtualPiano.View
         //locatie van de rode lijn
         public static int RedLineX;
         public int StaffCounter = 0;
+        
 
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
+        
         public static Panel keypanel = new Panel()
         {
-            Location = new Point(300, 730),
+            Location = new Point(600, 730),
             Size = new Size(1400, 240),
             //Location = new Point(this.ClientSize.Width / 2 - Size.Width / 2, this.ClientSize.Height / 2 - Size.Height / 2),
             Anchor = AnchorStyles.None,
@@ -73,10 +75,16 @@ namespace VirtualPiano.View
             menuBarView1.newSong += NewSong;
             menuBarView1.newStaffView += newStaffView;
 
+            //piano toevoegen
             Controls.Add(PianoKeysController.pianoKeysBtn);
-            Controls.Add(keypanel);
-            keypanel.Controls.Add(pkv1);
+            pkv1.Location = new Point(35,150);
+            pkv1.Visible = false;
+            pkv1.Size = new Size(1400, 240);
+            Controls.Add(pkv1);
 
+            pkc1.ToggledPianoVisible += TogglePianoVisible;
+            menuBarView1.togglePianoVisible += TogglePianoVisible;
+            
             //voeg muziekknoppen toe en metronoom
             MusicController m1 = new MusicController(Metronome, RedLine, song);
             Controls.Add(MusicController.rewindBtn);
@@ -128,7 +136,25 @@ namespace VirtualPiano.View
             TitelBox.Text = menuBarView1.Song.Title;
             //oorspronkelijke notenbalken verwijderen.
             SetLoadedSong(menuBarView1.Song);
+        }
 
+        private void TogglePianoVisible(object sender, EventArgs e)
+        {
+            if (keypanel.Visible)
+            {
+                keypanel.Visible = false;
+                pkv1.Visible = false;
+                menuBarView1.ToonToolstrip.CheckState = CheckState.Unchecked;
+                pkc1.ChangeImage();
+
+            }
+            else
+            {
+                keypanel.Visible = true;
+                pkv1.Visible = true;
+                menuBarView1.ToonToolstrip.CheckState = CheckState.Checked;
+                pkc1.ChangeImage();
+            }
         }
 
         private void NewSong(object sender, EventArgs e)

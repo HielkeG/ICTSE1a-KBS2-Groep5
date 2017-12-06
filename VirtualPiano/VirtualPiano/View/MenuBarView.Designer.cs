@@ -46,6 +46,8 @@
             this.toevoegenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.midiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.keyboardVerbindenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.virtueelKeyboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToonToolstrip = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +61,8 @@
             this.geluidToolStripMenuItem,
             this.instrumentToolStripMenuItem,
             this.notenbalkToolStripMenuItem,
-            this.midiToolStripMenuItem});
+            this.midiToolStripMenuItem,
+            this.virtueelKeyboardToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -234,6 +237,22 @@
             this.keyboardVerbindenToolStripMenuItem.Text = "Keyboard verbinden";
             this.keyboardVerbindenToolStripMenuItem.Click += new System.EventHandler(this.keyboardVerbindenToolStripMenuItem_Click);
             // 
+            // virtueelKeyboardToolStripMenuItem
+            // 
+            this.virtueelKeyboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToonToolstrip});
+            this.virtueelKeyboardToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.virtueelKeyboardToolStripMenuItem.Name = "virtueelKeyboardToolStripMenuItem";
+            this.virtueelKeyboardToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.virtueelKeyboardToolStripMenuItem.Text = "Virtueel keyboard";
+            // 
+            // ToonToolstrip
+            // 
+            this.ToonToolstrip.Name = "ToonToolstrip";
+            this.ToonToolstrip.Size = new System.Drawing.Size(152, 22);
+            this.ToonToolstrip.Text = "Zichtbaar";
+            this.ToonToolstrip.Click += new System.EventHandler(this.Zichtbaar_Click);
+            // 
             // MenuBarView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,5 +290,7 @@
         public System.Windows.Forms.ToolStripMenuItem PlayingKeyboard;
         private System.Windows.Forms.ToolStripMenuItem midiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem keyboardVerbindenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem virtueelKeyboardToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ToonToolstrip;
     }
 }

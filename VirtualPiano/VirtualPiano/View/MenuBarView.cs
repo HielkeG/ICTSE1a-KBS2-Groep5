@@ -18,6 +18,7 @@ namespace VirtualPiano.View
         public event EventHandler selectedSong;
         public event EventHandler newSong;
         public event EventHandler newStaffView;
+        public event EventHandler togglePianoVisible;
         MenuBarController mbc = new MenuBarController();
         public static bool IsPlayingKeyboard = false;
         public static MidiConnect m1 = new MidiConnect();
@@ -186,6 +187,28 @@ namespace VirtualPiano.View
         private void keyboardVerbindenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m1.ShowDialog();
+        }
+
+        private void toonKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Zichtbaar_Click(object sender, EventArgs e)
+        {
+            if(ComposeView.pkv1.Visible == false)
+            {
+                ComposeView.pkv1.Visible = true;
+                ToonToolstrip.CheckState = CheckState.Checked;
+                togglePianoVisible(this, e);
+            }
+            else
+            {
+                ComposeView.pkv1.Visible = false;
+                ToonToolstrip.CheckState = CheckState.Unchecked;
+                togglePianoVisible(this, e);
+
+            }
         }
     }
 }
