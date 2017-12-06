@@ -62,6 +62,21 @@
     <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />
     <Compile Include="Control\PianoKeysController.cs" />
+    <Compile Include="Midi\Channel.cs" />
+    <Compile Include="Midi\Chord.cs" />
+    <Compile Include="Midi\Clock.cs" />
+    <Compile Include="Midi\Control.cs" />
+    <Compile Include="Midi\DeviceBase.cs" />
+    <Compile Include="Midi\Example05.cs" />
+    <Compile Include="Midi\InputDevice.cs" />
+    <Compile Include="Midi\Instrument.cs" />
+    <Compile Include="Midi\MessageQueue.cs" />
+    <Compile Include="Midi\Messages.cs" />
+    <Compile Include="Midi\Note.cs" />
+    <Compile Include="Midi\OutputDevice.cs" />
+    <Compile Include="Midi\Pitch.cs" />
+    <Compile Include="Midi\ShortMsg.cs" />
+    <Compile Include="Midi\Win32API.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -106,6 +121,12 @@
     <Compile Include="View\MenuBarView.Designer.cs">
       <DependentUpon>MenuBarView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MidiConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MidiConnect.Designer.cs">
+      <DependentUpon>MidiConnect.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\PianoKeysView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -143,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MenuBarView.resx">
       <DependentUpon>MenuBarView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MidiConnect.resx">
+      <DependentUpon>MidiConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RedLine.resx">
       <DependentUpon>RedLine.cs</DependentUpon>
@@ -334,5 +358,6 @@
     <None Include="Resources\Geluiden\Piano\Piano1Ais.wav" />
     <None Include="Resources\Geluiden\Piano\Piano1A.wav" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

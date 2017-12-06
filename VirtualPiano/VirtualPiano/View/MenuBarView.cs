@@ -20,6 +20,7 @@ namespace VirtualPiano.View
         public event EventHandler newStaffView;
         MenuBarController mbc = new MenuBarController();
         public static bool IsPlayingKeyboard = false;
+        public static MidiConnect m1 = new MidiConnect();
         public MenuBarView()
         {
 
@@ -60,7 +61,7 @@ namespace VirtualPiano.View
                 var result = MessageBox.Show(message, "Bericht", MessageBoxButtons.YesNo);
                 if(result == DialogResult.Yes)
                 {
-                    List<Song> songs = DatabaseController.GetSongs();
+                    List<Song> songs = VirtualPiano.Control.DatabaseController.GetSongs();
                     DatabaseFileExplorer databaseFileExplorer = new DatabaseFileExplorer();
                     foreach (Song song in songs)
                     {
@@ -78,7 +79,7 @@ namespace VirtualPiano.View
             }
             else
             {
-                List<Song> songs = DatabaseController.GetSongs();
+                List<Song> songs = VirtualPiano.Control.DatabaseController.GetSongs();
                 DatabaseFileExplorer databaseFileExplorer = new DatabaseFileExplorer();
                 foreach (Song song in songs)
                 {
@@ -117,7 +118,7 @@ namespace VirtualPiano.View
         private void verwijderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //zoeklijst invullen
-            List<Song> songs = DatabaseController.GetSongs();
+            List<Song> songs = VirtualPiano.Control.DatabaseController.GetSongs();
             DatabaseFileRemover databaseFileRemover = new DatabaseFileRemover();
             foreach (Song song in songs)
             {
@@ -134,7 +135,7 @@ namespace VirtualPiano.View
                     var result = MessageBox.Show("Weet u zeker dat u dit nummer wilt verwijderen.", "Waarschuwing", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        DatabaseController.RemoveSong(databaseFileRemover.Song.Title);
+                        VirtualPiano.Control.DatabaseController.RemoveSong(databaseFileRemover.Song.Title);
                         MessageBox.Show("Het nummer is verwijderd.", "Melding", MessageBoxButtons.OK);
                     }
                 }
@@ -170,6 +171,16 @@ namespace VirtualPiano.View
         private void PlayingKeyboard_Click(object sender, EventArgs e)
         {
             mbc.TogglePlayingPiano(this);
+        }
+
+        private void midiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void keyboardVerbindenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m1.ShowDialog();
         }
     }
 }

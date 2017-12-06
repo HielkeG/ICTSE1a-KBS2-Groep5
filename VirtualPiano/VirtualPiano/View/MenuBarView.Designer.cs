@@ -44,6 +44,8 @@
             this.marimbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notenbalkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toevoegenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.midiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keyboardVerbindenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +58,8 @@
             this.bestandToolStripMenuItem,
             this.geluidToolStripMenuItem,
             this.instrumentToolStripMenuItem,
-            this.notenbalkToolStripMenuItem});
+            this.notenbalkToolStripMenuItem,
+            this.midiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -214,6 +217,23 @@
             this.toevoegenToolStripMenuItem.Text = "Toevoegen";
             this.toevoegenToolStripMenuItem.Click += new System.EventHandler(this.toevoegenToolStripMenuItem_Click);
             // 
+            // midiToolStripMenuItem
+            // 
+            this.midiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.keyboardVerbindenToolStripMenuItem});
+            this.midiToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.midiToolStripMenuItem.Name = "midiToolStripMenuItem";
+            this.midiToolStripMenuItem.Size = new System.Drawing.Size(43, 24);
+            this.midiToolStripMenuItem.Text = "Midi";
+            this.midiToolStripMenuItem.Click += new System.EventHandler(this.midiToolStripMenuItem_Click);
+            // 
+            // keyboardVerbindenToolStripMenuItem
+            // 
+            this.keyboardVerbindenToolStripMenuItem.Name = "keyboardVerbindenToolStripMenuItem";
+            this.keyboardVerbindenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.keyboardVerbindenToolStripMenuItem.Text = "Keyboard verbinden";
+            this.keyboardVerbindenToolStripMenuItem.Click += new System.EventHandler(this.keyboardVerbindenToolStripMenuItem_Click);
+            // 
             // MenuBarView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,5 +269,7 @@
         private System.Windows.Forms.ToolStripMenuItem geluidToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem geluidAanuitToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem PlayingKeyboard;
+        private System.Windows.Forms.ToolStripMenuItem midiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem keyboardVerbindenToolStripMenuItem;
     }
 }

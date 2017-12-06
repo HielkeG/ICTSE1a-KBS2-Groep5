@@ -19,6 +19,7 @@ namespace VirtualPiano
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
             Song song1 = new Song();
+
         }
     }
 }

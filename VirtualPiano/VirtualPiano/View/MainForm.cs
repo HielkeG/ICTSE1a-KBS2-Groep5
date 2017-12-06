@@ -19,7 +19,7 @@ namespace VirtualPiano
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
-            DatabaseController.InitializeDatabase();
+            VirtualPiano.Control.DatabaseController.InitializeDatabase();
         }
 
 
@@ -27,7 +27,7 @@ namespace VirtualPiano
         {
             if (MenuBarView.IsPlayingKeyboard)
             {
-                KeyBinds.PianoKeys(e);
+                VirtualPiano.Control.KeyBinds.PianoKeys(e);
 
             }
 

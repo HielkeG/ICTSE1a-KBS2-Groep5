@@ -79,6 +79,10 @@ namespace VirtualPiano.View
             Controls.Add(MusicController.playBox);
             Controls.Add(MusicController.stopBox);
             Snelheid.Text = Metronome.Interval.ToString();
+
+            
+
+
             DoubleBuffered = true;
         }
 
