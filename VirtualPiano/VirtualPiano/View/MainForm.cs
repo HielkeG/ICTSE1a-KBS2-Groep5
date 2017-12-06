@@ -28,7 +28,7 @@ namespace VirtualPiano
             //als de gebruiker typend spelen aan heeft staan.
             if (MenuBarView.IsPlayingKeyboard)
             {
-                VirtualPiano.Control.KeyBinds.PianoKeys(e);
+                VirtualPiano.Control.KeyBinds.PressPianoKeys(e);
                 //toetsaanslagen opvangen.
                 KeyBinds.PressPianoKeys(e);
 
