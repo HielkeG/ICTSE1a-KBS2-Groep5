@@ -253,7 +253,7 @@ namespace VirtualPiano.View
                 if (staff == song.GetStaffs().Last())
                 {
                     AddStaffView(staff);
-                    if (StaffCounter < 2) AddStaffButton();
+                    if (staffViews.Count <= 2) AddStaffButton();
                     y_staff += 190;
                 }
             }
@@ -581,8 +581,16 @@ namespace VirtualPiano.View
         //luistert naar event uit menubar, zodat een nieuwe staff toegevoegd wordt.
         private void newStaffView(object sender, EventArgs e)
         {
-            btnAddStaff.Dispose();
-            AddNewStaff();
+            if (staffViews.Count < 3)
+            {
+                btnAddStaff.Dispose();
+                AddNewStaff();
+            }
+            else
+            {
+                MessageBox.Show("Er zijn al 3 notenbalken.","Fout",MessageBoxButtons.OK);
+            }
+            
         }
 
         private void ComposeView_MouseUp(object sender, MouseEventArgs e)

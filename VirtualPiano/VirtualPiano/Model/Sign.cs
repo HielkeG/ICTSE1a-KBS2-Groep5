@@ -21,7 +21,6 @@ namespace VirtualPiano.Model
         public Image image { get; set; }
         [NotMapped]
         public int duration { get; set; }
-        [NotMapped]
         public string name { get; set; }
 
         public abstract void SetImage();

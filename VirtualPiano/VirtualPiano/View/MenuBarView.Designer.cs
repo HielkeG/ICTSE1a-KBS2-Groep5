@@ -65,7 +65,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(419, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(448, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -239,7 +239,7 @@
             // ToonToolstrip
             // 
             this.ToonToolstrip.Name = "ToonToolstrip";
-            this.ToonToolstrip.Size = new System.Drawing.Size(124, 22);
+            this.ToonToolstrip.Size = new System.Drawing.Size(152, 22);
             this.ToonToolstrip.Text = "Zichtbaar";
             this.ToonToolstrip.Click += new System.EventHandler(this.Zichtbaar_Click);
             // 
@@ -252,7 +252,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MenuBarView";
-            this.Size = new System.Drawing.Size(419, 29);
+            this.Size = new System.Drawing.Size(448, 29);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

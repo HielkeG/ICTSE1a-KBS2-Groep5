@@ -10,14 +10,26 @@ namespace VirtualPiano.Control
 {
     public static class KeyBinds
     {
+        public static bool isGestart = false;
+        public static OutputDevice outputDevice;
         //alle noten gebonden aan toetsenbordtoetsen.
         public static void PressPianoKeys(KeyEventArgs e)
         {
+            
+            //outputDevice = OutputDevice.InstalledDevices[0];
+            //if (isGestart == false)
+            //{
+            //    outputDevice.Open();
+            //}
+            //isGestart = true;
             //kijk naar welke toets ingedrukt is en zoek bijbehorende case op.
             switch (e.KeyCode)
             {
                 //octaaf 2
                 case Keys.Q:
+                    //outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
+                    //outputDevice.SendNoteOn(Channel.Channel1, Pitch.C3, 127);
+
                     MusicController.PlaySound(ComposeView.CurrentOctave, "C");
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "C");
                     ComposeView.pkv1.Invalidate();
@@ -152,6 +164,7 @@ namespace VirtualPiano.Control
 
                 case Keys.Q:
                     ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "C");
+                    //outputDevice.SendNoteOff(Channel.Channel1, Pitch.C4, 127);
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D2:
