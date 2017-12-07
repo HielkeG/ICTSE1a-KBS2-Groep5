@@ -23,7 +23,6 @@ namespace VirtualPiano.Model
         public bool flat;
         public Note ConnectionNote = null;
         public bool IsBeingPlayed;
-        public static bool SoundEnabled = true;
 
         
         public Note() : base() { }
@@ -113,7 +112,7 @@ namespace VirtualPiano.Model
 
         public void PlaySound()
         {
-            if (SoundEnabled) {
+            if (MenuBarView.SoundEnabled) {
                 var player = new System.Windows.Media.MediaPlayer();
                 try
                 {

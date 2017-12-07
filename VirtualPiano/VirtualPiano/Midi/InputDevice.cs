@@ -378,7 +378,7 @@ namespace VirtualPiano
         /// Private method for constructing the array of MidiInputDevices by calling the Win32 api.
         /// </summary>
         /// <returns></returns>
-        private static InputDevice[] MakeDeviceList()
+        public static InputDevice[] MakeDeviceList()
         {
             uint inDevs = Win32API.midiInGetNumDevs();
             InputDevice[] result = new InputDevice[inDevs];

@@ -21,6 +21,7 @@ namespace VirtualPiano.View
         public event EventHandler togglePianoVisible;
         MenuBarController mbc = new MenuBarController();
         public static MidiConnect m1 = new MidiConnect();
+        public static bool SoundEnabled = true;
         public MenuBarView()
         {
 
@@ -198,6 +199,20 @@ namespace VirtualPiano.View
                 ToonToolstrip.CheckState = CheckState.Unchecked;
                 togglePianoVisible(this, e);
 
+            }
+        }
+
+        private void geluidAanuitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (geluidAanuitToolStripMenuItem.Checked)
+            {
+                geluidAanuitToolStripMenuItem.CheckState = CheckState.Unchecked;
+                SoundEnabled = false;  //mute
+            }
+            else
+            {
+                geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
+                SoundEnabled = true;   //unmute
             }
         }
     }

@@ -16,14 +16,9 @@ namespace VirtualPiano.Model
     {
         public List<Staff> Staffs { get; set; }
 
-
-        OutputDevice outputDevice = OutputDevice.InstalledDevices[0];
-
-
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SongId { get; set; }
         public string Composer { get; set; }
-        public static bool IsGestart = false;
         public  int FlatSharp = 0;
         private string title = "titel";
         public string Title
@@ -51,27 +46,26 @@ namespace VirtualPiano.Model
         {
                 Staffs = new List<Staff>();
                 Staffs.Add(new Staff());
-            if (IsGestart == false)
+
+            if (MusicController.isGestart)
             {
-                outputDevice.Open();
-                if(ComposeView.instrument == "Piano")
+                if (ComposeView.instrument == "Piano")
                 {
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
-                } else if (ComposeView.instrument == "Guitar")
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
+                }
+                else if (ComposeView.instrument == "Guitar")
                 {
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
                 }
                 else if (ComposeView.instrument == "Marimba")
                 {
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.Xylophone);
-                }else
-                {
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.OrchestralHarp);
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Xylophone);
                 }
-
-
+                else
+                {
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.OrchestralHarp);
+                }
             }
-            IsGestart = true;
         }
 
         public void AddStaff(Staff s)
@@ -129,8 +123,8 @@ namespace VirtualPiano.Model
                                 //note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();                                
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
-                                
-                                outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+
+                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 //outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
@@ -152,7 +146,7 @@ namespace VirtualPiano.Model
                                 //note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
-                                outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
@@ -173,7 +167,7 @@ namespace VirtualPiano.Model
                                 //note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
-                                outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
@@ -194,7 +188,7 @@ namespace VirtualPiano.Model
                                 //note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
-                                outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();

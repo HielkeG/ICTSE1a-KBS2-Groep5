@@ -15,6 +15,8 @@ namespace VirtualPiano.Control
 {
     public class MusicController
     {
+
+        public static OutputDevice outputDevice = OutputDevice.InstalledDevices[0];
         public static bool isPlayingSong = false;
         public static Image stop = Resources.stop;
         public static Image play = Resources.play;
@@ -35,6 +37,7 @@ namespace VirtualPiano.Control
         public static event EventHandler SongStopped;
         private static int currentOctave = 0;
         private static string currentTone = "";
+        public static bool isGestart = false;
 
         public MusicController(Timer m, Timer r, Song s)
         {
@@ -59,6 +62,14 @@ namespace VirtualPiano.Control
             rodeLijn = r;
             song = s;
             Metronoom.Interval = 500;
+
+            if (isGestart == false)
+            {
+                outputDevice.Open();
+                MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Banjo);
+            }
+            isGestart = true;
+
         }
 
         public static void PlaySound(int octave, string tone)
@@ -129,6 +140,7 @@ namespace VirtualPiano.Control
             ComposeView.RedLineX = 0;
             rodeLijn.Stop();
             SongStopped(this, e);
+            outputDevice.SilenceAllNotes();
         }
 
         public static void setMetronoom(int snelheid)

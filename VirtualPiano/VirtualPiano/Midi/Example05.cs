@@ -26,6 +26,9 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using VirtualPiano.View;
+using VirtualPiano.Control;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace VirtualPiano
 {    
@@ -39,7 +42,7 @@ namespace VirtualPiano
         public class Summarizer
         {
 
-            OutputDevice outputDevice = OutputDevice.InstalledDevices[0];
+            //OutputDevice outputDevice = OutputDevice.InstalledDevices[0];
 
 
             public Summarizer(InputDevice inputDevice)
@@ -48,7 +51,7 @@ namespace VirtualPiano
                 pitchesPressed = new Dictionary<Pitch, bool>();
                 inputDevice.NoteOn += new InputDevice.NoteOnHandler(this.NoteOn);
                 inputDevice.NoteOff += new InputDevice.NoteOffHandler(this.NoteOff);
-                outputDevice.Open();
+                //outputDevice.Open();
 
             }
         
@@ -100,13 +103,27 @@ namespace VirtualPiano
             {
                 lock (this)
                 {
-                    //outputDevice.SendProgramChange(Channel.Channel1, Instrument.Contrabass);
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.Lead1Square);
-                    outputDevice.SendNoteOn(Channel.Channel1, msg.Pitch, msg.Velocity);
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel2, Instrument.Lead1Square);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, 127);
+                    string currentTone = msg.Pitch.ToString();
+                    char n = currentTone.FirstOrDefault();
+                    string resultString = Regex.Match(currentTone, @"\d+").Value;
+                    int o = Int32.Parse(resultString);
+                    if (currentTone.Length == 7)
+                    {
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                        sb.Append(n.ToString()).Append("#");
+                        ComposeView.pkv1.KeyPressed(o, sb.ToString());
+                    } else
+                    {
+                        ComposeView.pkv1.KeyPressed(o, n.ToString());
+                    }
+
+                    ComposeView.pkv1.Invalidate();
+                    Console.WriteLine(msg.Pitch);
                     pitchesPressed[msg.Pitch] = true;
-                    PrintStatus();
-                    Console.WriteLine(msg.Velocity);
-                    
+                    //PrintStatus();
+                    //Console.WriteLine(msg.Velocity);                    
                 }
             }
 
@@ -114,9 +131,24 @@ namespace VirtualPiano
             {
                 lock (this)
                 {
-                    outputDevice.SendNoteOff(Channel.Channel1, msg.Pitch, 80);
+                    MusicController.outputDevice.SendNoteOff(Channel.Channel2, msg.Pitch, 80);
                     pitchesPressed.Remove(msg.Pitch);
-                    PrintStatus();
+                    string currentTone = msg.Pitch.ToString();
+                    char n = currentTone.FirstOrDefault();
+                    string resultString = Regex.Match(currentTone, @"\d+").Value;
+                    int o = Int32.Parse(resultString);
+                    if (currentTone.Length == 7)
+                    {
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                        sb.Append(n.ToString()).Append("#");
+                        ComposeView.pkv1.KeyReleased(o, sb.ToString());
+                    }
+                    else
+                    {
+                        ComposeView.pkv1.KeyReleased(o, n.ToString());
+                    }
+                    ComposeView.pkv1.Invalidate();
+                    //PrintStatus();
                 }
             }
 
