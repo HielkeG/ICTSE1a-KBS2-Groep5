@@ -183,6 +183,7 @@ namespace VirtualPiano.View
         {
             foreach (var item in staffViews)
             {
+
                 item.Dispose();
             }
             foreach (var item in Controls)
@@ -192,6 +193,7 @@ namespace VirtualPiano.View
                     Panel panel = (Panel)item;
                     if (panel.Name == "staff")
                     {
+                        //Console.WriteLine($"test--- {item}");
                         panel.Dispose();
                     }
                 }
