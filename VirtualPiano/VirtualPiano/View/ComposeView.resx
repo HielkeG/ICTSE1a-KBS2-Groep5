@@ -338,18 +338,18 @@
   <data name="Bin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ/SURBVGhD7ZnNa9RQFMXvS2lrkzqTYXShFutGQUXdKQq6
-        F4og6E7UjQvdiAtBcFNQ/y8X4so/R9zW85o78UzykrzMTD7A94PL0HPy3rsnM/loIhvCzI35OpvNTlpV
-        FH3S8eMgFXnvbNSjMPatTjM8rgbblE4zPMXGYpE7kPFRrj2Re8XtoY8Dbgo/lXcqVzIz5pjHqDw83NRU
-        5LnKlRSPKZU7YedSkvxK0/TEFi86ZB3E8Q/0FmUtNhO5JhlT2R6zVmvAwXjXNXhMtS1yU9ut5qzI69Jg
-        HJzQPw5RWPtLsR/oT7TdavZF3vAgSGcyZ1Cm3BN6fKp6NY4gOMkMC/bkIffkFQRf20seNMbClfWxtlvN
-        jsh11+Ax1a7IFW23HtfgsdR0MvmjbXoR2Su0a6IhCz/7I/RmshZbgIPsIU+kcm/w2ri+HajcHgR5wJOp
-        3Bu8dghiCUE2BK/dR5AU213Gp+tsYrULqPOnf5UxOhYnyTK8dqdB4Oe3DnNjvqmcg+6eLXxs+0jlHPzP
-        85N8G2iJhWer0yCnd6c1PntNPkJ/UDmH/U6D4G7yc53PXpNvd4rKOeyHIJYQRGGvyQ9BfAhBFPaa/BDE
-        hxBEYa/JD0F8CEEU9pr8EMSHEERhr8kPQXz4b4Jg8Vd1vn1Ou/AmSfJb5Rwei7leqJzD/rpB7vNkkIrv
-        7rYWnn2KrxpzjsbuZ9I/EpFb5G9las7Su8y1gmyL3ObJ0OxVtTrHvifktSHNM2c1ll556YTtn4a3p/Rm
-        GdpuZq1IcUJb+D0f4du51kXxszAubWctJq6J+yz0UDq+VgJ76oZrgT4KJ5xDbWNj7F2M4++uxTopY46x
-        JnL4IPIXCu06Tmcd7hQAAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ/SURBVGhD7ZnNa9RQFMXvS2lrkzrNMLpQi3WjoKLuFAXd
+        C0UQdCfqxoVuxIUguCmo/5cLceWfU7qt5zV34pnkJXmZmXyA7weXoefkvXdPZvLRRNaEmRnzfTqdnraq
+        KPqi48dBKvLR2ahHYex7nWZ4XA22KZ1meIqNxSL3IOOjXDsiD4rbQx8H3BR+Kh9UrmRqzBGPUXl4uKk9
+        kZcqV1I8plTuhK0rSfInTdNTW7zokLUfx7/QW5S12EzkmmRMZXvMWq0BB+N91+Ax1abIbW23mvMib0uD
+        cXBC/zxEYe1vxX6gP9N2q9kVeceDIJ3LnEHZ457Q43PVq3EEwUlmWLAnD7gnryD42l7zoDEWrqxPtd1q
+        tkRuugaPqbZFrmm79bgGj6Umk8mJtulFZK/QromGLPzsD9GbyVpsAQ6yxzyRyr3Ba+P6tq9yexDkEU+m
+        cm/w2iGIJQRZE7x2H0FSbHcVn66zidUuoS6e/VXG6FicJMvw2p0GgZ/fOsyM+aFyDrp7Mfex7ROVc/A/
+        z2/ybaAF5p6tToOc3Z3W+Ow1+Qj9SeUc9jsNgrvJr3U+e02+3Skq57AfglhCEIW9Jj8E8SEEUdhr8kMQ
+        H0IQhb0mPwTxIQRR2GvyQxAfQhCFvSY/BPHhvwmCxd/U+fY57dxLkuRY5Rwei7leqZzD/qpBHvJkkIrv
+        7jbmnn2KrxpzgcbuZtI/EpE75G9kas7Cu8yVgmyK3OXJ0Ox1tTrHvifktSHNMmc5Fl556YTtn4a3p/Rm
+        Gdp2Zi1JcUJb+D0f4tu50UXxszAubWclJq6J+yz0UDq+lgJ76pZrgT4KJ5wDbWNt7FyO45+uxTopY46w
+        JnL4IPIX18M6SbdF+VMAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="Metronome.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

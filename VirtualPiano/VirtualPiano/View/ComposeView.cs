@@ -646,5 +646,25 @@ namespace VirtualPiano.View
         {
             Bin.Image = Resources.bin;
         }
+
+        private void TitelBox_Enter(object sender, EventArgs e)
+        {
+            //wanneer de gebruiker een titel typt wordt het geluid uitgezet. Zodat de gebruiker niet ongewild geluid maakt.
+            PlayingKeyboard = false;
+        }
+
+        private void TitelBox_Leave(object sender, EventArgs e)
+        {
+            PlayingKeyboard = true;
+        }
+
+        private void TitelBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                TitelBox.Enabled = false;
+                TitelBox.Enabled = true;
+            }
+        }
     }
 }
