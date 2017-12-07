@@ -46,27 +46,26 @@ namespace VirtualPiano.Model
         {
                 Staffs = new List<Staff>();
                 Staffs.Add(new Staff());
-            if (IsGestart == false)
+
+            if (MusicController.isGestart)
             {
-                //outputDevice.Open();
-                if(ComposeView.instrument == "Piano")
+                if (ComposeView.instrument == "Piano")
                 {
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
-                } else if (ComposeView.instrument == "Guitar")
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
+                }
+                else if (ComposeView.instrument == "Guitar")
                 {
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
                 }
                 else if (ComposeView.instrument == "Marimba")
                 {
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.Xylophone);
-                }else
-                {
-                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.OrchestralHarp);
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Xylophone);
                 }
-
-
+                else
+                {
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.OrchestralHarp);
+                }
             }
-            IsGestart = true;
         }
 
         public void AddStaff(Staff s)

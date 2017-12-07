@@ -38,7 +38,8 @@ namespace VirtualPiano.View
         public static int RedLineX;   //locatie van de rode lijn
         public int StaffCounter = 0;
         public static bool PlayingKeyboard = false;
-        
+
+
 
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
@@ -57,6 +58,7 @@ namespace VirtualPiano.View
         {
             Songtimer.Interval = 5;
             Songtimer.Elapsed += TimerTick;
+
 
             InitializeComponent();
             if (firstStart)

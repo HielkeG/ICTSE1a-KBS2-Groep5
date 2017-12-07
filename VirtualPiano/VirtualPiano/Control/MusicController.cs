@@ -37,7 +37,7 @@ namespace VirtualPiano.Control
         public static event EventHandler SongStopped;
         private static int currentOctave = 0;
         private static string currentTone = "";
-        private bool isGestart = false;
+        public static bool isGestart = false;
 
         public MusicController(Timer m, Timer r, Song s)
         {
