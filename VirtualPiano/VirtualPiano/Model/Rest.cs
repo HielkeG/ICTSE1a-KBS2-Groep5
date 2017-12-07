@@ -15,8 +15,7 @@ namespace VirtualPiano.Model
     public class Rest : Sign
     {
         
-        public int x { get; set; }
-        public int y { get; set; }
+
 
         public Rest() : base() { }
         public Rest(RestName restName)

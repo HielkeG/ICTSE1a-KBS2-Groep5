@@ -81,6 +81,18 @@
     <Compile Include="Migrations\201712061901467_612.Designer.cs">
       <DependentUpon>201712061901467_612.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712071115211_base.cs" />
+    <Compile Include="Migrations\201712071115211_base.Designer.cs">
+      <DependentUpon>201712071115211_base.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712071139139_oijo.cs" />
+    <Compile Include="Migrations\201712071139139_oijo.Designer.cs">
+      <DependentUpon>201712071139139_oijo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712071230097_oaij.cs" />
+    <Compile Include="Migrations\201712071230097_oaij.Designer.cs">
+      <DependentUpon>201712071230097_oaij.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -151,6 +163,15 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201712061901467_612.resx">
       <DependentUpon>201712061901467_612.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071115211_base.resx">
+      <DependentUpon>201712071115211_base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071139139_oijo.resx">
+      <DependentUpon>201712071139139_oijo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071230097_oaij.resx">
+      <DependentUpon>201712071230097_oaij.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>

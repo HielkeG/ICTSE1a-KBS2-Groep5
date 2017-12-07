@@ -12,7 +12,7 @@ namespace VirtualPiano.Model
 
     public class Bar
     {
-        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int BarId { get; set; }
 
         public int StaffId { get; set; }

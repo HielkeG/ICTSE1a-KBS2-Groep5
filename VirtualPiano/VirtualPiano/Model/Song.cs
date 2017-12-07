@@ -258,5 +258,17 @@ namespace VirtualPiano.Model
             Staffs = staffs;
         }
 
+        public void OrderSigns()
+        {
+            foreach (var staff in Staffs)
+            {
+                foreach (var bar in staff.Bars)
+                {
+                    IEnumerable<Sign> signs = bar.Signs.OrderBy(sign => sign.x);
+                    bar.Signs = signs.ToList();
+                }
+            }
+        }
+
     }
 }

@@ -17,8 +17,6 @@ namespace VirtualPiano.Model
 
     public class Note : Sign
     {
-        public int x { get; set; }
-        public int y { get; set; }
         public string tone { get; set; }
         public int octave { get; set; }
         public bool sharp;
