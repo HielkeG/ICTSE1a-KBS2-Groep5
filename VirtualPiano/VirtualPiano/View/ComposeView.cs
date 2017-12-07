@@ -546,15 +546,19 @@ namespace VirtualPiano.View
 
             foreach (var item in staffViews)
             {
+                //als het niet de eerste staffview is wordt de staff niet afgespeeld en is de lijn niet zichtbaar.
                 if (item != staffViews.First())
                 {
                     item.staff.IsBeingPlayed = false;
+                    item.redLine.Visible = false;
+
                 }
                 else
                 {
+                    //anders wordt de lijn wel afgespeeld en de lijn getoond.
                     item.staff.IsBeingPlayed = true;
+                    item.redLine.Visible = true;
                 }
-                item.redLine.Enabled = false;
             }
             CurrentPlayingStaff = 0;
             RunningTimer = false;
