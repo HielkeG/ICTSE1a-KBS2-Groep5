@@ -44,15 +44,6 @@ namespace VirtualPiano.Control
                     context.Songs.Remove(original);
                     context.Songs.Add(replacingSong);
                     context.SaveChanges();
-
-                    //context.Songs.Attach(song);
-                    //DbEntityEntry<Song> entry = context.Entry(song);
-                    //entry.State = System.Data.Entity.EntityState.Modified;
-                    //context.SaveChanges();
-                    //this.Context.Persons.Attach(person)
-                    //DbEntityEntry<Person> entry = Context.Entry(person);
-                    //entry.State = System.Data.EntityState.Modified;
-                    //Context.SaveChanges();
                 }
                 catch(Exception e)
                 {
