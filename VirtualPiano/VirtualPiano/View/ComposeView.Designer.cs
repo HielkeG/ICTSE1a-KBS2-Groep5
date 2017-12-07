@@ -429,6 +429,9 @@ namespace VirtualPiano.View
             this.TitelBox.TabIndex = 1;
             this.TitelBox.Text = "Titel";
             this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
+            this.TitelBox.Enter += new System.EventHandler(this.TitelBox_Enter);
+            this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
+            this.TitelBox.Leave += new System.EventHandler(this.TitelBox_Leave);
             // 
             // menuBarView1
             // 
@@ -470,7 +473,8 @@ namespace VirtualPiano.View
 
         private void ComposeView_MouseDown(object sender, MouseEventArgs e)
         {
-            //throw new NotImplementedException();
+            TitelBox.Enabled = false;
+            TitelBox.Enabled = true;
         }
 
         #endregion

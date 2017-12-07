@@ -36,7 +36,7 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.D2:
                     MusicController.PlaySound(ComposeView.CurrentOctave, "Cis");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "C#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Cis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.W:
@@ -46,7 +46,7 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.D3:
                     MusicController.PlaySound(ComposeView.CurrentOctave, "Dis");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "D#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Dis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.E:
@@ -61,7 +61,7 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.D5:
                     MusicController.PlaySound(ComposeView.CurrentOctave, "Fis");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "F#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Fis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.T:
@@ -71,7 +71,7 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.D6:
                     MusicController.PlaySound(ComposeView.CurrentOctave, "Gis");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "G#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Gis");
                     ComposeView.pkv1.Invalidate(); ;
                     break;
                 case Keys.Y:
@@ -81,7 +81,7 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.D7:
                     MusicController.PlaySound(ComposeView.CurrentOctave, "Ais");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "A#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Ais");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.U:
@@ -97,7 +97,7 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.G:
                     MusicController.PlaySound(ComposeView.CurrentOctave+1, "Cis");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "C#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Cis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.B:
@@ -107,7 +107,7 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.H:
                     MusicController.PlaySound(ComposeView.CurrentOctave+1, "Dis");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "D#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Dis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.N:
@@ -122,7 +122,7 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.K:
                     MusicController.PlaySound(ComposeView.CurrentOctave+1, "Fis");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "F#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Fis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.Oemcomma:
@@ -137,12 +137,12 @@ namespace VirtualPiano.Control
                     break;
                 case Keys.L:
                     MusicController.PlaySound(ComposeView.CurrentOctave+1, "Gis");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "G#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Gis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemSemicolon:
                     MusicController.PlaySound(ComposeView.CurrentOctave+1, "Ais");
-                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "A#");
+                    ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Ais");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemQuestion:
@@ -168,7 +168,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D2:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "C#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "Cis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.W:
@@ -176,7 +176,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D3:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "D#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "Dis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.E:
@@ -188,7 +188,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D5:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "F#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "Fis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.T:
@@ -196,7 +196,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D6:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "G#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "Gis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.Y:
@@ -204,7 +204,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D7:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "A#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "Ais");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.U:
@@ -217,7 +217,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.G:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "C#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "Cis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.B:
@@ -225,7 +225,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.H:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "D#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "Dis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.N:
@@ -237,7 +237,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.K:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "F#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "Fis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.Oemcomma:
@@ -249,11 +249,11 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.L:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "G#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "Gis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemSemicolon:
-                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "A#");
+                    ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave+1, "Ais");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemQuestion:
