@@ -230,16 +230,6 @@ namespace VirtualPiano.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] defaultcursor {
-            get {
-                object obj = ResourceManager.GetObject("defaultcursor", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap fsleutel {
@@ -346,16 +336,6 @@ namespace VirtualPiano.Properties {
             get {
                 object obj = ResourceManager.GetObject("halverust_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] HandOpen {
-            get {
-                object obj = ResourceManager.GetObject("HandOpen", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
