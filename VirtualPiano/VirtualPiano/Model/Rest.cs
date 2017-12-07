@@ -10,31 +10,24 @@ using VirtualPiano.Properties;
 
 namespace VirtualPiano.Model
 {
-    public enum RestName {NULL, WholeRest, HalfRest, QuarterRest, EightRest, SixteenthRest}
 
     public class Rest : Sign
     {
-        
-
 
         public Rest() : base() { }
-        public Rest(RestName restName)
+        public Rest(string name)
         {
-            this.name = restName.ToString();
-            if (restName == RestName.WholeRest) { duration = 16; }
-            else if (restName == RestName.HalfRest) {duration = 8; }
-            else if (restName == RestName.QuarterRest) { image = Resources.KwartRust; duration = 4; }
-            else if (restName == RestName.EightRest) { image = Resources.achtsterust; duration = 2; }
-            else if (restName == RestName.SixteenthRest) { image = Resources.zestienderust; duration = 1; }
+            this.name = name;
+            SetImage();
         }
 
         public override void SetImage()
         {
-            if (name == RestName.WholeRest.ToString()) { duration = 16; }
-            else if (name == RestName.HalfRest.ToString()) { duration = 8; }
-            else if (name == RestName.QuarterRest.ToString()) { image = Resources.KwartRust; duration = 4; }
-            else if (name == RestName.EightRest.ToString()) { image = Resources.achtsterust; duration = 2; }
-            else if (name == RestName.SixteenthRest.ToString()) { image = Resources.zestienderust; duration = 1; }
+            if (name == "WholeRest") { duration = 16; }
+            else if (name == "HalfRest") { duration = 8; }
+            else if (name == "QuarterRest") { image = Resources.KwartRust; duration = 4; }
+            else if (name == "EightRest") { image = Resources.achtsterust; duration = 2; }
+            else if (name == "SixteenthRest") { image = Resources.zestienderust; duration = 1; }
         }
 
         public override bool IsLocation(int y, int x)

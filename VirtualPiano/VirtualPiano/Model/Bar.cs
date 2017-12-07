@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace VirtualPiano.Model
 {
-    public enum ClefName { NULL, G, F}
 
     public class Bar
     {
@@ -20,18 +19,18 @@ namespace VirtualPiano.Model
         public virtual Staff staff { get; set; }
         public virtual List<Sign> Signs { get; set; }
         [Required]
-        public String clef { get; set; }
+        public String clefName { get; set; }
         [NotMapped]
         public int TimeSignatureAmount { get; set; }
         [NotMapped]
-        public NoteName TimeSignatureName { get; set; }
+        public string TimeSignatureName { get; set; }
         public int duration { get; set; } = 0;
         public bool hasChanged;
         internal bool hasPreview = false;
 
         public Bar()
         {
-            clef = ClefName.G.ToString();
+            clefName = "G";
             Signs = new List<Sign>();
         }
 
@@ -72,6 +71,11 @@ namespace VirtualPiano.Model
         {
             Signs.Remove(sign);
             duration -= sign.duration;
+        }
+
+        public void AddPreviewClef(string PreviewClef)
+        {
+            clefName = PreviewClef;
         }
     }
 }

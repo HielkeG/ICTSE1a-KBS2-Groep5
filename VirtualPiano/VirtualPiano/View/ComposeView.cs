@@ -396,26 +396,18 @@ namespace VirtualPiano.View
             {
                 SelectedSign = "Connect1";
                 signSelected = true;
-                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect1));
+                  Cursor = CursorController.ChangeCursor(SelectedSign);
             } else if (selectedNote1 != null)
             {
                 SelectedSign = "Connect2";
                 signSelected = true;
-                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
+                Cursor = CursorController.ChangeCursor(SelectedSign);
             }
-            
-
         }
 
         private void Bin_Click(object sender, EventArgs e)
         {
-            if (signSelected == false)
-            {
-                SelectedSign = "Bin";
-                signSelected = true;
-                Cursor = CursorController.ChangeCursor(SelectedSign);
-            }
-            else
+            if(signSelected)
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                 sound.Play();
@@ -423,6 +415,7 @@ namespace VirtualPiano.View
                 signSelected = false;
                 SelectedSign = "";
             }
+
             if(selectedNote1 != null || SelectedSign == "Connect2")
             {
                 selectedNote1 = null;
