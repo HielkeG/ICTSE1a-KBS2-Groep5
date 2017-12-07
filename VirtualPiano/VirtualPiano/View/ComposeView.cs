@@ -220,7 +220,7 @@ namespace VirtualPiano.View
                 {
                     item.IsBeingPlayed = true;
                 }
-                if (item == song.GetStaffs().Last())
+                if (item == song.GetStaffs().Last()&&staffViews.Count<=2)
                 {
                     AddStaffButton();
                 }
