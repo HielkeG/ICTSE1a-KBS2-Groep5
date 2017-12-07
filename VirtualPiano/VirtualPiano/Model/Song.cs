@@ -114,7 +114,7 @@ namespace VirtualPiano.Model
                                 //note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();                                
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
-
+                                
                                 outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 //outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);

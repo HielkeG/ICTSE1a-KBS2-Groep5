@@ -51,7 +51,7 @@ namespace VirtualPiano.View
                     {
                         WhiteKey wk = new WhiteKey(KeyList[i] + o);
                         PianoKeyList.Add(wk);
-                        BlackKey bk = new BlackKey(KeyList[i] + "#"+o);
+                        BlackKey bk = new BlackKey(KeyList[i] + "is"+o);
                         PianoKeyList.Add(bk);
                     }
 
