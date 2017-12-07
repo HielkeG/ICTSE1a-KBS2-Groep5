@@ -203,6 +203,7 @@ namespace VirtualPiano.View
             RemoveStaffViews();
             song = new Song();
             MusicController.song = song;
+            menuBarView1.Song = song;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
         }
