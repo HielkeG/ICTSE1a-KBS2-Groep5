@@ -264,5 +264,10 @@ namespace VirtualPiano.Model
             }
         }
 
+        public void OrderStaffs()
+        {
+            IEnumerable<Staff> orderedStaffs = Staffs.OrderBy(staff => staff.Order);
+            Staffs = orderedStaffs.ToList();
+        }
     }
 }

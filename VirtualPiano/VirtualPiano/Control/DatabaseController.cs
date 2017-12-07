@@ -124,7 +124,7 @@ namespace VirtualPiano.Control
 
             }
             song.OrderSigns();
-
+            song.OrderStaffs();
             return song;
         }
 

@@ -167,6 +167,7 @@ namespace VirtualPiano.View
             foreach (Staff staff in song.GetStaffs())
             {
                 staff.y = y_staff;
+                staff.Order = staffViews.Count() + 1;
                 AddStaffView(staff);
                 if (staff == song.GetStaffs().First())
                 {
@@ -242,6 +243,7 @@ namespace VirtualPiano.View
         {
             Staff newStaff = new Staff();
             newStaff.y = y_staff;
+            newStaff.Order = staffViews.Count() + 1;
             song.AddStaff(newStaff);
             AddStaffView(newStaff);
             if (staffViews.Count <= 2)
