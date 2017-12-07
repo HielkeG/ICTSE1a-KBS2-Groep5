@@ -143,7 +143,6 @@ namespace VirtualPiano.View
                 pkv1.Visible = false;
                 menuBarView1.ToonToolstrip.CheckState = CheckState.Unchecked;
                 pkc1.ChangeImage();
-                Note.SoundEnabled = false;
                 PlayingKeyboard = false;
             }
             else
@@ -152,7 +151,6 @@ namespace VirtualPiano.View
                 pkv1.Visible = true;
                 menuBarView1.ToonToolstrip.CheckState = CheckState.Checked;
                 pkc1.ChangeImage();
-                Note.SoundEnabled = true;
                 PlayingKeyboard = true;
             }
         }

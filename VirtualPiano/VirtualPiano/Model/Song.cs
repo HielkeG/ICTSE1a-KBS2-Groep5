@@ -126,13 +126,13 @@ namespace VirtualPiano.Model
                                 //toetsenbordkey op laten lichten
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
+                                note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();                                
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
                                 
-                                outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                //outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
-                                //outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);
+                                outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
@@ -149,10 +149,10 @@ namespace VirtualPiano.Model
 
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
+                                note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
-                                outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                //outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
@@ -170,10 +170,10 @@ namespace VirtualPiano.Model
 
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
+                                note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
-                                outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                //outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
@@ -191,10 +191,10 @@ namespace VirtualPiano.Model
 
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
+                                note.PlaySound();
                                 string pitchTemp = note.tone.ToString() + note.octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
-                                outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                //outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
