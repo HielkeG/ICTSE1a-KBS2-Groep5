@@ -142,6 +142,7 @@
             this.geluidAanuitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.geluidAanuitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.geluidAanuitToolStripMenuItem.Text = "Geluid aan/uit";
+            this.geluidAanuitToolStripMenuItem.Click += new System.EventHandler(this.geluidAanuitToolStripMenuItem_Click);
             // 
             // instrumentToolStripMenuItem
             // 
@@ -239,7 +240,7 @@
             // ToonToolstrip
             // 
             this.ToonToolstrip.Name = "ToonToolstrip";
-            this.ToonToolstrip.Size = new System.Drawing.Size(152, 22);
+            this.ToonToolstrip.Size = new System.Drawing.Size(124, 22);
             this.ToonToolstrip.Text = "Zichtbaar";
             this.ToonToolstrip.Click += new System.EventHandler(this.Zichtbaar_Click);
             // 

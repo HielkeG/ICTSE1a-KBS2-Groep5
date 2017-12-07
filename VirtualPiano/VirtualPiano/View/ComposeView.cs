@@ -11,6 +11,7 @@ using VirtualPiano.Model;
 using VirtualPiano.Control;
 using VirtualPiano.Properties;
 using System.Media;
+using System.Reflection;
 
 namespace VirtualPiano.View
 {
@@ -27,6 +28,7 @@ namespace VirtualPiano.View
         public static string SelectedSign = "";
         public static bool cursorIsDown;
         private List<StaffView> staffViews = new List<StaffView>();
+        private List<Panel> staffViewsPanels = new List<Panel>();
         private bool firstStart = true;
         public static System.Timers.Timer Songtimer = new System.Timers.Timer();  //Aparte timer zodat deze meerdere threads gebruikt.
         public static string instrument = "Piano";
@@ -141,7 +143,6 @@ namespace VirtualPiano.View
                 pkv1.Visible = false;
                 menuBarView1.ToonToolstrip.CheckState = CheckState.Unchecked;
                 pkc1.ChangeImage();
-                Note.SoundEnabled = false;
                 PlayingKeyboard = false;
             }
             else
@@ -150,7 +151,6 @@ namespace VirtualPiano.View
                 pkv1.Visible = true;
                 menuBarView1.ToonToolstrip.CheckState = CheckState.Checked;
                 pkc1.ChangeImage();
-                Note.SoundEnabled = true;
                 PlayingKeyboard = true;
             }
         }
@@ -186,17 +186,9 @@ namespace VirtualPiano.View
 
                 item.Dispose();
             }
-            foreach (var item in Controls)
+            foreach (var item in staffViewsPanels)
             {
-                if (item.GetType() == typeof(Panel))
-                {
-                    Panel panel = (Panel)item;
-                    if (panel.Name == "staff")
-                    {
-                        //Console.WriteLine($"test--- {item}");
-                        panel.Dispose();
-                    }
-                }
+                item.Dispose();
             }
             staffViews.Clear();
             btnAddStaff.Dispose();
@@ -227,7 +219,7 @@ namespace VirtualPiano.View
                 {
                     item.IsBeingPlayed = true;
                 }
-                if (item == song.GetStaffs().Last())
+                if (item == song.GetStaffs().Last()&&staffViews.Count<=2)
                 {
                     AddStaffButton();
                 }
@@ -238,7 +230,6 @@ namespace VirtualPiano.View
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
-            StaffCounter++;
             btnAddStaff.Dispose();
             AddNewStaff();
 
@@ -249,15 +240,13 @@ namespace VirtualPiano.View
             Staff newStaff = new Staff();
             newStaff.y = y_staff;
             song.AddStaff(newStaff);
-            foreach (Staff staff in song.GetStaffs())
+            AddStaffView(newStaff);
+            if (staffViews.Count <= 2)
             {
-                if (staff == song.GetStaffs().Last())
-                {
-                    AddStaffView(staff);
-                    if (staffViews.Count <= 2) AddStaffButton();
-                    y_staff += 190;
-                }
+                AddStaffButton();
             }
+            y_staff += 190;
+
         }
 
         public void AddStaffView(Staff staff)   //nieuwe notenbalkpanel maken en vullen
@@ -265,16 +254,15 @@ namespace VirtualPiano.View
             Panel panel = new Panel();
             panel.Location = new Point(100, y_staff);
             panel.Name = "staff";
-
             panel.Size = new Size(1800, 150);
-            Controls.Add(panel);
             StaffView _staffView = new StaffView(staff, song)
             {
                 Dock = DockStyle.None
             };
             staffViews.Add(_staffView);
+            staffViewsPanels.Add(panel);
             panel.Controls.Add(_staffView);
-
+            Controls.Add(panel);
         }
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
@@ -399,9 +387,19 @@ namespace VirtualPiano.View
 
         private void Connect_Click(object sender, EventArgs e)
         {
-            SelectedSign = "Connect";
-            signSelected = true;
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            if(selectedNote1 == null)
+            {
+                SelectedSign = "Connect1";
+                signSelected = true;
+                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect1));
+            } else if (selectedNote1 != null)
+            {
+                SelectedSign = "Connect2";
+                signSelected = true;
+                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
+            }
+            
+
         }
 
         private void Bin_Click(object sender, EventArgs e)
@@ -420,6 +418,10 @@ namespace VirtualPiano.View
                 signSelected = false;
                 SelectedSign = "";
             }
+            if(selectedNote1 != null || SelectedSign == "Connect2")
+            {
+                selectedNote1 = null;
+            }
         }
 
 
@@ -432,6 +434,10 @@ namespace VirtualPiano.View
         private void ComposeView_MouseEnter(object sender, EventArgs e)
         {
             if (signSelected == false) Cursor = Cursors.Default;
+            if(SelectedSign == "Connect2")
+            {
+                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
+            }
         }
 
         public void Draw(PaintEventArgs e) //WIP
@@ -543,16 +549,21 @@ namespace VirtualPiano.View
 
             foreach (var item in staffViews)
             {
+                //als het niet de eerste staffview is wordt de staff niet afgespeeld en is de lijn niet zichtbaar.
                 if (item != staffViews.First())
                 {
                     item.staff.IsBeingPlayed = false;
+                    item.redLine.Visible = false;
+                    
                 }
                 else
                 {
+                    //anders wordt de lijn wel afgespeeld en de lijn getoond.
                     item.staff.IsBeingPlayed = true;
+                    item.redLine.Visible = false;
                 }
-                item.redLine.Enabled = false;
             }
+            
             CurrentPlayingStaff = 0;
             RunningTimer = false;
             Refresh();
@@ -642,6 +653,31 @@ namespace VirtualPiano.View
         private void Bin_MouseLeave(object sender, EventArgs e)
         {
             Bin.Image = Resources.bin;
+        }
+
+        private void TitelBox_Enter(object sender, EventArgs e)
+        {
+            //wanneer de gebruiker een titel typt wordt het geluid uitgezet. Zodat de gebruiker niet ongewild geluid maakt.
+            PlayingKeyboard = false;
+        }
+
+        private void TitelBox_Leave(object sender, EventArgs e)
+        {
+            PlayingKeyboard = true;
+        }
+
+        private void TitelBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                TitelBox.Enabled = false;
+                TitelBox.Enabled = true;
+            }
+        }
+
+        private void menuBarView1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

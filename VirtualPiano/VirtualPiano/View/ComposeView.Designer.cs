@@ -429,6 +429,9 @@ namespace VirtualPiano.View
             this.TitelBox.TabIndex = 1;
             this.TitelBox.Text = "Titel";
             this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
+            this.TitelBox.Enter += new System.EventHandler(this.TitelBox_Enter);
+            this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
+            this.TitelBox.Leave += new System.EventHandler(this.TitelBox_Leave);
             // 
             // menuBarView1
             // 
@@ -440,6 +443,7 @@ namespace VirtualPiano.View
             this.menuBarView1.Size = new System.Drawing.Size(1070, 25);
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
+            this.menuBarView1.Load += new System.EventHandler(this.menuBarView1_Load);
             // 
             // ComposeView
             // 
@@ -469,7 +473,8 @@ namespace VirtualPiano.View
 
         private void ComposeView_MouseDown(object sender, MouseEventArgs e)
         {
-            //throw new NotImplementedException();
+            TitelBox.Enabled = false;
+            TitelBox.Enabled = true;
         }
 
         #endregion
@@ -499,7 +504,6 @@ namespace VirtualPiano.View
         private MenuBarView menuBarView1;
         private ToolStripButton toolStripButton1;
         private ToolStripSeparator toolStripSeparator4;
-        private ToolStripButton Connect;
         private ToolStripButton Bin;
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator5;

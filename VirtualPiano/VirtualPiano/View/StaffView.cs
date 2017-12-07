@@ -138,7 +138,15 @@ namespace VirtualPiano.View
 
                         if (note.ConnectionNote != null)     //noten die aan elkaar zitten tekenen
                         {
-                            e.Graphics.DrawLine(new Pen(Color.Black, 8), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
+                            if(note.name == NoteName.EightNote.ToString())
+                            {
+                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
+                            } else
+                            {
+                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.x + 8, note.y + 23, note.ConnectionNote.x + 10, note.ConnectionNote.y + 23);
+                            }
+                            
                         }
 
                         int Ynotelocation = note.y;
@@ -193,8 +201,13 @@ namespace VirtualPiano.View
                 else if (ComposeView.draggingSign.name == NoteName.SixteenthNote.ToString()) { ComposeView.draggingSign.image = Resources.zestiendenoot; }
             }
             ComposeView.cursorIsDown = false;
-            ComposeView.SelectedSign = "";
-            SetDefaultCursor();
+            Console.WriteLine(ComposeView.SelectedSign);
+            if(ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
+            {
+              SetDefaultCursor();
+              ComposeView.SelectedSign = "";
+            }
+            
         }
 
         //methode die de cursor op default zet en alle booleans op null zet.
@@ -203,19 +216,28 @@ namespace VirtualPiano.View
             Cursor = Cursors.Default;
         }
 
+       
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
+            //Standaard cursor zetten voor noten en rusten
             if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F" || ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect" || ComposeView.SelectedSign == "Bin") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
             else { SetDefaultCursor(); }
+            
+            if (ComposeView.SelectedSign == "Connect1")
+            {
+                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect1));
+            }
+            if (ComposeView.SelectedSign == "Connect2")
+            {
+                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
+            }
         }
 
-        private void StaffView_MouseLeave(object sender, EventArgs e)
-        {
-            Invalidate();
-        }
+       
 
         private void StaffView_MouseMove(object sender, MouseEventArgs e)
         {
+            //------Preview tonen--------
             int barBegin = 50;
             int barEnd = 475;
 
@@ -282,9 +304,11 @@ namespace VirtualPiano.View
             }
         }
 
+        //-----Methode wordt aangeroepen als een muisklik ingedrukt wordt
         private async void StaffView_MouseDown(object sender, MouseEventArgs e)
         {
             ComposeView.cursorIsDown = true;
+            //Wanneer geen teken geselcteerds is en wanneer de linkermuisknop ingedrukt is
             if (ComposeView.signSelected == false && e.Button == MouseButtons.Left)
             {
                 foreach (Bar bar in staff.Bars)
@@ -293,16 +317,20 @@ namespace VirtualPiano.View
                     {
                         Sign sign = bar.Signs[i];
 
+                        //Als er een coordinaat van een teken overeenkomt met de coordinatie van de muis
                         if (sign.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
                         {
+                            //Als het een noot is, wordt de noot afgespeeld
                             if (sign is Note note)
                             {
                                 note.PlaySound();
                             }
-                            await PutTaskDelay(300);
 
+                            //Als de muis na 300 miliseconden nog steeds ingedrukt is, wordt het teken verslepen
+                            await PutTaskDelay(300);
                             if (ComposeView.cursorIsDown == true)
                             {
+                                //De cursor veranderd in de aangeklikte noot
                                 Cursor = CursorController.ChangeCursor(sign.name);
                                 ComposeView.SelectedSign = sign.name;
                                 sign.image = Resources.blank;
@@ -386,17 +414,20 @@ namespace VirtualPiano.View
                             {
                                 if (sign is Note note)
                                 {
-
-                                    // -----Connect----
-                                    if (ComposeView.SelectedSign == "Connect")
+                                    // -------Connect------
+                                    if (ComposeView.SelectedSign == "Connect2")
                                     {
-
-                                        if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && note.name == NoteName.EightNote.ToString() && note != ComposeView.selectedNote1)
+                                        if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && note != ComposeView.selectedNote1)
                                         {
-                                            if (ComposeView.selectedNote1 == null && note.ConnectionNote == null) ComposeView.selectedNote1 = note;
-                                            else if (note.ConnectionNote == null) ComposeView.selectedNote2 = note;
-
-
+                                           if (note.ConnectionNote == null && bar.Signs.Contains(ComposeView.selectedNote1))
+                                            {
+                                                int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
+                                                int index2 = bar.Signs.IndexOf(note);
+                                                if ((index1 - index2 == 1 || index1 - index2 == -1) && note.name == ComposeView.selectedNote1.name)
+                                                {
+                                                    ComposeView.selectedNote2 = note;
+                                                }
+                                            }
                                             if (ComposeView.selectedNote1 != null && ComposeView.selectedNote2 != null)
                                             {
                                                 ComposeView.selectedNote1.image = Resources.kwartnoot;
@@ -407,7 +438,19 @@ namespace VirtualPiano.View
                                                 ComposeView.selectedNote1 = null;
                                                 ComposeView.selectedNote2 = null;
                                             }
-
+                                            SetDefaultCursor();
+                                            ComposeView.SelectedSign = "";
+                                        }
+                                        
+                                    }
+                                    if (ComposeView.SelectedSign == "Connect1")
+                                    {
+                                        if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && ( note.name == NoteName.EightNote.ToString() || note.name == NoteName.SixteenthNote.ToString()) && note != ComposeView.selectedNote1)
+                                        {
+                                            ComposeView.selectedNote1 = note;
+                                            ComposeView.SelectedSign = "Connect2";
+                                            Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
+                                            Invalidate();
                                         }
                                     }
 
@@ -442,7 +485,6 @@ namespace VirtualPiano.View
                                     ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                     ComposeView.pkv1.Invalidate();
                                 }
-                                
                             }
                         }
                         barBegin += 430;
@@ -456,6 +498,7 @@ namespace VirtualPiano.View
                 int barBegin = 50;
                 int barEnd = 475;
 
+                //Als er geen teken geselecteerd is
                 if (!ComposeView.signSelected)
                 {
                     foreach (Bar bar in staff.Bars)
@@ -472,14 +515,24 @@ namespace VirtualPiano.View
                         barEnd += 430;
                     }
                 }
+
+                //Als er een teken geselecteerd is, wordt alles op null/false gezet
                 ComposeView.signSelected = false;
                 ComposeView.SelectedSign = "";
                 ComposeView.selectedNote1 = null;
                 ComposeView.selectedNote2 = null;
             }
-            ComposeView.signSelected = false;
-            ComposeView.SelectedSign = "";
+            if(ComposeView.SelectedSign == "Connect1" || ComposeView.SelectedSign == "Connect2")
+            {
+
+            } else
+            {
+                ComposeView.signSelected = false;
+                ComposeView.SelectedSign = "";
+                
+            }
             Invalidate();
+
         }
 
         async Task PutTaskDelay(int delay)
