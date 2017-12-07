@@ -504,7 +504,6 @@ namespace VirtualPiano.View
         private MenuBarView menuBarView1;
         private ToolStripButton toolStripButton1;
         private ToolStripSeparator toolStripSeparator4;
-        private ToolStripButton Connect;
         private ToolStripButton Bin;
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator5;

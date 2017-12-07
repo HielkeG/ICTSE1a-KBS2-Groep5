@@ -216,10 +216,13 @@ namespace VirtualPiano.View
             Cursor = Cursors.Default;
         }
 
+       
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
+            //Standaard cursor zetten voor noten en rusten
             if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F" || ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect" || ComposeView.SelectedSign == "Bin") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
             else { SetDefaultCursor(); }
+            
             if (ComposeView.SelectedSign == "Connect1")
             {
                 Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect1));
@@ -230,13 +233,11 @@ namespace VirtualPiano.View
             }
         }
 
-        private void StaffView_MouseLeave(object sender, EventArgs e)
-        {
-            Invalidate();
-        }
+       
 
         private void StaffView_MouseMove(object sender, MouseEventArgs e)
         {
+            //------Preview tonen--------
             int barBegin = 50;
             int barEnd = 475;
 
@@ -303,9 +304,11 @@ namespace VirtualPiano.View
             }
         }
 
+        //-----Methode wordt aangeroepen als een muisklik ingedrukt wordt
         private async void StaffView_MouseDown(object sender, MouseEventArgs e)
         {
             ComposeView.cursorIsDown = true;
+            //Wanneer geen teken geselcteerds is en wanneer de linkermuisknop ingedrukt is
             if (ComposeView.signSelected == false && e.Button == MouseButtons.Left)
             {
                 foreach (Bar bar in staff.Bars)
@@ -314,16 +317,20 @@ namespace VirtualPiano.View
                     {
                         Sign sign = bar.Signs[i];
 
+                        //Als er een coordinaat van een teken overeenkomt met de coordinatie van de muis
                         if (sign.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X))
                         {
+                            //Als het een noot is, wordt de noot afgespeeld
                             if (sign is Note note)
                             {
                                 note.PlaySound();
                             }
-                            await PutTaskDelay(300);
 
+                            //Als de muis na 300 miliseconden nog steeds ingedrukt is, wordt het teken verslepen
+                            await PutTaskDelay(300);
                             if (ComposeView.cursorIsDown == true)
                             {
+                                //De cursor veranderd in de aangeklikte noot
                                 Cursor = CursorController.ChangeCursor(sign.name);
                                 ComposeView.SelectedSign = sign.name;
                                 sign.image = Resources.blank;
@@ -438,7 +445,6 @@ namespace VirtualPiano.View
                                     }
                                     if (ComposeView.SelectedSign == "Connect1")
                                     {
-
                                         if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && ( note.name == NoteName.EightNote.ToString() || note.name == NoteName.SixteenthNote.ToString()) && note != ComposeView.selectedNote1)
                                         {
                                             ComposeView.selectedNote1 = note;
@@ -479,7 +485,6 @@ namespace VirtualPiano.View
                                     ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                     ComposeView.pkv1.Invalidate();
                                 }
-                                
                             }
                         }
                         barBegin += 430;
@@ -493,6 +498,7 @@ namespace VirtualPiano.View
                 int barBegin = 50;
                 int barEnd = 475;
 
+                //Als er geen teken geselecteerd is
                 if (!ComposeView.signSelected)
                 {
                     foreach (Bar bar in staff.Bars)
@@ -509,6 +515,8 @@ namespace VirtualPiano.View
                         barEnd += 430;
                     }
                 }
+
+                //Als er een teken geselecteerd is, wordt alles op null/false gezet
                 ComposeView.signSelected = false;
                 ComposeView.SelectedSign = "";
                 ComposeView.selectedNote1 = null;
