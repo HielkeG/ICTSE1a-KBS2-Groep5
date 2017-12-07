@@ -551,15 +551,16 @@ namespace VirtualPiano.View
                 {
                     item.staff.IsBeingPlayed = false;
                     item.redLine.Visible = false;
-
+                    
                 }
                 else
                 {
                     //anders wordt de lijn wel afgespeeld en de lijn getoond.
                     item.staff.IsBeingPlayed = true;
-                    item.redLine.Visible = true;
+                    item.redLine.Visible = false;
                 }
             }
+            
             CurrentPlayingStaff = 0;
             RunningTimer = false;
             Refresh();
