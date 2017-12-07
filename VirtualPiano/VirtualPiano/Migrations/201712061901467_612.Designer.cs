@@ -7,13 +7,13 @@ namespace VirtualPiano.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class oijo : IMigrationMetadata
+    public sealed partial class _612 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(oijo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_612));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712061300382_oijo"; }
+            get { return "201712061901467_612"; }
         }
         
         string IMigrationMetadata.Source

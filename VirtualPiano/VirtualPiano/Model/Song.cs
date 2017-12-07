@@ -54,7 +54,22 @@ namespace VirtualPiano.Model
             if (IsGestart == false)
             {
                 outputDevice.Open();
-                outputDevice.SendProgramChange(Channel.Channel1, Instrument.Banjo);
+                if(ComposeView.instrument == "Piano")
+                {
+                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
+                } else if (ComposeView.instrument == "Guitar")
+                {
+                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
+                }
+                else if (ComposeView.instrument == "Marimba")
+                {
+                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.Xylophone);
+                }else
+                {
+                    outputDevice.SendProgramChange(Channel.Channel1, Instrument.OrchestralHarp);
+                }
+
+
             }
             IsGestart = true;
         }

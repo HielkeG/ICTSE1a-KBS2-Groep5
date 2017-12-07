@@ -419,6 +419,10 @@ namespace VirtualPiano.View
                 signSelected = false;
                 SelectedSign = "";
             }
+            if(selectedNote1 != null || SelectedSign == "Connect2")
+            {
+                selectedNote1 = null;
+            }
         }
 
 
@@ -670,6 +674,11 @@ namespace VirtualPiano.View
                 TitelBox.Enabled = false;
                 TitelBox.Enabled = true;
             }
+        }
+
+        private void menuBarView1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

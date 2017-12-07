@@ -443,6 +443,7 @@ namespace VirtualPiano.View
             this.menuBarView1.Size = new System.Drawing.Size(1070, 25);
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
+            this.menuBarView1.Load += new System.EventHandler(this.menuBarView1_Load);
             // 
             // ComposeView
             // 
@@ -503,7 +504,6 @@ namespace VirtualPiano.View
         private MenuBarView menuBarView1;
         private ToolStripButton toolStripButton1;
         private ToolStripSeparator toolStripSeparator4;
-        private ToolStripButton Connect;
         private ToolStripButton Bin;
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator5;

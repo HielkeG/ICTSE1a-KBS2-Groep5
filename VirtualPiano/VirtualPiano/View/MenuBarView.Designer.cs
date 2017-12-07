@@ -206,7 +206,7 @@
             // toevoegenToolStripMenuItem
             // 
             this.toevoegenToolStripMenuItem.Name = "toevoegenToolStripMenuItem";
-            this.toevoegenToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.toevoegenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.toevoegenToolStripMenuItem.Text = "Toevoegen";
             this.toevoegenToolStripMenuItem.Click += new System.EventHandler(this.AddStaffView_Click);
             // 
@@ -239,7 +239,7 @@
             // ToonToolstrip
             // 
             this.ToonToolstrip.Name = "ToonToolstrip";
-            this.ToonToolstrip.Size = new System.Drawing.Size(152, 22);
+            this.ToonToolstrip.Size = new System.Drawing.Size(124, 22);
             this.ToonToolstrip.Text = "Zichtbaar";
             this.ToonToolstrip.Click += new System.EventHandler(this.Zichtbaar_Click);
             // 
