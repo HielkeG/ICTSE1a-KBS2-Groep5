@@ -140,7 +140,7 @@ namespace VirtualPiano.View
             {
                 keypanel.Visible = false;
                 pkv1.Visible = false;
-                menuBarView1.ToonToolstrip.CheckState = CheckState.Unchecked;
+                menuBarView1.KeyboardVisible.CheckState = CheckState.Unchecked;
                 pkc1.ChangeImage();
                 PlayingKeyboard = false;
             }
@@ -148,7 +148,7 @@ namespace VirtualPiano.View
             {
                 keypanel.Visible = true;
                 pkv1.Visible = true;
-                menuBarView1.ToonToolstrip.CheckState = CheckState.Checked;
+                menuBarView1.KeyboardVisible.CheckState = CheckState.Checked;
                 pkc1.ChangeImage();
                 PlayingKeyboard = true;
             }
