@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtualPiano.Properties;
 
 namespace VirtualPiano.Model
 {
@@ -71,7 +72,25 @@ namespace VirtualPiano.Model
         {
             Signs.Remove(sign);
             duration -= sign.duration;
+            if(sign is Note note)
+            {
+                if(note.ConnectionNote != null)
+                {
+                    note.ConnectionNote.ConnectionNote = null;
+                    if(note.name == "SixteenthNote"){
+                        note.ConnectionNote.image = Resources.zestiendenoot;
+                    }
+                    if (note.name =="EightNote")
+                    {
+                        note.ConnectionNote.image = Resources.achtstenoot;
+                    }
+                    note.ConnectionNote = null;
+
+                }
+            }
         }
+
+
 
         public void AddPreviewClef(string PreviewClef)
         {
