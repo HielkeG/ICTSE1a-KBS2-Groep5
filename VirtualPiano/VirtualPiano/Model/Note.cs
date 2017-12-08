@@ -166,5 +166,15 @@ namespace VirtualPiano.Model
         {
             return IsLocation(MouseX, MouseY) && ConnectionNote == null && (name == "EightNote") || name == "SixteenthNote";
         }
+
+        internal void MakeConnection(Note note2)
+        {
+            image = Resources.kwartnoot;
+            note2.image = Resources.kwartnoot;
+            ConnectionNote = note2;
+            note2.ConnectionNote = this;
+            ComposeView.selectedNote1 = null;
+            ComposeView.selectedNote2 = null;
+        }
     }
 }

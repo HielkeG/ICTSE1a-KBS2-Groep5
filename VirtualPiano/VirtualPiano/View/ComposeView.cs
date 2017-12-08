@@ -486,7 +486,6 @@ namespace VirtualPiano.View
         {
             if (MusicController.isPlayingSong)
             {
-
                 InvalidateRedLine();
                 //als het nummer afspeelt de redline verplaatsen met 4 pixels.
                 if (RedLineX >= 1700)
@@ -501,7 +500,6 @@ namespace VirtualPiano.View
                         CurrentPlayingStaff++;
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
                         staffViews[CurrentPlayingStaff].redLine.Visible = true;
-
                     }
                     else
                     {
@@ -512,8 +510,6 @@ namespace VirtualPiano.View
                         MusicController.isPlayingSong = false;
                         MusicController.ResetLine();
                     }
-
-
                 }
             }
         }
@@ -549,7 +545,6 @@ namespace VirtualPiano.View
             if (MusicController.isPlayingSong)
             {
                 RedLineX = RedLineX + 4;
-
                 song.PlayNote();
             }
         }
@@ -587,7 +582,6 @@ namespace VirtualPiano.View
         private void InvalidateRedLine()
         {
             staffViews.ElementAt(CurrentPlayingStaff).InvalidateRedLine();
-
         }
 
         //luistert naar event uit menubar, zodat een nieuwe staff toegevoegd wordt.
@@ -612,7 +606,6 @@ namespace VirtualPiano.View
                 cursorIsDown = false;
                 Cursor = Cursors.Default;
                 signSelected = false;
-
                 Invalidate();
 
             }
@@ -624,7 +617,6 @@ namespace VirtualPiano.View
                 ConnectSelected = false;
                 Invalidate();
             }
-
         }
 
         public void SetDefaultCursor()
