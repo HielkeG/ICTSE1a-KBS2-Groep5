@@ -108,7 +108,7 @@ namespace VirtualPiano.View
             MessageBox.Show("Het nummer is opgeslagen.", "Melding", MessageBoxButtons.OK);
         }
 
-        private void nieuwToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewSong_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Uw huidige nummer zal verloren gaan. Wilt u doorgaan?", "Waarschuwing", MessageBoxButtons.YesNo);
             if(result == DialogResult.Yes)
@@ -179,48 +179,48 @@ namespace VirtualPiano.View
 
         }
 
-        private void keyboardVerbindenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ConnectKeyboard(object sender, EventArgs e)
         {
             m1.ShowDialog();
         }
 
-        private void toonKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowKeyboard(object sender, EventArgs e)
         {
 
         }
 
-        private void Zichtbaar_Click(object sender, EventArgs e)
+        private void Visible_Click(object sender, EventArgs e)
         {
             if(ComposeView.pkv1.Visible == false)
             {
                 ComposeView.pkv1.Visible = true;
-                ToonToolstrip.CheckState = CheckState.Checked;
+                KeyboardVisible.CheckState = CheckState.Checked;
                 togglePianoVisible(this, e);
             }
             else
             {
                 ComposeView.pkv1.Visible = false;
-                ToonToolstrip.CheckState = CheckState.Unchecked;
+                KeyboardVisible.CheckState = CheckState.Unchecked;
                 togglePianoVisible(this, e);
 
             }
         }
 
-        private void geluidAanuitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToggleSound(object sender, EventArgs e)
         {
-            if (geluidAanuitToolStripMenuItem.Checked)
+            if (SoundOnOff.Checked)
             {
-                geluidAanuitToolStripMenuItem.CheckState = CheckState.Unchecked;
+                SoundOnOff.CheckState = CheckState.Unchecked;
                 SoundEnabled = false;  //mute
             }
             else
             {
-                geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
+                SoundOnOff.CheckState = CheckState.Checked;
                 SoundEnabled = true;   //unmute
             }
         }
 
-        private void instellingenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Settings_Click(object sender, EventArgs e)
         {
             m2.ShowDialog();
         }

@@ -67,7 +67,7 @@
     <Compile Include="Midi\Clock.cs" />
     <Compile Include="Midi\Control.cs" />
     <Compile Include="Midi\DeviceBase.cs" />
-    <Compile Include="Midi\Example05.cs" />
+    <Compile Include="Midi\MidiPlay.cs" />
     <Compile Include="Midi\InputDevice.cs" />
     <Compile Include="Midi\Instrument.cs" />
     <Compile Include="Midi\MessageQueue.cs" />

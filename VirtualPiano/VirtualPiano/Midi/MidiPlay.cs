@@ -32,18 +32,15 @@ using System.Text.RegularExpressions;
 
 namespace VirtualPiano
 {    
-    public class Example05 
+    public class MidiPlay 
     {
 
-            public Example05()
+            public MidiPlay()
         {
         }
 
         public class Summarizer
         {
-
-            //OutputDevice outputDevice = OutputDevice.InstalledDevices[0];
-
 
             public Summarizer(InputDevice inputDevice)
             {
@@ -51,13 +48,11 @@ namespace VirtualPiano
                 pitchesPressed = new Dictionary<Pitch, bool>();
                 inputDevice.NoteOn += new InputDevice.NoteOnHandler(this.NoteOn);
                 inputDevice.NoteOff += new InputDevice.NoteOffHandler(this.NoteOff);
-                //outputDevice.Open();
-
             }
         
             private void PrintStatus()
             {
-                // Print the currently pressed notes.
+
                 List<Pitch> pitches = new List<Pitch>(pitchesPressed.Keys);
                 pitches.Sort();
 
@@ -70,11 +65,6 @@ namespace VirtualPiano
                         Console.Write(", ");
                     }
                     Console.Write("{0}", pitch.NotePreferringSharps());
-
-                    //outputDevice.SendControlChange(Channel.Channel1, Control.SustainPedal, 30);
-
-
-                    //outputDevice.SendNoteOn(Channel.Channel1, pitch,80);
                     if (pitch.NotePreferringSharps() != pitch.NotePreferringFlats())
                     {
                         Console.Write(" or {0}", pitch.NotePreferringFlats());

@@ -51,7 +51,7 @@ namespace VirtualPiano.View
 
             if (Clicked)
             {
-                Example05.Start(InputDevice.InstalledDevices[inputInt]);
+                MidiPlay.Start(InputDevice.InstalledDevices[inputInt]);
                 this.Close();
             }
 
