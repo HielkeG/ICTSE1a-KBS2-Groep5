@@ -166,5 +166,7 @@ namespace VirtualPiano.Model
         {
             return IsLocation(MouseX, MouseY) && ConnectionNote == null && (name == "EightNote") || name == "SixteenthNote";
         }
+
+        
     }
 }
