@@ -23,6 +23,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
@@ -131,7 +132,7 @@ namespace VirtualPiano
         /// <summary>
         /// List of input devices installed on this system.
         /// </summary>
-        public static ReadOnlyCollection<InputDevice> InstalledDevices
+        public static List<InputDevice> InstalledDevices
         {
             get
             {
@@ -141,9 +142,16 @@ namespace VirtualPiano
                     {
                         installedDevices = MakeDeviceList();
                     }
-                    return new ReadOnlyCollection<InputDevice>(installedDevices);
+                    return new List<InputDevice>(installedDevices);
                 }
             }
+        }
+
+        public static List<InputDevice> UpdateDevices()
+        {
+            InstalledDevices.Clear();
+            installedDevices = MakeDeviceList();
+            return new List<InputDevice>(installedDevices);
         }
 
         /// <summary>
@@ -477,7 +485,7 @@ namespace VirtualPiano
 
         // Access to the global state is guarded by lock(staticLock).
         private static Object staticLock = new Object();
-        private static InputDevice[] installedDevices = null;
+        public static InputDevice[] installedDevices = null;
 
         // These fields initialized in the constructor never change after construction,
         // so they don't need to be guarded by a lock.  We keep a reference to the

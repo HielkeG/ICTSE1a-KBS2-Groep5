@@ -38,27 +38,19 @@ namespace VirtualPiano.View
             if (Clicked == false)
             {
                 inputInt = midiList.SelectedIndex;
-            }
+            }          
 
-
-
-            //Example05.Start(InputDevice.InstalledDevices[midiList.SelectedIndex]);
-            
             midiList.Items.Clear();
             foreach (OutputDevice device in OutputDevice.InstalledDevices)
             {
                 midiList.Items.Add(device.Name);
             }
-            
+
             SelectMidi.Text = "Selecteer MIDI output";
             midiNext.Text = "Verbinden";
 
             if (Clicked)
             {
-
-                //outputInt = midiList.SelectedIndex;
-                //Console.WriteLine($"input int: {inputInt} output int: {outputInt}");
-                //Console.WriteLine(outputMidi.Name);
                 Example05.Start(InputDevice.InstalledDevices[inputInt]);
                 this.Close();
             }
@@ -66,6 +58,22 @@ namespace VirtualPiano.View
             Clicked = true;
 
 
+        }
+
+        private void midiRefresh_Click(object sender, EventArgs e)
+        {
+            InputDevice.UpdateDevices();
+            midiList.Items.Clear();
+            foreach (InputDevice item in InputDevice.installedDevices)
+            {
+                midiList.Items.Add(item.Name);
+            }
+            midiNext.Enabled = true;
+            if (InputDevice.installedDevices.Length == 0)
+            {
+                midiList.Items.Add("Er is geen midi keyboard beschikbaar.");
+                midiNext.Enabled = false;
+            }
         }
     }
 }
