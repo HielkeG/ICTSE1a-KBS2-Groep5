@@ -17,8 +17,8 @@ namespace TestProject
         {
             //Arrange
             Bar bar = new Bar();
-            bar.Add(new Note(NoteName.HalfNote, "A", 2));
-            bar.Add(new Note(NoteName.HalfNote, "B", 2));
+            bar.Add(new Note("HalfNote", "A", 2));
+            bar.Add(new Note("HalfNote", "B", 2));
             bar.MakeEmpty();
 
 
@@ -50,7 +50,7 @@ namespace TestProject
             Bar bar = new Bar();
 
             //Act
-            bar.Add(new Note(NoteName.HalfNote, "A", 2));
+            bar.Add(new Note("HalfNote", "A", 2));
 
             //Assert
             Assert.AreEqual(1, bar.Signs.Count);            
@@ -63,9 +63,9 @@ namespace TestProject
             Bar bar = new Bar();
 
             //Act
-            bar.Add(new Note(NoteName.HalfNote, "A", 2));
-            bar.Add(new Note(NoteName.QuarterNote, "C", 2));
-            bar.Add(new Note(NoteName.QuarterNote, "A", 2));
+            bar.Add(new Note("HalfNote", "A", 2));
+            bar.Add(new Note("QuarterNote", "C", 2));
+            bar.Add(new Note("QuarterNote", "A", 2));
 
             //Assert
             Assert.AreEqual(3, bar.Signs.Count);
@@ -81,7 +81,7 @@ namespace TestProject
             bool Expect = true;
 
             //Assert
-            Assert.AreEqual(Expect, bar.CheckBarSpace(new Note(NoteName.WholeNote, "A", 2)));
+            Assert.AreEqual(Expect, bar.CheckBarSpace(new Note("WholeNote", "A", 2)));
         }
 
 
@@ -90,31 +90,17 @@ namespace TestProject
         {
             //Arrange
             Bar bar = new Bar();
-            bar.Add(new Note(NoteName.QuarterNote, "C", 2));
-            bar.Add(new Note(NoteName.QuarterNote, "A", 2));
-            bar.Add(new Note(NoteName.QuarterNote, "B", 2));
+            bar.Add(new Note("QuarterNote", "C", 2));
+            bar.Add(new Note("QuarterNote", "A", 2));
+            bar.Add(new Note("QuarterNote", "B", 2));
 
             //Act
             bool Expect = false;
 
             //Assert
-            Assert.AreEqual(Expect, bar.CheckBarSpace(new Note(NoteName.HalfNote, "A", 2)));
+            Assert.AreEqual(Expect, bar.CheckBarSpace(new Note("HalfNote", "A", 2)));
         }
 
-
-        [TestMethod]
-        public void ChangeInstrument_FromPianoToGuitar()
-        {
-            //Arrange
-            MenuBarController mbc = new MenuBarController();
-            ComposeView.instrument = "Piano";
-
-            //Act
-            mbc.ChangeInstrument(new MenuBarView(), "Gitaar");
-
-            //Assert
-            Assert.AreEqual("Guitar", ComposeView.instrument);
-        }
 
         [TestMethod]
         public void ChangeInstrument_FromPianoToGuitar()

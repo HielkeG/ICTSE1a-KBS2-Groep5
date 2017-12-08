@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,6 +123,8 @@ namespace VirtualPiano.Control
                 
 
             }
+            song.OrderSigns();
+            song.OrderStaffs();
             return song;
         }
 
