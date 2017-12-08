@@ -346,6 +346,8 @@ namespace VirtualPiano.View
                     int barBegin = 45;
                     int barEnd = 475;
 
+                    //----------Sharp / Flat-------------
+
                     //Kruizen en Mollen toevoegen aan het begin
                     if (MouseX < 100 && ComposeView.SelectedSign == "Sharp")
                     {
@@ -397,13 +399,15 @@ namespace VirtualPiano.View
                                 }
                             }
 
+
+
                             foreach (Sign sign in bar.Signs)
                             {
                                 if (sign is Note note)
                                 {
-                                    // -------Connect------  
-                                  
-                                    if (ComposeView.SelectedSign == "Connect2" && note.CheckConnectToTwo(MouseX, MouseY))
+                                    // -----------Connect-----------  
+                               
+                                    if (ComposeView.SelectedSign == "Connect2" && note.CheckConnect(MouseX, MouseY))
                                     {
                                            if (bar.Signs.Contains(ComposeView.selectedNote1))
                                             {
@@ -430,7 +434,7 @@ namespace VirtualPiano.View
                                             ComposeView.SelectedSign = "";
                                     }
 
-                                    if (ComposeView.SelectedSign == "Connect1" && note.CheckConnectToTwo(MouseX, MouseY))
+                                    if (ComposeView.SelectedSign == "Connect1" && note.CheckConnect(MouseX, MouseY))
                                     {
                                             ComposeView.selectedNote1 = note;
                                             ComposeView.SelectedSign = "Connect2";
