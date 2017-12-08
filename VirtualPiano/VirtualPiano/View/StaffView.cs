@@ -421,6 +421,7 @@ namespace VirtualPiano.View
                                             }
                                             else
                                             {
+                                                ComposeView.SelectedSign = "";
                                                 ConnectError.Active = true;
                                                 ConnectError.Show("Deze noot kan niet verbonden worden",this);
                                                 await PutTaskDelay(2000);
@@ -445,15 +446,17 @@ namespace VirtualPiano.View
                                                 }
                                                 else
                                                 {
+                                                    ComposeView.SelectedSign = "";
                                                     ConnectError.Active = true;
                                                     ConnectError.Show("Deze noot kan niet verbonden worden met de vorige noot", this);
                                                     await PutTaskDelay(2000);
                                                     ConnectError.Active = false;
                                                 }
                                                 SetDefaultCursor();
-                                                ComposeView.SelectedSign = "";
+                                                
                                             } else
                                             {
+                                                ComposeView.SelectedSign = "";
                                                 ConnectError.Active = true;
                                                 ConnectError.Show("Deze noot kan niet verbonden worden met de vorige noot", this);
                                                 await PutTaskDelay(2000);
