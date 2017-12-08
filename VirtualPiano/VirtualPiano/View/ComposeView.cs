@@ -430,6 +430,10 @@ namespace VirtualPiano.View
             {
                 Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
             }
+            if (SelectedSign == "")
+            {
+                Cursor = Cursors.Default;
+            }
         }
 
         public void Draw(PaintEventArgs e) //WIP
