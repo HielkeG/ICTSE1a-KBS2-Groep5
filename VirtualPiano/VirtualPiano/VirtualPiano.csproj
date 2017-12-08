@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201712071435249_Hielke.Designer.cs">
       <DependentUpon>201712071435249_Hielke.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712080859520_jfsoici.cs" />
+    <Compile Include="Migrations\201712080859520_jfsoici.Designer.cs">
+      <DependentUpon>201712080859520_jfsoici.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -164,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712071435249_Hielke.resx">
       <DependentUpon>201712071435249_Hielke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712080859520_jfsoici.resx">
+      <DependentUpon>201712080859520_jfsoici.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
