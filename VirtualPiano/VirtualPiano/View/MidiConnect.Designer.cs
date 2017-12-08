@@ -31,6 +31,7 @@
             this.midiList = new System.Windows.Forms.ListBox();
             this.midiNext = new System.Windows.Forms.Button();
             this.SelectMidi = new System.Windows.Forms.Label();
+            this.midiRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // midiList
@@ -61,11 +62,23 @@
             this.SelectMidi.TabIndex = 2;
             this.SelectMidi.Text = "Selecteer MIDI input";
             // 
+            // midiRefresh
+            // 
+            this.midiRefresh.BackColor = System.Drawing.SystemColors.Control;
+            this.midiRefresh.Location = new System.Drawing.Point(485, 107);
+            this.midiRefresh.Name = "midiRefresh";
+            this.midiRefresh.Size = new System.Drawing.Size(75, 23);
+            this.midiRefresh.TabIndex = 3;
+            this.midiRefresh.Text = "Verversen";
+            this.midiRefresh.UseVisualStyleBackColor = false;
+            this.midiRefresh.Click += new System.EventHandler(this.midiRefresh_Click);
+            // 
             // MidiConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 292);
+            this.ClientSize = new System.Drawing.Size(572, 241);
+            this.Controls.Add(this.midiRefresh);
             this.Controls.Add(this.SelectMidi);
             this.Controls.Add(this.midiNext);
             this.Controls.Add(this.midiList);
@@ -80,5 +93,6 @@
         private System.Windows.Forms.Button midiNext;
         private System.Windows.Forms.Label SelectMidi;
         public System.Windows.Forms.ListBox midiList;
+        private System.Windows.Forms.Button midiRefresh;
     }
 }

@@ -135,6 +135,12 @@
     <Compile Include="View\MidiConnect.Designer.cs">
       <DependentUpon>MidiConnect.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MidiSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MidiSettings.Designer.cs">
+      <DependentUpon>MidiSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\PianoKeysView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MidiConnect.resx">
       <DependentUpon>MidiConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MidiSettings.resx">
+      <DependentUpon>MidiSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\PianoKeysView.resx">
       <DependentUpon>PianoKeysView.cs</DependentUpon>
@@ -327,6 +336,7 @@
     <None Include="Resources\Afbeeldingen\Knoppen\piano.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\marimba.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\refresh.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />

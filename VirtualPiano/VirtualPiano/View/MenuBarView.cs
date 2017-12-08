@@ -21,6 +21,7 @@ namespace VirtualPiano.View
         public event EventHandler togglePianoVisible;
         MenuBarController mbc = new MenuBarController();
         public static MidiConnect m1 = new MidiConnect();
+        public static MidiSettings m2 = new MidiSettings();
         public static bool SoundEnabled = true;
         public MenuBarView()
         {
@@ -151,18 +152,21 @@ namespace VirtualPiano.View
 
         private void Piano_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this,"Piano");
+            //mbc.ChangeInstrument(this,"Piano");
+            MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
         }
         
 
         private void Marimba_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this,"Marimba");
+            //mbc.ChangeInstrument(this,"Marimba");
+            MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Marimba);
         }
 
         private void Gitaar_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this,"Gitaar");
+            //mbc.ChangeInstrument(this,"Gitaar");
+            MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.ElectricGuitarClean);
         }
 
         private void AddStaffView_Click(object sender, EventArgs e)
@@ -214,6 +218,11 @@ namespace VirtualPiano.View
                 geluidAanuitToolStripMenuItem.CheckState = CheckState.Checked;
                 SoundEnabled = true;   //unmute
             }
+        }
+
+        private void instellingenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m2.ShowDialog();
         }
     }
 }

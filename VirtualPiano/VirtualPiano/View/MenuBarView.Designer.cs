@@ -47,6 +47,7 @@
             this.keyboardVerbindenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.virtueelKeyboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToonToolstrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.instellingenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -214,7 +215,8 @@
             // midiToolStripMenuItem
             // 
             this.midiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.keyboardVerbindenToolStripMenuItem});
+            this.keyboardVerbindenToolStripMenuItem,
+            this.instellingenToolStripMenuItem});
             this.midiToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.midiToolStripMenuItem.Name = "midiToolStripMenuItem";
             this.midiToolStripMenuItem.Size = new System.Drawing.Size(43, 24);
@@ -243,6 +245,13 @@
             this.ToonToolstrip.Size = new System.Drawing.Size(124, 22);
             this.ToonToolstrip.Text = "Zichtbaar";
             this.ToonToolstrip.Click += new System.EventHandler(this.Zichtbaar_Click);
+            // 
+            // instellingenToolStripMenuItem
+            // 
+            this.instellingenToolStripMenuItem.Name = "instellingenToolStripMenuItem";
+            this.instellingenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.instellingenToolStripMenuItem.Text = "Instellingen";
+            this.instellingenToolStripMenuItem.Click += new System.EventHandler(this.instellingenToolStripMenuItem_Click);
             // 
             // MenuBarView
             // 
@@ -282,5 +291,6 @@
         private System.Windows.Forms.ToolStripMenuItem keyboardVerbindenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem virtueelKeyboardToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem ToonToolstrip;
+        private System.Windows.Forms.ToolStripMenuItem instellingenToolStripMenuItem;
     }
 }
