@@ -119,7 +119,7 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(0).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
@@ -143,7 +143,7 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(1).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 
@@ -164,7 +164,7 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(2).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 
@@ -185,7 +185,7 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(3).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 

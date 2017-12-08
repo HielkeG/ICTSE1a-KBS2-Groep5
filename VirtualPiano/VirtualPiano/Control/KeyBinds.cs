@@ -15,7 +15,7 @@ namespace VirtualPiano.Control
         //alle noten gebonden aan toetsenbordtoetsen.
         public static void PressPianoKeys(KeyEventArgs e)
         {
-            
+
             //outputDevice = OutputDevice.InstalledDevices[0];
             //if (isGestart == false)
             //{
@@ -28,125 +28,147 @@ namespace VirtualPiano.Control
                 //octaaf 2
                 case Keys.Q:
                     //outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
-                    //outputDevice.SendNoteOn(Channel.Channel1, Pitch.C3, 127);
-
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "C");
+                    Enum.TryParse("C" + ComposeView.CurrentOctave, out Pitch pitch);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "C");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D2:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "Cis");
+                    Enum.TryParse("CSharp" + ComposeView.CurrentOctave, out Pitch pitch2);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch2, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Cis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.W:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "D");
+                    Enum.TryParse("D" + ComposeView.CurrentOctave, out Pitch pitch3);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch3, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "D");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D3:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "Dis");
+                    Enum.TryParse("DSharp" + ComposeView.CurrentOctave, out Pitch pitch4);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch4, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Dis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.E:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "E");
+                    Enum.TryParse("E" + ComposeView.CurrentOctave, out Pitch pitch5);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch5, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "E");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.R:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "F");
+                    Enum.TryParse("F" + ComposeView.CurrentOctave, out Pitch pitch6);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch6, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "F");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D5:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "Fis");
+                    Enum.TryParse("FSharp" + ComposeView.CurrentOctave, out Pitch pitch7);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch7, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Fis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.T:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "G");
+                    Enum.TryParse("G" + ComposeView.CurrentOctave, out Pitch pitch8);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch8, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "G");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D6:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "Gis");
+                    Enum.TryParse("GSharp" + ComposeView.CurrentOctave, out Pitch pitch9);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch9, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Gis");
                     ComposeView.pkv1.Invalidate(); ;
                     break;
                 case Keys.Y:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "A");
+                    Enum.TryParse("A" + ComposeView.CurrentOctave, out Pitch pitch10);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch10, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "A");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D7:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "Ais");
+                    Enum.TryParse("ASharp" + ComposeView.CurrentOctave, out Pitch pitch11);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch11, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "Ais");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.U:
-                    MusicController.PlaySound(ComposeView.CurrentOctave, "B");
+                    Enum.TryParse("B" + ComposeView.CurrentOctave, out Pitch pitch12);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch12, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave, "B");
                     ComposeView.pkv1.Invalidate();
                     break;
                 //octaaf 3
                 case Keys.V:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "C");
+                    Enum.TryParse("C" + (ComposeView.CurrentOctave + 1), out Pitch pitch13);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch13, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "C");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.G:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "Cis");
+                    Enum.TryParse("CSharp" + (ComposeView.CurrentOctave + 1), out Pitch pitch14);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch14, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Cis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.B:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "D");
+                    Enum.TryParse("D" + (ComposeView.CurrentOctave + 1), out Pitch pitch15);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch15, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "D");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.H:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "Dis");
+                    Enum.TryParse("DSharp" + (ComposeView.CurrentOctave + 1), out Pitch pitch16);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch16, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Dis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.N:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "E");
+                    Enum.TryParse("E" + (ComposeView.CurrentOctave + 1), out Pitch pitch17);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch17, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "E");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.M:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "F");
+                    Enum.TryParse("F" + (ComposeView.CurrentOctave + 1), out Pitch pitch18);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch18, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "F");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.K:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "Fis");
+                    Enum.TryParse("FSharp" + (ComposeView.CurrentOctave + 1), out Pitch pitch19);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch19, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Fis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.Oemcomma:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "G");
+                    Enum.TryParse("G" + (ComposeView.CurrentOctave + 1), out Pitch pitch20);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch20, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "G");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemPeriod:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "A");
+                    Enum.TryParse("A" + (ComposeView.CurrentOctave + 1), out Pitch pitch21);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch21, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "A");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.L:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "Gis");
+                    Enum.TryParse("GSharp" + (ComposeView.CurrentOctave + 1), out Pitch pitch22);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch22, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Gis");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemSemicolon:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "Ais");
+                    Enum.TryParse("ASharp" + (ComposeView.CurrentOctave + 1), out Pitch pitch23);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch23, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "Ais");
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.OemQuestion:
-                    MusicController.PlaySound(ComposeView.CurrentOctave+1, "B");
+                    Enum.TryParse("B" + (ComposeView.CurrentOctave + 1), out Pitch pitch24);
+                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch24, 127);
                     ComposeView.pkv1.KeyPressed(ComposeView.CurrentOctave+1, "B");
                     ComposeView.pkv1.Invalidate();
                     break;
@@ -164,7 +186,6 @@ namespace VirtualPiano.Control
 
                 case Keys.Q:
                     ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "C");
-                    //outputDevice.SendNoteOff(Channel.Channel1, Pitch.C4, 127);
                     ComposeView.pkv1.Invalidate();
                     break;
                 case Keys.D2:
