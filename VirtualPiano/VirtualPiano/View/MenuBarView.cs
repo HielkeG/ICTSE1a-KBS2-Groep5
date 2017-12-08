@@ -152,20 +152,20 @@ namespace VirtualPiano.View
 
         private void Piano_Click(object sender, EventArgs e)
         {
-            //mbc.ChangeInstrument(this,"Piano");
+            mbc.ChangeInstrument(this,"Piano");
             MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
         }
         
 
         private void Marimba_Click(object sender, EventArgs e)
         {
-            //mbc.ChangeInstrument(this,"Marimba");
+            mbc.ChangeInstrument(this,"Marimba");
             MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Marimba);
         }
 
         private void Gitaar_Click(object sender, EventArgs e)
         {
-            //mbc.ChangeInstrument(this,"Gitaar");
+            mbc.ChangeInstrument(this,"Gitaar");
             MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.ElectricGuitarClean);
         }
 
