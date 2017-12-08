@@ -408,7 +408,7 @@ namespace VirtualPiano.View
                                 {
                                     // -------Connect------  
 
-                                    if (ComposeView.SelectedSign == "Connect2" && note.CheckConnectToTwo(MouseX, MouseY) && bar.Signs.Contains(ComposeView.selectedNote1))
+                                    if (ComposeView.SelectedSign == "Connect2" && note.CheckConnect(MouseX, MouseY) && bar.Signs.Contains(ComposeView.selectedNote1))
                                     {
                                             //Als de twee noten naast elkaar staan
                                             int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
