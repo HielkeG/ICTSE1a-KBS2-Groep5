@@ -333,7 +333,7 @@ namespace VirtualPiano.View
             }
         }
 
-        private void StaffView_MouseClick(object sender, MouseEventArgs e)
+        private async void StaffView_MouseClick(object sender, MouseEventArgs e)
         {
             int MouseX = PointToClient(Cursor.Position).X;
             int MouseY = PointToClient(Cursor.Position).Y;
@@ -406,62 +406,89 @@ namespace VirtualPiano.View
                             {
                                 if (sign is Note note)
                                 {
-                                    // -------Connect------  
-
-                                    if (ComposeView.SelectedSign == "Connect2" && note.CheckConnect(MouseX, MouseY) && bar.Signs.Contains(ComposeView.selectedNote1))
+                                    if (note.IsLocation(MouseX, MouseY))
                                     {
-                                            //Als de twee noten naast elkaar staan
-                                            int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
-                                            int index2 = bar.Signs.IndexOf(note);
+                                        // -------Connect------  
 
-                                            if ((index1 - index2 == 1 || index1 - index2 == -1) && note.name == ComposeView.selectedNote1.name)
-                                            {
-                                                ComposeView.selectedNote2 = note;
-
-                                                //Noten met elkaar verbinden
-                                                ComposeView.selectedNote1.MakeConnection(ComposeView.selectedNote2);
-                                                
-                                            }
-                                        SetDefaultCursor();
-                                        ComposeView.SelectedSign = "";
-                                    }
-
-                                    if (ComposeView.SelectedSign == "Connect1" && note.CheckConnect(MouseX, MouseY))
-                                    {
-                                        ComposeView.selectedNote1 = note;
-                                        ComposeView.SelectedSign = "Connect2";
-                                        Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
-                                    }
-
-                                    // ----- Sharp / Flat --------
-                                    if (ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat")
-                                    {
-                                        if (note.IsLocation(MouseX, MouseY))
+                                        // -- 1e connectiepunt
+                                        if (ComposeView.SelectedSign == "Connect1")
                                         {
-                                            if (ComposeView.SelectedSign == "Sharp")
+                                            if (note.CheckConnect())
                                             {
-                                                note.SetSharp();
+                                                ComposeView.selectedNote1 = note;
+                                                ComposeView.SelectedSign = "Connect2";
+                                                Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
                                             }
-                                            if (ComposeView.SelectedSign == "Flat")
+                                            else
                                             {
-                                                note.SetFlat();
+                                                ConnectError.Active = true;
+                                                ConnectError.Show("Deze noot kan niet verbonden worden",this);
+                                                await PutTaskDelay(2000);
+                                                ConnectError.Active = false;
                                             }
                                         }
-                                    }
-                                    // ------Bin------
-                                    if (ComposeView.SelectedSign == "Bin")
-                                    {
-                                        if (note.IsLocation(MouseX, MouseY))
+
+                                        // -- 2e connectiepunt
+                                        else if (ComposeView.SelectedSign == "Connect2")
                                         {
-                                            if (note.flat == true || note.sharp == true)
+                                            if (note.CheckConnect() && bar.Signs.Contains(ComposeView.selectedNote1))
                                             {
-                                                note.flat = false;
-                                                note.sharp = false;
+                                                //Als de twee noten naast elkaar staan
+                                                int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
+                                                int index2 = bar.Signs.IndexOf(note);
+
+                                                if ((index1 - index2 == 1 || index1 - index2 == -1) && note.name == ComposeView.selectedNote1.name)
+                                                {
+                                                    ComposeView.selectedNote2 = note;
+                                                    //Noten met elkaar verbinden
+                                                    ComposeView.selectedNote1.MakeConnection(ComposeView.selectedNote2);
+                                                }
+                                                else
+                                                {
+                                                    ConnectError.Active = true;
+                                                    ConnectError.Show("Deze noot kan niet verbonden worden met de vorige noot", this);
+                                                    await PutTaskDelay(2000);
+                                                    ConnectError.Active = false;
+                                                }
+                                                SetDefaultCursor();
+                                                ComposeView.SelectedSign = "";
+                                            } else
+                                            {
+                                                ConnectError.Active = true;
+                                                ConnectError.Show("Deze noot kan niet verbonden worden met de vorige noot", this);
+                                                await PutTaskDelay(2000);
+                                                ConnectError.Active = false;
                                             }
                                         }
+
+                                        // ----- Sharp / Flat --------
+                                        if (ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat")
+                                        {
+                                            {
+                                                if (ComposeView.SelectedSign == "Sharp")
+                                                {
+                                                    note.SetSharp();
+                                                }
+                                                if (ComposeView.SelectedSign == "Flat")
+                                                {
+                                                    note.SetFlat();
+                                                }
+                                            }
+                                        }
+                                        // ------Bin------
+                                        if (ComposeView.SelectedSign == "Bin")
+                                        {
+                                            
+                                                if (note.flat == true || note.sharp == true)
+                                                {
+                                                    note.flat = false;
+                                                    note.sharp = false;
+                                                }
+                                            
+                                        }
+                                        ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                        ComposeView.pkv1.Invalidate();
                                     }
-                                    ComposeView.pkv1.KeyReleased(note.octave, note.tone);
-                                    ComposeView.pkv1.Invalidate();
                                 }
                             }
                         }

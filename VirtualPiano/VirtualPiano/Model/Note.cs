@@ -162,9 +162,9 @@ namespace VirtualPiano.Model
             { if (tone == "G" || tone == "Gis") { tone = "Ges"; } }
         }
 
-        public bool CheckConnect(int MouseX, int MouseY)
+        public bool CheckConnect()
         {
-            return IsLocation(MouseX, MouseY) && ConnectionNote == null && (name == "EightNote") || name == "SixteenthNote";
+            return ConnectionNote == null && (name == "EightNote" || name == "SixteenthNote");
         }
 
         internal void MakeConnection(Note note2)

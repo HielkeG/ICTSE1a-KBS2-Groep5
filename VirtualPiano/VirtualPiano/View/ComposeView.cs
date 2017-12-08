@@ -350,24 +350,6 @@ namespace VirtualPiano.View
             signSelected = true;
             SelectedSign = "G";
             Cursor = CursorController.ChangeCursor(SelectedSign);
-
-
-            Console.WriteLine("-----Lied------");
-            foreach(Staff staff in song.GetStaffs())
-            {
-                Console.WriteLine("-----Staff----");
-                foreach(Bar bar in staff.Bars)
-                {
-                    Console.WriteLine("-----Bar----");
-                    foreach (Sign sign in bar.Signs)
-                    {
-                        if(sign is Note note)
-                        {
-                            Console.WriteLine(note.name);
-                        }
-                    }
-                }
-            }
         }
 
         private void FKey_MouseDown(object sender, MouseEventArgs e)
@@ -407,17 +389,13 @@ namespace VirtualPiano.View
 
         private void Connect_Click(object sender, EventArgs e)
         {
-            if(selectedNote1 == null)
-            {
-                SelectedSign = "Connect1";
-                signSelected = true;
-                  Cursor = CursorController.ChangeCursor(SelectedSign);
-            } else if (selectedNote1 != null)
-            {
-                SelectedSign = "Connect2";
-                signSelected = true;
-                Cursor = CursorController.ChangeCursor(SelectedSign);
-            }
+
+            SelectedSign = "Connect1";
+            signSelected = true;
+            Cursor = CursorController.ChangeCursor(SelectedSign);
+            ComposeView.selectedNote1 = null;
+            ComposeView.selectedNote2 = null;
+
         }
 
         private void Bin_Click(object sender, EventArgs e)

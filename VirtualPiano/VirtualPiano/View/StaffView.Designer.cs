@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.ConnectError = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // StaffView
@@ -50,5 +52,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.ToolTip ConnectError;
     }
 }
