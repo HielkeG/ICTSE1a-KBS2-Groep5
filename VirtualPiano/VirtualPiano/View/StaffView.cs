@@ -137,12 +137,13 @@ namespace VirtualPiano.View
                             if (note.name == "EightNote")
                             {
                                 e.Graphics.DrawLine(new Pen(Color.Black, 6), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
-                            } else
+                            }
+                            else
                             {
                                 e.Graphics.DrawLine(new Pen(Color.Black, 5), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
                                 e.Graphics.DrawLine(new Pen(Color.Black, 5), note.x + 8, note.y + 23, note.ConnectionNote.x + 10, note.ConnectionNote.y + 23);
                             }
-                            
+
                         }
 
                         int Ynotelocation = note.y;
@@ -190,19 +191,19 @@ namespace VirtualPiano.View
         {
             if (ComposeView.draggingSign != null)
             {
-                if (ComposeView.draggingSign.name == "WholeNote")  ComposeView.draggingSign.image = Resources.helenoot; 
-                else if (ComposeView.draggingSign.name == "HalfNote")  ComposeView.draggingSign.image = Resources.halvenoot; 
-                else if (ComposeView.draggingSign.name == "QuarterNote")  ComposeView.draggingSign.image = Resources.kwartnoot; 
-                else if (ComposeView.draggingSign.name == "EightNote")  ComposeView.draggingSign.image = Resources.achtstenoot; 
-                else if (ComposeView.draggingSign.name == "SixteenthNote")  ComposeView.draggingSign.image = Resources.zestiendenoot; 
+                if (ComposeView.draggingSign.name == "WholeNote") ComposeView.draggingSign.image = Resources.helenoot;
+                else if (ComposeView.draggingSign.name == "HalfNote") ComposeView.draggingSign.image = Resources.halvenoot;
+                else if (ComposeView.draggingSign.name == "QuarterNote") ComposeView.draggingSign.image = Resources.kwartnoot;
+                else if (ComposeView.draggingSign.name == "EightNote") ComposeView.draggingSign.image = Resources.achtstenoot;
+                else if (ComposeView.draggingSign.name == "SixteenthNote") ComposeView.draggingSign.image = Resources.zestiendenoot;
             }
             ComposeView.cursorIsDown = false;
-            if(ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
+            if (ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
             {
-              SetDefaultCursor();
-              ComposeView.SelectedSign = "";
+                SetDefaultCursor();
+                ComposeView.SelectedSign = "";
             }
-            
+
         }
 
         //methode die de cursor op default zet en alle booleans op null zet.
@@ -211,13 +212,13 @@ namespace VirtualPiano.View
             Cursor = Cursors.Default;
         }
 
-       
+
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
             //Standaard cursor zetten voor noten en rusten
             if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F" || ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
             else { SetDefaultCursor(); }
-            
+
             if (ComposeView.SelectedSign == "Connect1")
             {
                 Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
@@ -227,7 +228,7 @@ namespace VirtualPiano.View
                 Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
             }
         }
-        
+
 
         private void StaffView_MouseMove(object sender, MouseEventArgs e)
         {
@@ -272,7 +273,7 @@ namespace VirtualPiano.View
                         //-----Clef----
                         else if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F")
                         {
-                            
+
                         }
                     }
                 }
@@ -359,7 +360,7 @@ namespace VirtualPiano.View
                         song.FlatSharp--;
                         song.ChangeSharpFlat(song.FlatSharp);
                     }
-                    
+
                     foreach (Bar bar in staff.Bars)
                     {
 
@@ -402,39 +403,30 @@ namespace VirtualPiano.View
                                 if (sign is Note note)
                                 {
                                     // -------Connect------  
-                                  
-                                    if (ComposeView.SelectedSign == "Connect2" && note.CheckConnectToTwo(MouseX, MouseY))
-                                    {
-                                           if (bar.Signs.Contains(ComposeView.selectedNote1))
-                                            {
-                                                //Als de twee noten naast elkaar staan
-                                                int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
-                                                int index2 = bar.Signs.IndexOf(note);
 
-                                                if ((index1 - index2 == 1 || index1 - index2 == -1) && note.name == ComposeView.selectedNote1.name)
-                                                {
-                                                    ComposeView.selectedNote2 = note;
-                                                }
-                                            }
-                                           //Als beide noten geselecteerd zijn
-                                            if (ComposeView.selectedNote1 != null && ComposeView.selectedNote2 != null)
+                                    if (ComposeView.SelectedSign == "Connect2" && note.CheckConnectToTwo(MouseX, MouseY) && bar.Signs.Contains(ComposeView.selectedNote1))
+                                    {
+                                            //Als de twee noten naast elkaar staan
+                                            int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
+                                            int index2 = bar.Signs.IndexOf(note);
+
+                                            if ((index1 - index2 == 1 || index1 - index2 == -1) && note.name == ComposeView.selectedNote1.name)
                                             {
-                                                ComposeView.selectedNote1.image = Resources.kwartnoot;
-                                                ComposeView.selectedNote2.image = Resources.kwartnoot;
-                                                ComposeView.selectedNote1.ConnectionNote = ComposeView.selectedNote2;
-                                                ComposeView.selectedNote2.ConnectionNote = ComposeView.selectedNote1;
-                                                ComposeView.selectedNote1 = null;
-                                                ComposeView.selectedNote2 = null;
+                                                ComposeView.selectedNote2 = note;
+
+                                                //Noten met elkaar verbinden
+                                                ComposeView.selectedNote1.MakeConnection(ComposeView.selectedNote2);
+                                                
                                             }
-                                            SetDefaultCursor();
-                                            ComposeView.SelectedSign = "";
+                                        SetDefaultCursor();
+                                        ComposeView.SelectedSign = "";
                                     }
 
                                     if (ComposeView.SelectedSign == "Connect1" && note.CheckConnectToTwo(MouseX, MouseY))
                                     {
-                                            ComposeView.selectedNote1 = note;
-                                            ComposeView.SelectedSign = "Connect2";
-                                            Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+                                        ComposeView.selectedNote1 = note;
+                                        ComposeView.SelectedSign = "Connect2";
+                                        Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
                                     }
 
                                     // ----- Sharp / Flat --------
@@ -505,7 +497,7 @@ namespace VirtualPiano.View
                 ComposeView.selectedNote2 = null;
             }
 
-            if(ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
+            if (ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
             {
                 ComposeView.signSelected = false;
                 ComposeView.SelectedSign = "";
