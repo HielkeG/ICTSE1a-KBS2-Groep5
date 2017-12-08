@@ -66,7 +66,7 @@ namespace VirtualPiano.Control
             if (isGestart == false)
             {
                 outputDevice.Open();
-                MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Banjo);
+                //MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Banjo);
             }
             isGestart = true;
 
