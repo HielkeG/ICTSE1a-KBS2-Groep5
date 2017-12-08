@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -125,10 +126,13 @@ namespace VirtualPiano.Model
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 //pitch ophalen uit de note
-                                string parsedPitch = note.tone.ToString() + note.octave.ToString();   
+                                string parsedPitch = note.tone.ToString() + note.octave.ToString();
                                 //string parsen naar pitch
+                                if (parsedPitch.Length == 4)
+                                {
+                                    parsedPitch = note.tone.First() + "Sharp" + note.octave;
+                                }
                                 Enum.TryParse(parsedPitch, out Pitch pitch);
-                                //geluid afspelen
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 //outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);
