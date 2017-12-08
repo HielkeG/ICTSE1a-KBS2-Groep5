@@ -38,8 +38,6 @@ namespace VirtualPiano.View
         public static int RedLineX;   //locatie van de rode lijn
         public int StaffCounter = 0;
         public static bool PlayingKeyboard = false;
-        
-
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Sign draggingSign;
@@ -349,6 +347,24 @@ namespace VirtualPiano.View
             signSelected = true;
             SelectedSign = "G";
             Cursor = CursorController.ChangeCursor(SelectedSign);
+
+
+            Console.WriteLine("-----Lied------");
+            foreach(Staff staff in song.GetStaffs())
+            {
+                Console.WriteLine("-----Staff----");
+                foreach(Bar bar in staff.Bars)
+                {
+                    Console.WriteLine("-----Bar----");
+                    foreach (Sign sign in bar.Signs)
+                    {
+                        if(sign is Note note)
+                        {
+                            Console.WriteLine(note.name);
+                        }
+                    }
+                }
+            }
         }
 
         private void FKey_MouseDown(object sender, MouseEventArgs e)
@@ -422,6 +438,7 @@ namespace VirtualPiano.View
             if(selectedNote1 != null || SelectedSign == "Connect2")
             {
                 selectedNote1 = null;
+                
             }
         }
 
@@ -674,10 +691,6 @@ namespace VirtualPiano.View
                 TitelBox.Enabled = true;
             }
         }
-
-        private void menuBarView1_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

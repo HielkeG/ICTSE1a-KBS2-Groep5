@@ -116,6 +116,20 @@ namespace TestProject
             Assert.AreEqual("Guitar", ComposeView.instrument);
         }
 
+        [TestMethod]
+        public void ChangeInstrument_FromPianoToGuitar()
+        {
+            //Arrange
+            MenuBarController mbc = new MenuBarController();
+            ComposeView.instrument = "Piano";
+
+            //Act
+            mbc.ChangeInstrument(new MenuBarView(), "Gitaar");
+
+            //Assert
+            Assert.AreEqual("Guitar", ComposeView.instrument);
+        }
+
 
     }
 }

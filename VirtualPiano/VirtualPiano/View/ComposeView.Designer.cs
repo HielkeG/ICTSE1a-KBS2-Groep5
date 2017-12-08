@@ -443,7 +443,6 @@ namespace VirtualPiano.View
             this.menuBarView1.Size = new System.Drawing.Size(1070, 25);
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
-            this.menuBarView1.Load += new System.EventHandler(this.menuBarView1_Load);
             // 
             // ComposeView
             // 

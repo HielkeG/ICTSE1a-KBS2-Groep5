@@ -257,6 +257,6 @@ namespace VirtualPiano.Model
         {
             Staffs = staffs;
         }
-
+        
     }
 }

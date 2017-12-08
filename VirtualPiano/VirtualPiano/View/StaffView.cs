@@ -414,13 +414,17 @@ namespace VirtualPiano.View
                             {
                                 if (sign is Note note)
                                 {
-                                    // -------Connect------
+                                    // --------------------Connect-----------------------
+                                    //--- Tweede verbindingsNote---
                                     if (ComposeView.SelectedSign == "Connect2")
                                     {
+                                        //Als de tweede noot gelijk is aan de noot aan de lijst en als die noot nog niet al een verbinding heeft en of de tweede noot niet gelijk is aan de eerste
                                         if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && note != ComposeView.selectedNote1)
                                         {
+                                            //Als de noot in dezelfde bar zit
                                            if (note.ConnectionNote == null && bar.Signs.Contains(ComposeView.selectedNote1))
                                             {
+                                                //Als de twee noten naast elkaar staan
                                                 int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
                                                 int index2 = bar.Signs.IndexOf(note);
                                                 if ((index1 - index2 == 1 || index1 - index2 == -1) && note.name == ComposeView.selectedNote1.name)
@@ -428,6 +432,7 @@ namespace VirtualPiano.View
                                                     ComposeView.selectedNote2 = note;
                                                 }
                                             }
+                                           //Als beide noten geselecteerd zijn
                                             if (ComposeView.selectedNote1 != null && ComposeView.selectedNote2 != null)
                                             {
                                                 ComposeView.selectedNote1.image = Resources.kwartnoot;
@@ -443,9 +448,10 @@ namespace VirtualPiano.View
                                         }
                                         
                                     }
+                                    //----Eerste verbindingsNote ---
                                     if (ComposeView.SelectedSign == "Connect1")
                                     {
-                                        if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && ( note.name == NoteName.EightNote.ToString() || note.name == NoteName.SixteenthNote.ToString()) && note != ComposeView.selectedNote1)
+                                        if (note.IsLocation(PointToClient(Cursor.Position).Y, PointToClient(Cursor.Position).X) && note.ConnectionNote == null && ( note.name == NoteName.EightNote.ToString() || note.name == NoteName.SixteenthNote.ToString()))
                                         {
                                             ComposeView.selectedNote1 = note;
                                             ComposeView.SelectedSign = "Connect2";
@@ -535,6 +541,7 @@ namespace VirtualPiano.View
 
         }
 
+        //Deze methode zorgt voor een wachttijd in de methode. De applicatie kan ondertussen wel verder gaan
         async Task PutTaskDelay(int delay)
         {
             await Task.Delay(delay);
