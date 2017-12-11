@@ -32,6 +32,7 @@
             this.midiNext = new System.Windows.Forms.Button();
             this.SelectMidi = new System.Windows.Forms.Label();
             this.midiRefresh = new System.Windows.Forms.Button();
+            this.midiDisconnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // midiList
@@ -48,7 +49,7 @@
             this.midiNext.Name = "midiNext";
             this.midiNext.Size = new System.Drawing.Size(75, 23);
             this.midiNext.TabIndex = 1;
-            this.midiNext.Text = "Volgende";
+            this.midiNext.Text = "Verbinden";
             this.midiNext.UseVisualStyleBackColor = true;
             this.midiNext.Click += new System.EventHandler(this.midiNext_Click);
             // 
@@ -73,17 +74,28 @@
             this.midiRefresh.UseVisualStyleBackColor = false;
             this.midiRefresh.Click += new System.EventHandler(this.midiRefresh_Click);
             // 
+            // midiDisconnect
+            // 
+            this.midiDisconnect.Location = new System.Drawing.Point(440, 195);
+            this.midiDisconnect.Name = "midiDisconnect";
+            this.midiDisconnect.Size = new System.Drawing.Size(120, 23);
+            this.midiDisconnect.TabIndex = 4;
+            this.midiDisconnect.Text = "Verbinding verbreken";
+            this.midiDisconnect.UseVisualStyleBackColor = true;
+            this.midiDisconnect.Click += new System.EventHandler(this.midiDisconnect_Click);
+            // 
             // MidiConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 241);
+            this.Controls.Add(this.midiDisconnect);
             this.Controls.Add(this.midiRefresh);
             this.Controls.Add(this.SelectMidi);
             this.Controls.Add(this.midiNext);
             this.Controls.Add(this.midiList);
             this.Name = "MidiConnect";
-            this.Text = "MidiConnect";
+            this.Text = "Midi keyboard";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +106,6 @@
         private System.Windows.Forms.Label SelectMidi;
         public System.Windows.Forms.ListBox midiList;
         private System.Windows.Forms.Button midiRefresh;
+        private System.Windows.Forms.Button midiDisconnect;
     }
 }

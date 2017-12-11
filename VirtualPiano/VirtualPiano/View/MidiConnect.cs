@@ -13,9 +13,9 @@ namespace VirtualPiano.View
 {
     public partial class MidiConnect : Form
     {
-        bool Clicked = false;
         public static int inputInt;
         public static int outputInt;
+        public static bool IsConnected = false;
 
         public MidiConnect()
         {
@@ -31,34 +31,44 @@ namespace VirtualPiano.View
                 midiNext.Enabled = false;
                 midiList.Items.Add("Er is geen midi keyboard beschikbaar.");
             }
+
+            if (IsConnected)
+            {
+                midiDisconnect.Enabled = true;
+            }
+            else
+            {
+                midiDisconnect.Enabled = false;
+            }
         }
 
         private void midiNext_Click(object sender, EventArgs e)
         {
             //outputscherm openen
-            if (Clicked == false)
+            if (IsConnected == false)
             {
                 inputInt = midiList.SelectedIndex;
-            }          
-
-            midiList.Items.Clear();
-            foreach (OutputDevice device in OutputDevice.InstalledDevices)
-            {
-                midiList.Items.Add(device.Name);
-            }
-            //wanneer op volgende geklikt is. Naar volgende scherm gaan.
-            SelectMidi.Text = "Selecteer MIDI output";
-            midiNext.Text = "Verbinden";
-            //wanneer een output geselecteerd is wordt het apparaat geselecteerd.
-            if (Clicked)
-            {
                 MidiPlay.Start(InputDevice.InstalledDevices[inputInt]);
                 this.Close();
+
+                string message = "Keyboard is verbonden";
+                string caption = InputDevice.InstalledDevices[inputInt].Name.ToString();
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+                result = MessageBox.Show(this, message, caption, buttons,
+                MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                IsConnected = true;
+                midiDisconnect.Enabled = true;
+                midiRefresh.Enabled = false;
+            }     
+            
+            if(IsConnected == false)
+            {
+                midiNext.Enabled = true;
+            } else
+            {
+                midiNext.Enabled = false;
             }
-
-            Clicked = true;
-
-
         }
 
         //midi apparatenlijst verversen.
@@ -72,12 +82,26 @@ namespace VirtualPiano.View
             {
                 midiList.Items.Add(item.Name);
             }
-            midiNext.Enabled = true;
             if (InputDevice.installedDevices.Length == 0)
             {
                 midiList.Items.Add("Er is geen midi keyboard beschikbaar.");
-                midiNext.Enabled = false;
             }
+        }
+
+        private void midiDisconnect_Click(object sender, EventArgs e)
+        {
+            string message = "Verbinding is verbroken";
+            string caption = InputDevice.InstalledDevices[inputInt].Name.ToString();
+            MidiPlay.Stop(InputDevice.InstalledDevices[inputInt]);
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            DialogResult result;
+            result = MessageBox.Show(this, message, caption, buttons,
+            MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            IsConnected = false;
+            midiDisconnect.Enabled = false;
+            midiNext.Enabled = true;
+            midiRefresh.Enabled = true;
+            this.Close();            
         }
     }
 }
