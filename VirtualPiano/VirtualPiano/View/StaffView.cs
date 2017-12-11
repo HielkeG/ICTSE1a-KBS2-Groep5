@@ -313,6 +313,11 @@ namespace VirtualPiano.View
                             if (sign is Note note)
                             {
                                 note.PlaySound();
+                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
+                                await PutTaskDelay(75);
+                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.Invalidate();
                             }
 
                             //Als de muis na 300 miliseconden nog steeds ingedrukt is, wordt het teken verslepen

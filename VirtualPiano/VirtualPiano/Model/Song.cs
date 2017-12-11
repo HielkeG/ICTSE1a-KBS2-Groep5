@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -53,18 +54,22 @@ namespace VirtualPiano.Model
             {
                 if (ComposeView.instrument == "Piano")
                 {
+                    //instrument veranderen naar piano
                     MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
                 }
                 else if (ComposeView.instrument == "Guitar")
                 {
+                    //instrument veranderen naar gitaar
                     MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
                 }
                 else if (ComposeView.instrument == "Marimba")
                 {
+                    //instrument veranderen naar marimba
                     MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Xylophone);
                 }
                 else
                 {
+                    //instrument standaard veranderen naar harp
                     MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.OrchestralHarp);
                 }
             }
@@ -117,18 +122,23 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(0).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
-                                string pitchTemp = note.tone.ToString() + note.octave.ToString();
-                                Enum.TryParse(pitchTemp, out Pitch pitch);
-
+                                //pitch ophalen uit de note
+                                string parsedPitch = note.tone.ToString() + note.octave.ToString();
+                                //string parsen naar pitch
+                                if (parsedPitch.Length == 4)
+                                {
+                                    parsedPitch = note.tone.First() + "Sharp" + note.octave;
+                                }
+                                Enum.TryParse(parsedPitch, out Pitch pitch);
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 //outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);
+                                //toets oplichtne na 75 milliseconden wachten
                                 ComposeView.pkv1.KeyReleased(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
@@ -139,7 +149,7 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(1).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 
@@ -160,7 +170,7 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(2).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 
@@ -181,7 +191,7 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(3).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 67)
+                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 

@@ -20,7 +20,7 @@ namespace VirtualPiano.View
         public MidiConnect()
         {
             InitializeComponent();
-
+            //lijst vullen met apparaten
             foreach (InputDevice device in InputDevice.InstalledDevices)
             {
                 midiList.Items.Add(device.Name);
@@ -35,6 +35,7 @@ namespace VirtualPiano.View
 
         private void midiNext_Click(object sender, EventArgs e)
         {
+            //outputscherm openen
             if (Clicked == false)
             {
                 inputInt = midiList.SelectedIndex;
@@ -45,10 +46,10 @@ namespace VirtualPiano.View
             {
                 midiList.Items.Add(device.Name);
             }
-
+            //wanneer op volgende geklikt is. Naar volgende scherm gaan.
             SelectMidi.Text = "Selecteer MIDI output";
             midiNext.Text = "Verbinden";
-
+            //wanneer een output geselecteerd is wordt het apparaat geselecteerd.
             if (Clicked)
             {
                 MidiPlay.Start(InputDevice.InstalledDevices[inputInt]);
@@ -60,9 +61,12 @@ namespace VirtualPiano.View
 
         }
 
+        //midi apparatenlijst verversen.
         private void midiRefresh_Click(object sender, EventArgs e)
         {
+            //nieuwe apparaten opzoeken
             InputDevice.UpdateDevices();
+            //lijst leegmaken en opnieuw vullen
             midiList.Items.Clear();
             foreach (InputDevice item in InputDevice.installedDevices)
             {

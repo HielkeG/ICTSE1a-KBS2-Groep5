@@ -10,6 +10,7 @@ using System.IO;
 using System.Media;
 using VirtualPiano.Properties;
 using VirtualPiano.View;
+using VirtualPiano.Control;
 
 namespace VirtualPiano.Model
 {
@@ -106,26 +107,9 @@ namespace VirtualPiano.Model
 
         public void PlaySound()
         {
-            if (MenuBarView.SoundEnabled) {
-                var player = new System.Windows.Media.MediaPlayer();
-                try
-                {
-                    string filename = (tone).ToString();
-                    
-                        if (tone == "Bes") { filename = "Ais"; }
-                        else if (tone == "Des") { filename = "Cis"; }
-                        else if (tone == "Es") { filename = "Dis"; }
-                        else if (tone == "Ges") { filename = "Fis"; }
-                        else if (tone == "As") { filename = "Gis"; }
 
-                    player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
-                    player.Play();
-                }
-                catch (FileNotFoundException)
-                {
-                    Console.WriteLine("File not found");
-                }
-            }
+            Enum.TryParse(tone.ToString()+octave, out Pitch pitch);
+            MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
         }
 
         public override bool IsLocation(int MouseX, int MouseY)
