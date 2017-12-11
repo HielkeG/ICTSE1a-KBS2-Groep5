@@ -90,6 +90,7 @@ namespace VirtualPiano.View
             Controls.Add(MusicController.rewindBtn);
             Controls.Add(MusicController.playBtn);
             Controls.Add(MusicController.stopBtn);
+            Controls.Add(MusicController.metronomeBtn);
             //voeg hover, enter, leave effecten toe op de muziekknoppen
             PianoKeysController.pianoKeysBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             PianoKeysController.pianoKeysBtn.MouseHover += new EventHandler(AllButtons_Hover);
@@ -690,6 +691,36 @@ namespace VirtualPiano.View
                 TitelBox.Enabled = false;
                 TitelBox.Enabled = true;
             }
+        }
+
+        //bpm veranderen
+        private void MetronomeSpeed_TextChanged(object sender, EventArgs e)
+        {
+            if(Int32.TryParse(MetronomeSpeed.Text, out int speed))
+            {
+                //als de snelheid tussen 0 en 500 ligt wordt het aangepast.
+                if (speed < 500 && speed>0)
+                {
+                    MusicController.setMetronoom(speed);
+                }
+                else
+                {
+                    //ander wordt de tooltip laten zien.
+                    ToolTip metroTip = new ToolTip();
+                    metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", MetronomeSpeed);
+                }
+            }
+            else
+            {
+                ToolTip metroTip = new ToolTip();
+                metroTip.Show("U kunt geen letters invullen in de metronoom.", MetronomeSpeed,5000);
+            }
+        }
+
+        private void Metronome_Tick(object sender, EventArgs e)
+        {
+            //geluid op channel3 met woodblock instrument
+            MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
         }
 
         private void nextPage_Click(object sender, EventArgs e)

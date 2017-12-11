@@ -116,6 +116,20 @@ namespace TestProject
             Assert.AreEqual("Guitar", ComposeView.instrument);
         }
 
+        [TestMethod]
+        public void ChangeMetronomeBPM()
+        {
+            //arrange
+            int bpm = 120;
+            MusicController.setMetronoom(0);
+
+            //act
+            MusicController.setMetronoom(bpm);
+
+            //assert
+            Assert.AreEqual(60000 / 120, MusicController.Metronoom.Interval);
+        }
+
 
     }
 }
