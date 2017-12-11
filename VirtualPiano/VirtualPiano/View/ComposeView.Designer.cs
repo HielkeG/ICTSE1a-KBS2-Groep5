@@ -63,7 +63,6 @@ namespace VirtualPiano.View
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.MetronoomLabel = new System.Windows.Forms.Label();
             this.MetronomeSpeed = new System.Windows.Forms.TextBox();
-            this.previousPage = new System.Windows.Forms.Button();
             this.CurrentPageLabel = new System.Windows.Forms.Label();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -468,16 +467,6 @@ namespace VirtualPiano.View
             this.MetronomeSpeed.Text = "100";
             this.MetronomeSpeed.TextChanged += new System.EventHandler(this.MetronomeSpeed_TextChanged);
             // 
-            // previousPage
-            // 
-            this.previousPage.Location = new System.Drawing.Point(1644, 957);
-            this.previousPage.Name = "previousPage";
-            this.previousPage.Size = new System.Drawing.Size(105, 30);
-            this.previousPage.TabIndex = 4;
-            this.previousPage.Text = "Vorige pagina";
-            this.previousPage.UseVisualStyleBackColor = true;
-            this.previousPage.Click += new System.EventHandler(this.previousPage_Click);
-            // 
             // CurrentPageLabel
             // 
             this.CurrentPageLabel.Font = new System.Drawing.Font("Open Sans", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -555,8 +544,6 @@ namespace VirtualPiano.View
         private ToolStripSeparator toolStripSeparator5;
         private Label MetronoomLabel;
         private TextBox MetronomeSpeed;
-        private Button nextPage;
-        private Button previousPage;
         private Label CurrentPageLabel;
     }
 }
