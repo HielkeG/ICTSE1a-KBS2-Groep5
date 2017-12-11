@@ -60,9 +60,12 @@ namespace VirtualPiano.View
             this.Snelheid = new System.Windows.Forms.TextBox();
             this.RedLine = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
+            this.nextPage = new System.Windows.Forms.Button();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.label1 = new System.Windows.Forms.Label();
             this.MetronomeSpeed = new System.Windows.Forms.TextBox();
+            this.previousPage = new System.Windows.Forms.Button();
+            this.CurrentPageLabel = new System.Windows.Forms.Label();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -435,6 +438,16 @@ namespace VirtualPiano.View
             this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
             this.TitelBox.Leave += new System.EventHandler(this.TitelBox_Leave);
             // 
+            // nextPage
+            // 
+            this.nextPage.Location = new System.Drawing.Point(1769, 957);
+            this.nextPage.Name = "nextPage";
+            this.nextPage.Size = new System.Drawing.Size(105, 30);
+            this.nextPage.TabIndex = 3;
+            this.nextPage.Text = "Volgende pagina";
+            this.nextPage.UseVisualStyleBackColor = true;
+            this.nextPage.Click += new System.EventHandler(this.nextPage_Click);
+            // 
             // menuBarView1
             // 
             this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -466,6 +479,26 @@ namespace VirtualPiano.View
             this.MetronomeSpeed.Text = "100";
             this.MetronomeSpeed.TextChanged += new System.EventHandler(this.MetronomeSpeed_TextChanged);
             // 
+            // previousPage
+            // 
+            this.previousPage.Location = new System.Drawing.Point(1644, 957);
+            this.previousPage.Name = "previousPage";
+            this.previousPage.Size = new System.Drawing.Size(105, 30);
+            this.previousPage.TabIndex = 4;
+            this.previousPage.Text = "Vorige pagina";
+            this.previousPage.UseVisualStyleBackColor = true;
+            this.previousPage.Click += new System.EventHandler(this.previousPage_Click);
+            // 
+            // CurrentPageLabel
+            // 
+            this.CurrentPageLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CurrentPageLabel.Location = new System.Drawing.Point(1644, 846);
+            this.CurrentPageLabel.Name = "CurrentPageLabel";
+            this.CurrentPageLabel.Size = new System.Drawing.Size(157, 98);
+            this.CurrentPageLabel.TabIndex = 5;
+            this.CurrentPageLabel.Text = "1";
+            this.CurrentPageLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
             // ComposeView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -473,6 +506,9 @@ namespace VirtualPiano.View
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.MetronomeSpeed);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.CurrentPageLabel);
+            this.Controls.Add(this.previousPage);
+            this.Controls.Add(this.nextPage);
             this.Controls.Add(this.menuBarView1);
             this.Controls.Add(this.TitelBox);
             this.Controls.Add(this.toolStripContainer1);
@@ -532,5 +568,8 @@ namespace VirtualPiano.View
         private ToolStripSeparator toolStripSeparator5;
         private Label label1;
         private TextBox MetronomeSpeed;
+        private Button nextPage;
+        private Button previousPage;
+        private Label CurrentPageLabel;
     }
 }

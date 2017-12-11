@@ -89,6 +89,14 @@
     <Compile Include="Migrations\201712080859520_jfsoici.Designer.cs">
       <DependentUpon>201712080859520_jfsoici.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712092127006_staff.cs" />
+    <Compile Include="Migrations\201712092127006_staff.Designer.cs">
+      <DependentUpon>201712092127006_staff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712111007518_ksksks.cs" />
+    <Compile Include="Migrations\201712111007518_ksksks.Designer.cs">
+      <DependentUpon>201712111007518_ksksks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -171,6 +179,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712080859520_jfsoici.resx">
       <DependentUpon>201712080859520_jfsoici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712092127006_staff.resx">
+      <DependentUpon>201712092127006_staff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111007518_ksksks.resx">
+      <DependentUpon>201712111007518_ksksks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
