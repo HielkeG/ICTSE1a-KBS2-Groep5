@@ -329,7 +329,6 @@ namespace VirtualPiano.View
                                 ComposeView.SelectedSign = sign.name;
                                 sign.image = Resources.blank;
                                 ComposeView.draggingSign = sign;
-                                Console.WriteLine(ComposeView.draggingSign.name);
                                 Invalidate();
                             }
                         }
