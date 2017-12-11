@@ -72,11 +72,14 @@ namespace VirtualPiano.Control
             Metronoom = m;
             rodeLijn = r;
             song = s;
+
+
+            //standaard interval op 100 zetten. Zodat de bpm ook 100 is.
             Metronoom.Interval = 100;
             if (isGestart == false)
             {
                 outputDevice.Open();
-                //MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Banjo);
+                MusicController.outputDevice.SendProgramChange(Channel.Channel3, Instrument.Woodblock);
             }
             isGestart = true;
 
@@ -84,6 +87,7 @@ namespace VirtualPiano.Control
         
         public static void MetronomeClick(object sender, EventArgs e)
         {
+            //als de metronoom afspeelt wordt hij gestopt. Anders wordt hij gestart.
             if (MetronomeTicking)
             {
                 Metronoom.Stop();
@@ -168,6 +172,7 @@ namespace VirtualPiano.Control
             outputDevice.SilenceAllNotes();
         }
 
+        //metronoom bpm instellen. Leerling geeft een bpm in. Deze wordt omgezet naar milliseconden zodat de timer juist ingesteld wordt.
         public static void setMetronoom(int bpm)
         {
             int ms = 60000 / bpm;

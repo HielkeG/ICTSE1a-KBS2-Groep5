@@ -62,7 +62,7 @@ namespace VirtualPiano.View
             this.TitelBox = new System.Windows.Forms.TextBox();
             this.nextPage = new System.Windows.Forms.Button();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.MetronoomLabel = new System.Windows.Forms.Label();
             this.MetronomeSpeed = new System.Windows.Forms.TextBox();
             this.previousPage = new System.Windows.Forms.Button();
             this.CurrentPageLabel = new System.Windows.Forms.Label();
@@ -459,15 +459,15 @@ namespace VirtualPiano.View
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
             // 
-            // label1
+            // MetronoomLabel
             // 
-            this.label1.Font = new System.Drawing.Font("MS Office Symbol Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(87, 112);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 23);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Metronoom:";
+            this.MetronoomLabel.Font = new System.Drawing.Font("MS Office Symbol Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MetronoomLabel.ForeColor = System.Drawing.Color.Black;
+            this.MetronoomLabel.Location = new System.Drawing.Point(87, 112);
+            this.MetronoomLabel.Name = "MetronoomLabel";
+            this.MetronoomLabel.Size = new System.Drawing.Size(85, 23);
+            this.MetronoomLabel.TabIndex = 3;
+            this.MetronoomLabel.Text = "Metronoom:";
             // 
             // MetronomeSpeed
             // 
@@ -497,7 +497,6 @@ namespace VirtualPiano.View
             this.CurrentPageLabel.Size = new System.Drawing.Size(157, 98);
             this.CurrentPageLabel.TabIndex = 5;
             this.CurrentPageLabel.Text = "1";
-            this.CurrentPageLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // ComposeView
             // 
@@ -505,7 +504,7 @@ namespace VirtualPiano.View
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.MetronomeSpeed);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.MetronoomLabel);
             this.Controls.Add(this.CurrentPageLabel);
             this.Controls.Add(this.previousPage);
             this.Controls.Add(this.nextPage);
@@ -566,7 +565,7 @@ namespace VirtualPiano.View
         private ToolStripButton Bin;
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator5;
-        private Label label1;
+        private Label MetronoomLabel;
         private TextBox MetronomeSpeed;
         private Button nextPage;
         private Button previousPage;

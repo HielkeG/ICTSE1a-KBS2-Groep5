@@ -690,26 +690,29 @@ namespace VirtualPiano.View
             }
         }
 
+        //bpm veranderen
         private void MetronomeSpeed_TextChanged(object sender, EventArgs e)
         {
             if(Int32.TryParse(MetronomeSpeed.Text, out int speed))
             {
+                //als de snelheid tussen 0 en 500 ligt wordt het aangepast.
                 if (speed < 500 && speed>0)
                 {
                     MusicController.setMetronoom(speed);
                 }
                 else
                 {
+                    //ander wordt de tooltip laten zien.
                     ToolTip metroTip = new ToolTip();
-                    metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", this.MetronomeSpeed);
+                    metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", MetronomeSpeed);
                 }
             }
         }
 
         private void Metronome_Tick(object sender, EventArgs e)
         {
-            MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.PercussiveOrgan);
-            MusicController.outputDevice.SendNoteOn(Channel.Channel1, Pitch.C3, 127);
+            //geluid op channel3 met woodblock instrument
+            MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
         }
 
         private void nextPage_Click(object sender, EventArgs e)
@@ -773,9 +776,5 @@ namespace VirtualPiano.View
             Console.WriteLine(CurrentPage);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
