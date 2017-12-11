@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using VirtualPiano.Control;
 
 namespace VirtualPiano.View
 {
@@ -60,6 +60,9 @@ namespace VirtualPiano.View
                 IsConnected = true;
                 midiDisconnect.Enabled = true;
                 midiRefresh.Enabled = false;
+                ComposeView.keypanel.Visible = true;
+                ComposeView.pkv1.Visible = true;
+                ComposeView.PlayingKeyboard = true;
             }     
             
             if(IsConnected == false)
@@ -86,6 +89,11 @@ namespace VirtualPiano.View
             {
                 midiList.Items.Add("Er is geen midi keyboard beschikbaar.");
             }
+
+            if(InputDevice.installedDevices.Length > 0)
+            {
+                midiNext.Enabled = true;
+            }
         }
 
         private void midiDisconnect_Click(object sender, EventArgs e)
@@ -101,6 +109,9 @@ namespace VirtualPiano.View
             midiDisconnect.Enabled = false;
             midiNext.Enabled = true;
             midiRefresh.Enabled = true;
+            ComposeView.keypanel.Visible = false;
+            ComposeView.pkv1.Visible = false;
+            ComposeView.PlayingKeyboard = false;
             this.Close();            
         }
     }

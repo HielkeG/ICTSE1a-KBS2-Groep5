@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MidiConnect));
             this.midiList = new System.Windows.Forms.ListBox();
             this.midiNext = new System.Windows.Forms.Button();
             this.SelectMidi = new System.Windows.Forms.Label();
@@ -94,6 +95,7 @@
             this.Controls.Add(this.SelectMidi);
             this.Controls.Add(this.midiNext);
             this.Controls.Add(this.midiList);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MidiConnect";
             this.Text = "Midi keyboard";
             this.ResumeLayout(false);

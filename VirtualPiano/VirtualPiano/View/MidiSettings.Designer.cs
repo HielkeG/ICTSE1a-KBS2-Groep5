@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MidiSettings));
             this.labelInput = new System.Windows.Forms.Label();
             this.labelOutput = new System.Windows.Forms.Label();
             this.checkTouch = new System.Windows.Forms.CheckBox();
@@ -114,6 +115,7 @@
             this.Controls.Add(this.checkTouch);
             this.Controls.Add(this.labelOutput);
             this.Controls.Add(this.labelInput);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MidiSettings";
             this.Text = "Instellingen";
             this.Load += new System.EventHandler(this.MidiSettings_Load);

@@ -34,7 +34,7 @@ namespace VirtualPiano
 {    
     public class MidiPlay 
     {
-        public static Instrument CurrentInstrument = Instrument.Lead1Square;
+        public static Instrument CurrentInstrument = Instrument.AcousticGrandPiano;
 
             public MidiPlay()
         {
@@ -97,9 +97,11 @@ namespace VirtualPiano
                     MusicController.outputDevice.SendProgramChange(Channel.Channel2, CurrentInstrument);
                     if (MidiSettings.Touch)
                     {
+                        MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
                         MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, msg.Velocity);
                     } else
                     {
+                        MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
                         MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, 127);
                     }
 
@@ -129,7 +131,9 @@ namespace VirtualPiano
             {
                 lock (this)
                 {
+                    MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 0);
                     MusicController.outputDevice.SendNoteOff(Channel.Channel2, msg.Pitch, 80);
+
                     pitchesPressed.Remove(msg.Pitch);
                     string currentTone = msg.Pitch.ToString();
                     char n = currentTone.FirstOrDefault();
