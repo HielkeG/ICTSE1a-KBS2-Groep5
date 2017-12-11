@@ -36,7 +36,6 @@ namespace VirtualPiano.View
         public static int CurrentPlayingStaff = 0;
         private static bool RunningTimer;    //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         public static int RedLineX;   //locatie van de rode lijn
-        public int StaffCounter = 0;
         public static bool PlayingKeyboard = false;
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
@@ -50,6 +49,7 @@ namespace VirtualPiano.View
             Dock = DockStyle.Bottom,
             Visible = false
         };
+        private int CurrentPage = 1;
 
         public ComposeView()
         {
@@ -183,15 +183,14 @@ namespace VirtualPiano.View
         {
             foreach (var item in staffViews)
             {
-
                 item.Dispose();
             }
             foreach (var item in staffViewsPanels)
             {
                 item.Dispose();
             }
+            staffViewsPanels.Clear();
             staffViews.Clear();
-            btnAddStaff.Dispose();
             y_staff = 140;
             Refresh();
         }
@@ -204,17 +203,25 @@ namespace VirtualPiano.View
             menuBarView1.Song = song;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
+            CurrentPage = 1;
         }
 
         public void SetLoadedSong(Song newSong) // nummer laden uit database
         {
+           
             RemoveStaffViews();
             CurrentPlayingStaff = 0;
             song = newSong;
             RedLineX = 0;
-
+            CurrentPage = 1;
+            CurrentPageLabel.Text = CurrentPage.ToString();
             foreach (var item in song.GetStaffs())
             {
+                Console.WriteLine("STAFF: " + (song.GetStaffs().IndexOf(item) + 1));
+                if ((song.GetStaffs().IndexOf(item) + 1) % 3 == 1)
+                {
+                    y_staff = 140;
+                }
                 AddStaffView(item);
                 if (item == song.GetStaffs().First())
                 {
@@ -225,30 +232,58 @@ namespace VirtualPiano.View
                     AddStaffButton();
                 }
                 y_staff += 200;
+                
+                
             }
             Refresh();
         }
 
         private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
-            btnAddStaff.Dispose();
             AddNewStaff();
+        }
 
+        //luistert naar event uit menubar, zodat een nieuwe staff toegevoegd wordt.
+        private void newStaffView(object sender, EventArgs e)
+        {
+            AddNewStaff();
         }
 
         public void AddNewStaff()   //Nieuw notenbalk aan Song toevoegen
         {
-            Staff newStaff = new Staff();
-            newStaff.y = y_staff;
-            newStaff.Order = staffViews.Count() + 1;
-            song.AddStaff(newStaff);
-            AddStaffView(newStaff);
-            if (staffViews.Count <= 2)
+            if (CurrentPage * 3 - 2 == staffViewsPanels.Count)
             {
-                AddStaffButton();
+                Staff newStaff = new Staff();
+                newStaff.y = y_staff;
+                newStaff.Order = staffViews.Count() + 1;
+                song.AddStaff(newStaff);
+                AddStaffView(newStaff);
+                y_staff += 200;
+                btnAddStaff.Location = new Point(977, newStaff.y + 160);
             }
-            y_staff += 190;
-
+            else if(CurrentPage * 3 - 1 == staffViewsPanels.Count)
+            {
+                Staff newStaff = new Staff();
+                newStaff.y = y_staff;
+                newStaff.Order = staffViews.Count() + 1;
+                song.AddStaff(newStaff);
+                AddStaffView(newStaff);
+                y_staff += 200;
+                btnAddStaff.Visible = false;
+            } else if (y_staff == 140)
+            {
+                Staff newStaff = new Staff();
+                newStaff.y = y_staff;
+                newStaff.Order = staffViews.Count() + 1;
+                song.AddStaff(newStaff);
+                AddStaffView(newStaff);
+                y_staff += 200;
+                btnAddStaff.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("Er zijn al 3 notenbalken.", "Fout", MessageBoxButtons.OK);
+            }
         }
 
         public void AddStaffView(Staff staff)   //nieuwe notenbalkpanel maken en vullen
@@ -269,7 +304,6 @@ namespace VirtualPiano.View
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
-            btnAddStaff = new Button();
             btnAddStaff.Image = new Bitmap(Resources.add, 50, 50);
             btnAddStaff.Location = new Point(977, y_staff + 160);
             btnAddStaff.Size = new Size(55, 55);
@@ -385,6 +419,13 @@ namespace VirtualPiano.View
             signSelected = true;
             SelectedSign = "Flat";
             Cursor = CursorController.ChangeCursor(SelectedSign);
+
+            foreach(Panel staffview in staffViewsPanels)
+            {
+                staffview.Visible = false;
+                
+
+            }
         }
 
         private void Connect_Click(object sender, EventArgs e)
@@ -565,22 +606,7 @@ namespace VirtualPiano.View
         {
             staffViews.ElementAt(CurrentPlayingStaff).InvalidateRedLine();
         }
-
-        //luistert naar event uit menubar, zodat een nieuwe staff toegevoegd wordt.
-        private void newStaffView(object sender, EventArgs e)
-        {
-            if (staffViews.Count < 3)
-            {
-                btnAddStaff.Dispose();
-                AddNewStaff();
-            }
-            else
-            {
-                MessageBox.Show("Er zijn al 3 notenbalken.","Fout",MessageBoxButtons.OK);
-            }
-            
-        }
-
+        
         private void ComposeView_MouseUp(object sender, MouseEventArgs e)
         {
             if (cursorIsDown)
@@ -662,6 +688,71 @@ namespace VirtualPiano.View
                 TitelBox.Enabled = true;
             }
         }
-        
+
+        private void nextPage_Click(object sender, EventArgs e)
+        {
+            if (!(CurrentPage * 3 - 1 == staffViewsPanels.Count || CurrentPage * 3 - 2 == staffViewsPanels.Count))
+            {
+                foreach(Panel panel in staffViewsPanels)
+                {
+                    panel.Visible = false;
+                }
+                
+                if(staffViewsPanels.Count == CurrentPage * 3)
+                {
+                    song.Pages++;
+                    y_staff = 140;
+                    btnAddStaff.Location = new Point(977, y_staff + 160);
+                    AddNewStaff();
+                    btnAddStaff.Visible = true;
+                }else if(staffViewsPanels.Count == CurrentPage * 3 + 1) btnAddStaff.Visible = true;
+                 else if(staffViewsPanels.Count == CurrentPage * 3 + 2) btnAddStaff.Visible = true;
+
+                CurrentPage++;
+                CurrentPageLabel.Text = CurrentPage.ToString();
+                Console.WriteLine("");
+                Console.WriteLine("----- Ik laat zien:");
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    if(staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3 )
+                    {
+                        
+                        Console.WriteLine(staffViewsPanels.IndexOf(panel) + 1);
+                        panel.Visible = true;
+                    }
+                }
+            }
+        }
+
+        private void previousPage_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(CurrentPage);
+            if (CurrentPage > 1)
+            {
+                btnAddStaff.Visible = false;
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    panel.Visible = false;
+                }
+                CurrentPage--;
+                CurrentPageLabel.Text = CurrentPage.ToString();
+                Console.WriteLine("");
+                Console.WriteLine("----- Ik laat zien:");
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
+                    {
+                        Console.WriteLine(staffViewsPanels.IndexOf(panel) + 1);
+                        panel.Visible = true;
+                    }
+                }
+            }
+            Console.WriteLine(CurrentPage);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

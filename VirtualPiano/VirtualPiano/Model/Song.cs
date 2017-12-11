@@ -19,13 +19,14 @@ namespace VirtualPiano.Model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SongId { get; set; }
         public string Composer { get; set; }
-        public  int FlatSharp = 0;
+        public int FlatSharp = 0;
         private string title = "titel";
+        public int Pages { get; set; }
         public string Title
         {
             get
             {
-                if(title != "")
+                if (title != "")
                 {
                     return title;
                 }
@@ -44,8 +45,9 @@ namespace VirtualPiano.Model
         }
         public Song()
         {
-                Staffs = new List<Staff>();
-                Staffs.Add(new Staff());
+            Staffs = new List<Staff>();
+            Staffs.Add(new Staff());
+            Pages = 1;
 
             if (MusicController.isGestart)
             {
@@ -121,7 +123,7 @@ namespace VirtualPiano.Model
                                 ComposeView.pkv1.KeyPressed(note.octave, note.tone);
                                 ComposeView.pkv1.Invalidate();
                                 //note.PlaySound();
-                                string pitchTemp = note.tone.ToString() + note.octave.ToString();                                
+                                string pitchTemp = note.tone.ToString() + note.octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
 
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
@@ -133,7 +135,7 @@ namespace VirtualPiano.Model
                             }
                         }
                     }
-                    else if(ComposeView.RedLineX > 425 && ComposeView.RedLineX <= 850)
+                    else if (ComposeView.RedLineX > 425 && ComposeView.RedLineX <= 850)
                     {
                         foreach (var sign in staff.Bars.ElementAt(1).Signs)
                         {
@@ -202,7 +204,7 @@ namespace VirtualPiano.Model
 
         public void ChangeSharpFlat(int Flatsharp)
         {
-            foreach(Staff staff in Staffs)
+            foreach (Staff staff in Staffs)
             {
                 foreach (Bar bar in staff.Bars)
                 {
@@ -246,7 +248,7 @@ namespace VirtualPiano.Model
         {
             await Task.Delay(delay);
         }
-        
+
         public void SetStaffs(List<Staff> staffs)
         {
             Staffs = staffs;
