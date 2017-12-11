@@ -723,54 +723,36 @@ namespace VirtualPiano.View
             MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
         }
 
+        // Volgende pagina
         private void nextPage_Click(object sender, EventArgs e)
         {
+            //Als de huidige pagina niet helemaal gevuld is
             if (!(CurrentPage * 3 - 1 == staffViewsPanels.Count || CurrentPage * 3 - 2 == staffViewsPanels.Count))
             {
-                foreach(Panel panel in staffViewsPanels)
+                //Alle Staffviews uitzetten
+                foreach (Panel panel in staffViewsPanels)
                 {
                     panel.Visible = false;
                 }
-                
-                if(staffViewsPanels.Count == CurrentPage * 3)
+
+                //Als de huidige pagina de laatste pagina is
+                if (staffViewsPanels.Count == CurrentPage * 3)
                 {
+                    //Nieuwe pagina toevoegen en nieuwe staffview toevoegen
                     song.Pages++;
+                    //Locatie wordt weer op 140 gezet
                     y_staff = 140;
                     btnAddStaff.Location = new Point(977, y_staff + 160);
                     AddNewStaff();
                     btnAddStaff.Visible = true;
-                }else if(staffViewsPanels.Count == CurrentPage * 3 + 1) btnAddStaff.Visible = true;
-                 else if(staffViewsPanels.Count == CurrentPage * 3 + 2) btnAddStaff.Visible = true;
+                }
+                else if (staffViewsPanels.Count == CurrentPage * 3 + 1) btnAddStaff.Visible = true;
+                else if (staffViewsPanels.Count == CurrentPage * 3 + 2) btnAddStaff.Visible = true;
 
+                //Hudige pagina wordt verhoogt
                 CurrentPage++;
                 CurrentPageLabel.Text = CurrentPage.ToString();
-                foreach (Panel panel in staffViewsPanels)
-                {
-                    if(staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3 )
-                    {
-                        panel.Visible = true;
-                    }
-                }
-            }
-
-            if (Convert.ToInt32(CurrentPageLabel.Text) == 10)
-            {
-                CurrentPageLabel.Location = new Point(1733, 946);
-                previousPage.Location = new Point(1695, 957);
-            }
-        }
-
-        private void previousPage_Click(object sender, EventArgs e)
-        {
-            if (CurrentPage > 1)
-            {
-                btnAddStaff.Visible = false;
-                foreach (Panel panel in staffViewsPanels)
-                {
-                    panel.Visible = false;
-                }
-                CurrentPage--;
-                CurrentPageLabel.Text = CurrentPage.ToString();
+                //Alle staffviews van de huidige pagina worden getoond
                 foreach (Panel panel in staffViewsPanels)
                 {
                     if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
@@ -778,13 +760,35 @@ namespace VirtualPiano.View
                         panel.Visible = true;
                     }
                 }
-                if (Convert.ToInt32(CurrentPageLabel.Text) == 9)
-                {
-                    CurrentPageLabel.Location = new Point(1763, 946);
-                    previousPage.Location = new Point(1720, 957);
-                }
-
             }
+        }
+
+        //Vorige pagina
+        private void previousPage_Click(object sender, EventArgs e)
+        {
+            //Als de huidige pagina groter is dan 1
+            if (CurrentPage > 1)
+            {
+                //Alle Staffviews uitzetten
+                btnAddStaff.Visible = false;
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    panel.Visible = false;
+                }
+                //Huidige pagina verlagen
+                CurrentPage--;
+                CurrentPageLabel.Text = CurrentPage.ToString();
+
+                //Alle staffviews van de huidige pagina worden getoond
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
+                    {
+                        panel.Visible = true;
+                    }
+                }
+            }
+            Console.WriteLine(CurrentPage);
         }
 
         public void setPageButtons()
