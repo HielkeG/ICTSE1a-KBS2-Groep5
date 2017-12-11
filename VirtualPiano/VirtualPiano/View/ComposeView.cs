@@ -707,6 +707,11 @@ namespace VirtualPiano.View
                     metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", MetronomeSpeed);
                 }
             }
+            else
+            {
+                ToolTip metroTip = new ToolTip();
+                metroTip.Show("U kunt geen letters invullen in de metronoom.", MetronomeSpeed,5000);
+            }
         }
 
         private void Metronome_Tick(object sender, EventArgs e)
