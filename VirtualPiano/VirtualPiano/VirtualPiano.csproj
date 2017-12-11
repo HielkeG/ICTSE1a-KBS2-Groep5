@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201712111007518_ksksks.Designer.cs">
       <DependentUpon>201712111007518_ksksks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712111350163_smdsjd.cs" />
+    <Compile Include="Migrations\201712111350163_smdsjd.Designer.cs">
+      <DependentUpon>201712111350163_smdsjd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -185,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712111007518_ksksks.resx">
       <DependentUpon>201712111007518_ksksks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111350163_smdsjd.resx">
+      <DependentUpon>201712111350163_smdsjd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
@@ -358,6 +365,9 @@
     <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\marimba.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\refresh.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\lastPage.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\nextPage.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />

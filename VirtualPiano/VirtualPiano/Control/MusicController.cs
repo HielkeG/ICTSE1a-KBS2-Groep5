@@ -27,6 +27,7 @@ namespace VirtualPiano.Control
         public static Button playBtn = new Button();
         public static Button stopBtn = new Button();
         public static Button rewindBtn= new Button();
+        public static Button metronomeBtn = new Button();
 
         public static Timer Metronoom;
         public static Timer rodeLijn;
@@ -38,6 +39,7 @@ namespace VirtualPiano.Control
         private static int currentOctave = 0;
         private static string currentTone = "";
         public static bool isGestart = false;
+        public static bool MetronomeTicking = false;
 
         public MusicController(Timer m, Timer r, Song s)
         {
@@ -58,17 +60,44 @@ namespace VirtualPiano.Control
             stopBtn.FlatAppearance.BorderSize = 0;
             stopBtn.Click += StopGeklikt;
 
+            metronomeBtn.Image = new Bitmap(Resources.metronome, 50, 50);
+            metronomeBtn.Location = new Point(290, 100);
+            metronomeBtn.Size = new Size(50, 50);
+            metronomeBtn.BackColor = Color.Transparent;
+            metronomeBtn.FlatStyle = FlatStyle.Flat;
+            metronomeBtn.FlatAppearance.BorderSize = 0;
+            metronomeBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 255, 255, 0);
+            metronomeBtn.Click += MetronomeClick;
+
             Metronoom = m;
             rodeLijn = r;
             song = s;
-            Metronoom.Interval = 500;
 
+
+            //standaard interval op 100 zetten. Zodat de bpm ook 100 is.
+            Metronoom.Interval = 100;
             if (isGestart == false)
             {
                 outputDevice.Open();
-                //MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Banjo);
+                MusicController.outputDevice.SendProgramChange(Channel.Channel3, Instrument.Woodblock);
             }
             isGestart = true;
+
+        }
+        
+        public static void MetronomeClick(object sender, EventArgs e)
+        {
+            //als de metronoom afspeelt wordt hij gestopt. Anders wordt hij gestart.
+            if (MetronomeTicking)
+            {
+                Metronoom.Stop();
+                MetronomeTicking = false;
+            }
+            else
+            {
+                Metronoom.Start();
+                MetronomeTicking = true;
+            }
 
         }
 
@@ -143,16 +172,11 @@ namespace VirtualPiano.Control
             outputDevice.SilenceAllNotes();
         }
 
-        public static void setMetronoom(int snelheid)
+        //metronoom bpm instellen. Leerling geeft een bpm in. Deze wordt omgezet naar milliseconden zodat de timer juist ingesteld wordt.
+        public static void setMetronoom(int bpm)
         {
-            if (snelheid < 100)
-            {
-                Metronoom.Interval = 100;
-            }
-            else
-            {
-                Metronoom.Interval = snelheid;
-            }
+            int ms = 60000 / bpm;
+            Metronoom.Interval = ms;
         }
     }
 }
