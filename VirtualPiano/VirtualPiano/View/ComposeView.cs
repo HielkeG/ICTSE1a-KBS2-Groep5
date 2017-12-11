@@ -281,9 +281,15 @@ namespace VirtualPiano.View
                 y_staff += 200;
                 btnAddStaff.Visible = false;
             }
+            else if(CurrentPage *3 == staffViewsPanels.Count)
+            {
+                
+                EventArgs e = new EventArgs();
+                nextPage_Click(this,e);
+            }
             else
             {
-                MessageBox.Show("Er zijn al 3 notenbalken.", "Fout", MessageBoxButtons.OK);
+                MessageBox.Show("Kan geen notenbalk toevoegen. Ga naar de laatste pagina.", "Fout", MessageBoxButtons.OK);
             }
         }
 
@@ -741,14 +747,11 @@ namespace VirtualPiano.View
 
                 CurrentPage++;
                 CurrentPageLabel.Text = CurrentPage.ToString();
-                Console.WriteLine("");
-                Console.WriteLine("----- Ik laat zien:");
                 foreach (Panel panel in staffViewsPanels)
                 {
                     if(staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3 )
                     {
-                        
-                        Console.WriteLine(staffViewsPanels.IndexOf(panel) + 1);
+                       
                         panel.Visible = true;
                     }
                 }
@@ -757,7 +760,6 @@ namespace VirtualPiano.View
 
         private void previousPage_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(CurrentPage);
             if (CurrentPage > 1)
             {
                 btnAddStaff.Visible = false;
@@ -767,18 +769,14 @@ namespace VirtualPiano.View
                 }
                 CurrentPage--;
                 CurrentPageLabel.Text = CurrentPage.ToString();
-                Console.WriteLine("");
-                Console.WriteLine("----- Ik laat zien:");
                 foreach (Panel panel in staffViewsPanels)
                 {
                     if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
                     {
-                        Console.WriteLine(staffViewsPanels.IndexOf(panel) + 1);
                         panel.Visible = true;
                     }
                 }
             }
-            Console.WriteLine(CurrentPage);
         }
 
     }
