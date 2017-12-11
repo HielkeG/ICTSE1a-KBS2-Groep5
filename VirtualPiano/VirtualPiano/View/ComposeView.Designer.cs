@@ -60,9 +60,7 @@ namespace VirtualPiano.View
             this.Snelheid = new System.Windows.Forms.TextBox();
             this.RedLine = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
-            this.nextPage = new System.Windows.Forms.Button();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
-            this.previousPage = new System.Windows.Forms.Button();
             this.CurrentPageLabel = new System.Windows.Forms.Label();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -436,16 +434,6 @@ namespace VirtualPiano.View
             this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
             this.TitelBox.Leave += new System.EventHandler(this.TitelBox_Leave);
             // 
-            // nextPage
-            // 
-            this.nextPage.Location = new System.Drawing.Point(1769, 957);
-            this.nextPage.Name = "nextPage";
-            this.nextPage.Size = new System.Drawing.Size(105, 30);
-            this.nextPage.TabIndex = 3;
-            this.nextPage.Text = "Volgende pagina";
-            this.nextPage.UseVisualStyleBackColor = true;
-            this.nextPage.Click += new System.EventHandler(this.nextPage_Click);
-            // 
             // menuBarView1
             // 
             this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -457,25 +445,15 @@ namespace VirtualPiano.View
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
             // 
-            // previousPage
-            // 
-            this.previousPage.Location = new System.Drawing.Point(1644, 957);
-            this.previousPage.Name = "previousPage";
-            this.previousPage.Size = new System.Drawing.Size(105, 30);
-            this.previousPage.TabIndex = 4;
-            this.previousPage.Text = "Vorige pagina";
-            this.previousPage.UseVisualStyleBackColor = true;
-            this.previousPage.Click += new System.EventHandler(this.previousPage_Click);
-            // 
             // CurrentPageLabel
             // 
+            this.CurrentPageLabel.Font = new System.Drawing.Font("Open Sans", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CurrentPageLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.CurrentPageLabel.Location = new System.Drawing.Point(1644, 846);
+            this.CurrentPageLabel.Location = new System.Drawing.Point(1763, 946);
             this.CurrentPageLabel.Name = "CurrentPageLabel";
-            this.CurrentPageLabel.Size = new System.Drawing.Size(157, 98);
+            this.CurrentPageLabel.Size = new System.Drawing.Size(106, 68);
             this.CurrentPageLabel.TabIndex = 5;
             this.CurrentPageLabel.Text = "1";
-            this.CurrentPageLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // ComposeView
             // 
@@ -483,15 +461,13 @@ namespace VirtualPiano.View
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.CurrentPageLabel);
-            this.Controls.Add(this.previousPage);
-            this.Controls.Add(this.nextPage);
             this.Controls.Add(this.menuBarView1);
             this.Controls.Add(this.TitelBox);
             this.Controls.Add(this.toolStripContainer1);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ComposeView";
-            this.Size = new System.Drawing.Size(1863, 1000);
+            this.Size = new System.Drawing.Size(1859, 1014);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
             this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseUp);
@@ -542,8 +518,6 @@ namespace VirtualPiano.View
         private ToolStripButton Bin;
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator5;
-        private Button nextPage;
-        private Button previousPage;
         private Label CurrentPageLabel;
     }
 }

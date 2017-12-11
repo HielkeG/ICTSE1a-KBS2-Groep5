@@ -19,7 +19,9 @@ namespace VirtualPiano.View
     {
         public Song song = new Song();
         Button btnAddStaff = new Button();
-        
+        public static Button previousPage = new Button();
+        public static Button nextPage = new Button();
+
         int y_staff = 140;
         public static bool ConnectSelected = false;
         public static Note selectedNote1;
@@ -55,6 +57,8 @@ namespace VirtualPiano.View
         {
             Songtimer.Interval = 5;
             Songtimer.Elapsed += TimerTick;
+
+            setPageButtons();
 
 
             InitializeComponent();
@@ -217,7 +221,6 @@ namespace VirtualPiano.View
             CurrentPageLabel.Text = CurrentPage.ToString();
             foreach (var item in song.GetStaffs())
             {
-                Console.WriteLine("STAFF: " + (song.GetStaffs().IndexOf(item) + 1));
                 if ((song.GetStaffs().IndexOf(item) + 1) % 3 == 1)
                 {
                     y_staff = 140;
@@ -710,23 +713,24 @@ namespace VirtualPiano.View
 
                 CurrentPage++;
                 CurrentPageLabel.Text = CurrentPage.ToString();
-                Console.WriteLine("");
-                Console.WriteLine("----- Ik laat zien:");
                 foreach (Panel panel in staffViewsPanels)
                 {
                     if(staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3 )
                     {
-                        
-                        Console.WriteLine(staffViewsPanels.IndexOf(panel) + 1);
                         panel.Visible = true;
                     }
                 }
+            }
+
+            if (Convert.ToInt32(CurrentPageLabel.Text) == 10)
+            {
+                CurrentPageLabel.Location = new Point(1733, 946);
+                previousPage.Location = new Point(1695, 957);
             }
         }
 
         private void previousPage_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(CurrentPage);
             if (CurrentPage > 1)
             {
                 btnAddStaff.Visible = false;
@@ -736,23 +740,45 @@ namespace VirtualPiano.View
                 }
                 CurrentPage--;
                 CurrentPageLabel.Text = CurrentPage.ToString();
-                Console.WriteLine("");
-                Console.WriteLine("----- Ik laat zien:");
                 foreach (Panel panel in staffViewsPanels)
                 {
                     if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
                     {
-                        Console.WriteLine(staffViewsPanels.IndexOf(panel) + 1);
                         panel.Visible = true;
                     }
                 }
+                if (Convert.ToInt32(CurrentPageLabel.Text) == 9)
+                {
+                    CurrentPageLabel.Location = new Point(1763, 946);
+                    previousPage.Location = new Point(1720, 957);
+                }
+
             }
-            Console.WriteLine(CurrentPage);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        public void setPageButtons()
         {
+            previousPage.Image = new Bitmap(Resources.lastPage, 50, 50);
+            previousPage.Location = new Point(1720, 957);
+            previousPage.Size = new Size(55, 55);
+            previousPage.BackColor = Color.Transparent;
+            previousPage.FlatStyle = FlatStyle.Flat;
+            previousPage.FlatAppearance.BorderSize = 0;
+            previousPage.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, Color.Black);
+            previousPage.Click += previousPage_Click;
+            Controls.Add(previousPage);
 
+
+            nextPage.Image = new Bitmap(Resources.nextPage, 50, 50);
+            nextPage.Location = new Point(1809, 957);
+            nextPage.Size = new Size(55, 55);
+            nextPage.BackColor = Color.Transparent;
+            nextPage.FlatStyle = FlatStyle.Flat;
+            nextPage.FlatAppearance.BorderSize = 0;
+            nextPage.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, Color.Black);
+            nextPage.Click += nextPage_Click;
+            Controls.Add(nextPage);
         }
+
     }
 }
