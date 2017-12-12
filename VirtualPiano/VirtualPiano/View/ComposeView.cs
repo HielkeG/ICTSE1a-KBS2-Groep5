@@ -429,13 +429,7 @@ namespace VirtualPiano.View
             signSelected = true;
             SelectedSign = "Flat";
             Cursor = CursorController.ChangeCursor(SelectedSign);
-
-            foreach(Panel staffview in staffViewsPanels)
-            {
-                staffview.Visible = false;
-                
-
-            }
+            
         }
 
         private void Connect_Click(object sender, EventArgs e)
