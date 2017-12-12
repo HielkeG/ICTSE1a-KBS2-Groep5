@@ -368,6 +368,7 @@
     <None Include="Resources\Afbeeldingen\Knoppen\lastPage.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\nextPage.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
