@@ -72,11 +72,15 @@ namespace VirtualPiano.View
 
                     }
                     databaseFileExplorer.ShowDialog();
-                    if (DialogResult.OK == databaseFileExplorer.DialogResult)
+                    if (DialogResult.OK == databaseFileExplorer.DialogResult&&databaseFileExplorer.Song != null)
                     {
                         //song instellen en event uitvoeren zodat ook mainform weet over de verandering
                         Song = databaseFileExplorer.Song;
                         selectedSong(this, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Er is geen nummer geselecteerd.", "Melding", MessageBoxButtons.OK);
                     }
                 }
             }
