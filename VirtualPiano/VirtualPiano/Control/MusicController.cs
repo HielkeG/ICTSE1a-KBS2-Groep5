@@ -141,7 +141,6 @@ namespace VirtualPiano.Control
             {
                 playBtn.Image = new Bitmap(pause,width,height);
                 isPlayingSong = true;
-                Metronoom.Enabled = true;
                 //int temp = Song.getDuration();
                 //Console.WriteLine(Song.getDuration());
                 SongStarted(this, e);
@@ -153,7 +152,6 @@ namespace VirtualPiano.Control
             {
                 playBtn.Image = new Bitmap(play,width,height);
                 isPlayingSong = false;
-                Metronoom.Enabled = false;
                 rodeLijn.Stop();
             }
         }
@@ -164,7 +162,6 @@ namespace VirtualPiano.Control
             //wanneer de stopknop ingedrukt wordt. lijn opnieuw aan het begin zetten.
             playBtn.Image = new Bitmap(play,width,height);
             isPlayingSong = false;
-            Metronoom.Enabled = false;
             ComposeView.CurrentPlayingStaff = 0;
             ComposeView.RedLineX = 0;
             rodeLijn.Stop();
