@@ -34,6 +34,7 @@ namespace VirtualPiano
 {    
     public class MidiPlay 
     {
+        public static Instrument CurrentInstrument = Instrument.AcousticGrandPiano;
 
             public MidiPlay()
         {
@@ -93,8 +94,17 @@ namespace VirtualPiano
             {
                 lock (this)
                 {
-                    MusicController.outputDevice.SendProgramChange(Channel.Channel2, Instrument.Lead1Square);
-                    MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, 127);
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel2, CurrentInstrument);
+                    if (MidiSettings.Touch)
+                    {
+                        MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
+                        MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, msg.Velocity);
+                    } else
+                    {
+                        MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
+                        MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, 127);
+                    }
+
                     string currentTone = msg.Pitch.ToString();
                     char n = currentTone.FirstOrDefault();
                     string resultString = Regex.Match(currentTone, @"\d+").Value;
@@ -102,7 +112,7 @@ namespace VirtualPiano
                     if (currentTone.Length == 7)
                     {
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                        sb.Append(n.ToString()).Append("#");
+                        sb.Append(n.ToString()).Append("is");
                         ComposeView.pkv1.KeyPressed(o, sb.ToString());
                     } else
                     {
@@ -121,7 +131,9 @@ namespace VirtualPiano
             {
                 lock (this)
                 {
+                    MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 0);
                     MusicController.outputDevice.SendNoteOff(Channel.Channel2, msg.Pitch, 80);
+
                     pitchesPressed.Remove(msg.Pitch);
                     string currentTone = msg.Pitch.ToString();
                     char n = currentTone.FirstOrDefault();
@@ -130,7 +142,7 @@ namespace VirtualPiano
                     if (currentTone.Length == 7)
                     {
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                        sb.Append(n.ToString()).Append("#");
+                        sb.Append(n.ToString()).Append("is");
                         ComposeView.pkv1.KeyReleased(o, sb.ToString());
                     }
                     else
@@ -155,12 +167,14 @@ namespace VirtualPiano
 
 
 
+        }
 
-            //inputDevice.StopReceiving();
-            //inputDevice.Close();
-
-            //inputDevice.RemoveAllEventHandlers();
-
+        public static void Stop(InputDevice input)
+        {
+            InputDevice inputDevice = input;
+            inputDevice.StopReceiving();
+            inputDevice.Close();
+            inputDevice.RemoveAllEventHandlers();
         }
     }
 }
