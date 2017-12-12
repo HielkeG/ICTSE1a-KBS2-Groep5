@@ -543,6 +543,11 @@ namespace VirtualPiano.View
                         MusicController.isPlayingSong = false;
                         MusicController.ResetLine();
                     }
+                    if (CurrentPlayingStaff % 3 == 0)
+                    {
+                        EventArgs ev = new EventArgs();
+                        nextPage_Click(this, ev);
+                    }
                 }
             }
         }
