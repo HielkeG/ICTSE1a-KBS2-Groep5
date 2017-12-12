@@ -60,10 +60,10 @@ namespace VirtualPiano.View
             this.Snelheid = new System.Windows.Forms.TextBox();
             this.RedLine = new System.Windows.Forms.Timer(this.components);
             this.TitelBox = new System.Windows.Forms.TextBox();
-            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.MetronoomLabel = new System.Windows.Forms.Label();
             this.MetronomeSpeed = new System.Windows.Forms.TextBox();
             this.CurrentPageLabel = new System.Windows.Forms.Label();
+            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -436,6 +436,36 @@ namespace VirtualPiano.View
             this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
             this.TitelBox.Leave += new System.EventHandler(this.TitelBox_Leave);
             // 
+            // MetronoomLabel
+            // 
+            this.MetronoomLabel.Font = new System.Drawing.Font("MS Office Symbol Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MetronoomLabel.ForeColor = System.Drawing.Color.Black;
+            this.MetronoomLabel.Location = new System.Drawing.Point(1604, 56);
+            this.MetronoomLabel.Name = "MetronoomLabel";
+            this.MetronoomLabel.Size = new System.Drawing.Size(85, 23);
+            this.MetronoomLabel.TabIndex = 3;
+            this.MetronoomLabel.Text = "Metronoom:";
+            // 
+            // MetronomeSpeed
+            // 
+            this.MetronomeSpeed.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MetronomeSpeed.Location = new System.Drawing.Point(1695, 54);
+            this.MetronomeSpeed.Name = "MetronomeSpeed";
+            this.MetronomeSpeed.Size = new System.Drawing.Size(40, 25);
+            this.MetronomeSpeed.TabIndex = 4;
+            this.MetronomeSpeed.Text = "100";
+            this.MetronomeSpeed.TextChanged += new System.EventHandler(this.MetronomeSpeed_TextChanged);
+            // 
+            // CurrentPageLabel
+            // 
+            this.CurrentPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CurrentPageLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CurrentPageLabel.Location = new System.Drawing.Point(1763, 946);
+            this.CurrentPageLabel.Name = "CurrentPageLabel";
+            this.CurrentPageLabel.Size = new System.Drawing.Size(106, 68);
+            this.CurrentPageLabel.TabIndex = 5;
+            this.CurrentPageLabel.Text = "1";
+            // 
             // menuBarView1
             // 
             this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -446,36 +476,6 @@ namespace VirtualPiano.View
             this.menuBarView1.Size = new System.Drawing.Size(1070, 25);
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 2;
-            // 
-            // MetronoomLabel
-            // 
-            this.MetronoomLabel.Font = new System.Drawing.Font("MS Office Symbol Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MetronoomLabel.ForeColor = System.Drawing.Color.Black;
-            this.MetronoomLabel.Location = new System.Drawing.Point(87, 112);
-            this.MetronoomLabel.Name = "MetronoomLabel";
-            this.MetronoomLabel.Size = new System.Drawing.Size(85, 23);
-            this.MetronoomLabel.TabIndex = 3;
-            this.MetronoomLabel.Text = "Metronoom:";
-            // 
-            // MetronomeSpeed
-            // 
-            this.MetronomeSpeed.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MetronomeSpeed.Location = new System.Drawing.Point(178, 110);
-            this.MetronomeSpeed.Name = "MetronomeSpeed";
-            this.MetronomeSpeed.Size = new System.Drawing.Size(100, 25);
-            this.MetronomeSpeed.TabIndex = 4;
-            this.MetronomeSpeed.Text = "100";
-            this.MetronomeSpeed.TextChanged += new System.EventHandler(this.MetronomeSpeed_TextChanged);
-            // 
-            // CurrentPageLabel
-            // 
-            this.CurrentPageLabel.Font = new System.Drawing.Font("Open Sans", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CurrentPageLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.CurrentPageLabel.Location = new System.Drawing.Point(1763, 946);
-            this.CurrentPageLabel.Name = "CurrentPageLabel";
-            this.CurrentPageLabel.Size = new System.Drawing.Size(106, 68);
-            this.CurrentPageLabel.TabIndex = 5;
-            this.CurrentPageLabel.Text = "1";
             // 
             // ComposeView
             // 
