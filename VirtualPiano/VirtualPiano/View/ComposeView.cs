@@ -701,7 +701,6 @@ namespace VirtualPiano.View
         //bpm veranderen
         private void MetronomeSpeed_TextChanged(object sender, EventArgs e)
         {
-            ToolTip metroTip = new ToolTip();
             
             if (Int32.TryParse(MetronomeSpeed.Text, out int speed))
             { 
@@ -710,12 +709,17 @@ namespace VirtualPiano.View
                 if (speed < 500 && speed>0)
                 {
                     MusicController.setMetronoom(speed);
+                    metroTip.RemoveAll();
                 }
                 else
                 {
                     //ander wordt de tooltip laten zien.
-                    metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", MetronomeSpeed,2000);
+                    metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", MetronomeSpeed);
                 }
+            }
+            else
+            {
+                metroTip.Show("U kunt hier alleen getallen invoeren", MetronomeSpeed);
             }
         }
 
