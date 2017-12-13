@@ -12,14 +12,14 @@ namespace VirtualPiano.Model
     {
         public int SongId { get; set; }
         [ForeignKey("SongId")]
-        public virtual Song song { get; set; }
+        public virtual Song Song { get; set; }
         [Key]
         public int StaffId { get; set; }
         public List<Bar> Bars { get; set; } = new List<Bar>() { new Bar(), new Bar(), new Bar(), new Bar() }; //4 maten in een notenbalk
         //volgorde van staffs in de song
         public int Order { get; set; }
         public int FlatSharp { get; set; }
-        public int y { get; set; }
+        public int Y { get; set; }
         [NotMapped]
         public bool IsBeingPlayed { get; set; } = false;
 

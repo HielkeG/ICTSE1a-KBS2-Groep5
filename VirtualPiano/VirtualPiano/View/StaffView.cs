@@ -119,19 +119,19 @@ namespace VirtualPiano.View
 
                         if (note.ConnectionNote != null)     //noten die aan elkaar zitten tekenen
                         {
-                            if (note.name == "EightNote")
+                            if (note.Name == "EightNote")
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.X + 8, note.Y + 15, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 15);
                             }
                             else
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.x + 8, note.y + 23, note.ConnectionNote.x + 10, note.ConnectionNote.y + 23);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 8, note.Y + 15, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 15);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 8, note.Y + 23, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 23);
                             }
 
                         }
 
-                        int Ynotelocation = note.y;
+                        int Ynotelocation = note.Y;
 
                         //Als de noten te hoog of te heel laag zijn voor de notenbalk, worden er hulplijnen getkent.
                         if (note.y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.x + 30, 36, note.x + 70, 36); }
@@ -160,11 +160,11 @@ namespace VirtualPiano.View
         {
             if (ComposeView.draggingSign != null)
             {
-                if (ComposeView.draggingSign.name == "WholeNote") ComposeView.draggingSign.image = Resources.helenoot;
-                else if (ComposeView.draggingSign.name == "HalfNote") ComposeView.draggingSign.image = Resources.halvenoot;
-                else if (ComposeView.draggingSign.name == "QuarterNote") ComposeView.draggingSign.image = Resources.kwartnoot;
-                else if (ComposeView.draggingSign.name == "EightNote") ComposeView.draggingSign.image = Resources.achtstenoot;
-                else if (ComposeView.draggingSign.name == "SixteenthNote") ComposeView.draggingSign.image = Resources.zestiendenoot;
+                if (ComposeView.draggingSign.Name == "WholeNote") ComposeView.draggingSign.Image = Resources.helenoot;
+                else if (ComposeView.draggingSign.Name == "HalfNote") ComposeView.draggingSign.Image = Resources.halvenoot;
+                else if (ComposeView.draggingSign.Name == "QuarterNote") ComposeView.draggingSign.Image = Resources.kwartnoot;
+                else if (ComposeView.draggingSign.Name == "EightNote") ComposeView.draggingSign.Image = Resources.achtstenoot;
+                else if (ComposeView.draggingSign.Name == "SixteenthNote") ComposeView.draggingSign.Image = Resources.zestiendenoot;
             }
             ComposeView.cursorIsDown = false;
             if (ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
@@ -309,10 +309,10 @@ namespace VirtualPiano.View
                             if (sign is Note note)
                             {
                                 note.PlaySound();
-                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                             }
 
@@ -321,9 +321,9 @@ namespace VirtualPiano.View
                             if (ComposeView.cursorIsDown == true)
                             {
                                 //De cursor veranderd in de aangeklikte noot
-                                Cursor = CursorController.ChangeCursor(sign.name);
-                                ComposeView.SelectedSign = sign.name;
-                                sign.image = Resources.blank;
+                                Cursor = CursorController.ChangeCursor(sign.Name);
+                                ComposeView.SelectedSign = sign.Name;
+                                sign.Image = Resources.blank;
                                 ComposeView.draggingSign = sign;
                                 Invalidate();
                             }
@@ -460,7 +460,7 @@ namespace VirtualPiano.View
                                                 int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
                                                 int index2 = bar.Signs.IndexOf(note);
 
-                                                if ((index1 - index2 == 1 || index1 - index2 == -1) && note.name == ComposeView.selectedNote1.name)
+                                                if ((index1 - index2 == 1 || index1 - index2 == -1) && note.Name == ComposeView.selectedNote1.Name)
                                                 {
                                                     ComposeView.selectedNote2 = note;
                                                     //Noten met elkaar verbinden
@@ -511,7 +511,7 @@ namespace VirtualPiano.View
                                                 }
                                             
                                         }
-                                        ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                        ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                         ComposeView.pkv1.Invalidate();
                                     }
                                 }

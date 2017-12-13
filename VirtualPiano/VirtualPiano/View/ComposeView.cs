@@ -168,7 +168,7 @@ namespace VirtualPiano.View
         {
             foreach (Staff staff in song.GetStaffs())
             {
-                staff.y = y_staff;
+                staff.Y = y_staff;
                 staff.Order = staffViews.Count() + 1;
                 AddStaffView(staff);
                 if (staff == song.GetStaffs().First())
@@ -258,17 +258,17 @@ namespace VirtualPiano.View
             if (CurrentPage * 3 - 2 == staffViewsPanels.Count)
             {
                 Staff newStaff = new Staff();
-                newStaff.y = y_staff;
+                newStaff.Y = y_staff;
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Location = new Point(977, newStaff.y + 160);
+                btnAddStaff.Location = new Point(977, newStaff.Y + 160);
             }
             else if(CurrentPage * 3 - 1 == staffViewsPanels.Count)
             {
                 Staff newStaff = new Staff();
-                newStaff.y = y_staff;
+                newStaff.Y = y_staff;
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
@@ -277,7 +277,7 @@ namespace VirtualPiano.View
             } else if (y_staff == 140)
             {
                 Staff newStaff = new Staff();
-                newStaff.y = y_staff;
+                newStaff.Y = y_staff;
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
@@ -702,24 +702,25 @@ namespace VirtualPiano.View
         //bpm veranderen
         private void MetronomeSpeed_TextChanged(object sender, EventArgs e)
         {
-            if(Int32.TryParse(MetronomeSpeed.Text, out int speed))
-            {
+            
+            if (Int32.TryParse(MetronomeSpeed.Text, out int speed))
+            { 
+
                 //als de snelheid tussen 0 en 500 ligt wordt het aangepast.
                 if (speed < 500 && speed>0)
                 {
                     MusicController.setMetronoom(speed);
+                    metroTip.RemoveAll();
                 }
                 else
                 {
                     //ander wordt de tooltip laten zien.
-                    ToolTip metroTip = new ToolTip();
                     metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", MetronomeSpeed);
                 }
             }
             else
             {
-                ToolTip metroTip = new ToolTip();
-                metroTip.Show("U kunt geen letters invullen in de metronoom.", MetronomeSpeed,5000);
+                metroTip.Show("U kunt hier alleen getallen invoeren", MetronomeSpeed);
             }
         }
 

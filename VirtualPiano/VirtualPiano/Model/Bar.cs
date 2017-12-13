@@ -38,14 +38,14 @@ namespace VirtualPiano.Model
 
         public bool CheckBarSpace(Sign sign)    //kijken of er ruimte in de maat is voor nieuw teken
         {
-            if (duration + sign.duration > 16) return false;
+            if (duration + sign.Duration > 16) return false;
             else return true;
         }
 
         public void Add(Sign sign)
         {
             Signs.Add(sign);
-            duration += sign.duration;
+            duration += sign.Duration;
         }
 
         public void MakeEmpty() //Lijst van tekens leegmaken
@@ -58,7 +58,7 @@ namespace VirtualPiano.Model
         {
             try
             {
-                duration = duration - Signs.Last().duration;
+                duration = duration - Signs.Last().Duration;
                 Signs.RemoveAt(Signs.Count() - 1);
                 hasPreview = false;
             }
@@ -68,18 +68,18 @@ namespace VirtualPiano.Model
         public void RemoveSign(Sign sign)
         {
             Signs.Remove(sign);
-            duration -= sign.duration;
+            duration -= sign.Duration;
             if(sign is Note note)
             {
                 if(note.ConnectionNote != null)
                 {
                     note.ConnectionNote.ConnectionNote = null;
-                    if(note.name == "SixteenthNote"){
-                        note.ConnectionNote.image = Resources.zestiendenoot;
+                    if(note.Name == "SixteenthNote"){
+                        note.ConnectionNote.Image = Resources.zestiendenoot;
                     }
-                    if (note.name =="EightNote")
+                    if (note.Name =="EightNote")
                     {
-                        note.ConnectionNote.image = Resources.achtstenoot;
+                        note.ConnectionNote.Image = Resources.achtstenoot;
                     }
                     note.ConnectionNote = null;
 

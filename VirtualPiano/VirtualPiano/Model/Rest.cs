@@ -24,11 +24,16 @@ namespace VirtualPiano.Model
             else if (name == "QuarterRest") { image = Resources.KwartRust; duration = 4; }
             else if (name == "EightRest") { image = Resources.achtsterust; duration = 2; }
             else if (name == "SixteenthRest") { image = Resources.zestienderust; duration = 1; }
+            if (Name == "WholeRest") { Duration = 16; }
+            else if (Name == "HalfRest") { Duration = 8; }
+            else if (Name == "QuarterRest") { Image = Resources.KwartRust; Duration = 4; }
+            else if (Name == "EightRest") { Image = Resources.achtsterust; Duration = 2; }
+            else if (Name == "SixteenthRest") { Image = Resources.zestienderust; Duration = 1; }
         }
 
         public override bool IsLocation(int y, int x)
         {
-            return (this.x - 10 < x && this.x + 10 > x && this.y - 10 < y - 63 && this.y + 10 > y - 63);
+            return (this.X - 10 < x && this.X + 10 > x && this.Y - 10 < y - 63 && this.Y + 10 > y - 63);
         }
 
     }

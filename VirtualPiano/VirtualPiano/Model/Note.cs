@@ -17,8 +17,8 @@ namespace VirtualPiano.Model
 
     public class Note : Sign
     {
-        public string tone { get; set; }
-        public int octave { get; set; }
+        public string Tone { get; set; }
+        public int Octave { get; set; }
         public bool sharp;
         public bool flat;
         public Note ConnectionNote = null;
@@ -33,65 +33,65 @@ namespace VirtualPiano.Model
 
             if (clef == "G")
             {
-                if (y < 23) { tone = "C"; octave = 5; this.y = -43; }
-                else if (y >= 23 && y < 31) { tone = "B"; octave = 4; this.y = -36; }
-                else if (y >= 31 && y < 38) { tone = "A"; octave = 4; this.y = -28; }
-                else if (y >= 38 && y < 46) { tone = "G"; octave = 4; this.y = -21; }
-                else if (y >= 46 && y < 53) { tone = "F"; octave = 4; this.y = -15; }
-                else if (y >= 53 && y < 60) { tone = "E"; octave = 4; this.y = -7; }
-                else if (y >= 60 && y < 68) { tone = "D"; octave = 4; this.y = 1;  }
-                else if (y >= 68 && y < 75) { tone = "C"; octave = 4; this.y = 8; }
-                else if (y >= 75  && y < 83) { tone = "B"; octave = 3; this.y = 17; }
-                else if (y >= 83 && y < 91) { tone = "A"; octave = 3; this.y = 24; }
-                else if (y >= 91 && y < 98) { tone = "G"; octave = 3; this.y = 31;  }
-                else if (y >= 98 && y < 106 ) { tone = "F"; octave = 3; this.y = 38; }
-                else if (y >= 106 && y < 113) { tone = "E"; octave = 3; this.y = 45; }
-                else if (y >= 113 && y < 121) { tone = "D"; octave = 3; this.y = 53; }
-                else if (y >= 121) { tone = "C"; octave = 3; this.y = 59; }
+                if (y < 23) { Tone = "C"; Octave = 5; this.Y = -43; }
+                else if (y >= 23 && y < 31) { Tone = "B"; Octave = 4; this.Y = -36; }
+                else if (y >= 31 && y < 38) { Tone = "A"; Octave = 4; this.Y = -28; }
+                else if (y >= 38 && y < 46) { Tone = "G"; Octave = 4; this.Y = -21; }
+                else if (y >= 46 && y < 53) { Tone = "F"; Octave = 4; this.Y = -15; }
+                else if (y >= 53 && y < 60) { Tone = "E"; Octave = 4; this.Y = -7; }
+                else if (y >= 60 && y < 68) { Tone = "D"; Octave = 4; this.Y = 1;  }
+                else if (y >= 68 && y < 75) { Tone = "C"; Octave = 4; this.Y = 8; }
+                else if (y >= 75  && y < 83) { Tone = "B"; Octave = 3; this.Y = 17; }
+                else if (y >= 83 && y < 91) { Tone = "A"; Octave = 3; this.Y = 24; }
+                else if (y >= 91 && y < 98) { Tone = "G"; Octave = 3; this.Y = 31;  }
+                else if (y >= 98 && y < 106 ) { Tone = "F"; Octave = 3; this.Y = 38; }
+                else if (y >= 106 && y < 113) { Tone = "E"; Octave = 3; this.Y = 45; }
+                else if (y >= 113 && y < 121) { Tone = "D"; Octave = 3; this.Y = 53; }
+                else if (y >= 121) { Tone = "C"; Octave = 3; this.Y = 59; }
             }
             else if (clef == "F")
             {
-                if (y < 23) { tone = "E"; octave = 3; this.y = -41 ; }
-                else if (y >= 23 && y < 31) { tone = "D"; octave = 3; this.y = -34; }
-                else if (y >= 31 && y < 38) { tone = "C"; octave = 3; this.y =  -27; }
-                else if (y >= 38 && y < 46) { tone = "B"; octave = 2; this.y = -21 ; }
-                else if (y >= 46 && y < 53) { tone = "A"; octave = 2; this.y = -15; }
-                else if (y >= 53 && y < 60) { tone = "G"; octave = 2; this.y = -7; }
-                else if (y >= 60 && y < 68) { tone = "F"; octave = 2; this.y = 1; }
-                else if (y >= 68 && y < 75) { tone = "E"; octave = 2; this.y = 8; }
-                else if (y >= 75 && y < 83) { tone = "D"; octave = 2; this.y = 17; }
-                else if (y >= 83 && y < 91) { tone = "C"; octave = 2; this.y = 24; }
-                else if (y >= 91 && y < 98) { tone = "B"; octave = 1; this.y = 31; }
-                else if (y >= 98 && y < 106) { tone = "A"; octave = 1; this.y = 38; }
-                else if (y >= 106 && y < 113) { tone = "G"; octave = 1; this.y = 45; }
-                else if (y >= 113 && y < 121) { tone = "F"; octave = 1; this.y = 53; }
-                else if (y >= 121) { tone = "E"; octave = 1; this.y = 59; }
+                if (y < 23) { Tone = "E"; Octave = 3; this.Y = -41 ; }
+                else if (y >= 23 && y < 31) { Tone = "D"; Octave = 3; this.Y = -34; }
+                else if (y >= 31 && y < 38) { Tone = "C"; Octave = 3; this.Y =  -27; }
+                else if (y >= 38 && y < 46) { Tone = "B"; Octave = 2; this.Y = -21 ; }
+                else if (y >= 46 && y < 53) { Tone = "A"; Octave = 2; this.Y = -15; }
+                else if (y >= 53 && y < 60) { Tone = "G"; Octave = 2; this.Y = -7; }
+                else if (y >= 60 && y < 68) { Tone = "F"; Octave = 2; this.Y = 1; }
+                else if (y >= 68 && y < 75) { Tone = "E"; Octave = 2; this.Y = 8; }
+                else if (y >= 75 && y < 83) { Tone = "D"; Octave = 2; this.Y = 17; }
+                else if (y >= 83 && y < 91) { Tone = "C"; Octave = 2; this.Y = 24; }
+                else if (y >= 91 && y < 98) { Tone = "B"; Octave = 1; this.Y = 31; }
+                else if (y >= 98 && y < 106) { Tone = "A"; Octave = 1; this.Y = 38; }
+                else if (y >= 106 && y < 113) { Tone = "G"; Octave = 1; this.Y = 45; }
+                else if (y >= 113 && y < 121) { Tone = "F"; Octave = 1; this.Y = 53; }
+                else if (y >= 121) { Tone = "E"; Octave = 1; this.Y = 59; }
             }
 
-            if (Flatsharp >= 1) { if (tone == "F") { tone = "Fis"; } }
-            if (Flatsharp >= 2) { if (tone == "C") { tone = "Cis"; } }
-            if (Flatsharp >= 3) { if (tone == "G") { tone = "Gis"; } }
-            if (Flatsharp >= 4) { if (tone == "D") { tone = "Dis"; } }
-            if (Flatsharp >= 5) { if (tone == "A") { tone = "Ais"; } }
+            if (Flatsharp >= 1) { if (Tone == "F") { Tone = "Fis"; } }
+            if (Flatsharp >= 2) { if (Tone == "C") { Tone = "Cis"; } }
+            if (Flatsharp >= 3) { if (Tone == "G") { Tone = "Gis"; } }
+            if (Flatsharp >= 4) { if (Tone == "D") { Tone = "Dis"; } }
+            if (Flatsharp >= 5) { if (Tone == "A") { Tone = "Ais"; } }
 
-            if (Flatsharp <= -1) { if (tone == "B") { tone = "Bes"; } }
-            if (Flatsharp <= -2) { if (tone == "E") { tone = "Es"; } }
-            if (Flatsharp <= -3) { if (tone == "A") { tone = "As"; } }
-            if (Flatsharp <= -4) { if (tone == "D") { tone = "Des"; } }
-            if (Flatsharp <= -5) { if (tone == "G") { tone = "Ges"; } }
+            if (Flatsharp <= -1) { if (Tone == "B") { Tone = "Bes"; } }
+            if (Flatsharp <= -2) { if (Tone == "E") { Tone = "Es"; } }
+            if (Flatsharp <= -3) { if (Tone == "A") { Tone = "As"; } }
+            if (Flatsharp <= -4) { if (Tone == "D") { Tone = "Des"; } }
+            if (Flatsharp <= -5) { if (Tone == "G") { Tone = "Ges"; } }
             
-            if (name == "WholeNote") { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
-            else if (name == "HalfNote") { if (y <= 52) { image = Resources.halvenootflipped; } else { image = Resources.halvenoot; } duration = 8; }
-            else if (name == "QuarterNote") { if (y <= 52) { image = Resources.kwartnootflipped; } else { image = Resources.kwartnoot; } duration = 4; }
-            else if (name == "EightNote") { if (y <= 52) { image = Resources.achtstenootflipped; } else { image = Resources.achtstenoot; } duration = 2; }
-            else if (name == "SixteenthNote") { if (y <= 52) { image = Resources.zestiendenootflipped; } else { image = Resources.zestiendenoot; } duration = 1; }
+            if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
+            else if (Name == "HalfNote") { if (y <= 52) { Image = Resources.halvenootflipped; } else { Image = Resources.halvenoot; } Duration = 8; }
+            else if (Name == "QuarterNote") { if (y <= 52) { Image = Resources.kwartnootflipped; } else { Image = Resources.kwartnoot; } Duration = 4; }
+            else if (Name == "EightNote") { if (y <= 52) { Image = Resources.achtstenootflipped; } else { Image = Resources.achtstenoot; } Duration = 2; }
+            else if (Name == "SixteenthNote") { if (y <= 52) { Image = Resources.zestiendenootflipped; } else { Image = Resources.zestiendenoot; } Duration = 1; }
         }
 
 
         public void PlaySound()
         {
 
-            Enum.TryParse(tone.ToString()+octave, out Pitch pitch);
+            Enum.TryParse(Tone.ToString()+Octave, out Pitch pitch);
             MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
         }
 
@@ -109,11 +109,11 @@ namespace VirtualPiano.Model
         {
             sharp = true;
             flat = false;
-            { if (tone == "F" || tone == "Fes") { tone = "Fis"; } }
-            { if (tone == "C") { tone = "Cis"; } }
-            { if (tone == "G" || tone == "Ges") { tone = "Gis"; } }
-            { if (tone == "D" || tone == "Des") { tone = "Dis"; } }
-            { if (tone == "A" || tone == "As") { tone = "Ais"; } }
+            { if (Tone == "F" || Tone == "Fes") { Tone = "Fis"; } }
+            { if (Tone == "C") { Tone = "Cis"; } }
+            { if (Tone == "G" || Tone == "Ges") { Tone = "Gis"; } }
+            { if (Tone == "D" || Tone == "Des") { Tone = "Dis"; } }
+            { if (Tone == "A" || Tone == "As") { Tone = "Ais"; } }
 
             
         }
@@ -122,22 +122,22 @@ namespace VirtualPiano.Model
         {
             sharp = false;
             flat = true;
-            { if (tone == "B") { tone = "Bes"; } }
-            { if (tone == "E") { tone = "Es"; } }
-            { if (tone == "A" || tone == "Ais") { tone = "As"; } }
-            { if (tone == "D" || tone == "Dis") { tone = "Des"; } }
-            { if (tone == "G" || tone == "Gis") { tone = "Ges"; } }
+            { if (Tone == "B") { Tone = "Bes"; } }
+            { if (Tone == "E") { Tone = "Es"; } }
+            { if (Tone == "A" || Tone == "Ais") { Tone = "As"; } }
+            { if (Tone == "D" || Tone == "Dis") { Tone = "Des"; } }
+            { if (Tone == "G" || Tone == "Gis") { Tone = "Ges"; } }
         }
 
         public bool CheckConnect()
         {
-            return ConnectionNote == null && (name == "EightNote" || name == "SixteenthNote");
+            return ConnectionNote == null && (Name == "EightNote" || Name == "SixteenthNote");
         }
 
         internal void MakeConnection(Note note2)
         {
-            image = Resources.kwartnoot;
-            note2.image = Resources.kwartnoot;
+            Image = Resources.kwartnoot;
+            note2.Image = Resources.kwartnoot;
             ConnectionNote = note2;
             note2.ConnectionNote = this;
             ComposeView.selectedNote1 = null;

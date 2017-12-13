@@ -64,6 +64,7 @@ namespace VirtualPiano.View
             this.MetronomeSpeed = new System.Windows.Forms.TextBox();
             this.CurrentPageLabel = new System.Windows.Forms.Label();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
+            this.metroTip = new System.Windows.Forms.ToolTip(this.components);
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -545,5 +546,6 @@ namespace VirtualPiano.View
         private Label MetronoomLabel;
         private TextBox MetronomeSpeed;
         private Label CurrentPageLabel;
+        private ToolTip metroTip;
     }
 }

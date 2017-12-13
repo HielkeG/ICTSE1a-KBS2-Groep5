@@ -16,14 +16,15 @@ namespace VirtualPiano.Model
         public int SignId { get; set; }
         public int BarId { get; set; }
         [ForeignKey("BarId")]
-        public virtual Bar bar { get; set; } = null;
+        public virtual Bar Bar { get; set; } = null;
         [NotMapped]
-        public Image image { get; set; }
+        public Image Image { get; set; }
         [NotMapped]
-        public int duration { get; set; }
-        public string name { get; set; }
-        public int x { get; set; }
-        public int y { get; set; }
+        public int Duration { get; set; }
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public abstract void SetImage();
         public abstract bool IsLocation(int x, int y);
     }
 }

@@ -122,24 +122,24 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(0).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
+                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
-                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 //pitch ophalen uit de note
-                                string parsedPitch = note.tone.ToString() + note.octave.ToString();
+                                string parsedPitch = note.Tone.ToString() + note.Octave.ToString();
                                 //string parsen naar pitch
                                 if (parsedPitch.Length == 4)
                                 {
-                                    parsedPitch = note.tone.First() + "Sharp" + note.octave;
+                                    parsedPitch = note.Tone.First() + "Sharp" + note.Octave;
                                 }
                                 Enum.TryParse(parsedPitch, out Pitch pitch);
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
                                 //outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);
                                 //toets oplichtne na 75 milliseconden wachten
-                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
                             }
@@ -149,18 +149,18 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(1).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
+                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 
-                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 //note.PlaySound();
-                                string pitchTemp = note.tone.ToString() + note.octave.ToString();
+                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
                             }
@@ -170,18 +170,18 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(2).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
+                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 
-                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 //note.PlaySound();
-                                string pitchTemp = note.tone.ToString() + note.octave.ToString();
+                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
                             }
@@ -191,18 +191,18 @@ namespace VirtualPiano.Model
                     {
                         foreach (var sign in staff.Bars.ElementAt(3).Signs)
                         {
-                            if (sign is Note note && note.x >= ComposeView.RedLineX + 63 && note.x <= ComposeView.RedLineX + 66)
+                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
                                 //toetsenbordkey op laten lichten
 
-                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 //note.PlaySound();
-                                string pitchTemp = note.tone.ToString() + note.octave.ToString();
+                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                 await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 break;
                             }
@@ -224,29 +224,29 @@ namespace VirtualPiano.Model
                         {
                             if (note.flat == false && note.sharp == false)
                             {
-                                if (note.tone == "Fis") { note.tone = "F"; }
-                                if (note.tone == "Cis") { note.tone = "C"; }
-                                if (note.tone == "Gis") { note.tone = "G"; }
-                                if (note.tone == "Dis") { note.tone = "D"; }
-                                if (note.tone == "Ais") { note.tone = "A"; }
-                                if (note.tone == "Bes") { note.tone = "B"; }
-                                if (note.tone == "Es") { note.tone = "E"; }
-                                if (note.tone == "As") { note.tone = "A"; }
-                                if (note.tone == "Des") { note.tone = "D"; }
-                                if (note.tone == "Ges") { note.tone = "G"; }
+                                if (note.Tone == "Fis") { note.Tone = "F"; }
+                                if (note.Tone == "Cis") { note.Tone = "C"; }
+                                if (note.Tone == "Gis") { note.Tone = "G"; }
+                                if (note.Tone == "Dis") { note.Tone = "D"; }
+                                if (note.Tone == "Ais") { note.Tone = "A"; }
+                                if (note.Tone == "Bes") { note.Tone = "B"; }
+                                if (note.Tone == "Es") { note.Tone = "E"; }
+                                if (note.Tone == "As") { note.Tone = "A"; }
+                                if (note.Tone == "Des") { note.Tone = "D"; }
+                                if (note.Tone == "Ges") { note.Tone = "G"; }
 
 
-                                if (Flatsharp >= 1) { if (note.tone == "F") { note.tone = "Fis"; } }
-                                if (Flatsharp >= 2) { if (note.tone == "C") { note.tone = "Cis"; } }
-                                if (Flatsharp >= 3) { if (note.tone == "G") { note.tone = "Gis"; } }
-                                if (Flatsharp >= 4) { if (note.tone == "D") { note.tone = "Dis"; } }
-                                if (Flatsharp >= 5) { if (note.tone == "A") { note.tone = "Ais"; } }
+                                if (Flatsharp >= 1) { if (note.Tone == "F") { note.Tone = "Fis"; } }
+                                if (Flatsharp >= 2) { if (note.Tone == "C") { note.Tone = "Cis"; } }
+                                if (Flatsharp >= 3) { if (note.Tone == "G") { note.Tone = "Gis"; } }
+                                if (Flatsharp >= 4) { if (note.Tone == "D") { note.Tone = "Dis"; } }
+                                if (Flatsharp >= 5) { if (note.Tone == "A") { note.Tone = "Ais"; } }
 
-                                if (Flatsharp <= -1) { if (note.tone == "B") { note.tone = "Bes"; } }
-                                if (Flatsharp <= -2) { if (note.tone == "E") { note.tone = "Es"; } }
-                                if (Flatsharp <= -3) { if (note.tone == "A") { note.tone = "As"; } }
-                                if (Flatsharp <= -4) { if (note.tone == "D") { note.tone = "Des"; } }
-                                if (Flatsharp <= -5) { if (note.tone == "G") { note.tone = "Ges"; } }
+                                if (Flatsharp <= -1) { if (note.Tone == "B") { note.Tone = "Bes"; } }
+                                if (Flatsharp <= -2) { if (note.Tone == "E") { note.Tone = "Es"; } }
+                                if (Flatsharp <= -3) { if (note.Tone == "A") { note.Tone = "As"; } }
+                                if (Flatsharp <= -4) { if (note.Tone == "D") { note.Tone = "Des"; } }
+                                if (Flatsharp <= -5) { if (note.Tone == "G") { note.Tone = "Ges"; } }
                             }
                         }
                     }
@@ -270,7 +270,7 @@ namespace VirtualPiano.Model
             {
                 foreach (var bar in staff.Bars)
                 {
-                    IEnumerable<Sign> signs = bar.Signs.OrderBy(sign => sign.x);
+                    IEnumerable<Sign> signs = bar.Signs.OrderBy(sign => sign.X);
                     bar.Signs = signs.ToList();
                 }
             }
