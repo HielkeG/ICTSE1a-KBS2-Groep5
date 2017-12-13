@@ -69,18 +69,6 @@ namespace VirtualPiano.Control
             }
         }
 
-        //print alle titels van de nummers
-        public static void PrintSongs()
-        {
-            using (var context = new Context())
-            {
-                foreach(Song song in context.Songs)
-                {
-                    Console.WriteLine(song.Title);
-                }
-            }
-        }
-
         public static List<Song> GetSongs()
         {
             using (var context = new Context())
