@@ -132,11 +132,12 @@ namespace VirtualPiano.Model
 
         public override void SetImage()
         {
-            if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
-            else if (Name == "HalfNote") { Image = Resources.halvenoot; Duration = 8; }
-            else if (Name == "QuarterNote") { Image = Resources.kwartnoot; Duration = 4; }
-            else if (Name == "EightNote") { Image = Resources.achtstenoot; Duration = 2; }
-            else if (Name == "SixteenthNote") { Image = Resources.zestiendenoot; Duration = 1; }
+            if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
+            else if (Name == "HalfNote") { if (Y <= 0) { Image = Resources.halvenootflipped; } else { Image = Resources.halvenoot; } Duration = 8; }
+            else if (Name == "QuarterNote") { if (Y <= 0) { Image = Resources.kwartnootflipped; } else { Image = Resources.kwartnoot; } Duration = 4; }
+            else if (Name == "EightNote") { if (Y <= 0) { Image = Resources.achtstenootflipped; } else { Image = Resources.achtstenoot; } Duration = 2; }
+            else if (Name == "SixteenthNote") { if (Y <= 0) { Image = Resources.zestiendenootflipped; } else { Image = Resources.zestiendenoot; } Duration = 1; }
+
         }
 
         internal void MakeConnection(Note note2)

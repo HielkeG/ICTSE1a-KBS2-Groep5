@@ -168,7 +168,7 @@ namespace VirtualPiano.Control
             playBtn.Image = new Bitmap(play,width,height);
             isPlayingSong = false;
             ComposeView.CurrentPlayingStaff = 0;
-            ComposeView.RedLineX = 0;
+            ComposeView.RedLineX = -60;
             rodeLijn.Stop();
             SongStopped(this, e);
             outputDevice.SilenceAllNotes();

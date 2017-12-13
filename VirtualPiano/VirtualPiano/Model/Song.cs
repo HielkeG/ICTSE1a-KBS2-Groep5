@@ -114,99 +114,33 @@ namespace VirtualPiano.Model
 
         public async void PlayNote()
         {
+            
             foreach (var staff in Staffs)
             {
                 if (staff.IsBeingPlayed)
                 {
-                    if (ComposeView.RedLineX <= 425)
+                    List<Note> keyNotes = new List<Note>();
+                    foreach (Bar bar in staff.Bars)
                     {
-                        foreach (var sign in staff.Bars.ElementAt(0).Signs)
+                        foreach (Sign sign in bar.Signs)
                         {
-                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
+                            if (sign is Note note && note.X>= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
-                                //toetsenbordkey op laten lichten
+                                keyNotes.Add(note);
                                 ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
-                                //pitch ophalen uit de note
-                                string parsedPitch = note.Tone.ToString() + note.Octave.ToString();
-                                //string parsen naar pitch
-                                if (parsedPitch.Length == 4)
-                                {
-                                    parsedPitch = note.Tone.First() + "Sharp" + note.Octave;
-                                }
-                                Enum.TryParse(parsedPitch, out Pitch pitch);
-                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                await PutTaskDelay(75);
-                                //outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);
-                                //toets oplichtne na 75 milliseconden wachten
-                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                break;
-                            }
-                        }
-                    }
-                    else if (ComposeView.RedLineX > 425 && ComposeView.RedLineX <= 850)
-                    {
-                        foreach (var sign in staff.Bars.ElementAt(1).Signs)
-                        {
-                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
-                            {
-                                //toetsenbordkey op laten lichten
-
-                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
                                 string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                break;
+                                
                             }
                         }
                     }
-                    else if (ComposeView.RedLineX > 850 && ComposeView.RedLineX <= 1275)
+                    await PutTaskDelay(200);
+                    foreach(Note note in keyNotes)
                     {
-                        foreach (var sign in staff.Bars.ElementAt(2).Signs)
-                        {
-                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
-                            {
-                                //toetsenbordkey op laten lichten
-
-                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
-                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                Enum.TryParse(pitchTemp, out Pitch pitch);
-                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                break;
-                            }
-                        }
-                    }
-                    else if (ComposeView.RedLineX > 1275)
-                    {
-                        foreach (var sign in staff.Bars.ElementAt(3).Signs)
-                        {
-                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
-                            {
-                                //toetsenbordkey op laten lichten
-
-                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
-                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                Enum.TryParse(pitchTemp, out Pitch pitch);
-                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                break;
-                            }
-                        }
+                        ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
+                        ComposeView.pkv1.Invalidate();
                     }
                 }
             }

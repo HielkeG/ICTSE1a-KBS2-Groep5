@@ -37,7 +37,7 @@ namespace VirtualPiano.View
         public static int CurrentOctave = 3;
         public static int CurrentPlayingStaff = 0;
         private static bool RunningTimer;    //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
-        public static int RedLineX;   //locatie van de rode lijn
+        public static int RedLineX = -60;   //locatie van de rode lijn
         public static bool PlayingKeyboard = false;
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
@@ -217,7 +217,7 @@ namespace VirtualPiano.View
             RemoveStaffViews();
             CurrentPlayingStaff = 0;
             song = newSong;
-            RedLineX = -25;
+            RedLineX = -60;
             CurrentPage = 1;
             CurrentPageLabel.Text = CurrentPage.ToString();
             foreach (var item in song.GetStaffs())
@@ -518,7 +518,7 @@ namespace VirtualPiano.View
                 if (RedLineX >= 1700)
                 {
                     //als de lijn het einde van een staff bereikt. De lijn verplaatsen naar de volgende staff
-                    RedLineX = 0;
+                    RedLineX = -60;
                     if (song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
                     {
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
