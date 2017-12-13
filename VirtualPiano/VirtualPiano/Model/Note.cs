@@ -28,8 +28,8 @@ namespace VirtualPiano.Model
 
         public Note(int x, int y, string tempNotename, string clef, int Flatsharp) :base()
         {
-            name = tempNotename;
-            this.x = x + 25;
+            Name = tempNotename;
+            X = x + 25;
 
             if (clef == "G")
             {
@@ -79,12 +79,8 @@ namespace VirtualPiano.Model
             if (Flatsharp <= -3) { if (Tone == "A") { Tone = "As"; } }
             if (Flatsharp <= -4) { if (Tone == "D") { Tone = "Des"; } }
             if (Flatsharp <= -5) { if (Tone == "G") { Tone = "Ges"; } }
-            
-            if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
-            else if (Name == "HalfNote") { if (y <= 52) { Image = Resources.halvenootflipped; } else { Image = Resources.halvenoot; } Duration = 8; }
-            else if (Name == "QuarterNote") { if (y <= 52) { Image = Resources.kwartnootflipped; } else { Image = Resources.kwartnoot; } Duration = 4; }
-            else if (Name == "EightNote") { if (y <= 52) { Image = Resources.achtstenootflipped; } else { Image = Resources.achtstenoot; } Duration = 2; }
-            else if (Name == "SixteenthNote") { if (y <= 52) { Image = Resources.zestiendenootflipped; } else { Image = Resources.zestiendenoot; } Duration = 1; }
+
+            SetImage();
         }
 
 
@@ -97,12 +93,12 @@ namespace VirtualPiano.Model
 
         public override bool IsLocation(int MouseX, int MouseY)
         {
-            return (x + 35 < MouseX && x + 55 > MouseX && y - 10 < MouseY - 63 && y + 10 > MouseY - 63);
+            return (X + 35 < MouseX && X + 55 > MouseX && Y - 10 < MouseY - 63 && Y + 10 > MouseY - 63);
         }
 
         public bool IsLocation(int MouseX)
         {
-            return (x + 35 < MouseX && x + 55 > MouseX);
+            return (X + 35 < MouseX && X + 55 > MouseX);
         }
 
         public void SetSharp()
@@ -132,6 +128,15 @@ namespace VirtualPiano.Model
         public bool CheckConnect()
         {
             return ConnectionNote == null && (Name == "EightNote" || Name == "SixteenthNote");
+        }
+
+        public override void SetImage()
+        {
+            if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
+            else if (Name == "HalfNote") { Image = Resources.halvenoot; Duration = 8; }
+            else if (Name == "QuarterNote") { Image = Resources.kwartnoot; Duration = 4; }
+            else if (Name == "EightNote") { Image = Resources.achtstenoot; Duration = 2; }
+            else if (Name == "SixteenthNote") { Image = Resources.zestiendenoot; Duration = 1; }
         }
 
         internal void MakeConnection(Note note2)

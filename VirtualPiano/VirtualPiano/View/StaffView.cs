@@ -27,6 +27,7 @@ namespace VirtualPiano.View
             this.staff = staff;
             this.song = song;
             DoubleBuffered = true;
+            SetImage();
             InitializeComponent();
             redLine = new RedLine();
             BringToFront();
@@ -58,6 +59,18 @@ namespace VirtualPiano.View
                 redLine.Visible = true;
                 redLine.Invalidate();
             }
+        }
+
+        public void SetImage()
+        {
+            foreach (var bar in staff.Bars)
+            {
+                foreach (var sign in bar.Signs)
+                {
+                    sign.SetImage();
+                }
+            }
+            Refresh();
         }
 
         public void DrawBars(PaintEventArgs e) //Deze methode tekent de maten inclusief de noten en de sleutels
@@ -94,7 +107,7 @@ namespace VirtualPiano.View
                 }
 
                 e.Graphics.DrawLine(new Pen(Color.Black), x_bar, 50, x_bar, 110); //per maat verticale lijn tekenen
-                if (bar.duration == 16)
+                if (bar.Duration == 16)
                 {
                     barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
                     fullBar++;
@@ -134,22 +147,22 @@ namespace VirtualPiano.View
                         int Ynotelocation = note.Y;
 
                         //Als de noten te hoog of te heel laag zijn voor de notenbalk, worden er hulplijnen getkent.
-                        if (note.y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.x + 30, 36, note.x + 70, 36); }
-                        if (note.y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.x + 30, 22, note.x + 70, 22); }
-                        else if (note.y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.x + 30, 124, note.x + 70, 124); }
+                        if (note.Y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.X + 30, 36, note.X + 70, 36); }
+                        if (note.Y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.X + 30, 22, note.X + 70, 22); }
+                        else if (note.Y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.X + 30, 124, note.X + 70, 124); }
 
 
-                        e.Graphics.DrawImage(sign.image, note.x, Ynotelocation, 90, 130);
-                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, note.x + 15, Ynotelocation + 40, 30, 40); }
-                        else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, note.x + 15, Ynotelocation + 40, 30, 40); }
+                        e.Graphics.DrawImage(sign.Image, note.X, Ynotelocation, 90, 130);
+                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, note.X + 15, Ynotelocation + 40, 30, 40); }
+                        else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, note.X + 15, Ynotelocation + 40, 30, 40); }
                     }
                     else if (sign is Rest rest)
                     {
-                        if (rest.name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.x + 220, 66, 20, 10)); }
-                        else if (rest.name == "HalfRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.x + 115, 71, 20, 10)); }
-                        else if (rest.name == "QuarterRest") e.Graphics.DrawImage(rest.image, rest.x + 60, 50, 50, 61);
-                        else if (rest.name == "EightRest") e.Graphics.DrawImage(rest.image, rest.x + 30, 20, 65, 115);
-                        else if (rest.name == "SixteenthRest") e.Graphics.DrawImage(rest.image, rest.x + 50, 20, 65, 115);
+                        if (rest.Name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.X + 220, 66, 20, 10)); }
+                        else if (rest.Name == "HalfRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.X + 115, 71, 20, 10)); }
+                        else if (rest.Name == "QuarterRest") e.Graphics.DrawImage(rest.Image, rest.X + 60, 50, 50, 61);
+                        else if (rest.Name == "EightRest") e.Graphics.DrawImage(rest.Image, rest.X + 30, 20, 65, 115);
+                        else if (rest.Name == "SixteenthRest") e.Graphics.DrawImage(rest.Image, rest.X + 50, 20, 65, 115);
                     }
                 }
                 x_bar += 430;
@@ -209,7 +222,7 @@ namespace VirtualPiano.View
             foreach (Bar bar in staff.Bars)
             {
 
-                if (bar.duration < 16 && ComposeView.signSelected)
+                if (ComposeView.signSelected)
                 {
                     if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                     {
@@ -228,8 +241,8 @@ namespace VirtualPiano.View
                                 {
                                     if (note.IsLocation(PointToClient(Cursor.Position).X))
                                     {
-                                        newNote = new Note(note.x - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
-                                        newNote.duration = 0;
+                                        newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                        newNote.Duration = 0;
                                         if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
                                         noteSet = true;
                                         bar.hasPreview = true;
@@ -238,9 +251,9 @@ namespace VirtualPiano.View
                                 }
                             }
 
-                            if(noteSet == false)
+                            if(noteSet == false && bar.Duration < 16)
                             {
-                                newNote = new Note(bar.duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                newNote = new Note(bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                 if (bar.CheckBarSpace(newNote) && notename != null)
                                 {
                                     bar.Add(newNote);
@@ -383,8 +396,8 @@ namespace VirtualPiano.View
                                     {
                                         if (note.IsLocation(MouseX))
                                         {
-                                            newNote = new Note(note.x - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
-                                            newNote.duration = 0;
+                                            newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                            newNote.Duration = 0;
                                             if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
                                             noteSet = true;
                                             break;
@@ -393,7 +406,7 @@ namespace VirtualPiano.View
                                 }
                                 if(noteSet == false)
                                 {
-                                    newNote = new Note(bar.duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                    newNote = new Note(bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                     if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
                                 }
                                 

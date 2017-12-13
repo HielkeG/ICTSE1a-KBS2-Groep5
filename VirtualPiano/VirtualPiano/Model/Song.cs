@@ -100,15 +100,15 @@ namespace VirtualPiano.Model
 
         public int getDuration()
         {
-            int duration = 0;
+            int Duration = 0;
             foreach (Staff staff in Staffs)
             {
                 foreach (Bar bar in staff.Bars)
                 {
-                    duration = duration + bar.duration;
+                    Duration = Duration + bar.Duration;
                 }
             }
-            return duration; // 1 maat is 16
+            return Duration; // 1 maat is 16
         }
 
 

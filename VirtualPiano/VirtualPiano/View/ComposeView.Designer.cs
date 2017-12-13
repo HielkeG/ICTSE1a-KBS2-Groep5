@@ -250,7 +250,7 @@ namespace VirtualPiano.View
             // 
             this.FullRest.AutoSize = false;
             this.FullRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FullRest.Image = ((System.Drawing.Image)(resources.GetObject("FullRest.Image")));
+            this.FullRest.Image = global::VirtualPiano.Properties.Resources.helerust_icon;
             this.FullRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FullRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FullRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -264,7 +264,7 @@ namespace VirtualPiano.View
             // 
             this.HalfRest.AutoSize = false;
             this.HalfRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.HalfRest.Image = ((System.Drawing.Image)(resources.GetObject("HalfRest.Image")));
+            this.HalfRest.Image = global::VirtualPiano.Properties.Resources.halverust_icon;
             this.HalfRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HalfRest.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.HalfRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -278,7 +278,7 @@ namespace VirtualPiano.View
             // 
             this.QuarterRest.AutoSize = false;
             this.QuarterRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.QuarterRest.Image = ((System.Drawing.Image)(resources.GetObject("QuarterRest.Image")));
+            this.QuarterRest.Image = global::VirtualPiano.Properties.Resources.kwartrust_icon;
             this.QuarterRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.QuarterRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.QuarterRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -292,7 +292,7 @@ namespace VirtualPiano.View
             // 
             this.EightRest.AutoSize = false;
             this.EightRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EightRest.Image = ((System.Drawing.Image)(resources.GetObject("EightRest.Image")));
+            this.EightRest.Image = global::VirtualPiano.Properties.Resources.achtsterust_icon;
             this.EightRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.EightRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EightRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -306,7 +306,7 @@ namespace VirtualPiano.View
             // 
             this.SixteenthRest.AutoSize = false;
             this.SixteenthRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SixteenthRest.Image = ((System.Drawing.Image)(resources.GetObject("SixteenthRest.Image")));
+            this.SixteenthRest.Image = global::VirtualPiano.Properties.Resources.zestienderust_icon;
             this.SixteenthRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.SixteenthRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SixteenthRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
