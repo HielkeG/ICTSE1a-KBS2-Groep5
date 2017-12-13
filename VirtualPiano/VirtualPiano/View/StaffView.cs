@@ -27,7 +27,6 @@ namespace VirtualPiano.View
             this.staff = staff;
             this.song = song;
             DoubleBuffered = true;
-            SetImage();
             InitializeComponent();
             redLine = new RedLine();
             BringToFront();
@@ -61,23 +60,10 @@ namespace VirtualPiano.View
             }
         }
 
-        public void SetImage()
-        {
-            foreach (var bar in staff.Bars)
-            {
-                foreach (var sign in bar.Signs)
-                {
-                    sign.SetImage();
-                }
-            }
-            Refresh();
-        }
-
         public void DrawBars(PaintEventArgs e) //Deze methode tekent de maten inclusief de noten en de sleutels
         {
             int fullBar = 0;
             int x_bar = 475;
-            int Xnotelocation = 0;
             string latestClef = "";
             foreach (Bar bar in staff.Bars) // Elke bar in de notenbalk wordt langsgegaan
             {
@@ -119,7 +105,6 @@ namespace VirtualPiano.View
                     barColor = Color.Red;
                 }
                 e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 430, 145, x_bar, 145);
-                Xnotelocation = x_bar - 450; // De x-coördinaat van het einde van de maat
                 if (fullBar == 4)
                 {
                     e.Graphics.DrawLine(new Pen(Color.WhiteSmoke, 5), 10, 145, 1765, 145);
@@ -149,38 +134,22 @@ namespace VirtualPiano.View
                         int Ynotelocation = note.y;
 
                         //Als de noten te hoog of te heel laag zijn voor de notenbalk, worden er hulplijnen getkent.
-                        if (note.y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 36, Xnotelocation + 70, 36); }
-                        if (note.y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 22, Xnotelocation + 70, 22); }
-                        else if (note.y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 124, Xnotelocation + 70, 124); }
+                        if (note.y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.x + 30, 36, note.x + 70, 36); }
+                        if (note.y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.x + 30, 22, note.x + 70, 22); }
+                        else if (note.y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.x + 30, 124, note.x + 70, 124); }
 
 
-                        e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
-                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, Xnotelocation + 15, Ynotelocation + 40, 30, 40); }
-                        else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, Xnotelocation + 15, Ynotelocation + 40, 30, 40); }
-                        note.SetX(Xnotelocation);
-
-                        // De volgende noot wordt getekent op een afstand afhankelijk van de lengte van deze noot
-                        if (note.name == "WholeNote") Xnotelocation += 400;
-                        else if (note.name == "HalfNote") Xnotelocation += 200; //De volgende noot wordt getekent op een afstand van 200
-                        else if (note.name == "QuarterNote") Xnotelocation += 100;
-                        else if (note.name == "EightNote") Xnotelocation += 50;
-                        else if (note.name == "SixteenthNote") Xnotelocation += 25;
-
+                        e.Graphics.DrawImage(sign.image, note.x, Ynotelocation, 90, 130);
+                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, note.x + 15, Ynotelocation + 40, 30, 40); }
+                        else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, note.x + 15, Ynotelocation + 40, 30, 40); }
                     }
                     else if (sign is Rest rest)
                     {
-                        if (rest.name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 220, 66, 20, 10)); }
-                        else if (rest.name == "HalfRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 115, 71, 20, 10)); }
-                        else if (rest.name == "QuarterRest") e.Graphics.DrawImage(rest.image, Xnotelocation + 60, 50, 50, 61);
-                        else if (rest.name == "EightRest") e.Graphics.DrawImage(rest.image, Xnotelocation + 30, 20, 65, 115);
-                        else if (rest.name == "SixteenthRest") e.Graphics.DrawImage(rest.image, Xnotelocation + 50, 20, 65, 115);
-
-                        // De volgende noot wordt getekent op een afstand afhankelijk van de lengte van deze rust
-                        if (rest.name == "WholeRest") Xnotelocation += 400;
-                        else if (rest.name == "HalfRest") Xnotelocation += 200;
-                        else if (rest.name == "QuarterRest") Xnotelocation += 100;
-                        else if (rest.name == "EightRest") Xnotelocation += 50;
-                        else if (rest.name == "SixteenthRest") Xnotelocation += 25;
+                        if (rest.name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.x + 220, 66, 20, 10)); }
+                        else if (rest.name == "HalfRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.x + 115, 71, 20, 10)); }
+                        else if (rest.name == "QuarterRest") e.Graphics.DrawImage(rest.image, rest.x + 60, 50, 50, 61);
+                        else if (rest.name == "EightRest") e.Graphics.DrawImage(rest.image, rest.x + 30, 20, 65, 115);
+                        else if (rest.name == "SixteenthRest") e.Graphics.DrawImage(rest.image, rest.x + 50, 20, 65, 115);
                     }
                 }
                 x_bar += 430;
@@ -235,6 +204,7 @@ namespace VirtualPiano.View
             //------Preview tonen--------
             int barBegin = 50;
             int barEnd = 475;
+            bool noteSet = false;
 
             foreach (Bar bar in staff.Bars)
             {
@@ -248,13 +218,39 @@ namespace VirtualPiano.View
                         // ------Note-----
                         if (ComposeView.SelectedSign.Contains("Note"))
                         {
-                            string note = ComposeView.SelectedSign;
-                            Note newNote = new Note(PointToClient(Cursor.Position).Y, note, bar.clefName, song.FlatSharp);
-                            if (bar.CheckBarSpace(newNote) && note != null)
+                            string notename = ComposeView.SelectedSign;
+                            Note newNote;
+                            for (int i = 0; i < bar.Signs.Count(); i++)
                             {
-                                bar.Add(newNote);
-                                bar.hasPreview = true;
-                            }  //note toevoegen als er ruimte is
+                                Sign sign = bar.Signs[i];
+
+                                if (sign is Note note)
+                                {
+                                    if (note.IsLocation(PointToClient(Cursor.Position).X))
+                                    {
+                                        newNote = new Note(note.x - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                        newNote.duration = 0;
+                                        if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                        noteSet = true;
+                                        bar.hasPreview = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if(noteSet == false)
+                            {
+                                newNote = new Note(bar.duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                if (bar.CheckBarSpace(newNote) && notename != null)
+                                {
+                                    bar.Add(newNote);
+                                    bar.hasPreview = true;
+                                }
+                            }
+                           
+
+                             //note toevoegen als er ruimte is
+
                         }
                         // -----Rest-----
                         else if (ComposeView.SelectedSign.Contains("Rest"))
@@ -341,6 +337,7 @@ namespace VirtualPiano.View
         {
             int MouseX = PointToClient(Cursor.Position).X;
             int MouseY = PointToClient(Cursor.Position).Y;
+            bool noteSet = false;
 
             //Als er met de linkermuisknop geklikt is
             if (e.Button == MouseButtons.Left)
@@ -376,9 +373,30 @@ namespace VirtualPiano.View
                             // ------Note-----
                             if (ComposeView.SelectedSign.Contains("Note"))
                             {
-                                string note = ComposeView.SelectedSign;
-                                Note newNote = new Note(PointToClient(Cursor.Position).Y, note, bar.clefName, song.FlatSharp);
-                                if (bar.CheckBarSpace(newNote) && note != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                string notename = ComposeView.SelectedSign;
+                                Note newNote;
+                                for(int i = 0; i< bar.Signs.Count(); i++)
+                                {
+                                    Sign sign = bar.Signs[i];
+
+                                    if (sign is Note note)
+                                    {
+                                        if (note.IsLocation(MouseX))
+                                        {
+                                            newNote = new Note(note.x - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                            newNote.duration = 0;
+                                            if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                            noteSet = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if(noteSet == false)
+                                {
+                                    newNote = new Note(bar.duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                    if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                }
+                                
                             }
                             // -----Rest-----
                             else if (ComposeView.SelectedSign.Contains("Rest"))

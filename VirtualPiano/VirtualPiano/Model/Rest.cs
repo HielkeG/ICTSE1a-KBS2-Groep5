@@ -15,14 +15,10 @@ namespace VirtualPiano.Model
     {
 
         public Rest() : base() { }
+
         public Rest(string name)
         {
             this.name = name;
-            SetImage();
-        }
-
-        public override void SetImage()
-        {
             if (name == "WholeRest") { duration = 16; }
             else if (name == "HalfRest") { duration = 8; }
             else if (name == "QuarterRest") { image = Resources.KwartRust; duration = 4; }

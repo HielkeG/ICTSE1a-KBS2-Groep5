@@ -136,7 +136,7 @@ namespace VirtualPiano.Control
             isPlayingSong = false;
             Metronoom.Enabled = false;
             ComposeView.CurrentPlayingStaff = 0;
-            ComposeView.RedLineX = 0;
+            ComposeView.RedLineX = -25;
             rodeLijn.Stop();
         }
 

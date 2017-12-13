@@ -217,7 +217,7 @@ namespace VirtualPiano.View
             RemoveStaffViews();
             CurrentPlayingStaff = 0;
             song = newSong;
-            RedLineX = 0;
+            RedLineX = -25;
             CurrentPage = 1;
             CurrentPageLabel.Text = CurrentPage.ToString();
             foreach (var item in song.GetStaffs())
@@ -576,8 +576,9 @@ namespace VirtualPiano.View
         {
             if (MusicController.isPlayingSong)
             {
-                RedLineX = RedLineX + 4;
+                
                 song.PlayNote();
+                RedLineX = RedLineX + 4;
             }
         }
 

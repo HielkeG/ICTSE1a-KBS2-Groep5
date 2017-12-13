@@ -26,28 +26,10 @@ namespace VirtualPiano.Model
         
         public Note() : base() { }
 
-        public Note(string notename, string tone, int octave) : base()
-        {
-            this.name = notename;
-            this.octave = octave;
-            this.tone = tone;
-            SetImage();
-            
-        }
-
-        public override void SetImage()
-        {
-            if (name == "WholeNote") { image = Resources.helenoot; duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
-            else if (name == "HalfNote") { image = Resources.halvenoot; duration = 8; }
-            else if (name == "QuarterNote") { image = Resources.kwartnoot; duration = 4; }
-            else if (name == "EightNote") { image = Resources.achtstenoot; duration = 2; }
-            else if (name == "SixteenthNote") { image = Resources.zestiendenoot; duration = 1; }
-        }
-
-        public Note(int y, string tempNotename, string clef, int Flatsharp) :base()
+        public Note(int x, int y, string tempNotename, string clef, int Flatsharp) :base()
         {
             name = tempNotename;
-
+            this.x = x + 25;
 
             if (clef == "G")
             {
@@ -105,6 +87,7 @@ namespace VirtualPiano.Model
             else if (name == "SixteenthNote") { if (y <= 52) { image = Resources.zestiendenootflipped; } else { image = Resources.zestiendenoot; } duration = 1; }
         }
 
+
         public void PlaySound()
         {
 
@@ -114,12 +97,12 @@ namespace VirtualPiano.Model
 
         public override bool IsLocation(int MouseX, int MouseY)
         {
-            return (x - 10 < MouseX && x + 10 > MouseX && y - 10 < MouseY - 63 && y + 10 > MouseY - 63);
+            return (x + 35 < MouseX && x + 55 > MouseX && y - 10 < MouseY - 63 && y + 10 > MouseY - 63);
         }
 
-        public void SetX(int x)
+        public bool IsLocation(int MouseX)
         {
-            this.x = x + 50;
+            return (x + 35 < MouseX && x + 55 > MouseX);
         }
 
         public void SetSharp()

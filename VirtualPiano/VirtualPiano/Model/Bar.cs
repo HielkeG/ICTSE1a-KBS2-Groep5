@@ -27,7 +27,8 @@ namespace VirtualPiano.Model
         public string TimeSignatureName { get; set; }
         public int duration { get; set; } = 0;
         public bool hasChanged;
-        internal bool hasPreview = false;
+        public bool hasPreview = false;
+        public int length = 430;
 
         public Bar()
         {
@@ -61,11 +62,7 @@ namespace VirtualPiano.Model
                 Signs.RemoveAt(Signs.Count() - 1);
                 hasPreview = false;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            
+            catch (Exception) { }
         }
 
         public void RemoveSign(Sign sign)
@@ -89,8 +86,6 @@ namespace VirtualPiano.Model
                 }
             }
         }
-
-
 
         public void AddPreviewClef(string PreviewClef)
         {
