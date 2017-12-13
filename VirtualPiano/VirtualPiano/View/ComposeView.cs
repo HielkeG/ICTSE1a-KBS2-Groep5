@@ -168,7 +168,7 @@ namespace VirtualPiano.View
         {
             foreach (Staff staff in song.GetStaffs())
             {
-                staff.y = y_staff;
+                staff.Y = y_staff;
                 staff.Order = staffViews.Count() + 1;
                 AddStaffView(staff);
                 if (staff == song.GetStaffs().First())
@@ -258,17 +258,17 @@ namespace VirtualPiano.View
             if (CurrentPage * 3 - 2 == staffViewsPanels.Count)
             {
                 Staff newStaff = new Staff();
-                newStaff.y = y_staff;
+                newStaff.Y = y_staff;
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Location = new Point(977, newStaff.y + 160);
+                btnAddStaff.Location = new Point(977, newStaff.Y + 160);
             }
             else if(CurrentPage * 3 - 1 == staffViewsPanels.Count)
             {
                 Staff newStaff = new Staff();
-                newStaff.y = y_staff;
+                newStaff.Y = y_staff;
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
@@ -277,7 +277,7 @@ namespace VirtualPiano.View
             } else if (y_staff == 140)
             {
                 Staff newStaff = new Staff();
-                newStaff.y = y_staff;
+                newStaff.Y = y_staff;
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);

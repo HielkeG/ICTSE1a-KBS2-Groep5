@@ -134,53 +134,53 @@ namespace VirtualPiano.View
 
                         if (note.ConnectionNote != null)     //noten die aan elkaar zitten tekenen
                         {
-                            if (note.name == "EightNote")
+                            if (note.Name == "EightNote")
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.X + 8, note.Y + 15, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 15);
                             }
                             else
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.x + 8, note.y + 15, note.ConnectionNote.x + 10, note.ConnectionNote.y + 15);
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.x + 8, note.y + 23, note.ConnectionNote.x + 10, note.ConnectionNote.y + 23);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 8, note.Y + 15, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 15);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 8, note.Y + 23, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 23);
                             }
 
                         }
 
-                        int Ynotelocation = note.y;
+                        int Ynotelocation = note.Y;
 
                         //Als de noten te hoog of te heel laag zijn voor de notenbalk, worden er hulplijnen getkent.
-                        if (note.y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 36, Xnotelocation + 70, 36); }
-                        if (note.y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 22, Xnotelocation + 70, 22); }
-                        else if (note.y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 124, Xnotelocation + 70, 124); }
+                        if (note.Y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 36, Xnotelocation + 70, 36); }
+                        if (note.Y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 22, Xnotelocation + 70, 22); }
+                        else if (note.Y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 124, Xnotelocation + 70, 124); }
 
 
-                        e.Graphics.DrawImage(sign.image, Xnotelocation, Ynotelocation, 90, 130);
+                        e.Graphics.DrawImage(sign.Image, Xnotelocation, Ynotelocation, 90, 130);
                         if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, Xnotelocation + 15, Ynotelocation + 40, 30, 40); }
                         else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, Xnotelocation + 15, Ynotelocation + 40, 30, 40); }
                         note.SetX(Xnotelocation);
 
                         // De volgende noot wordt getekent op een afstand afhankelijk van de lengte van deze noot
-                        if (note.name == "WholeNote") Xnotelocation += 400;
-                        else if (note.name == "HalfNote") Xnotelocation += 200; //De volgende noot wordt getekent op een afstand van 200
-                        else if (note.name == "QuarterNote") Xnotelocation += 100;
-                        else if (note.name == "EightNote") Xnotelocation += 50;
-                        else if (note.name == "SixteenthNote") Xnotelocation += 25;
+                        if (note.Name == "WholeNote") Xnotelocation += 400;
+                        else if (note.Name == "HalfNote") Xnotelocation += 200; //De volgende noot wordt getekent op een afstand van 200
+                        else if (note.Name == "QuarterNote") Xnotelocation += 100;
+                        else if (note.Name == "EightNote") Xnotelocation += 50;
+                        else if (note.Name == "SixteenthNote") Xnotelocation += 25;
 
                     }
                     else if (sign is Rest rest)
                     {
-                        if (rest.name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 220, 66, 20, 10)); }
-                        else if (rest.name == "HalfRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 115, 71, 20, 10)); }
-                        else if (rest.name == "QuarterRest") e.Graphics.DrawImage(rest.image, Xnotelocation + 60, 50, 50, 61);
-                        else if (rest.name == "EightRest") e.Graphics.DrawImage(rest.image, Xnotelocation + 30, 20, 65, 115);
-                        else if (rest.name == "SixteenthRest") e.Graphics.DrawImage(rest.image, Xnotelocation + 50, 20, 65, 115);
+                        if (rest.Name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 220, 66, 20, 10)); }
+                        else if (rest.Name == "HalfRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 115, 71, 20, 10)); }
+                        else if (rest.Name == "QuarterRest") e.Graphics.DrawImage(rest.Image, Xnotelocation + 60, 50, 50, 61);
+                        else if (rest.Name == "EightRest") e.Graphics.DrawImage(rest.Image, Xnotelocation + 30, 20, 65, 115);
+                        else if (rest.Name == "SixteenthRest") e.Graphics.DrawImage(rest.Image, Xnotelocation + 50, 20, 65, 115);
 
                         // De volgende noot wordt getekent op een afstand afhankelijk van de lengte van deze rust
-                        if (rest.name == "WholeRest") Xnotelocation += 400;
-                        else if (rest.name == "HalfRest") Xnotelocation += 200;
-                        else if (rest.name == "QuarterRest") Xnotelocation += 100;
-                        else if (rest.name == "EightRest") Xnotelocation += 50;
-                        else if (rest.name == "SixteenthRest") Xnotelocation += 25;
+                        if (rest.Name == "WholeRest") Xnotelocation += 400;
+                        else if (rest.Name == "HalfRest") Xnotelocation += 200;
+                        else if (rest.Name == "QuarterRest") Xnotelocation += 100;
+                        else if (rest.Name == "EightRest") Xnotelocation += 50;
+                        else if (rest.Name == "SixteenthRest") Xnotelocation += 25;
                     }
                 }
                 x_bar += 430;
@@ -191,11 +191,11 @@ namespace VirtualPiano.View
         {
             if (ComposeView.draggingSign != null)
             {
-                if (ComposeView.draggingSign.name == "WholeNote") ComposeView.draggingSign.image = Resources.helenoot;
-                else if (ComposeView.draggingSign.name == "HalfNote") ComposeView.draggingSign.image = Resources.halvenoot;
-                else if (ComposeView.draggingSign.name == "QuarterNote") ComposeView.draggingSign.image = Resources.kwartnoot;
-                else if (ComposeView.draggingSign.name == "EightNote") ComposeView.draggingSign.image = Resources.achtstenoot;
-                else if (ComposeView.draggingSign.name == "SixteenthNote") ComposeView.draggingSign.image = Resources.zestiendenoot;
+                if (ComposeView.draggingSign.Name == "WholeNote") ComposeView.draggingSign.Image = Resources.helenoot;
+                else if (ComposeView.draggingSign.Name == "HalfNote") ComposeView.draggingSign.Image = Resources.halvenoot;
+                else if (ComposeView.draggingSign.Name == "QuarterNote") ComposeView.draggingSign.Image = Resources.kwartnoot;
+                else if (ComposeView.draggingSign.Name == "EightNote") ComposeView.draggingSign.Image = Resources.achtstenoot;
+                else if (ComposeView.draggingSign.Name == "SixteenthNote") ComposeView.draggingSign.Image = Resources.zestiendenoot;
             }
             ComposeView.cursorIsDown = false;
             if (ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
@@ -313,10 +313,10 @@ namespace VirtualPiano.View
                             if (sign is Note note)
                             {
                                 note.PlaySound();
-                                ComposeView.pkv1.KeyPressed(note.octave, note.tone);
+                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                             }
 
@@ -325,9 +325,9 @@ namespace VirtualPiano.View
                             if (ComposeView.cursorIsDown == true)
                             {
                                 //De cursor veranderd in de aangeklikte noot
-                                Cursor = CursorController.ChangeCursor(sign.name);
-                                ComposeView.SelectedSign = sign.name;
-                                sign.image = Resources.blank;
+                                Cursor = CursorController.ChangeCursor(sign.Name);
+                                ComposeView.SelectedSign = sign.Name;
+                                sign.Image = Resources.blank;
                                 ComposeView.draggingSign = sign;
                                 Invalidate();
                             }
@@ -442,7 +442,7 @@ namespace VirtualPiano.View
                                                 int index1 = bar.Signs.IndexOf(ComposeView.selectedNote1);
                                                 int index2 = bar.Signs.IndexOf(note);
 
-                                                if ((index1 - index2 == 1 || index1 - index2 == -1) && note.name == ComposeView.selectedNote1.name)
+                                                if ((index1 - index2 == 1 || index1 - index2 == -1) && note.Name == ComposeView.selectedNote1.Name)
                                                 {
                                                     ComposeView.selectedNote2 = note;
                                                     //Noten met elkaar verbinden
@@ -493,7 +493,7 @@ namespace VirtualPiano.View
                                                 }
                                             
                                         }
-                                        ComposeView.pkv1.KeyReleased(note.octave, note.tone);
+                                        ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                         ComposeView.pkv1.Invalidate();
                                     }
                                 }
