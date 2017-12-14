@@ -439,11 +439,11 @@ namespace VirtualPiano.View
             // 
             // MetronoomLabel
             // 
-            this.MetronoomLabel.Font = new System.Drawing.Font("MS Office Symbol Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MetronoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MetronoomLabel.ForeColor = System.Drawing.Color.Black;
-            this.MetronoomLabel.Location = new System.Drawing.Point(1604, 56);
+            this.MetronoomLabel.Location = new System.Drawing.Point(1582, 56);
             this.MetronoomLabel.Name = "MetronoomLabel";
-            this.MetronoomLabel.Size = new System.Drawing.Size(85, 23);
+            this.MetronoomLabel.Size = new System.Drawing.Size(107, 23);
             this.MetronoomLabel.TabIndex = 3;
             this.MetronoomLabel.Text = "Metronoom:";
             // 
@@ -461,9 +461,9 @@ namespace VirtualPiano.View
             // 
             this.CurrentPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CurrentPageLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.CurrentPageLabel.Location = new System.Drawing.Point(1763, 946);
+            this.CurrentPageLabel.Location = new System.Drawing.Point(1765, 955);
             this.CurrentPageLabel.Name = "CurrentPageLabel";
-            this.CurrentPageLabel.Size = new System.Drawing.Size(106, 68);
+            this.CurrentPageLabel.Size = new System.Drawing.Size(106, 58);
             this.CurrentPageLabel.TabIndex = 5;
             this.CurrentPageLabel.Text = "1";
             // 

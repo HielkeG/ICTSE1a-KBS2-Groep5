@@ -365,8 +365,6 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Cursors\Connect1.cur" />
     <None Include="Resources\Afbeeldingen\Cursors\Connect2.cur" />
-    <None Include="Resources\Afbeeldingen\Cursors\HandOpen.cur" />
-    <None Include="Resources\Afbeeldingen\Cursors\defaultcursor.cur" />
     <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\piano.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
@@ -376,6 +374,12 @@
     <None Include="Resources\Afbeeldingen\Knoppen\nextPage.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on1.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on2.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on11.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on21.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_off1.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_off2.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
