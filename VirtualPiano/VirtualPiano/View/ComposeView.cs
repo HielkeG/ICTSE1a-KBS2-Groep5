@@ -58,6 +58,7 @@ namespace VirtualPiano.View
             Songtimer.Interval = 5;
             Songtimer.Elapsed += TimerTick;
 
+            AddStaffButton();
             setPageButtons();
 
 
@@ -90,7 +91,7 @@ namespace VirtualPiano.View
             Controls.Add(MusicController.rewindBtn);
             Controls.Add(MusicController.playBtn);
             Controls.Add(MusicController.stopBtn);
-            Controls.Add(MusicController.metronomeBtn);
+            Controls.Add(MusicController.metronomeBtn);;
             //voeg hover, enter, leave effecten toe op de muziekknoppen
             PianoKeysController.pianoKeysBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             PianoKeysController.pianoKeysBtn.MouseHover += new EventHandler(AllButtons_Hover);
@@ -177,7 +178,7 @@ namespace VirtualPiano.View
                 }
                 if (staff == song.GetStaffs().Last())
                 {
-                    AddStaffButton();
+                  
                 }
                 y_staff += 200;
             }
@@ -209,6 +210,9 @@ namespace VirtualPiano.View
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
             CurrentPage = 1;
+            btnAddStaff.Visible = true;
+            btnAddStaff.Location = new Point(btnAddStaff.Location.X, y_staff - 40);
+            Invalidate();
         }
 
         public void SetLoadedSong(Song newSong) // nummer laden uit database
@@ -220,6 +224,7 @@ namespace VirtualPiano.View
             RedLineX = -60;
             CurrentPage = 1;
             CurrentPageLabel.Text = CurrentPage.ToString();
+            btnAddStaff.Visible = true;
             foreach (var item in song.GetStaffs())
             {
                 if ((song.GetStaffs().IndexOf(item) + 1) % 3 == 1)
@@ -233,7 +238,13 @@ namespace VirtualPiano.View
                 }
                 if (item == song.GetStaffs().Last()&&staffViews.Count<=2)
                 {
-                    AddStaffButton();
+                    btnAddStaff.Visible = true;
+                    btnAddStaff.Location = new Point(btnAddStaff.Location.X, y_staff + 160);
+                    Console.WriteLine(btnAddStaff.Location);
+                }
+                else
+                {
+                    btnAddStaff.Visible = false;
                 }
                 y_staff += 200;
                 

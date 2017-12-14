@@ -270,7 +270,7 @@ namespace VirtualPiano.View
                         {
                             string rest = ComposeView.SelectedSign;
 
-                            Rest newRest = new Rest(rest);
+                            Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)));
                             if (bar.CheckBarSpace(newRest) && rest != null)
                             {
                                 bar.Add(newRest);
@@ -415,7 +415,7 @@ namespace VirtualPiano.View
                             else if (ComposeView.SelectedSign.Contains("Rest"))
                             {
                                 string rest = ComposeView.SelectedSign;
-                                Rest newRest = new Rest(rest);
+                                Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)));
                                 if (bar.CheckBarSpace(newRest) && rest != null) bar.Add(newRest);  //rest toevoegen als er ruimte is
                             }
                             // -----Clef----
