@@ -245,7 +245,6 @@ namespace VirtualPiano.View
                 {
                     btnAddStaff.Visible = true;
                     btnAddStaff.Location = new Point(btnAddStaff.Location.X, y_staff + 160);
-                    Console.WriteLine(btnAddStaff.Location);
                 }
                 else
                 {
@@ -345,13 +344,9 @@ namespace VirtualPiano.View
 
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
-            //deze code is voor alle mousedown events hetzelfde.
-            //boolean om aan te geven dat een noot geslepen wordt.
-            signSelected = true;
-            //de bijbehorende naam van de noot.
-            SelectedSign = "WholeNote";
-            //de cursor veranderen naar de gewenste afbeelding.
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            signSelected = true;                                    //boolean om aan te geven dat een noot geslepen wordt.
+            SelectedSign = "WholeNote";                             //de bijbehorende naam van de noot.       
+            Cursor = CursorController.ChangeCursor(SelectedSign);   //de cursor veranderen naar de gewenste afbeelding.
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
@@ -387,7 +382,6 @@ namespace VirtualPiano.View
             signSelected = true;
             SelectedSign = "WholeRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
-
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
@@ -395,7 +389,6 @@ namespace VirtualPiano.View
             signSelected = true;
             SelectedSign = "HalfRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
-
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
@@ -450,7 +443,6 @@ namespace VirtualPiano.View
 
         private void Connect_Click(object sender, EventArgs e)
         {
-
             SelectedSign = "Connect1";
             signSelected = true;
             Cursor = CursorController.ChangeCursor(SelectedSign);
@@ -473,7 +465,6 @@ namespace VirtualPiano.View
             if(selectedNote1 != null || SelectedSign == "Connect2")
             {
                 selectedNote1 = null;
-                
             }
         }
 
@@ -524,8 +515,8 @@ namespace VirtualPiano.View
 
         }
 
-        //methode die alle staffviews invalidate. Zodat de rode lijn beweegt.
-        private void RedLine_Tick(object sender, EventArgs e)
+       
+        private void RedLine_Tick(object sender, EventArgs e)    //methode die alle staffviews invalidate. Zodat de rode lijn beweegt.
         {
             if (MusicController.isPlayingSong)
             {
@@ -662,8 +653,6 @@ namespace VirtualPiano.View
         {
             if (signSelected == false)
             {
-
-
                 for (int staff = 0; staff < song.Staffs.Count(); staff++)
                 {
                     for (int bar = 0; bar < song.Staffs[staff].Bars.Count(); bar++)
@@ -697,8 +686,7 @@ namespace VirtualPiano.View
 
         private void TitelBox_Enter(object sender, EventArgs e)
         {
-            //wanneer de gebruiker een titel typt wordt het geluid uitgezet. Zodat de gebruiker niet ongewild geluid maakt.
-            PlayingKeyboard = false;
+            PlayingKeyboard = false;    //wanneer de gebruiker een titel typt wordt het geluid uitgezet. Zodat de gebruiker niet ongewild geluid maakt.
         }
 
         private void TitelBox_Leave(object sender, EventArgs e)
@@ -744,6 +732,8 @@ namespace VirtualPiano.View
         {
             //geluid op channel3 met woodblock instrument
             MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
+            if (MusicController.metronomeBtn.Image == MusicController.metronomeOn1) MusicController.metronomeBtn.Image = MusicController.metronomeOn2;
+            else MusicController.metronomeBtn.Image = MusicController.metronomeOn1;
         }
 
         // Volgende pagina
@@ -775,6 +765,11 @@ namespace VirtualPiano.View
                 //Hudige pagina wordt verhoogt
                 CurrentPage++;
                 CurrentPageLabel.Text = CurrentPage.ToString();
+                if (CurrentPage == 10)
+                {
+                    CurrentPageLabel.Location = new Point(1735, 955);
+                    previousPage.Location = new Point(1690, 957);
+                }
                 //Alle staffviews van de huidige pagina worden getoond
                 foreach (Panel panel in staffViewsPanels)
                 {
@@ -806,6 +801,12 @@ namespace VirtualPiano.View
                 //Huidige pagina verlagen
                 CurrentPage--;
                 CurrentPageLabel.Text = CurrentPage.ToString();
+
+                if (CurrentPage == 9)
+                {
+                    CurrentPageLabel.Location = new Point(1765, 955);
+                    previousPage.Location = new Point(1720, 957);
+                }
 
                 //Alle staffviews van de huidige pagina worden getoond
                 foreach (Panel panel in staffViewsPanels)

@@ -583,6 +583,15 @@ namespace VirtualPiano.View
             await Task.Delay(delay);
         }
 
+        private void StaffView_MouseLeave(object sender, EventArgs e)
+        {
+            foreach(Bar bar in staff.Bars)
+            {
+               if(bar.hasPreview) bar.RemovePreview();
+                Invalidate();
+            }
+            
+        }
     }
 
 }
