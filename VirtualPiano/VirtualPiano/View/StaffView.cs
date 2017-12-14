@@ -80,13 +80,14 @@ namespace VirtualPiano.View
             string latestClef = "";
             foreach (Bar bar in staff.Bars) // Elke bar in de notenbalk wordt langsgegaan
             {
-                //Sleutels tekenen
+                // -----Sleutels tekenen------
                 if (staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen en kruizen/mollen tekenen
                 {
                     //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
                     if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 470, 26, 60, 110); latestClef = "G"; }
                     else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 483, -19, 88, 185); latestClef = "F"; }
 
+                    //-----Kruizen / Mollen --------
                     //Hieronder worden de kruizen en de mollen getekent. afhankelijk van het aantal
                     if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 420, 30, 30, 40); }
                     if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 405, 53, 30, 40); }
@@ -102,10 +103,12 @@ namespace VirtualPiano.View
                 }
                 else
                 {
+                    //----Sleutels----
                     if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 470, 43, 40, 83); latestClef = "G"; }
                     else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 493, -5, 77, 155); latestClef = "F"; }
                 }
 
+                //--- Maatstrepen-----
                 e.Graphics.DrawLine(new Pen(Color.Black), x_bar, 50, x_bar, 110); //per maat verticale lijn tekenen
                 if (bar.Duration == 16)
                 {
@@ -126,20 +129,20 @@ namespace VirtualPiano.View
                 // Hier worden de noten en rusten getekent
                 foreach (Sign sign in bar.Signs)
                 {
-                    //Noten
+                    //------Noten------
                     if (sign is Note note)
                     {
-
+                        //----Verbindingslijn-----
                         if (note.ConnectionNote != null)     //noten die aan elkaar zitten tekenen
                         {
                             if (note.Name == "EightNote")
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.X + 8, note.Y + 15, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 15);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
                             }
                             else
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 8, note.Y + 15, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 15);
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 8, note.Y + 23, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 23);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
+                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 58, note.Y + 23, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 23);
                             }
 
                         }
