@@ -21,7 +21,8 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         public static Button previousPage = new Button();
         public static Button nextPage = new Button();
-
+        private ToolTip PreviousTip = new ToolTip();
+        private ToolTip NextTip = new ToolTip();
         int y_staff = 140;
         public static bool ConnectSelected = false;
         public static Note selectedNote1;
@@ -55,6 +56,10 @@ namespace VirtualPiano.View
 
         public ComposeView()
         {
+            NextTip.InitialDelay = 0;
+
+            PreviousTip.InitialDelay = 0;
+
             Songtimer.Interval = 5;
             Songtimer.Elapsed += TimerTick;
 
@@ -769,6 +774,10 @@ namespace VirtualPiano.View
                     }
                 }
             }
+            else
+            {
+                NextTip.Show("Er staan nog geen drie notenbalken op deze pagina.", nextPage, 4000);
+            }
         }
 
         //Vorige pagina
@@ -795,6 +804,10 @@ namespace VirtualPiano.View
                         panel.Visible = true;
                     }
                 }
+            }
+            else
+            {
+                PreviousTip.Show("Kan niet naar de vorige pagina gaan.", previousPage, 4000);
             }
         }
 
