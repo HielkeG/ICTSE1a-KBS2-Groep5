@@ -201,7 +201,7 @@ namespace VirtualPiano.View
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
             //Standaard cursor zetten voor noten en rusten
-            if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F" || ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+            if (ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
             else { SetDefaultCursor(); }
 
             if (ComposeView.SelectedSign == "Connect1")
