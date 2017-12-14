@@ -60,7 +60,7 @@ namespace VirtualPiano.Model
                 else if (ComposeView.instrument == "Guitar")
                 {
                     //instrument veranderen naar gitaar
-                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Banjo);
                 }
                 else if (ComposeView.instrument == "Marimba")
                 {
@@ -108,7 +108,7 @@ namespace VirtualPiano.Model
                     Duration = Duration + bar.Duration;
                 }
             }
-            return Duration; // 1 maat is 16
+            return Duration; // 1 volle maat is 16
         }
 
 
@@ -124,11 +124,15 @@ namespace VirtualPiano.Model
                     {
                         foreach (Sign sign in bar.Signs)
                         {
+                            //Als de rode lijn een noot raakt
                             if (sign is Note note && note.X>= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
+                                //Pianotoets oplichten
                                 keyNotes.Add(note);
                                 ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
+
+                                //Noot afspelen
                                 string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
                                 Enum.TryParse(pitchTemp, out Pitch pitch);
                                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
@@ -139,6 +143,7 @@ namespace VirtualPiano.Model
                     await PutTaskDelay(200);
                     foreach(Note note in keyNotes)
                     {
+                        //Pianotoetsen niet meer oplichten
                         ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                         ComposeView.pkv1.Invalidate();
                     }
@@ -158,18 +163,19 @@ namespace VirtualPiano.Model
                         {
                             if (note.flat == false && note.sharp == false)
                             {
+                                //Alle tonen naar de stamtoon zetten
                                 if (note.Tone == "Fis") { note.Tone = "F"; }
-                                if (note.Tone == "Cis") { note.Tone = "C"; }
-                                if (note.Tone == "Gis") { note.Tone = "G"; }
-                                if (note.Tone == "Dis") { note.Tone = "D"; }
-                                if (note.Tone == "Ais") { note.Tone = "A"; }
-                                if (note.Tone == "Bes") { note.Tone = "B"; }
-                                if (note.Tone == "Es") { note.Tone = "E"; }
-                                if (note.Tone == "As") { note.Tone = "A"; }
-                                if (note.Tone == "Des") { note.Tone = "D"; }
-                                if (note.Tone == "Ges") { note.Tone = "G"; }
+                                else if (note.Tone == "Cis") { note.Tone = "C"; }
+                                else if (note.Tone == "Gis") { note.Tone = "G"; }
+                                else if (note.Tone == "Dis") { note.Tone = "D"; }
+                                else if (note.Tone == "Ais") { note.Tone = "A"; }
+                                else if (note.Tone == "Bes") { note.Tone = "B"; }
+                                else if (note.Tone == "Es") { note.Tone = "E"; }
+                                else if (note.Tone == "As") { note.Tone = "A"; }
+                                else if (note.Tone == "Des") { note.Tone = "D"; }
+                                else if (note.Tone == "Ges") { note.Tone = "G"; }
 
-
+                                //Afhankelijk van het aantal kruizen/mollen de toon verhogen
                                 if (Flatsharp >= 1) { if (note.Tone == "F") { note.Tone = "Fis"; } }
                                 if (Flatsharp >= 2) { if (note.Tone == "C") { note.Tone = "Cis"; } }
                                 if (Flatsharp >= 3) { if (note.Tone == "G") { note.Tone = "Gis"; } }
@@ -188,6 +194,7 @@ namespace VirtualPiano.Model
             }
         }
 
+        //Deze methode zorgt voor een wachttijd tijdens een methode, de rest van de applicatie gaat wel gewoon door
         async Task PutTaskDelay(int delay)
         {
             await Task.Delay(delay);

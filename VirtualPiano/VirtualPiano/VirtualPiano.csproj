@@ -105,6 +105,14 @@
     <Compile Include="Migrations\201712131155362_sd.Designer.cs">
       <DependentUpon>201712131155362_sd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712141151139_df.cs" />
+    <Compile Include="Migrations\201712141151139_df.Designer.cs">
+      <DependentUpon>201712141151139_df.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141154092_hdsjds.cs" />
+    <Compile Include="Migrations\201712141154092_hdsjds.Designer.cs">
+      <DependentUpon>201712141154092_hdsjds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -199,6 +207,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712131155362_sd.resx">
       <DependentUpon>201712131155362_sd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141151139_df.resx">
+      <DependentUpon>201712141151139_df.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141154092_hdsjds.resx">
+      <DependentUpon>201712141154092_hdsjds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
