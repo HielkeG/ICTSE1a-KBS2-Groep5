@@ -55,6 +55,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\BitmapController.cs" />
     <Compile Include="Control\Context.cs" />
     <Compile Include="Control\CursorController.cs" />
     <Compile Include="Control\KeyBinds.cs" />

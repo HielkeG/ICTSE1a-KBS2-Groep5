@@ -28,6 +28,7 @@ namespace VirtualPiano.Model
         public int Duration { get; set; } = 0;
         public bool hasChanged;
         public bool hasPreview = false;
+        public string lastClef;
         public int length = 430;
 
         public Bar()
@@ -54,15 +55,26 @@ namespace VirtualPiano.Model
             Duration = 0;
         }
 
-        public void RemovePreview()
+        public void RemovePreview(string sign)
         {
-            try
+            if (sign.Contains("G") || sign.Contains("F"))
             {
-                Duration = Duration - Signs.Last().Duration;
-                Signs.RemoveAt(Signs.Count() - 1);
-                hasPreview = false;
+                clefName = lastClef;
+                foreach(Sign sign2 in Signs)
+                {
+                    sign2.SetImage();
+                }
             }
-            catch (Exception) { }
+            else
+            {
+                try
+                {
+                    Duration = Duration - Signs.Last().Duration;
+                    Signs.RemoveAt(Signs.Count() - 1);
+                }
+                catch (Exception) { }
+            }
+            hasPreview = false;
         }
 
         public void RemoveSign(Sign sign)
@@ -85,11 +97,6 @@ namespace VirtualPiano.Model
 
                 }
             }
-        }
-
-        public void AddPreviewClef(string PreviewClef)
-        {
-            clefName = PreviewClef;
         }
     }
 }
