@@ -188,5 +188,21 @@ namespace TestProject
             Assert.AreEqual(note.Tone, verwachting);
         }
 
+        [TestMethod]
+        public void RemoveSignFromBar()
+        {
+            //arrange
+            Bar bar = new Bar();
+            Note note = new Note(-12, 32, "QuarterNote", "G", 5);
+            bar.Add(note);
+            bar.RemoveSign(note);
+
+            //act
+            int verwachting = 0;
+
+            //assert
+            Assert.AreEqual(bar.Signs.Count(), verwachting);
+        }
+
     }
 }
