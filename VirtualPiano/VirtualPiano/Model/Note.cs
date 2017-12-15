@@ -88,9 +88,18 @@ namespace VirtualPiano.Model
 
         public void PlaySound()
         {
+            string pitchName = Tone.ToString() + Octave.ToString();
+            if (pitchName.Length == 4)
+            {
+                Enum.TryParse(Tone.First().ToString() + "Sharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else
+            {
+                Enum.TryParse(pitchName, out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
 
-            Enum.TryParse(Tone.ToString()+Octave, out Pitch pitch);
-            MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
         }
 
         public override bool IsLocation(int MouseX, int MouseY)
