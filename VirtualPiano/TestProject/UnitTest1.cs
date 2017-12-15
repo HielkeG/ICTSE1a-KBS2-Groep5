@@ -133,12 +133,57 @@ namespace TestProject
         {
             //arrange
             Note note = new Note(20, 35, "QuarterNote", "C", 2);
+            note.flip();
 
             //act
             bool verwachting = true;
 
             //assert
             Assert.AreEqual(note.flipped, verwachting);
+        }
+
+
+        [TestMethod]
+        public void NoteUnFlip_WhenNoteisFlipped()
+        {
+            //arrange
+            Note note = new Note(-12, -35, "QuarterNote", "C", 2);
+            note.unflip();
+
+            //act
+            bool verwachting = false;
+
+            //assert
+            Assert.AreEqual(note.flipped, verwachting);
+        }
+
+        [TestMethod]
+        public void SetSharpWhenNoteisA()
+        {
+            //arrange
+            Note note = new Note(-12, 32, "QuarterNote", "G", 5);
+            note.SetSharp();
+
+            //act
+            string verwachting = "Ais";
+
+            //assert
+            Assert.AreEqual(note.Tone, verwachting);
+        }
+
+        [TestMethod]
+        public void SetFlatWhenNoteisAis()
+        {
+            //arrange
+            Note note = new Note(-12, 32, "QuarterNote", "G", 5);
+            note.SetSharp();
+            note.SetFlat();
+
+            //act
+            string verwachting = "As";
+
+            //assert
+            Assert.AreEqual(note.Tone, verwachting);
         }
 
     }
