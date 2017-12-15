@@ -711,7 +711,7 @@ namespace VirtualPiano.View
             { 
 
                 //als de snelheid tussen 0 en 500 ligt wordt het aangepast.
-                if (speed < 500 && speed>0)
+                if (speed <= 60000 && speed>0)
                 {
                     MusicController.setMetronoom(speed);
                     metroTip.RemoveAll();
@@ -719,7 +719,7 @@ namespace VirtualPiano.View
                 else
                 {
                     //ander wordt de tooltip laten zien.
-                    metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", MetronomeSpeed);
+                    metroTip.Show("Snelheid moet tussen 0 en 60000 liggen.", MetronomeSpeed);
                 }
             }
             else
