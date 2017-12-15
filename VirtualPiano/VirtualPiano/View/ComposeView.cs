@@ -27,7 +27,6 @@ namespace VirtualPiano.View
         public static bool ConnectSelected = false;
         public static Note selectedNote1;
         public static Note selectedNote2;
-        public static bool signSelected;
         public static string SelectedSign = "";
         public static bool cursorIsDown;
         private List<StaffView> staffViews = new List<StaffView>();
@@ -344,107 +343,91 @@ namespace VirtualPiano.View
 
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;                                    //boolean om aan te geven dat een noot geslepen wordt.
             SelectedSign = "WholeNote";                             //de bijbehorende naam van de noot.       
             Cursor = CursorController.ChangeCursor(SelectedSign);   //de cursor veranderen naar de gewenste afbeelding.
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "HalfNote";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "QuarterNote";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "EightNote";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "SixteenthNote";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void FullRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "WholeRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "HalfRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "QuarterRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void GKey_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "G";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void FKey_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "F";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void EightRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "EightRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void SixteenthRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "SixteenthRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "Sharp";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void Flat_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "Flat";
             Cursor = CursorController.ChangeCursor(SelectedSign);
-            
         }
 
         private void Connect_Click(object sender, EventArgs e)
         {
             SelectedSign = "Connect1";
-            signSelected = true;
             Cursor = CursorController.ChangeCursor(SelectedSign);
             ComposeView.selectedNote1 = null;
             ComposeView.selectedNote2 = null;
@@ -453,12 +436,11 @@ namespace VirtualPiano.View
 
         private void Bin_Click(object sender, EventArgs e)
         {
-            if(signSelected)
+            if(SelectedSign != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                 sound.Play();
                 Cursor = Cursors.Default;
-                signSelected = false;
                 SelectedSign = "";
             }
 
@@ -477,15 +459,8 @@ namespace VirtualPiano.View
 
         private void ComposeView_MouseEnter(object sender, EventArgs e)
         {
-            if (signSelected == false) Cursor = Cursors.Default;
-            if(SelectedSign == "Connect2")
-            {
-                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
-            }
-            if (SelectedSign == "")
-            {
-                Cursor = Cursors.Default;
-            }
+            if (SelectedSign == "") Cursor = Cursors.Default;
+            else if(SelectedSign == "Connect2") Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
         }
 
         public void Draw(PaintEventArgs e) //WIP
@@ -630,14 +605,13 @@ namespace VirtualPiano.View
             {
                 cursorIsDown = false;
                 Cursor = Cursors.Default;
-                signSelected = false;
+                SelectedSign = "";
                 Invalidate();
 
             }
             if (e.Button == MouseButtons.Right)
             {
                 Cursor = Cursors.Default;
-                signSelected = false;
                 SelectedSign = "";
                 ConnectSelected = false;
                 Invalidate();
@@ -651,7 +625,7 @@ namespace VirtualPiano.View
 
         private void Bin_MouseEnter(object sender, EventArgs e)
         {
-            if (signSelected == false)
+            if (SelectedSign == "")
             {
                 for (int staff = 0; staff < song.Staffs.Count(); staff++)
                 {

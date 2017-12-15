@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Data;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Properties;
 using VirtualPiano.Control;
+using VirtualPiano.View;
+using System.Threading;
 
 namespace VirtualPiano.View
 {
@@ -177,12 +183,6 @@ namespace VirtualPiano.View
                 else if (ComposeView.draggingSign.Name == "SixteenthNote") ComposeView.draggingSign.Image = Resources.zestiendenoot;
             }
             ComposeView.cursorIsDown = false;
-            if (ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
-            {
-                SetDefaultCursor();
-                ComposeView.SelectedSign = "";
-            }
-
         }
 
         //methode die de cursor op default zet en alle booleans op null zet.
@@ -219,7 +219,7 @@ namespace VirtualPiano.View
             foreach (Bar bar in staff.Bars)
             {
 
-                if (ComposeView.signSelected)
+                if (ComposeView.SelectedSign != "")
                 {
                     if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
                     {
@@ -300,7 +300,6 @@ namespace VirtualPiano.View
                 barBegin += 430;
                 barEnd += 430;
             }
-
             Invalidate();
             Update();
 
@@ -318,7 +317,7 @@ namespace VirtualPiano.View
 
             ComposeView.cursorIsDown = true;
             //Wanneer geen teken geselcteerds is en wanneer de linkermuisknop ingedrukt is
-            if (ComposeView.signSelected == false && e.Button == MouseButtons.Left)
+            if (ComposeView.SelectedSign == "" && e.Button == MouseButtons.Left)
             {
                 foreach (Bar bar in staff.Bars)
                 {
@@ -367,7 +366,7 @@ namespace VirtualPiano.View
             if (e.Button == MouseButtons.Left)
             {
                 //Als er een teken geselecteerd is
-                if (ComposeView.signSelected)
+                if (ComposeView.SelectedSign != "")
                 {
                     int barBegin = 45;
                     int barEnd = 475;
@@ -460,6 +459,7 @@ namespace VirtualPiano.View
                                             else
                                             {
                                                 ComposeView.SelectedSign = "";
+                                                Console.WriteLine("SELECTEDSIGN IS NIETS");
                                                 ConnectError.Active = true;
                                                 ConnectError.Show("Deze noot kan niet verbonden worden", this);
                                                 await PutTaskDelay(2000);
@@ -481,6 +481,7 @@ namespace VirtualPiano.View
                                                     ComposeView.selectedNote2 = note;
                                                     //Noten met elkaar verbinden
                                                     ComposeView.selectedNote1.MakeConnection(ComposeView.selectedNote2);
+                                                    ComposeView.SelectedSign = "";
                                                 }
                                                 else
                                                 {
@@ -504,30 +505,16 @@ namespace VirtualPiano.View
                                         }
 
                                         // ----- Sharp / Flat --------
-                                        if (ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat")
-                                        {
-                                            {
-                                                if (ComposeView.SelectedSign == "Sharp")
-                                                {
-                                                    note.SetSharp();
-                                                }
-                                                if (ComposeView.SelectedSign == "Flat")
-                                                {
-                                                    note.SetFlat();
-                                                }
-                                            }
-                                        }
+                                        if (ComposeView.SelectedSign == "Sharp") note.SetSharp();
+                                        else if (ComposeView.SelectedSign == "Flat") note.SetFlat();
+
                                         // ------Bin------
-                                        if (ComposeView.SelectedSign == "Bin")
+                                        if (ComposeView.SelectedSign == "Bin" && note.flat == true || note.sharp == true)
                                         {
-
-                                            if (note.flat == true || note.sharp == true)
-                                            {
-                                                note.flat = false;
-                                                note.sharp = false;
-                                            }
-
+                                            note.flat = false;
+                                            note.sharp = false;
                                         }
+
                                         ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                         ComposeView.pkv1.Invalidate();
                                     }
@@ -546,7 +533,7 @@ namespace VirtualPiano.View
                 int barEnd = 475;
 
                 //Als er geen teken geselecteerd is
-                if (!ComposeView.signSelected)
+                if (ComposeView.SelectedSign == "")
                 {
                     foreach (Bar bar in staff.Bars)
                     {
@@ -562,18 +549,6 @@ namespace VirtualPiano.View
                         barEnd += 430;
                     }
                 }
-
-                //Als er een teken geselecteerd is, wordt alles op null/false gezet
-                ComposeView.signSelected = false;
-                ComposeView.SelectedSign = "";
-                ComposeView.selectedNote1 = null;
-                ComposeView.selectedNote2 = null;
-            }
-
-            if (ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
-            {
-                ComposeView.signSelected = false;
-                ComposeView.SelectedSign = "";
             }
             Invalidate();
         }

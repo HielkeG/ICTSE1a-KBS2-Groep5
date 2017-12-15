@@ -114,49 +114,52 @@ namespace VirtualPiano.Model
 
         public async void PlayNote()
         {
-            
-            foreach (var staff in Staffs)
+            try
             {
-                if (staff.IsBeingPlayed)
+                foreach (var staff in Staffs)
                 {
-                    List<Note> keyNotes = new List<Note>();
-                    foreach (Bar bar in staff.Bars)
+                    if (staff.IsBeingPlayed)
                     {
-                        foreach (Sign sign in bar.Signs)
+                        List<Note> keyNotes = new List<Note>();
+                        foreach (Bar bar in staff.Bars)
                         {
-                            //Als de rode lijn een noot raakt
-                            if (sign is Note note && note.X>= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
+                            foreach (Sign sign in bar.Signs)
                             {
-                                //Pianotoets oplichten
-                                keyNotes.Add(note);
-                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-
-                                //Noot afspelen
-                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                if (pitchTemp.Length == 4)
+                                //Als de rode lijn een noot raakt
+                                if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                                 {
-                                    Enum.TryParse(note.Tone.First().ToString() + "Sharp" + note.Octave.ToString(),out Pitch pitch);
-                                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                }
-                                else
-                                {
-                                    Enum.TryParse(pitchTemp, out Pitch pitch);
-                                    MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                }
+                                    //Pianotoets oplichten
+                                    keyNotes.Add(note);
+                                    ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
+                                    ComposeView.pkv1.Invalidate();
 
+                                    //Noot afspelen
+                                    string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
+                                    if (pitchTemp.Length == 4)
+                                    {
+                                        Enum.TryParse(note.Tone.First().ToString() + "Sharp" + note.Octave.ToString(), out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+                                    else
+                                    {
+                                        Enum.TryParse(pitchTemp, out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+
+                                }
                             }
                         }
-                    }
-                    await PutTaskDelay(200);
-                    foreach(Note note in keyNotes)
-                    {
-                        //Pianotoetsen niet meer oplichten
-                        ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                        ComposeView.pkv1.Invalidate();
+                        await PutTaskDelay(200);
+                        foreach (Note note in keyNotes)
+                        {
+                            //Pianotoetsen niet meer oplichten
+                            ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
+                            ComposeView.pkv1.Invalidate();
+                        }
                     }
                 }
             }
+            catch (Exception){ }
         }
 
         public void ChangeSharpFlat(int Flatsharp)
