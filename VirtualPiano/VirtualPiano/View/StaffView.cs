@@ -372,7 +372,7 @@ namespace VirtualPiano.View
         {
             int MouseX = PointToClient(Cursor.Position).X;
             int MouseY = PointToClient(Cursor.Position).Y;
-            bool noteSet = false;
+            bool noteSet = false; //Deze boolean wordt op true gezet als er een noot onder een andere noot wordt toegevoegd, zo wordt voorkomen dat er niet 2 noten toegevoegd worden.
 
             //Als er met de linkermuisknop geklikt is
             if (e.Button == MouseButtons.Left)
@@ -405,21 +405,25 @@ namespace VirtualPiano.View
                         //Als de positie van de muis binnen de positie van de maat valt. (bar = maat)
                         if (MouseX < barEnd && MouseX > barBegin)
                         {
-                            // ------Note-----
+                            // ----------Note-----------
                             if (ComposeView.SelectedSign.Contains("Note"))
                             {
                                 string notename = ComposeView.SelectedSign;
                                 Note newNote;
+
+                                // -- Noten onder elkaar -----
                                 for (int i = 0; i < bar.Signs.Count(); i++)
                                 {
                                     Sign sign = bar.Signs[i];
 
                                     if (sign is Note note)
                                     {
+                                        //Als er een noot op dezelfde X-as staat als de X-as van de muisklik
                                         if (note.IsLocation(MouseX))
                                         {
                                             
                                             newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                            //Als de noot op de kop staat, moet ook deze noot op de kop staan
                                             if (note.Y <= 0 || note.flipped == true)
                                             {
                                                 newNote.flip();
@@ -428,16 +432,19 @@ namespace VirtualPiano.View
                                             {
                                                 newNote.unflip();
                                             }
+                                            //Als de noot kleiner of gelijk is aan de noot waarmee het vergelijkt
                                             if (note.Duration >= newNote.Duration)
                                             {
                                                 newNote.Duration = 0;
-                                                if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                                bar.Add(newNote);  //note toevoegen 
                                                 noteSet = true;
                                                 break;
                                             }
                                         }
                                     }
                                 }
+                                //----Normale noot toevoegen -----
+                                //Als er nog geen noot toegevoegd is aan een andere noot
                                 if (noteSet == false)
                                 {
                                     newNote = new Note(bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
