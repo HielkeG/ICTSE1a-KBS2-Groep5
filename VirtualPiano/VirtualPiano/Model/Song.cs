@@ -20,7 +20,7 @@ namespace VirtualPiano.Model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SongId { get; set; }
         public string Composer { get; set; }
-        public int FlatSharp = 0;
+        public int FlatSharp {get; set;}
         private string title = "titel";
         public int Pages { get; set; }
         public string Title
@@ -49,6 +49,7 @@ namespace VirtualPiano.Model
             Staffs = new List<Staff>();
             Staffs.Add(new Staff());
             Pages = 1;
+            FlatSharp = 0;
 
             if (MusicController.isGestart)
             {
