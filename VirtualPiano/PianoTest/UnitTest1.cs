@@ -114,25 +114,26 @@ namespace TestProject
             Assert.AreEqual("Guitar", ComposeView.instrument);
         }
 
-        [TestMethod]
-        public void ChangeMetronomeBPM()
-        {
-            //arrange
-            int bpm = 120;
-            MusicController.setMetronoom(0);
+        //[TestMethod]
+        //public void ChangeMetronomeBPM()
+        //{
+        //    //arrange
+        //    int bpm = 120;
+        //    MusicController.setMetronoom(0);
 
-            //act
-            MusicController.setMetronoom(bpm);
+        //    //act
+        //    MusicController.setMetronoom(bpm);
 
-            //assert
-            Assert.AreEqual(60000 / 120, MusicController.Metronoom.Interval);
-        }
+        //    //assert
+        //    Assert.AreEqual(60000 / 120, MusicController.Metronoom.Interval);
+        //}
 
         [TestMethod]
         public void NoteFlip_WhenNoteisNotFlipped()
         {
             //arrange
             Note note = new Note(20, 35, "QuarterNote", "C", 2);
+            note.flip();
 
             //act
             bool verwachting = true;
