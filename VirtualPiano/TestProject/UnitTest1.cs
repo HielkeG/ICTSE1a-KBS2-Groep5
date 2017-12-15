@@ -5,7 +5,7 @@ using VirtualPiano.Control;
 using System.Collections.Generic;
 using System.Linq;
 using VirtualPiano.View;
-
+using System.Windows.Forms;
 
 namespace TestProject
 {
@@ -118,14 +118,16 @@ namespace TestProject
         public void ChangeMetronomeBPM()
         {
             //arrange
+            Timer Metronoom = new Timer();
+            MusicController.Metronoom = Metronoom;
             int bpm = 120;
-            MusicController.setMetronoom(0);
+            MusicController.setMetronoom(10);
 
             //act
             MusicController.setMetronoom(bpm);
 
             //assert
-            Assert.AreEqual(60000 / 120, MusicController.Metronoom.Interval);
+            Assert.AreEqual(500, MusicController.Metronoom.Interval);
         }
 
         [TestMethod]
@@ -133,12 +135,13 @@ namespace TestProject
         {
             //arrange
             Note note = new Note(20, 35, "QuarterNote", "C", 2);
+            note.flip();
 
             //act
             bool verwachting = true;
 
             //assert
-            Assert.AreEqual(note.flipped, verwachting);
+            Assert.AreEqual(verwachting,note.flipped);
         }
 
     }
