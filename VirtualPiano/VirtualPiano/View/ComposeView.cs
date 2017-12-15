@@ -546,8 +546,11 @@ namespace VirtualPiano.View
                     }
                     if (CurrentPlayingStaff % 3 == 0)
                     {
-                        EventArgs ev = new EventArgs();
-                        nextPage_Click(this, ev);
+                        if (CurrentPlayingStaff / 3 == CurrentPage)
+                        {
+                            EventArgs ev = new EventArgs();
+                            nextPage_Click(this, ev);
+                        }
                     }
                 }
             }

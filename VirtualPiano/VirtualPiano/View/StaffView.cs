@@ -245,11 +245,22 @@ namespace VirtualPiano.View
                                     if (note.IsLocation(PointToClient(Cursor.Position).X))
                                     {
                                         newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
-                                        newNote.Duration = 0;
-                                        if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
-                                        noteSet = true;
-                                        bar.hasPreview = true;
-                                        break;
+                                        if (note.flipped == true || note.Y <= 0)
+                                        {
+                                            newNote.flip();
+                                        }
+                                        else
+                                        {
+                                            newNote.unflip();
+                                        }
+                                        if (note.Duration >= newNote.Duration)
+                                        {
+                                            newNote.Duration = 0;
+                                            if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                            noteSet = true;
+                                            bar.hasPreview = true;
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -413,11 +424,23 @@ namespace VirtualPiano.View
                                     {
                                         if (note.IsLocation(MouseX))
                                         {
+                                            
                                             newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
-                                            newNote.Duration = 0;
-                                            if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
-                                            noteSet = true;
-                                            break;
+                                            if (note.Y <= 0 || note.flipped == true)
+                                            {
+                                                newNote.flip();
+                                            }
+                                            else
+                                            {
+                                                newNote.unflip();
+                                            }
+                                            if (note.Duration >= newNote.Duration)
+                                            {
+                                                newNote.Duration = 0;
+                                                if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                                noteSet = true;
+                                                break;
+                                            }
                                         }
                                     }
                                 }

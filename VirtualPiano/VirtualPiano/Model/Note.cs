@@ -19,8 +19,9 @@ namespace VirtualPiano.Model
     {
         public string Tone { get; set; }
         public int Octave { get; set; }
-        public bool sharp;
-        public bool flat;
+        public bool sharp { get; set; }
+        public bool flat { get; set; }
+        public bool flipped { get; set; }
         public Note ConnectionNote = null;
         public bool IsBeingPlayed;
         
@@ -28,6 +29,7 @@ namespace VirtualPiano.Model
 
         public Note(int x, int y, string tempNotename, string clef, int Flatsharp) :base()
         {
+            flipped = false;
             Name = tempNotename;
             X = x + 25;
 
@@ -148,6 +150,25 @@ namespace VirtualPiano.Model
             note2.ConnectionNote = this;
             ComposeView.selectedNote1 = null;
             ComposeView.selectedNote2 = null;
+        }
+
+        public void flip()
+        {
+            if (Name == "WholeNote") { Image = Resources.helenoot;} 
+            else if (Name == "HalfNote") { Image = Resources.halvenootflipped; }
+            else if (Name == "QuarterNote") { Image = Resources.kwartnootflipped; }
+            else if (Name == "EightNote") { Image = Resources.achtstenootflipped; }
+            else if (Name == "SixteenthNote") {Image = Resources.zestiendenootflipped; }
+            flipped = true;
+        }
+        public void unflip()
+        {
+            if (Name == "WholeNote") { Image = Resources.helenoot; }
+            else if (Name == "HalfNote") { Image = Resources.halvenoot; }
+            else if (Name == "QuarterNote") { Image = Resources.kwartnoot; }
+            else if (Name == "EightNote") { Image = Resources.achtstenoot; }
+            else if (Name == "SixteenthNote") { Image = Resources.zestiendenoot; }
+            flipped = false;
         }
     }
 }
