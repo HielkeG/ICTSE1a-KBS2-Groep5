@@ -482,9 +482,9 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap metronome {
+        internal static System.Drawing.Bitmap metronome_off1 {
             get {
-                object obj = ResourceManager.GetObject("metronome", resourceCulture);
+                object obj = ResourceManager.GetObject("metronome_off1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -492,9 +492,29 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap metronome_on {
+        internal static System.Drawing.Bitmap metronome_off2 {
             get {
-                object obj = ResourceManager.GetObject("metronome_on", resourceCulture);
+                object obj = ResourceManager.GetObject("metronome_off2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metronome_on1 {
+            get {
+                object obj = ResourceManager.GetObject("metronome_on1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metronome_on2 {
+            get {
+                object obj = ResourceManager.GetObject("metronome_on2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -565,6 +585,26 @@ namespace VirtualPiano.Properties {
         internal static System.Drawing.Bitmap play {
             get {
                 object obj = ResourceManager.GetObject("play", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap record_start {
+            get {
+                object obj = ResourceManager.GetObject("record_start", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap record_stop {
+            get {
+                object obj = ResourceManager.GetObject("record_stop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

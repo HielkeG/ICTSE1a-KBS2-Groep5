@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
+
 using System.Linq;
-using System.Text;
+
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Properties;
 using VirtualPiano.Control;
-using VirtualPiano.View;
-using System.Threading;
 
 namespace VirtualPiano.View
 {
@@ -22,6 +20,9 @@ namespace VirtualPiano.View
         public Song song;
         public int fullBar { get; set; }
         Color barColor;
+
+        public bool ShowClefCursor = true;
+        public static Color barContentColor = Color.Black;
 
         public StaffView(Staff staff, Song song)
         {
@@ -79,17 +80,17 @@ namespace VirtualPiano.View
         {
             int fullBar = 0;
             int x_bar = 475;
-            int Xnotelocation = 0;
             string latestClef = "";
             foreach (Bar bar in staff.Bars) // Elke bar in de notenbalk wordt langsgegaan
             {
-                //Sleutels tekenen
+                // -----Sleutels tekenen------
                 if (staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen en kruizen/mollen tekenen
                 {
                     //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
                     if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 470, 26, 60, 110); latestClef = "G"; }
                     else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 483, -19, 88, 185); latestClef = "F"; }
 
+                    //-----Kruizen / Mollen --------
                     //Hieronder worden de kruizen en de mollen getekent. afhankelijk van het aantal
                     if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 420, 30, 30, 40); }
                     if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 405, 53, 30, 40); }
@@ -105,12 +106,14 @@ namespace VirtualPiano.View
                 }
                 else
                 {
+                    //----Sleutels----
                     if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 470, 43, 40, 83); latestClef = "G"; }
                     else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 493, -5, 77, 155); latestClef = "F"; }
                 }
 
+                //--- Maatstrepen-----
                 e.Graphics.DrawLine(new Pen(Color.Black), x_bar, 50, x_bar, 110); //per maat verticale lijn tekenen
-                if (bar.duration == 16)
+                if (bar.Duration == 16)
                 {
                     barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
                     fullBar++;
@@ -121,7 +124,6 @@ namespace VirtualPiano.View
                     barColor = Color.Red;
                 }
                 e.Graphics.DrawLine(new Pen(barColor, 5), x_bar - 430, 145, x_bar, 145);
-                Xnotelocation = x_bar - 450; // De x-coördinaat van het einde van de maat
                 if (fullBar == 4)
                 {
                     e.Graphics.DrawLine(new Pen(Color.WhiteSmoke, 5), 10, 145, 1765, 145);
@@ -130,20 +132,20 @@ namespace VirtualPiano.View
                 // Hier worden de noten en rusten getekent
                 foreach (Sign sign in bar.Signs)
                 {
-                    //Noten
+                    //------Noten------
                     if (sign is Note note)
                     {
-
+                        //----Verbindingslijn-----
                         if (note.ConnectionNote != null)     //noten die aan elkaar zitten tekenen
                         {
                             if (note.Name == "EightNote")
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.X + 8, note.Y + 15, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 15);
+                                e.Graphics.DrawLine(new Pen(barContentColor, 6), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
                             }
                             else
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 8, note.Y + 15, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 15);
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 8, note.Y + 23, note.ConnectionNote.X + 10, note.ConnectionNote.Y + 23);
+                                e.Graphics.DrawLine(new Pen(barContentColor, 5), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
+                                e.Graphics.DrawLine(new Pen(barContentColor, 5), note.X + 58, note.Y + 23, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 23);
                             }
 
                         }
@@ -151,38 +153,22 @@ namespace VirtualPiano.View
                         int Ynotelocation = note.Y;
 
                         //Als de noten te hoog of te heel laag zijn voor de notenbalk, worden er hulplijnen getkent.
-                        if (note.Y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 36, Xnotelocation + 70, 36); }
-                        if (note.Y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 22, Xnotelocation + 70, 22); }
-                        else if (note.Y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), Xnotelocation + 30, 124, Xnotelocation + 70, 124); }
+                        if (note.Y <= -25) { e.Graphics.DrawLine(new Pen(barContentColor, 2), note.X + 30, 36, note.X + 70, 36); }
+                        if (note.Y <= -40) { e.Graphics.DrawLine(new Pen(barContentColor, 2), note.X + 30, 22, note.X + 70, 22); }
+                        else if (note.Y >= 55) { e.Graphics.DrawLine(new Pen(barContentColor, 2), note.X + 30, 124, note.X + 70, 124); }
 
 
-                        e.Graphics.DrawImage(sign.Image, Xnotelocation, Ynotelocation, 90, 130);
-                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, Xnotelocation + 15, Ynotelocation + 40, 30, 40); }
-                        else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, Xnotelocation + 15, Ynotelocation + 40, 30, 40); }
-                        note.SetX(Xnotelocation);
-
-                        // De volgende noot wordt getekent op een afstand afhankelijk van de lengte van deze noot
-                        if (note.Name == "WholeNote") Xnotelocation += 400;
-                        else if (note.Name == "HalfNote") Xnotelocation += 200; //De volgende noot wordt getekent op een afstand van 200
-                        else if (note.Name == "QuarterNote") Xnotelocation += 100;
-                        else if (note.Name == "EightNote") Xnotelocation += 50;
-                        else if (note.Name == "SixteenthNote") Xnotelocation += 25;
-
+                        e.Graphics.DrawImage(sign.Image, note.X, Ynotelocation, 90, 130);
+                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, note.X + 15, Ynotelocation + 40, 30, 40); }
+                        else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, note.X + 15, Ynotelocation + 40, 30, 40); }
                     }
                     else if (sign is Rest rest)
                     {
-                        if (rest.Name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 220, 66, 20, 10)); }
-                        else if (rest.Name == "HalfRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(Xnotelocation + 115, 71, 20, 10)); }
-                        else if (rest.Name == "QuarterRest") e.Graphics.DrawImage(rest.Image, Xnotelocation + 60, 50, 50, 61);
-                        else if (rest.Name == "EightRest") e.Graphics.DrawImage(rest.Image, Xnotelocation + 30, 20, 65, 115);
-                        else if (rest.Name == "SixteenthRest") e.Graphics.DrawImage(rest.Image, Xnotelocation + 50, 20, 65, 115);
-
-                        // De volgende noot wordt getekent op een afstand afhankelijk van de lengte van deze rust
-                        if (rest.Name == "WholeRest") Xnotelocation += 400;
-                        else if (rest.Name == "HalfRest") Xnotelocation += 200;
-                        else if (rest.Name == "QuarterRest") Xnotelocation += 100;
-                        else if (rest.Name == "EightRest") Xnotelocation += 50;
-                        else if (rest.Name == "SixteenthRest") Xnotelocation += 25;
+                        if (rest.Name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.X + 220, 66, 20, 10)); }
+                        else if (rest.Name == "HalfRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.X + 115, 71, 20, 10)); }
+                        else if (rest.Name == "QuarterRest") e.Graphics.DrawImage(rest.Image, rest.X + 60, 50, 50, 61);
+                        else if (rest.Name == "EightRest") e.Graphics.DrawImage(rest.Image, rest.X + 30, 20, 65, 115);
+                        else if (rest.Name == "SixteenthRest") e.Graphics.DrawImage(rest.Image, rest.X + 50, 20, 65, 115);
                     }
                 }
                 x_bar += 430;
@@ -200,12 +186,6 @@ namespace VirtualPiano.View
                 else if (ComposeView.draggingSign.Name == "SixteenthNote") ComposeView.draggingSign.Image = Resources.zestiendenoot;
             }
             ComposeView.cursorIsDown = false;
-            if (ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
-            {
-                SetDefaultCursor();
-                ComposeView.SelectedSign = "";
-            }
-
         }
 
         //methode die de cursor op default zet en alle booleans op null zet.
@@ -218,8 +198,8 @@ namespace VirtualPiano.View
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
             //Standaard cursor zetten voor noten en rusten
-            if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F" || ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
-            else { SetDefaultCursor(); }
+            if (ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+            else SetDefaultCursor(); 
 
             if (ComposeView.SelectedSign == "Connect1")
             {
@@ -231,39 +211,87 @@ namespace VirtualPiano.View
             }
         }
 
+        private void SetClefCursor(Bar bar)
+        {
+            if (bar.clefName == ComposeView.SelectedSign)
+            {
+                Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+            }
+        }
 
         private void StaffView_MouseMove(object sender, MouseEventArgs e)
         {
             //------Preview tonen--------
             int barBegin = 50;
             int barEnd = 475;
+            bool noteSet = false;
+            int MouseX = PointToClient(Cursor.Position).X;
+            int MouseY = PointToClient(Cursor.Position).Y;
 
+           
             foreach (Bar bar in staff.Bars)
             {
-
-                if (bar.duration < 16 && ComposeView.signSelected)
+                if (ComposeView.SelectedSign != "")
                 {
-                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
+                    if (MouseX < barEnd && MouseX > barBegin)
                     {
+                        SetClefCursor(bar);
                         int Y = PointToClient(Cursor.Position).Y;
 
                         // ------Note-----
                         if (ComposeView.SelectedSign.Contains("Note"))
                         {
-                            string note = ComposeView.SelectedSign;
-                            Note newNote = new Note(PointToClient(Cursor.Position).Y, note, bar.clefName, song.FlatSharp);
-                            if (bar.CheckBarSpace(newNote) && note != null)
+                            string notename = ComposeView.SelectedSign;
+                            Note newNote;
+                            for (int i = 0; i < bar.Signs.Count(); i++)
                             {
-                                bar.Add(newNote);
-                                bar.hasPreview = true;
-                            }  //note toevoegen als er ruimte is
+                                Sign sign = bar.Signs[i];
+
+                                if (sign is Note note)
+                                {
+                                    if (note.IsLocation(MouseX))
+                                    {
+                                        newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                        if (note.flipped == true || note.Y <= 0)
+                                        {
+                                            newNote.flip();
+                                        }
+                                        else
+                                        {
+                                            newNote.unflip();
+                                        }
+                                        if (note.Duration >= newNote.Duration)
+                                        {
+                                            newNote.Duration = 0;
+                                            if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                            noteSet = true;
+                                            bar.hasPreview = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (noteSet == false && bar.Duration < 16)
+                            {
+                                newNote = new Note(bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                if (bar.CheckBarSpace(newNote) && notename != null)
+                                {
+                                    bar.Add(newNote);
+                                    bar.hasPreview = true;
+                                }
+                            }
+
+
+                            //note toevoegen als er ruimte is
+
                         }
                         // -----Rest-----
                         else if (ComposeView.SelectedSign.Contains("Rest"))
                         {
                             string rest = ComposeView.SelectedSign;
 
-                            Rest newRest = new Rest(rest);
+                            Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)));
                             if (bar.CheckBarSpace(newRest) && rest != null)
                             {
                                 bar.Add(newRest);
@@ -275,6 +303,15 @@ namespace VirtualPiano.View
                         //-----Clef----
                         else if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F")
                         {
+                            if (bar.clefName != ComposeView.SelectedSign)
+                            {
+                                string Clef = ComposeView.SelectedSign;
+                                bar.lastClef = bar.clefName;
+                                bar.clefName = Clef;
+                                bar.makeSignsGray();
+                                barContentColor = Color.FromArgb(255,200,200,200);
+                                bar.hasPreview = true;
+                            }
 
                         }
                     }
@@ -282,13 +319,12 @@ namespace VirtualPiano.View
                 barBegin += 430;
                 barEnd += 430;
             }
-
             Invalidate();
             Update();
 
             foreach (Bar bar in staff.Bars)
             {
-                if (bar.hasPreview) bar.RemovePreview();
+                if (bar.hasPreview) bar.RemovePreview(ComposeView.SelectedSign);
             }
         }
 
@@ -300,7 +336,7 @@ namespace VirtualPiano.View
 
             ComposeView.cursorIsDown = true;
             //Wanneer geen teken geselcteerds is en wanneer de linkermuisknop ingedrukt is
-            if (ComposeView.signSelected == false && e.Button == MouseButtons.Left)
+            if (ComposeView.SelectedSign == "" && e.Button == MouseButtons.Left)
             {
                 foreach (Bar bar in staff.Bars)
                 {
@@ -343,12 +379,13 @@ namespace VirtualPiano.View
         {
             int MouseX = PointToClient(Cursor.Position).X;
             int MouseY = PointToClient(Cursor.Position).Y;
+            bool noteSet = false; //Deze boolean wordt op true gezet als er een noot onder een andere noot wordt toegevoegd, zo wordt voorkomen dat er niet 2 noten toegevoegd worden.
 
             //Als er met de linkermuisknop geklikt is
             if (e.Button == MouseButtons.Left)
             {
                 //Als er een teken geselecteerd is
-                if (ComposeView.signSelected)
+                if (ComposeView.SelectedSign != "")
                 {
                     int barBegin = 45;
                     int barEnd = 475;
@@ -375,38 +412,70 @@ namespace VirtualPiano.View
                         //Als de positie van de muis binnen de positie van de maat valt. (bar = maat)
                         if (MouseX < barEnd && MouseX > barBegin)
                         {
-                            // ------Note-----
+                            // ----------Note-----------
                             if (ComposeView.SelectedSign.Contains("Note"))
                             {
-                                string note = ComposeView.SelectedSign;
-                                Note newNote = new Note(PointToClient(Cursor.Position).Y, note, bar.clefName, song.FlatSharp);
-                                if (bar.CheckBarSpace(newNote) && note != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                string notename = ComposeView.SelectedSign;
+                                Note newNote;
+
+                                // -- Noten onder elkaar -----
+                                for (int i = 0; i < bar.Signs.Count(); i++)
+                                {
+                                    Sign sign = bar.Signs[i];
+
+                                    if (sign is Note note)
+                                    {
+                                        //Als er een noot op dezelfde X-as staat als de X-as van de muisklik
+                                        if (note.IsLocation(MouseX))
+                                        {
+                                            
+                                            newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                            //Als de noot op de kop staat, moet ook deze noot op de kop staan
+                                            if (note.Y <= 0 || note.flipped == true)
+                                            {
+                                                newNote.flip();
+                                            }
+                                            else
+                                            {
+                                                newNote.unflip();
+                                            }
+                                            //Als de noot kleiner of gelijk is aan de noot waarmee het vergelijkt
+                                            if (note.Duration >= newNote.Duration)
+                                            {
+                                                newNote.Duration = 0;
+                                                bar.Add(newNote);  //note toevoegen 
+                                                noteSet = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                //----Normale noot toevoegen -----
+                                //Als er nog geen noot toegevoegd is aan een andere noot
+                                if (noteSet == false)
+                                {
+                                    newNote = new Note(bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                    if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                }
+
                             }
                             // -----Rest-----
                             else if (ComposeView.SelectedSign.Contains("Rest"))
                             {
                                 string rest = ComposeView.SelectedSign;
-                                Rest newRest = new Rest(rest);
+                                Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)));
                                 if (bar.CheckBarSpace(newRest) && rest != null) bar.Add(newRest);  //rest toevoegen als er ruimte is
                             }
                             // -----Clef----
                             else if (ComposeView.SelectedSign == "G" || ComposeView.SelectedSign == "F")
                             {
-                                string Clef = ComposeView.SelectedSign;
-
-                                if (Clef == "G")
+                                if (bar.clefName != ComposeView.SelectedSign)
                                 {
-                                    bar.clefName = "G";
-                                    bar.MakeEmpty();
-                                }
-                                if (Clef == "F")
-                                {
-                                    bar.clefName = "F";
+                                    string Clef = ComposeView.SelectedSign;
+                                    bar.clefName = Clef;
                                     bar.MakeEmpty();
                                 }
                             }
-
-
 
                             foreach (Sign sign in bar.Signs)
                             {
@@ -429,7 +498,7 @@ namespace VirtualPiano.View
                                             {
                                                 ComposeView.SelectedSign = "";
                                                 ConnectError.Active = true;
-                                                ConnectError.Show("Deze noot kan niet verbonden worden",this);
+                                                ConnectError.Show("Deze noot kan niet verbonden worden", this);
                                                 await PutTaskDelay(2000);
                                                 ConnectError.Active = false;
                                             }
@@ -449,6 +518,7 @@ namespace VirtualPiano.View
                                                     ComposeView.selectedNote2 = note;
                                                     //Noten met elkaar verbinden
                                                     ComposeView.selectedNote1.MakeConnection(ComposeView.selectedNote2);
+                                                    ComposeView.SelectedSign = "";
                                                 }
                                                 else
                                                 {
@@ -459,8 +529,9 @@ namespace VirtualPiano.View
                                                     ConnectError.Active = false;
                                                 }
                                                 SetDefaultCursor();
-                                                
-                                            } else
+
+                                            }
+                                            else
                                             {
                                                 ComposeView.SelectedSign = "";
                                                 ConnectError.Active = true;
@@ -471,30 +542,16 @@ namespace VirtualPiano.View
                                         }
 
                                         // ----- Sharp / Flat --------
-                                        if (ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat")
-                                        {
-                                            {
-                                                if (ComposeView.SelectedSign == "Sharp")
-                                                {
-                                                    note.SetSharp();
-                                                }
-                                                if (ComposeView.SelectedSign == "Flat")
-                                                {
-                                                    note.SetFlat();
-                                                }
-                                            }
-                                        }
+                                        if (ComposeView.SelectedSign == "Sharp") note.SetSharp();
+                                        else if (ComposeView.SelectedSign == "Flat") note.SetFlat();
+
                                         // ------Bin------
-                                        if (ComposeView.SelectedSign == "Bin")
+                                        if (ComposeView.SelectedSign == "Bin" && note.flat == true || note.sharp == true)
                                         {
-                                            
-                                                if (note.flat == true || note.sharp == true)
-                                                {
-                                                    note.flat = false;
-                                                    note.sharp = false;
-                                                }
-                                            
+                                            note.flat = false;
+                                            note.sharp = false;
                                         }
+
                                         ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                         ComposeView.pkv1.Invalidate();
                                     }
@@ -513,7 +570,7 @@ namespace VirtualPiano.View
                 int barEnd = 475;
 
                 //Als er geen teken geselecteerd is
-                if (!ComposeView.signSelected)
+                if (ComposeView.SelectedSign == "")
                 {
                     foreach (Bar bar in staff.Bars)
                     {
@@ -529,18 +586,6 @@ namespace VirtualPiano.View
                         barEnd += 430;
                     }
                 }
-
-                //Als er een teken geselecteerd is, wordt alles op null/false gezet
-                ComposeView.signSelected = false;
-                ComposeView.SelectedSign = "";
-                ComposeView.selectedNote1 = null;
-                ComposeView.selectedNote2 = null;
-            }
-
-            if (ComposeView.SelectedSign != "Connect1" && ComposeView.SelectedSign != "Connect2")
-            {
-                ComposeView.signSelected = false;
-                ComposeView.SelectedSign = "";
             }
             Invalidate();
         }
@@ -551,6 +596,15 @@ namespace VirtualPiano.View
             await Task.Delay(delay);
         }
 
+        private void StaffView_MouseLeave(object sender, EventArgs e)
+        {
+            foreach (Bar bar in staff.Bars)
+            {
+                if (bar.hasPreview) bar.RemovePreview(ComposeView.SelectedSign);
+                Invalidate();
+            }
+
+        }
     }
 
 }

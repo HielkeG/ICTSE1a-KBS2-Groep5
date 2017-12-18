@@ -250,7 +250,7 @@ namespace VirtualPiano.View
             // 
             this.FullRest.AutoSize = false;
             this.FullRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FullRest.Image = ((System.Drawing.Image)(resources.GetObject("FullRest.Image")));
+            this.FullRest.Image = global::VirtualPiano.Properties.Resources.helerust_icon;
             this.FullRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FullRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FullRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -264,7 +264,7 @@ namespace VirtualPiano.View
             // 
             this.HalfRest.AutoSize = false;
             this.HalfRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.HalfRest.Image = ((System.Drawing.Image)(resources.GetObject("HalfRest.Image")));
+            this.HalfRest.Image = global::VirtualPiano.Properties.Resources.halverust_icon;
             this.HalfRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HalfRest.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.HalfRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -278,7 +278,7 @@ namespace VirtualPiano.View
             // 
             this.QuarterRest.AutoSize = false;
             this.QuarterRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.QuarterRest.Image = ((System.Drawing.Image)(resources.GetObject("QuarterRest.Image")));
+            this.QuarterRest.Image = global::VirtualPiano.Properties.Resources.kwartrust_icon;
             this.QuarterRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.QuarterRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.QuarterRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -292,7 +292,7 @@ namespace VirtualPiano.View
             // 
             this.EightRest.AutoSize = false;
             this.EightRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EightRest.Image = ((System.Drawing.Image)(resources.GetObject("EightRest.Image")));
+            this.EightRest.Image = global::VirtualPiano.Properties.Resources.achtsterust_icon;
             this.EightRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.EightRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EightRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -306,7 +306,7 @@ namespace VirtualPiano.View
             // 
             this.SixteenthRest.AutoSize = false;
             this.SixteenthRest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SixteenthRest.Image = ((System.Drawing.Image)(resources.GetObject("SixteenthRest.Image")));
+            this.SixteenthRest.Image = global::VirtualPiano.Properties.Resources.zestienderust_icon;
             this.SixteenthRest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.SixteenthRest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SixteenthRest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -439,11 +439,11 @@ namespace VirtualPiano.View
             // 
             // MetronoomLabel
             // 
-            this.MetronoomLabel.Font = new System.Drawing.Font("MS Office Symbol Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MetronoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MetronoomLabel.ForeColor = System.Drawing.Color.Black;
-            this.MetronoomLabel.Location = new System.Drawing.Point(1604, 56);
+            this.MetronoomLabel.Location = new System.Drawing.Point(1582, 56);
             this.MetronoomLabel.Name = "MetronoomLabel";
-            this.MetronoomLabel.Size = new System.Drawing.Size(85, 23);
+            this.MetronoomLabel.Size = new System.Drawing.Size(107, 23);
             this.MetronoomLabel.TabIndex = 3;
             this.MetronoomLabel.Text = "Metronoom:";
             // 
@@ -461,9 +461,9 @@ namespace VirtualPiano.View
             // 
             this.CurrentPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CurrentPageLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.CurrentPageLabel.Location = new System.Drawing.Point(1763, 946);
+            this.CurrentPageLabel.Location = new System.Drawing.Point(1765, 955);
             this.CurrentPageLabel.Name = "CurrentPageLabel";
-            this.CurrentPageLabel.Size = new System.Drawing.Size(106, 68);
+            this.CurrentPageLabel.Size = new System.Drawing.Size(106, 58);
             this.CurrentPageLabel.TabIndex = 5;
             this.CurrentPageLabel.Text = "1";
             // 

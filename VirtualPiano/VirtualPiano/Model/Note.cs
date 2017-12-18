@@ -19,35 +19,19 @@ namespace VirtualPiano.Model
     {
         public string Tone { get; set; }
         public int Octave { get; set; }
-        public bool sharp;
-        public bool flat;
+        public bool sharp { get; set; }
+        public bool flat { get; set; }
+        public bool flipped { get; set; }
         public Note ConnectionNote = null;
         public bool IsBeingPlayed;
         
         public Note() : base() { }
 
-        public Note(string notename, string tone, int octave) : base()
+        public Note(int x, int y, string tempNotename, string clef, int Flatsharp) :base()
         {
-            this.Name = notename;
-            this.Octave = octave;
-            this.Tone = tone;
-            SetImage();
-            
-        }
-
-        public override void SetImage()
-        {
-            if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten afhankelijk van naam
-            else if (Name == "HalfNote") { Image = Resources.halvenoot; Duration = 8; }
-            else if (Name == "QuarterNote") { Image = Resources.kwartnoot; Duration = 4; }
-            else if (Name == "EightNote") { Image = Resources.achtstenoot; Duration = 2; }
-            else if (Name == "SixteenthNote") { Image = Resources.zestiendenoot; Duration = 1; }
-        }
-
-        public Note(int y, string tempNotename, string clef, int Flatsharp) :base()
-        {
+            flipped = false;
             Name = tempNotename;
-
+            X = x + 25;
 
             if (clef == "G")
             {
@@ -97,29 +81,35 @@ namespace VirtualPiano.Model
             if (Flatsharp <= -3) { if (Tone == "A") { Tone = "As"; } }
             if (Flatsharp <= -4) { if (Tone == "D") { Tone = "Des"; } }
             if (Flatsharp <= -5) { if (Tone == "G") { Tone = "Ges"; } }
-            
-            if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
-            else if (Name == "HalfNote") { if (y <= 52) { Image = Resources.halvenootflipped; } else { Image = Resources.halvenoot; } Duration = 8; }
-            else if (Name == "QuarterNote") { if (y <= 52) { Image = Resources.kwartnootflipped; } else { Image = Resources.kwartnoot; } Duration = 4; }
-            else if (Name == "EightNote") { if (y <= 52) { Image = Resources.achtstenootflipped; } else { Image = Resources.achtstenoot; } Duration = 2; }
-            else if (Name == "SixteenthNote") { if (y <= 52) { Image = Resources.zestiendenootflipped; } else { Image = Resources.zestiendenoot; } Duration = 1; }
+
+            SetImage();
         }
+
 
         public void PlaySound()
         {
+            string pitchName = Tone.ToString() + Octave.ToString();
+            if (pitchName.Length == 4)
+            {
+                Enum.TryParse(Tone.First().ToString() + "Sharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else
+            {
+                Enum.TryParse(pitchName, out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
 
-            Enum.TryParse(Tone.ToString()+Octave, out Pitch pitch);
-            MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
         }
 
         public override bool IsLocation(int MouseX, int MouseY)
         {
-            return (X - 10 < MouseX && X + 10 > MouseX && Y - 10 < MouseY - 63 && Y + 10 > MouseY - 63);
+            return (X + 35 < MouseX && X + 55 > MouseX && Y - 10 < MouseY - 63 && Y + 10 > MouseY - 63);
         }
 
-        public void SetX(int x)
+        public bool IsLocation(int MouseX)
         {
-            this.X = x + 50;
+            return (X + 35 < MouseX && X + 55 > MouseX);
         }
 
         public void SetSharp()
@@ -151,6 +141,17 @@ namespace VirtualPiano.Model
             return ConnectionNote == null && (Name == "EightNote" || Name == "SixteenthNote");
         }
 
+        public override void SetImage()
+        {
+            if (ConnectionNote != null) { Image = Resources.kwartnoot; }
+            else if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
+            else if (Name == "HalfNote") { if (Y <= 0) { Image = Resources.halvenootflipped; } else { Image = Resources.halvenoot; } Duration = 8; }
+            else if (Name == "QuarterNote") { if (Y <= 0) { Image = Resources.kwartnootflipped; } else { Image = Resources.kwartnoot; } Duration = 4; }
+            else if (Name == "EightNote") { if (Y <= 0) { Image = Resources.achtstenootflipped; } else { Image = Resources.achtstenoot; } Duration = 2; }
+            else if (Name == "SixteenthNote") { if (Y <= 0) { Image = Resources.zestiendenootflipped; } else { Image = Resources.zestiendenoot; } Duration = 1; }
+
+        }
+
         internal void MakeConnection(Note note2)
         {
             Image = Resources.kwartnoot;
@@ -159,6 +160,25 @@ namespace VirtualPiano.Model
             note2.ConnectionNote = this;
             ComposeView.selectedNote1 = null;
             ComposeView.selectedNote2 = null;
+        }
+
+        public void flip()
+        {
+            if (Name == "WholeNote") { Image = Resources.helenoot;} 
+            else if (Name == "HalfNote") { Image = Resources.halvenootflipped; }
+            else if (Name == "QuarterNote") { Image = Resources.kwartnootflipped; }
+            else if (Name == "EightNote") { Image = Resources.achtstenootflipped; }
+            else if (Name == "SixteenthNote") {Image = Resources.zestiendenootflipped; }
+            flipped = true;
+        }
+        public void unflip()
+        {
+            if (Name == "WholeNote") { Image = Resources.helenoot; }
+            else if (Name == "HalfNote") { Image = Resources.halvenoot; }
+            else if (Name == "QuarterNote") { Image = Resources.kwartnoot; }
+            else if (Name == "EightNote") { Image = Resources.achtstenoot; }
+            else if (Name == "SixteenthNote") { Image = Resources.zestiendenoot; }
+            flipped = false;
         }
     }
 }

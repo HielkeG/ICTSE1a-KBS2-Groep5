@@ -21,12 +21,12 @@ namespace VirtualPiano.View
         Button btnAddStaff = new Button();
         public static Button previousPage = new Button();
         public static Button nextPage = new Button();
-
+        private ToolTip PreviousTip = new ToolTip();
+        private ToolTip NextTip = new ToolTip();
         int y_staff = 140;
         public static bool ConnectSelected = false;
         public static Note selectedNote1;
         public static Note selectedNote2;
-        public static bool signSelected;
         public static string SelectedSign = "";
         public static bool cursorIsDown;
         private List<StaffView> staffViews = new List<StaffView>();
@@ -37,7 +37,7 @@ namespace VirtualPiano.View
         public static int CurrentOctave = 3;
         public static int CurrentPlayingStaff = 0;
         private static bool RunningTimer;    //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
-        public static int RedLineX;   //locatie van de rode lijn
+        public static int RedLineX = -60;   //locatie van de rode lijn
         public static bool PlayingKeyboard = false;
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
@@ -55,9 +55,14 @@ namespace VirtualPiano.View
 
         public ComposeView()
         {
+            NextTip.InitialDelay = 0;
+
+            PreviousTip.InitialDelay = 0;
+
             Songtimer.Interval = 5;
             Songtimer.Elapsed += TimerTick;
 
+            AddStaffButton();
             setPageButtons();
 
 
@@ -92,6 +97,8 @@ namespace VirtualPiano.View
             Controls.Add(MusicController.playBtn);
             Controls.Add(MusicController.stopBtn);
             Controls.Add(MusicController.metronomeBtn);
+            Controls.Add(MusicController.recordBtn);
+
             //voeg hover, enter, leave effecten toe op de muziekknoppen
             PianoKeysController.pianoKeysBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             PianoKeysController.pianoKeysBtn.MouseHover += new EventHandler(AllButtons_Hover);
@@ -102,9 +109,23 @@ namespace VirtualPiano.View
             MusicController.stopBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             MusicController.stopBtn.MouseHover += new EventHandler(AllButtons_Hover);
             MusicController.stopBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.metronomeBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.metronomeBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.metronomeBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.recordBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.recordBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.recordBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+
             btnAddStaff.MouseEnter += new EventHandler(AllButtons_Enter);
             btnAddStaff.MouseHover += new EventHandler(AllButtons_Hover);
             btnAddStaff.MouseLeave += new EventHandler(AllButtons_Leave);
+            nextPage.MouseEnter += new EventHandler(AllButtons_Enter);
+            nextPage.MouseHover += new EventHandler(AllButtons_Hover);
+            nextPage.MouseLeave += new EventHandler(AllButtons_Leave);
+            previousPage.MouseEnter += new EventHandler(AllButtons_Enter);
+            previousPage.MouseHover += new EventHandler(AllButtons_Hover);
+            previousPage.MouseLeave += new EventHandler(AllButtons_Leave);
+
             StopwatchController.OnFullStaff += newStaffView;
             
 
@@ -116,7 +137,7 @@ namespace VirtualPiano.View
         public void AllButtons_Enter(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, Color.Black);
+            btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.White, Color.LightGray);
         }
         public void AllButtons_Hover(object sender, EventArgs e)
         {
@@ -125,10 +146,11 @@ namespace VirtualPiano.View
         public void AllButtons_Down(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, Color.Black);
         }
         public void AllButtons_Leave(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.LightGray, Color.White);
         }
 
 
@@ -180,7 +202,7 @@ namespace VirtualPiano.View
                 }
                 if (staff == song.GetStaffs().Last())
                 {
-                    AddStaffButton();
+                  
                 }
                 y_staff += 200;
             }
@@ -211,7 +233,11 @@ namespace VirtualPiano.View
             menuBarView1.Song = song;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
+            TitelBox.Text = "Titel";
             CurrentPage = 1;
+            btnAddStaff.Visible = true;
+            btnAddStaff.Location = new Point(btnAddStaff.Location.X, y_staff - 40);
+            Invalidate();
         }
 
         public void SetLoadedSong(Song newSong) // nummer laden uit database
@@ -220,9 +246,10 @@ namespace VirtualPiano.View
             RemoveStaffViews();
             CurrentPlayingStaff = 0;
             song = newSong;
-            RedLineX = 0;
+            RedLineX = -60;
             CurrentPage = 1;
             CurrentPageLabel.Text = CurrentPage.ToString();
+            btnAddStaff.Visible = true;
             foreach (var item in song.GetStaffs())
             {
                 if ((song.GetStaffs().IndexOf(item) + 1) % 3 == 1)
@@ -236,7 +263,12 @@ namespace VirtualPiano.View
                 }
                 if (item == song.GetStaffs().Last()&&staffViews.Count<=2)
                 {
-                    AddStaffButton();
+                    btnAddStaff.Visible = true;
+                    btnAddStaff.Location = new Point(btnAddStaff.Location.X, y_staff + 160);
+                }
+                else
+                {
+                    btnAddStaff.Visible = false;
                 }
                 y_staff += 200;
                 
@@ -332,114 +364,91 @@ namespace VirtualPiano.View
 
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
-            //deze code is voor alle mousedown events hetzelfde.
-            //boolean om aan te geven dat een noot geslepen wordt.
-            signSelected = true;
-            //de bijbehorende naam van de noot.
-            SelectedSign = "WholeNote";
-            //de cursor veranderen naar de gewenste afbeelding.
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSign = "WholeNote";                             //de bijbehorende naam van de noot.       
+            Cursor = CursorController.ChangeCursor(SelectedSign);   //de cursor veranderen naar de gewenste afbeelding.
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "HalfNote";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "QuarterNote";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "EightNote";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "SixteenthNote";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void FullRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "WholeRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
-
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "HalfRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
-
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "QuarterRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void GKey_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "G";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void FKey_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "F";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void EightRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "EightRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void SixteenthRest_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "SixteenthRest";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "Sharp";
             Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         private void Flat_MouseDown(object sender, MouseEventArgs e)
         {
-            signSelected = true;
             SelectedSign = "Flat";
             Cursor = CursorController.ChangeCursor(SelectedSign);
-            
         }
 
         private void Connect_Click(object sender, EventArgs e)
         {
-
             SelectedSign = "Connect1";
-            signSelected = true;
             Cursor = CursorController.ChangeCursor(SelectedSign);
             ComposeView.selectedNote1 = null;
             ComposeView.selectedNote2 = null;
@@ -448,19 +457,17 @@ namespace VirtualPiano.View
 
         private void Bin_Click(object sender, EventArgs e)
         {
-            if(signSelected)
+            if(SelectedSign != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                 sound.Play();
                 Cursor = Cursors.Default;
-                signSelected = false;
                 SelectedSign = "";
             }
 
             if(selectedNote1 != null || SelectedSign == "Connect2")
             {
                 selectedNote1 = null;
-                
             }
         }
 
@@ -473,15 +480,8 @@ namespace VirtualPiano.View
 
         private void ComposeView_MouseEnter(object sender, EventArgs e)
         {
-            if (signSelected == false) Cursor = Cursors.Default;
-            if(SelectedSign == "Connect2")
-            {
-                Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
-            }
-            if (SelectedSign == "")
-            {
-                Cursor = Cursors.Default;
-            }
+            if (SelectedSign == "") Cursor = Cursors.Default;
+            else if(SelectedSign == "Connect2") Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
         }
 
         public void Draw(PaintEventArgs e) //WIP
@@ -511,8 +511,8 @@ namespace VirtualPiano.View
 
         }
 
-        //methode die alle staffviews invalidate. Zodat de rode lijn beweegt.
-        private void RedLine_Tick(object sender, EventArgs e)
+       
+        private void RedLine_Tick(object sender, EventArgs e)    //methode die alle staffviews invalidate. Zodat de rode lijn beweegt.
         {
             if (MusicController.isPlayingSong)
             {
@@ -521,11 +521,10 @@ namespace VirtualPiano.View
                 if (RedLineX >= 1700)
                 {
                     //als de lijn het einde van een staff bereikt. De lijn verplaatsen naar de volgende staff
-                    RedLineX = 0;
+                    RedLineX = -60;
                     if (song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
                     {
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
-                        //rodeLijn.Stop();
                         staffViews[CurrentPlayingStaff].redLine.Visible = false;
                         CurrentPlayingStaff++;
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
@@ -542,8 +541,11 @@ namespace VirtualPiano.View
                     }
                     if (CurrentPlayingStaff % 3 == 0)
                     {
-                        EventArgs ev = new EventArgs();
-                        nextPage_Click(this, ev);
+                        if (CurrentPlayingStaff / 3 == CurrentPage)
+                        {
+                            EventArgs ev = new EventArgs();
+                            nextPage_Click(this, ev);
+                        }
                     }
                 }
             }
@@ -579,8 +581,9 @@ namespace VirtualPiano.View
         {
             if (MusicController.isPlayingSong)
             {
-                RedLineX = RedLineX + 4;
+                
                 song.PlayNote();
+                RedLineX = RedLineX + 4;
             }
         }
 
@@ -598,7 +601,6 @@ namespace VirtualPiano.View
                 {
                     item.staff.IsBeingPlayed = false;
                     item.redLine.Visible = false;
-                    
                 }
                 else
                 {
@@ -625,14 +627,13 @@ namespace VirtualPiano.View
             {
                 cursorIsDown = false;
                 Cursor = Cursors.Default;
-                signSelected = false;
+                SelectedSign = "";
                 Invalidate();
 
             }
             if (e.Button == MouseButtons.Right)
             {
                 Cursor = Cursors.Default;
-                signSelected = false;
                 SelectedSign = "";
                 ConnectSelected = false;
                 Invalidate();
@@ -646,10 +647,8 @@ namespace VirtualPiano.View
 
         private void Bin_MouseEnter(object sender, EventArgs e)
         {
-            if (signSelected == false)
+            if (SelectedSign == "")
             {
-
-
                 for (int staff = 0; staff < song.Staffs.Count(); staff++)
                 {
                     for (int bar = 0; bar < song.Staffs[staff].Bars.Count(); bar++)
@@ -683,8 +682,7 @@ namespace VirtualPiano.View
 
         private void TitelBox_Enter(object sender, EventArgs e)
         {
-            //wanneer de gebruiker een titel typt wordt het geluid uitgezet. Zodat de gebruiker niet ongewild geluid maakt.
-            PlayingKeyboard = false;
+            PlayingKeyboard = false;    //wanneer de gebruiker een titel typt wordt het geluid uitgezet. Zodat de gebruiker niet ongewild geluid maakt.
         }
 
         private void TitelBox_Leave(object sender, EventArgs e)
@@ -709,7 +707,7 @@ namespace VirtualPiano.View
             { 
 
                 //als de snelheid tussen 0 en 500 ligt wordt het aangepast.
-                if (speed < 500 && speed>0)
+                if (speed <= 60000 && speed>0)
                 {
                     MusicController.setMetronoom(speed);
                     metroTip.RemoveAll();
@@ -717,7 +715,7 @@ namespace VirtualPiano.View
                 else
                 {
                     //ander wordt de tooltip laten zien.
-                    metroTip.Show("Snelheid moet tussen 0 en 500 liggen.", MetronomeSpeed);
+                    metroTip.Show("Snelheid moet tussen 0 en 60000 liggen.", MetronomeSpeed);
                 }
             }
             else
@@ -730,6 +728,8 @@ namespace VirtualPiano.View
         {
             //geluid op channel3 met woodblock instrument
             MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
+            if (MusicController.metronomeBtn.Image == MusicController.metronomeOn1) MusicController.metronomeBtn.Image = MusicController.metronomeOn2;
+            else MusicController.metronomeBtn.Image = MusicController.metronomeOn1;
         }
 
         // Volgende pagina
@@ -761,6 +761,11 @@ namespace VirtualPiano.View
                 //Hudige pagina wordt verhoogt
                 CurrentPage++;
                 CurrentPageLabel.Text = CurrentPage.ToString();
+                if (CurrentPage == 10)
+                {
+                    CurrentPageLabel.Location = new Point(1735, 955);
+                    previousPage.Location = new Point(1690, 957);
+                }
                 //Alle staffviews van de huidige pagina worden getoond
                 foreach (Panel panel in staffViewsPanels)
                 {
@@ -770,6 +775,10 @@ namespace VirtualPiano.View
                         panel.Visible = true;
                     }
                 }
+            }
+            else
+            {
+                NextTip.Show("Er staan nog geen drie notenbalken op deze pagina.", nextPage, 4000);
             }
         }
 
@@ -789,6 +798,12 @@ namespace VirtualPiano.View
                 CurrentPage--;
                 CurrentPageLabel.Text = CurrentPage.ToString();
 
+                if (CurrentPage == 9)
+                {
+                    CurrentPageLabel.Location = new Point(1765, 955);
+                    previousPage.Location = new Point(1720, 957);
+                }
+
                 //Alle staffviews van de huidige pagina worden getoond
                 foreach (Panel panel in staffViewsPanels)
                 {
@@ -797,6 +812,10 @@ namespace VirtualPiano.View
                         panel.Visible = true;
                     }
                 }
+            }
+            else
+            {
+                PreviousTip.Show("Kan niet naar de vorige pagina gaan.", previousPage, 4000);
             }
         }
 
@@ -808,18 +827,19 @@ namespace VirtualPiano.View
             previousPage.BackColor = Color.Transparent;
             previousPage.FlatStyle = FlatStyle.Flat;
             previousPage.FlatAppearance.BorderSize = 0;
-            previousPage.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, Color.Black);
+            previousPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            previousPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
             previousPage.Click += previousPage_Click;
             Controls.Add(previousPage);
-
-
+            
             nextPage.Image = new Bitmap(Resources.nextPage, 50, 50);
             nextPage.Location = new Point(1809, 957);
             nextPage.Size = new Size(55, 55);
             nextPage.BackColor = Color.Transparent;
             nextPage.FlatStyle = FlatStyle.Flat;
             nextPage.FlatAppearance.BorderSize = 0;
-            nextPage.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, Color.Black);
+            nextPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            nextPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
             nextPage.Click += nextPage_Click;
             Controls.Add(nextPage);
         }

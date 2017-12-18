@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtualPiano.Control;
 using VirtualPiano.Properties;
+using VirtualPiano.View;
 
 namespace VirtualPiano.Model
 {
@@ -25,9 +28,11 @@ namespace VirtualPiano.Model
         public int TimeSignatureAmount { get; set; }
         [NotMapped]
         public string TimeSignatureName { get; set; }
-        public int duration { get; set; } = 0;
+        public int Duration { get; set; } = 0;
         public bool hasChanged;
-        internal bool hasPreview = false;
+        public bool hasPreview = false;
+        public string lastClef;
+        public int length = 430;
 
         public Bar()
         {
@@ -37,41 +42,49 @@ namespace VirtualPiano.Model
 
         public bool CheckBarSpace(Sign sign)    //kijken of er ruimte in de maat is voor nieuw teken
         {
-            if (duration + sign.Duration > 16) return false;
+            if (Duration + sign.Duration > 16) return false;
             else return true;
         }
 
         public void Add(Sign sign)
         {
             Signs.Add(sign);
-            duration += sign.Duration;
+            Duration += sign.Duration;
         }
 
         public void MakeEmpty() //Lijst van tekens leegmaken
         {
             Signs = new List<Sign>();
-            duration = 0;
+            Duration = 0;
         }
 
-        public void RemovePreview()
+        public void RemovePreview(string sign)
         {
-            try
+            if (sign.Contains("G") || sign.Contains("F"))
             {
-                duration = duration - Signs.Last().Duration;
-                Signs.RemoveAt(Signs.Count() - 1);
-                hasPreview = false;
+                clefName = lastClef;
+                foreach(Sign sign2 in Signs)
+                {
+                    sign2.SetImage();
+                    StaffView.barContentColor = Color.Black;
+                }
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
+                try
+                {
+                    Duration = Duration - Signs.Last().Duration;
+                    Signs.RemoveAt(Signs.Count() - 1);
+                }
+                catch (Exception) { }
             }
-            
+            hasPreview = false;
         }
 
         public void RemoveSign(Sign sign)
         {
             Signs.Remove(sign);
-            duration -= sign.Duration;
+            Duration -= sign.Duration;
             if(sign is Note note)
             {
                 if(note.ConnectionNote != null)
@@ -93,16 +106,16 @@ namespace VirtualPiano.Model
         public void FillBar()
         {          
             
-                if (duration == 4)
+                if (Duration == 4)
                 {
                 Add(new Rest("HalfRest"));
                 Add(new Rest("QuarterRest"));
             }
-                else if (duration == 8)
+                else if (Duration == 8)
                 {
                 Add(new Rest("HalfRest"));
             }
-                else if(duration == 12)
+                else if(Duration == 12)
                 {
                 Add(new Rest("QuarterRest"));
             }
@@ -114,6 +127,16 @@ namespace VirtualPiano.Model
         public void AddPreviewClef(string PreviewClef)
         {
             clefName = PreviewClef;
+        }
+        internal void makeSignsGray()
+        {
+            for (int i = 0; i < Signs.Count(); i++)
+            {
+                Bitmap newBitmap = new Bitmap(Signs[i].Image);
+                newBitmap = BitmapController.ColorTint(newBitmap, 0.50F, 0.50F, 0.50F);
+                newBitmap = BitmapController.SetImageOpacity(newBitmap, 0.4F);
+                Signs[i].Image = newBitmap;
+            }
         }
     }
 }

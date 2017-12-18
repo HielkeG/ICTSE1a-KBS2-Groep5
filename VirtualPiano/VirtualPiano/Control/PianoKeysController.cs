@@ -27,7 +27,8 @@ namespace VirtualPiano.Control
             pianoKeysBtn.BackColor = Color.Transparent;
             pianoKeysBtn.FlatStyle = FlatStyle.Flat;
             pianoKeysBtn.FlatAppearance.BorderSize = 0;
-            pianoKeysBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, Color.Black);
+            pianoKeysBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            pianoKeysBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
 
             pianoKeysBtn.Click += pianoKeysBox_MouseClick;
         }

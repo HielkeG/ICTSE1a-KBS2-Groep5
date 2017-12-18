@@ -44,7 +44,6 @@ namespace VirtualPiano.View
             foreach (var item in toReturn.Items)
             {
                 ItemsList.Items.Add(item);
-
             }
         }
         private void CreateOriginalList()
@@ -66,7 +65,6 @@ namespace VirtualPiano.View
 
                     }
                 }
-            
         }
     }
 }

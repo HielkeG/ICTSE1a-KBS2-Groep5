@@ -5,7 +5,7 @@ using VirtualPiano.Control;
 using System.Collections.Generic;
 using System.Linq;
 using VirtualPiano.View;
-using System.Windows.Forms;
+
 
 namespace TestProject
 {
@@ -114,21 +114,19 @@ namespace TestProject
             Assert.AreEqual("Guitar", ComposeView.instrument);
         }
 
-        [TestMethod]
-        public void ChangeMetronomeBPM()
-        {
-            //arrange
-            Timer Metronoom = new Timer();
-            MusicController.Metronoom = Metronoom;
-            int bpm = 120;
-            MusicController.setMetronoom(10);
+        //[TestMethod]
+        //public void ChangeMetronomeBPM()
+        //{
+        //    //arrange
+        //    int bpm = 120;
+        //    MusicController.setMetronoom(0);
 
-            //act
-            MusicController.setMetronoom(bpm);
+        //    //act
+        //    MusicController.setMetronoom(bpm);
 
-            //assert
-            Assert.AreEqual(500, MusicController.Metronoom.Interval);
-        }
+        //    //assert
+        //    Assert.AreEqual(60000 / 120, MusicController.Metronoom.Interval);
+        //}
 
         [TestMethod]
         public void NoteFlip_WhenNoteisNotFlipped()
@@ -141,67 +139,7 @@ namespace TestProject
             bool verwachting = true;
 
             //assert
-            Assert.AreEqual(verwachting,note.flipped);
-        }
-
-
-        [TestMethod]
-        public void NoteUnFlip_WhenNoteisFlipped()
-        {
-            //arrange
-            Note note = new Note(-12, -35, "QuarterNote", "C", 2);
-            note.unflip();
-
-            //act
-            bool verwachting = false;
-
-            //assert
             Assert.AreEqual(note.flipped, verwachting);
-        }
-
-        [TestMethod]
-        public void SetSharpWhenNoteisA()
-        {
-            //arrange
-            Note note = new Note(-12, 32, "QuarterNote", "G", 5);
-            note.SetSharp();
-
-            //act
-            string verwachting = "Ais";
-
-            //assert
-            Assert.AreEqual(note.Tone, verwachting);
-        }
-
-        [TestMethod]
-        public void SetFlatWhenNoteisAis()
-        {
-            //arrange
-            Note note = new Note(-12, 32, "QuarterNote", "G", 5);
-            note.SetSharp();
-            note.SetFlat();
-
-            //act
-            string verwachting = "As";
-
-            //assert
-            Assert.AreEqual(note.Tone, verwachting);
-        }
-
-        [TestMethod]
-        public void RemoveSignFromBar()
-        {
-            //arrange
-            Bar bar = new Bar();
-            Note note = new Note(-12, 32, "QuarterNote", "G", 5);
-            bar.Add(note);
-            bar.RemoveSign(note);
-
-            //act
-            int verwachting = 0;
-
-            //assert
-            Assert.AreEqual(bar.Signs.Count(), verwachting);
         }
 
     }

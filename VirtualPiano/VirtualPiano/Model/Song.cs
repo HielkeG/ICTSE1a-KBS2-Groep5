@@ -20,7 +20,7 @@ namespace VirtualPiano.Model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SongId { get; set; }
         public string Composer { get; set; }
-        public int FlatSharp = 0;
+        public int FlatSharp {get; set;}
         private string title = "titel";
         public int Pages { get; set; }
         public string Title
@@ -49,6 +49,7 @@ namespace VirtualPiano.Model
             Staffs = new List<Staff>();
             Staffs.Add(new Staff());
             Pages = 1;
+            FlatSharp = 0;
 
             if (MusicController.isGestart)
             {
@@ -60,7 +61,7 @@ namespace VirtualPiano.Model
                 else if (ComposeView.instrument == "Guitar")
                 {
                     //instrument veranderen naar gitaar
-                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGuitarSteel);
+                    MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Banjo);
                 }
                 else if (ComposeView.instrument == "Marimba")
                 {
@@ -100,124 +101,66 @@ namespace VirtualPiano.Model
 
         public int getDuration()
         {
-            int duration = 0;
+            int Duration = 0;
             foreach (Staff staff in Staffs)
             {
                 foreach (Bar bar in staff.Bars)
                 {
-                    duration = duration + bar.duration;
+                    Duration = Duration + bar.Duration;
                 }
             }
-            return duration; // 1 maat is 16
+            return Duration; // 1 volle maat is 16
         }
 
 
         public async void PlayNote()
         {
-            foreach (var staff in Staffs)
+            try
             {
-                if (staff.IsBeingPlayed)
+                foreach (var staff in Staffs)
                 {
-                    if (ComposeView.RedLineX <= 425)
+                    if (staff.IsBeingPlayed)
                     {
-                        foreach (var sign in staff.Bars.ElementAt(0).Signs)
+                        List<Note> keyNotes = new List<Note>();
+                        foreach (Bar bar in staff.Bars)
                         {
-                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
+                            foreach (Sign sign in bar.Signs)
                             {
-                                Console.WriteLine(ComposeView.RedLineX);
-
-
-                                //Console.WriteLine(note.X);
-                                //toetsenbordkey op laten lichten
-                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                //pitch ophalen uit de note
-                                string parsedPitch = note.Tone.ToString() + note.Octave.ToString();
-                                //string parsen naar pitch
-                                if (parsedPitch.Length == 4)
+                                //Als de rode lijn een noot raakt
+                                if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                                 {
-                                    parsedPitch = note.Tone.First() + "Sharp" + note.Octave;
+                                    //Pianotoets oplichten
+                                    keyNotes.Add(note);
+                                    ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
+                                    ComposeView.pkv1.Invalidate();
+
+                                    //Noot afspelen
+                                    string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
+                                    if (pitchTemp.Length == 4)
+                                    {
+                                        Enum.TryParse(note.Tone.First().ToString() + "Sharp" + note.Octave.ToString(), out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+                                    else
+                                    {
+                                        Enum.TryParse(pitchTemp, out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+
                                 }
-                                Enum.TryParse(parsedPitch, out Pitch pitch);
-                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                await PutTaskDelay(75);
-                                //outputDevice.SendNoteOff(Channel.Channel1, pitch, 127);
-                                //toets oplichtne na 75 milliseconden wachten
-                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-
-                                break;
                             }
                         }
-                    }
-                    else if (ComposeView.RedLineX > 425 && ComposeView.RedLineX <= 850)
-                    {
-                        foreach (var sign in staff.Bars.ElementAt(1).Signs)
+                        await PutTaskDelay(200);
+                        foreach (Note note in keyNotes)
                         {
-                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
-                            {
-                                Console.WriteLine(ComposeView.RedLineX);
-                                //toetsenbordkey op laten lichten
-
-                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
-                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                Enum.TryParse(pitchTemp, out Pitch pitch);
-                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                break;
-                            }
-                        }
-                    }
-                    else if (ComposeView.RedLineX > 850 && ComposeView.RedLineX <= 1275)
-                    {
-                        foreach (var sign in staff.Bars.ElementAt(2).Signs)
-                        {
-                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
-                            {
-                                Console.WriteLine(ComposeView.RedLineX);
-                                //toetsenbordkey op laten lichten
-
-                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
-                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                Enum.TryParse(pitchTemp, out Pitch pitch);
-                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                break;
-                            }
-                        }
-                    }
-                    else if (ComposeView.RedLineX > 1275)
-                    {
-                        foreach (var sign in staff.Bars.ElementAt(3).Signs)
-                        {
-                            if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
-                            {
-                                Console.WriteLine(ComposeView.RedLineX);
-                                //toetsenbordkey op laten lichten
-
-                                ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                //note.PlaySound();
-                                string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                Enum.TryParse(pitchTemp, out Pitch pitch);
-                                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
-                                await PutTaskDelay(75);
-                                ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
-                                ComposeView.pkv1.Invalidate();
-                                break;
-                            }
+                            //Pianotoetsen niet meer oplichten
+                            ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
+                            ComposeView.pkv1.Invalidate();
                         }
                     }
                 }
             }
+            catch (Exception){ }
         }
 
         public void ChangeSharpFlat(int Flatsharp)
@@ -232,18 +175,19 @@ namespace VirtualPiano.Model
                         {
                             if (note.flat == false && note.sharp == false)
                             {
+                                //Alle tonen naar de stamtoon zetten
                                 if (note.Tone == "Fis") { note.Tone = "F"; }
-                                if (note.Tone == "Cis") { note.Tone = "C"; }
-                                if (note.Tone == "Gis") { note.Tone = "G"; }
-                                if (note.Tone == "Dis") { note.Tone = "D"; }
-                                if (note.Tone == "Ais") { note.Tone = "A"; }
-                                if (note.Tone == "Bes") { note.Tone = "B"; }
-                                if (note.Tone == "Es") { note.Tone = "E"; }
-                                if (note.Tone == "As") { note.Tone = "A"; }
-                                if (note.Tone == "Des") { note.Tone = "D"; }
-                                if (note.Tone == "Ges") { note.Tone = "G"; }
+                                else if (note.Tone == "Cis") { note.Tone = "C"; }
+                                else if (note.Tone == "Gis") { note.Tone = "G"; }
+                                else if (note.Tone == "Dis") { note.Tone = "D"; }
+                                else if (note.Tone == "Ais") { note.Tone = "A"; }
+                                else if (note.Tone == "Bes") { note.Tone = "B"; }
+                                else if (note.Tone == "Es") { note.Tone = "E"; }
+                                else if (note.Tone == "As") { note.Tone = "A"; }
+                                else if (note.Tone == "Des") { note.Tone = "D"; }
+                                else if (note.Tone == "Ges") { note.Tone = "G"; }
 
-
+                                //Afhankelijk van het aantal kruizen/mollen de toon verhogen
                                 if (Flatsharp >= 1) { if (note.Tone == "F") { note.Tone = "Fis"; } }
                                 if (Flatsharp >= 2) { if (note.Tone == "C") { note.Tone = "Cis"; } }
                                 if (Flatsharp >= 3) { if (note.Tone == "G") { note.Tone = "Gis"; } }
@@ -262,6 +206,7 @@ namespace VirtualPiano.Model
             }
         }
 
+        //Deze methode zorgt voor een wachttijd tijdens een methode, de rest van de applicatie gaat wel gewoon door
         async Task PutTaskDelay(int delay)
         {
             await Task.Delay(delay);
@@ -289,9 +234,5 @@ namespace VirtualPiano.Model
             IEnumerable<Staff> orderedStaffs = Staffs.OrderBy(staff => staff.Order);
             Staffs = orderedStaffs.ToList();
         }
-
-
-
     }
 }
-       

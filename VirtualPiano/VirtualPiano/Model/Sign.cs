@@ -24,7 +24,7 @@ namespace VirtualPiano.Model
         public string Name { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public abstract void SetImage();
         public abstract bool IsLocation(int x, int y);
+        public abstract void SetImage();
     }
 }

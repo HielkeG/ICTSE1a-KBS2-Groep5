@@ -15,9 +15,11 @@ namespace VirtualPiano.Model
     {
 
         public Rest() : base() { }
-        public Rest(string name)
+
+        public Rest(string name, int x)
         {
-            this.Name = name;
+            Name = name;
+            X = x;
             SetImage();
         }
 

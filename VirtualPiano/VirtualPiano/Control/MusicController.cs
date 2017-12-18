@@ -23,14 +23,18 @@ namespace VirtualPiano.Control
         public static Image pause = Resources.pause;
         public static Image add = Resources.add;
         public static Image rewind = Resources.rewind;
-        public static Image metronomeOn = Resources.metronome_on;
-        public static Image metronomeOff = Resources.metronome;
+        public static Image recordstart = new Bitmap(Resources.record_start, 50, 50);
+        public static Image recordstop = new Bitmap(Resources.record_stop, 50, 50);
+        public static Bitmap metronomeOn1 = new Bitmap(Resources.metronome_on1,50,50);
+        public static Bitmap metronomeOn2 = new Bitmap(Resources.metronome_on2,50,50);
+        public static Bitmap metronomeOff1 = new Bitmap(Resources.metronome_off1, 50, 50);
+        public static Bitmap metronomeOff2 = new Bitmap(Resources.metronome_off2, 50, 50);
 
         public static Button playBtn = new Button();
         public static Button stopBtn = new Button();
         public static Button rewindBtn= new Button();
         public static Button metronomeBtn = new Button();
-        
+        public static Button recordBtn = new Button();
 
         public static Timer Metronoom;
         public static Timer rodeLijn;
@@ -43,34 +47,52 @@ namespace VirtualPiano.Control
         private static string currentTone = "";
         public static bool isGestart = false;
         public static bool MetronomeTicking = false;
+        public static bool isRecording = false;
 
         public MusicController(Timer m, Timer r, Song s)
         {
+            playBtn.Name = "PlayBtn";
             playBtn.Image = new Bitmap(Resources.play, 50, 50);
             playBtn.Location = new Point(110, 40);
             playBtn.Size = new Size(55, 55);
             playBtn.BackColor = Color.Transparent;
             playBtn.FlatStyle = FlatStyle.Flat;
             playBtn.FlatAppearance.BorderSize = 0;
-            playBtn.FlatAppearance.BorderColor = Color.FromArgb(255,255,255, 0);
+            playBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            playBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             playBtn.Click += PlayGeklikt;
 
+            stopBtn.Name = "StopBtn";
             stopBtn.Location = new Point(170, 40);
             stopBtn.Image = new Bitmap(Resources.stop, 50, 50);
             stopBtn.Size = new Size(55, 55);
-            playBtn.BackColor = Color.Transparent;
             stopBtn.FlatStyle = FlatStyle.Flat;
             stopBtn.FlatAppearance.BorderSize = 0;
+            stopBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            stopBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             stopBtn.Click += StopGeklikt;
 
-            metronomeBtn.Image = new Bitmap(metronomeOff, 50, 50);
+            metronomeBtn.Name = "MetronomeBtn";
+            metronomeBtn.Image = metronomeOff1;
             metronomeBtn.Location = new Point(1750, 40);
             metronomeBtn.Size = new Size(55, 55);
             metronomeBtn.BackColor = Color.Transparent;
             metronomeBtn.FlatStyle = FlatStyle.Flat;
             metronomeBtn.FlatAppearance.BorderSize = 0;
-            metronomeBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 255, 255, 0);
+            metronomeBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            metronomeBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             metronomeBtn.Click += MetronomeClick;
+
+            recordBtn.Name = "RecordBtn";
+            recordBtn.Image = recordstart;
+            recordBtn.Location = new Point(230, 40);
+            recordBtn.Size = new Size(55, 55);
+            recordBtn.BackColor = Color.Transparent;
+            recordBtn.FlatStyle = FlatStyle.Flat;
+            recordBtn.FlatAppearance.BorderSize = 0;
+            recordBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            recordBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            recordBtn.Click += RecordClick;
 
             Metronoom = m;
             rodeLijn = r;
@@ -87,7 +109,21 @@ namespace VirtualPiano.Control
             isGestart = true;
 
         }
-        
+
+        private void RecordClick(object sender, EventArgs e)
+        {
+            if (isRecording)
+            {
+                recordBtn.Image = recordstart;
+                isRecording = false;
+            }
+            else
+            {
+                recordBtn.Image = recordstop;
+                isRecording = true;
+            }
+        }
+
         public static void MetronomeClick(object sender, EventArgs e)
         {
             //als de metronoom afspeelt wordt hij gestopt. Anders wordt hij gestart.
@@ -95,15 +131,15 @@ namespace VirtualPiano.Control
             {
                 Metronoom.Stop();
                 MetronomeTicking = false;
-                metronomeBtn.Image = new Bitmap(metronomeOff, 50, 50);
-            }
+                if (metronomeBtn.Image == metronomeOn1) metronomeBtn.Image = metronomeOff1;
+                else metronomeBtn.Image = metronomeOff2;            }
             else
             {
                 Metronoom.Start();
                 MetronomeTicking = true;
-                metronomeBtn.Image = new Bitmap(metronomeOn, 50, 50);
+                if (metronomeBtn.Image == metronomeOff1) metronomeBtn.Image = metronomeOn1;
+                else metronomeBtn.Image = metronomeOn2;
             }
-
         }
 
         public static void PlaySound(int octave, string tone)
@@ -136,7 +172,7 @@ namespace VirtualPiano.Control
             isPlayingSong = false;
             Metronoom.Enabled = false;
             ComposeView.CurrentPlayingStaff = 0;
-            ComposeView.RedLineX = 0;
+            ComposeView.RedLineX = -25;
             rodeLijn.Stop();
         }
 
@@ -150,8 +186,6 @@ namespace VirtualPiano.Control
                 //Console.WriteLine(Song.getDuration());
                 SongStarted(this, e);
                 rodeLijn.Start();
- 
-                
             }
             else if (isPlayingSong)
             {
@@ -168,7 +202,7 @@ namespace VirtualPiano.Control
             playBtn.Image = new Bitmap(play,width,height);
             isPlayingSong = false;
             ComposeView.CurrentPlayingStaff = 0;
-            ComposeView.RedLineX = 0;
+            ComposeView.RedLineX = -60;
             rodeLijn.Stop();
             SongStopped(this, e);
             outputDevice.SilenceAllNotes();

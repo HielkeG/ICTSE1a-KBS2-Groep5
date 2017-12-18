@@ -46,6 +46,7 @@
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.StaffView_MouseClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StaffView_MouseDown);
             this.MouseEnter += new System.EventHandler(this.StaffView_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.StaffView_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.StaffView_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StaffView_MouseUp);
             this.ResumeLayout(false);
