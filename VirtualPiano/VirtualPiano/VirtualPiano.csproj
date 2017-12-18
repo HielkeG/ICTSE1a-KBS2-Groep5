@@ -311,6 +311,27 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Cursors\Connect2.cur" />
+    <None Include="Resources\Cursors\Connect1.cur" />
+    <None Include="Resources\Cursors\zestiendenoot_cur.png" />
+    <None Include="Resources\Cursors\kwartnoot_cur.png" />
+    <None Include="Resources\Cursors\halvenoot_cur.png" />
+    <None Include="Resources\Cursors\achtstenoot_cur.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\zestienderust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\zestiendenoot_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\opheffing_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\mol_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\kwartrust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\kwartnoot_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\kruis_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\helerust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\helenoot_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\halverust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\halvenoot_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\Gsleutel_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\fsleutel_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\achtsterust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\achtstenoot_icon.png" />
     <None Include="Resources\Geluiden\BinSound.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4B.wav" />
     <None Include="Resources\Geluiden\Piano\Piano5C.wav" />
@@ -345,6 +366,9 @@
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
+    <None Include="Resources\Afbeeldingen\Menubar\guitar.png" />
+    <None Include="Resources\Afbeeldingen\Menubar\marimba.png" />
+    <None Include="Resources\Afbeeldingen\Menubar\piano.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />
@@ -354,6 +378,7 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\bin.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\bin_open.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\blank.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\opheffing.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\zestienderust.png" />
     <None Include="Resources\Geluiden\Piano\Piano4G.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4Fis.wav" />

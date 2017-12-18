@@ -92,11 +92,11 @@ namespace VirtualPiano.View
 
                     //-----Kruizen / Mollen --------
                     //Hieronder worden de kruizen en de mollen getekent. afhankelijk van het aantal
-                    if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 420, 30, 30, 40); }
-                    if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 405, 53, 30, 40); }
-                    if (song.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 405, 25, 30, 40); }
-                    if (song.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 426, 47, 30, 40); }
-                    if (song.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.Kruis, x_bar - 420, 65, 30, 40); }
+                    if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.kruis_icon, x_bar - 420, 30, 30, 40); }
+                    if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.kruis_icon, x_bar - 405, 53, 30, 40); }
+                    if (song.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.kruis_icon, x_bar - 405, 25, 30, 40); }
+                    if (song.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.kruis_icon, x_bar - 426, 47, 30, 40); }
+                    if (song.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.kruis_icon, x_bar - 420, 65, 30, 40); }
 
                     if (song.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.Mol, x_bar - 420, 52, 30, 40); }
                     if (song.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.Mol, x_bar - 405, 28, 30, 40); }
@@ -159,7 +159,7 @@ namespace VirtualPiano.View
 
 
                         e.Graphics.DrawImage(sign.Image, note.X, Ynotelocation, 90, 130);
-                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.Kruis, note.X + 15, Ynotelocation + 40, 30, 40); }
+                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.kruis_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
                         else if (note.flat == true) { e.Graphics.DrawImage(Resources.Mol, note.X + 15, Ynotelocation + 40, 30, 40); }
                     }
                     else if (sign is Rest rest)

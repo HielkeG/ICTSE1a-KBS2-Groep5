@@ -30,7 +30,7 @@ namespace VirtualPiano.Control
             else if (s == "SixteenthRest") b = Resources.zestienderust_icon;
             else if (s == "G") b = Resources.Gsleutel_icon;
             else if (s == "F") b = Resources.fsleutel_icon;
-            else if (s == "Sharp") b = Resources.Kruis;
+            else if (s == "Sharp") b = Resources.kruis_icon;
             else if (s == "Flat") b = Resources.Mol;
             else if (s == "Bin") b = Resources.bin;
             else if (s == "Connect1") return new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect1));
