@@ -127,12 +127,13 @@ namespace VirtualPiano.View
 
         private void Nootsoorten_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Notensoorten", "",false);
+            ShowExplain("Notensoorten", "In de muziek bestaan verschillende soorten noten: Hele noten, halve, kwarten, achtste, 1/16e enzovoort." +
+                "Deze worden allemaal aangegeven met een eigen icoon. Wanneer je de muis over een noot in de toolbar houdt kan je zien welke noot dit is.",false);
         }
 
         private void Tonen_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Tonen", "",false);
+            ShowExplain("Tonen", "Een toon is een bepaalde hoogte van geluid.",false);
 
         }
 
