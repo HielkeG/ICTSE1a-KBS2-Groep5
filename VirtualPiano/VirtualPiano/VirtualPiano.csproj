@@ -331,7 +331,6 @@
   <ItemGroup>
     <None Include="Resources\PianoBinds.png" />
     <None Include="Resources\Afbeeldingen\Piano.png" />
-    <None Include="Resources\Afbeeldingen\pianoKeybinds.bmp" />
     <None Include="Resources\Cursors\Connect2.cur" />
     <None Include="Resources\Cursors\Connect1.cur" />
     <None Include="Resources\Cursors\zestiendenoot_cur.png" />
