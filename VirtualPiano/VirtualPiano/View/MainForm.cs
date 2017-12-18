@@ -28,10 +28,10 @@ namespace VirtualPiano
             //als de gebruiker typend spelen aan heeft staan.
             if (ComposeView.PlayingKeyboard)
             {
-                VirtualPiano.Control.KeyBinds.PressPianoKeys(e);
                 //toetsaanslagen opvangen.
-                KeyBinds.PressPianoKeys(e);
 
+                KeyBinds.PressPianoKeys(e);
+                Console.WriteLine("test");
             }
 
         }
@@ -41,6 +41,7 @@ namespace VirtualPiano
             if (ComposeView.PlayingKeyboard)
             {
                 KeyBinds.ReleasePianoKeys(e);
+                Refresh();
             }
         }
     }

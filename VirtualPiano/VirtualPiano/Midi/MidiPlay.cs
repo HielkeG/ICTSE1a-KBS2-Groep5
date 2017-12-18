@@ -29,6 +29,7 @@ using VirtualPiano.View;
 using VirtualPiano.Control;
 using System.Linq;
 using System.Text.RegularExpressions;
+using VirtualPiano.Model;
 
 namespace VirtualPiano
 {    
@@ -90,8 +91,11 @@ namespace VirtualPiano
                 Console.WriteLine(); 
             }
 
+
+
             public void NoteOn(NoteOnMessage msg)
             {
+                
                 lock (this)
                 {
                     MusicController.outputDevice.SendProgramChange(Channel.Channel2, CurrentInstrument);
@@ -99,10 +103,19 @@ namespace VirtualPiano
                     {
                         MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
                         MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, msg.Velocity);
+                        if (StopwatchController.watch.IsRunning == false)
+                        {
+                            //StopwatchController.StartWatch();
+
+                        }
                     } else
                     {
                         MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
                         MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, 127);
+                        if (StopwatchController.watch.IsRunning == false)
+                        {
+                            //StopwatchController.StartWatch();
+                        }
                     }
 
                     string currentTone = msg.Pitch.ToString();
@@ -129,6 +142,7 @@ namespace VirtualPiano
 
             public void NoteOff(NoteOffMessage msg)
             {
+
                 lock (this)
                 {
                     MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 0);
@@ -144,10 +158,15 @@ namespace VirtualPiano
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(n.ToString()).Append("is");
                         ComposeView.pkv1.KeyReleased(o, sb.ToString());
+                        //Deel aanpassen zodat deze met kruizen en mollen werkt
+                        Note n1 = new Note(sb.ToString(), o);
+                        StopwatchController.StopWatch(n1);
                     }
                     else
                     {
                         ComposeView.pkv1.KeyReleased(o, n.ToString());
+                        Note n1 = new Note(n.ToString(), o);
+                        StopwatchController.StopWatch(n1);
                     }
                     ComposeView.pkv1.Invalidate();
                     //PrintStatus();

@@ -25,6 +25,18 @@ namespace VirtualPiano.View
         {
             base.OnPaint(e);
             e.Graphics.DrawLine(penRed, new Point(65 + ComposeView.RedLineX, 50), new Point(65 + ComposeView.RedLineX, 110));
+            if (ComposeView.RedLineX == 384)
+            {
+                ComposeView.RedLineX = 416;
+            }
+            if(ComposeView.RedLineX == 816)
+            {
+                ComposeView.RedLineX = 848;
+            }
+            if(ComposeView.RedLineX == 1248)
+            {
+                ComposeView.RedLineX = 1280;
+            }
 
         }
     }
