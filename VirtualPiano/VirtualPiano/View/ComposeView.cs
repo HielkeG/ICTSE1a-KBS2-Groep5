@@ -70,6 +70,7 @@ namespace VirtualPiano.View
             //methodes koppelen aan het starten en stoppen vna het afspelen.
             MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
+            StopwatchController.Song = song;
             menuBarView1.Song = song;
             menuBarView1.selectedSong += ChangeSong;
             menuBarView1.newSong += NewSong;
@@ -104,6 +105,7 @@ namespace VirtualPiano.View
             btnAddStaff.MouseEnter += new EventHandler(AllButtons_Enter);
             btnAddStaff.MouseHover += new EventHandler(AllButtons_Hover);
             btnAddStaff.MouseLeave += new EventHandler(AllButtons_Leave);
+            StopwatchController.OnFullStaff += newStaffView;
             
 
             Snelheid.Text = Metronome.Interval.ToString(); 
@@ -134,6 +136,7 @@ namespace VirtualPiano.View
         private void ChangeSong(object sender, EventArgs e)
         {
             MusicController.song = menuBarView1.Song;
+            StopwatchController.Song = menuBarView1.Song;
             TitelBox.Text = menuBarView1.Song.Title;
             //oorspronkelijke notenbalken verwijderen.
             SetLoadedSong(menuBarView1.Song);

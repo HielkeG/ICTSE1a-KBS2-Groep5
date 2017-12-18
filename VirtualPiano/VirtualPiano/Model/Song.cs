@@ -124,6 +124,10 @@ namespace VirtualPiano.Model
                         {
                             if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
+                                Console.WriteLine(ComposeView.RedLineX);
+
+
+                                //Console.WriteLine(note.X);
                                 //toetsenbordkey op laten lichten
                                 ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
@@ -141,6 +145,7 @@ namespace VirtualPiano.Model
                                 //toets oplichtne na 75 milliseconden wachten
                                 ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
+
                                 break;
                             }
                         }
@@ -151,6 +156,7 @@ namespace VirtualPiano.Model
                         {
                             if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
+                                Console.WriteLine(ComposeView.RedLineX);
                                 //toetsenbordkey op laten lichten
 
                                 ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
@@ -172,6 +178,7 @@ namespace VirtualPiano.Model
                         {
                             if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
+                                Console.WriteLine(ComposeView.RedLineX);
                                 //toetsenbordkey op laten lichten
 
                                 ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
@@ -193,6 +200,7 @@ namespace VirtualPiano.Model
                         {
                             if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                             {
+                                Console.WriteLine(ComposeView.RedLineX);
                                 //toetsenbordkey op laten lichten
 
                                 ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
@@ -281,5 +289,9 @@ namespace VirtualPiano.Model
             IEnumerable<Staff> orderedStaffs = Staffs.OrderBy(staff => staff.Order);
             Staffs = orderedStaffs.ToList();
         }
+
+
+
     }
 }
+       

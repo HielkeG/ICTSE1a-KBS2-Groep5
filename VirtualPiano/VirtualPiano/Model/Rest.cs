@@ -23,8 +23,8 @@ namespace VirtualPiano.Model
 
         public override void SetImage()
         {
-            if (Name == "WholeRest") { Duration = 16; }
-            else if (Name == "HalfRest") { Duration = 8; }
+            if (Name == "WholeRest") { Image = Resources.helerust_icon; Duration = 16; }
+            else if (Name == "HalfRest") { Image = Resources.halverust_icon; Duration = 8; }
             else if (Name == "QuarterRest") { Image = Resources.KwartRust; Duration = 4; }
             else if (Name == "EightRest") { Image = Resources.achtsterust; Duration = 2; }
             else if (Name == "SixteenthRest") { Image = Resources.zestienderust; Duration = 1; }

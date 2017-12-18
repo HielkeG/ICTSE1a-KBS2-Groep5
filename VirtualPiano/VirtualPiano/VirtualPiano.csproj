@@ -62,6 +62,7 @@
     <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />
     <Compile Include="Control\PianoKeysController.cs" />
+    <Compile Include="Control\StopwatchController.cs" />
     <Compile Include="Midi\Channel.cs" />
     <Compile Include="Midi\Chord.cs" />
     <Compile Include="Midi\Clock.cs" />

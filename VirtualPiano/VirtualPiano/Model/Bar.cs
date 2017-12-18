@@ -90,6 +90,25 @@ namespace VirtualPiano.Model
             }
         }
 
+        public void FillBar()
+        {          
+            
+                if (duration == 4)
+                {
+                Add(new Rest("HalfRest"));
+                Add(new Rest("QuarterRest"));
+            }
+                else if (duration == 8)
+                {
+                Add(new Rest("HalfRest"));
+            }
+                else if(duration == 12)
+                {
+                Add(new Rest("QuarterRest"));
+            }
+            
+        }
+
 
 
         public void AddPreviewClef(string PreviewClef)

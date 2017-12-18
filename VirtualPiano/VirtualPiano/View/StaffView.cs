@@ -20,6 +20,7 @@ namespace VirtualPiano.View
         public Staff staff;
         public RedLine redLine;
         public Song song;
+        public int fullBar { get; set; }
         Color barColor;
 
         public StaffView(Staff staff, Song song)
@@ -73,6 +74,7 @@ namespace VirtualPiano.View
             Refresh();
         }
 
+        
         public void DrawBars(PaintEventArgs e) //Deze methode tekent de maten inclusief de noten en de sleutels
         {
             int fullBar = 0;
