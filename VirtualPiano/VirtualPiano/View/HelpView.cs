@@ -33,7 +33,7 @@ namespace VirtualPiano.View
             ShowExplain("Notenbalk toevoegen","Standaard bestaat het componeerscherm uit één notenbalk. " +
                 "Dit kan uitgebreid worden door op het plus knopje onder de notenbalk te klikken. " +
                 "Als op deze knop gedrukt wordt verschijnt er een nieuwe notenbalk onder de laatste. " +
-                "Er kunnen maximaal x aantal notenbalken op een pagina. De notenbalk bevat vier maten.");
+                "Er kunnen maximaal x aantal notenbalken op een pagina. De notenbalk bevat vier maten.", false);
         }
 
         private void NotenToevoegen_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -45,21 +45,21 @@ namespace VirtualPiano.View
                 "De noot wordt nu toegevoegd aan de maat.\n\n" +
                 "Een maat heeft een standaard maataanduiding van vierkwartsmaten. " +
                 "U kunt daardoor niet meer noten toevoegen als de maat vol is. " +
-                "De rode lijn onder de maat verandert van kleur als de maat volledig is.");
+                "De rode lijn onder de maat verandert van kleur als de maat volledig is.", false);
 
         }
 
         private void KruisMol_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ShowExplain("Kruizen en mollen toevoegen", "U kunt kruizen en mollen toevoegen door op het # of b teken te klikken en vervolgens op de gewenste locatie op de notenbalk te klikken." +
-                "Wanneer u hier klikt wordt het geselecteerde teken geplaatst. Om een teken te verwijderen beweegt u de muis over het teken heen en klikt u op de rechtermuisknop.");
+                "Wanneer u hier klikt wordt het geselecteerde teken geplaatst. Om een teken te verwijderen beweegt u de muis over het teken heen en klikt u op de rechtermuisknop.", false);
         }
 
         private void SpelendComp_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ShowExplain("Componeren met toetsenbord/keyboard", "In deze applicatie heeft u de mogelijkheid om uw toetsaanslagen op te nemen en deze om te zetten in noten. " +
                 "Dit doet u door op de opnameknop te drukken zodat de opneemmodus aanstaat. Als u dan typend gaat spelen worden de noten in de notenbalk geplaatst. " +
-                "U kunt hele noten, halve noten en kwart noten spelen. U kunt stoppen met opnemen door op de stopknop te drukken.");
+                "U kunt hele noten, halve noten en kwart noten spelen. U kunt stoppen met opnemen door op de stopknop te drukken.", false);
         }
 
         private void MuziekSleutel_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -67,7 +67,7 @@ namespace VirtualPiano.View
             ShowExplain("Muzieksleutel wijzigen", "De standaardnotering van de maten zijn in de G-sleutel. " +
                 "Als u de sleutel van een maat wilt wijzigen, klikt u op de gewenste sleutel. " +
                 "Vervolgens klikt u op de maat die u wilt wijzigen. " +
-                "Als er al noten in die maat zijn, worden die verwijderd.");
+                "Als er al noten in die maat zijn, worden die verwijderd.", false);
         }
 
         private void LiedAfsp_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -76,7 +76,7 @@ namespace VirtualPiano.View
                 "Om te weten hoe u dit moet doen gaat u naar hoofdstuk 4. " +
                 "Wanneer u een geldig lied klaar heeft staan klikt u op de afspeelknop. " +
                 "Op dat moment begint de applicatie het lied af te spelen. " +
-                "De applicatie tekent een rode lijn over de notenbalk om aan te geven waar in het lied het afspelen is.");
+                "De applicatie tekent een rode lijn over de notenbalk om aan te geven waar in het lied het afspelen is.", false);
         }
 
         private void Typendspel_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -93,14 +93,14 @@ namespace VirtualPiano.View
                 "Het systeem opent dan een nieuw scherm waar u uw input en output selecteert. Uw input is in dit geval uw keyboard, dus selecteert u deze en klikt u op “volgende”. " +
                 "Vervolgens kiest u een output, dit kan bijvoorbeeld een koptelefoon of luidspreker zijn. Wanneer u vervolgens op “volgende” klikt is het keyboard klaar voor gebruik.\n\n" +
                 "Wanneer er geen keyboard zichtbaar is in de lijst of wanneer u uw keyboard later aangesloten heeft selecteert u “verversen”. " +
-                "Het systeem zoekt dan opnieuw MIDI-apparaten op en toont die vervolgens in de lijst.");
+                "Het systeem zoekt dan opnieuw MIDI-apparaten op en toont die vervolgens in de lijst.", false);
         }
 
         private void Opslaan_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ShowExplain("Lied opslaan", "U kunt een lied opslaan door links bovenin het scherm op ‘bestand’ en daarna op ‘opslaan’ te klikken. " +
                 "Uw lied wordt opgeslagen met uw titel als naam. Mocht het zo zijn dat er al een lied bestaat met dezelfde titel, dan wordt u gevraagd of u het bestaande bestand wil overschrijven. " +
-                "Als u dit doet wordt het bestaande bestand verwijderd en uw huidige lied opgeslagen.");
+                "Als u dit doet wordt het bestaande bestand verwijderd en uw huidige lied opgeslagen.",false);
         }
 
         private void Openen_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -110,7 +110,7 @@ namespace VirtualPiano.View
                 "Er wordt dan een muziekverkenner getoond. Hierin worden alle opgeslagen liedjes uit de database getoond. " +
                 "U kunt een lied opzoeken door de titel van het lied volledig of gedeeltelijk in te typen. " +
                 "De verkenner toont dan alleen liedjes met overeenkomende namen. " +
-                "Als u vervolgens een lied selecteert wordt de muziekverkenner gesloten en het lied getoond. ");
+                "Als u vervolgens een lied selecteert wordt de muziekverkenner gesloten en het lied getoond. ",false);
         }
 
         private void Verwijderen_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -121,59 +121,49 @@ namespace VirtualPiano.View
                 "U kunt een lied opzoeken door de titel volledig of gedeeltelijk in te typen. " +
                 "Het systeem filtert dan de liedjes op deze naam. " +
                 "Wanneer u een lied selecteert en op ‘verwijderen’ klikt krijgt u een bevestiging te zien. " +
-                "Als u op ‘ja’ klikt wordt het lied definitief verwijderd.");
+                "Als u op ‘ja’ klikt wordt het lied definitief verwijderd.",false);
         }
 
         private void Nootsoorten_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Notensoorten", "");
+            ShowExplain("Notensoorten", "",false);
         }
 
         private void Tonen_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Tonen", "");
+            ShowExplain("Tonen", "",false);
 
         }
 
         private void Maten_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Maten", "");
+            ShowExplain("Maten", "",false);
 
         }
 
         private void MolKruis_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Mollen en kruizen", "");
+            ShowExplain("Mollen en kruizen", "",false);
 
         }
 
         private void Sleutels_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Sleutels", "");
+            ShowExplain("Sleutels", "",false);
         }
 
-        private void ShowExplain(string title, string explanation)
-        {
-            Controls.Clear();
-            HelpSelectedView helpSelected = new HelpSelectedView(title, explanation);
-            helpSelected.Dock = DockStyle.Fill;
-            helpSelected.exiting += CloseView;
-            KeyDown += CloseOnEsc;
-            helpSelected.closing += ResetView;
-            Controls.Add(helpSelected);
-
-        }
-
-        private void ShowExplain(string title, string explanation, bool image)
+        private void ShowExplain(string title, string explanation,bool image)
         {
             Controls.Clear();
             HelpSelectedView helpSelected = new HelpSelectedView(title, explanation,image);
             helpSelected.Dock = DockStyle.Fill;
-            KeyDown += CloseOnEsc;
             helpSelected.exiting += CloseView;
+            KeyDown += CloseOnEsc;
             helpSelected.closing += ResetView;
             Controls.Add(helpSelected);
+
         }
+
 
         private void CloseOnEsc(Object sender, KeyEventArgs e)
         {

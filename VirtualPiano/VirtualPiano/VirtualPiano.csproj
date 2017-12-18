@@ -329,6 +329,7 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\PianoBinds.png" />
     <None Include="Resources\Afbeeldingen\Piano.png" />
     <None Include="Resources\Afbeeldingen\pianoKeybinds.bmp" />
     <None Include="Resources\Cursors\Connect2.cur" />
