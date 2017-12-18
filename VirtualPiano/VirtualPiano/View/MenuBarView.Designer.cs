@@ -244,7 +244,7 @@
             this.gitaarToolStripMenuItem1.AccessibleName = "Instrument";
             this.gitaarToolStripMenuItem1.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
             this.gitaarToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 15F);
-            this.gitaarToolStripMenuItem1.Image = global::VirtualPiano.Properties.Resources.guitar;
+            this.gitaarToolStripMenuItem1.Image = global::VirtualPiano.Properties.Resources.Gitaar;
             this.gitaarToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.gitaarToolStripMenuItem1.Name = "gitaarToolStripMenuItem1";
             this.gitaarToolStripMenuItem1.Size = new System.Drawing.Size(217, 82);
