@@ -172,6 +172,10 @@
     <EmbeddedResource Include="Migrations\201712181129327_Hoi.resx">
       <DependentUpon>201712181129327_Hoi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,11 +190,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ComposeView.resx">
       <DependentUpon>ComposeView.cs</DependentUpon>
@@ -389,6 +388,7 @@
     <None Include="Resources\Afbeeldingen\Menubar\guitar.png" />
     <None Include="Resources\Afbeeldingen\Menubar\marimba.png" />
     <None Include="Resources\Afbeeldingen\Menubar\piano.png" />
+    <None Include="Resources\Afbeeldingen\logo_highres.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />

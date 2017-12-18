@@ -46,7 +46,7 @@ namespace VirtualPiano.View
             image.Resize += Rescale;
             image.Size = new Size(1000, 500);
             PictureBox pb = new PictureBox();
-            pb.Image = Resources.PianoBinds;
+            pb.Image = Resources.pianoKeybinds;
             pb.Size = image.Size;
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
             image.Icon = Resources.logo_icon32x32;
