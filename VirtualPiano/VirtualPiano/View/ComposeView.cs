@@ -213,6 +213,7 @@ namespace VirtualPiano.View
             menuBarView1.Song = song;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
+            TitelBox.Text = "Titel";
             CurrentPage = 1;
             btnAddStaff.Visible = true;
             btnAddStaff.Location = new Point(btnAddStaff.Location.X, y_staff - 40);
