@@ -228,5 +228,11 @@ namespace VirtualPiano.View
         {
             m2.ShowDialog();
         }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpView help = new HelpView();
+            help.Show();
+        }
     }
 }

@@ -106,6 +106,18 @@
     <Compile Include="View\DatabaseFileRemover.Designer.cs">
       <DependentUpon>DatabaseFileRemover.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\HelpSelectedView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\HelpSelectedView.Designer.cs">
+      <DependentUpon>HelpSelectedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HelpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HelpView.Designer.cs">
+      <DependentUpon>HelpView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +176,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileRemover.resx">
       <DependentUpon>DatabaseFileRemover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HelpSelectedView.resx">
+      <DependentUpon>HelpSelectedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HelpView.resx">
+      <DependentUpon>HelpView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -310,6 +328,8 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Afbeeldingen\Piano.png" />
+    <None Include="Resources\Afbeeldingen\pianoKeybinds.bmp" />
     <None Include="Resources\Geluiden\BinSound.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4B.wav" />
     <None Include="Resources\Geluiden\Piano\Piano5C.wav" />
