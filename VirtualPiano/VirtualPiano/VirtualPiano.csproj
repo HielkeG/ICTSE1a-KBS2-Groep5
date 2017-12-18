@@ -78,13 +78,9 @@
     <Compile Include="Midi\Pitch.cs" />
     <Compile Include="Midi\ShortMsg.cs" />
     <Compile Include="Midi\Win32API.cs" />
-    <Compile Include="Migrations\201712151038568_mekekk.cs" />
-    <Compile Include="Migrations\201712151038568_mekekk.Designer.cs">
-      <DependentUpon>201712151038568_mekekk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712151122454_lwkwwmw.cs" />
-    <Compile Include="Migrations\201712151122454_lwkwwmw.Designer.cs">
-      <DependentUpon>201712151122454_lwkwwmw.cs</DependentUpon>
+    <Compile Include="Migrations\201712151207456_KBS.cs" />
+    <Compile Include="Migrations\201712151207456_KBS.Designer.cs">
+      <DependentUpon>201712151207456_KBS.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
@@ -160,11 +156,8 @@
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\201712151038568_mekekk.resx">
-      <DependentUpon>201712151038568_mekekk.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712151122454_lwkwwmw.resx">
-      <DependentUpon>201712151122454_lwkwwmw.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712151207456_KBS.resx">
+      <DependentUpon>201712151207456_KBS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
@@ -338,14 +331,14 @@
     <None Include="Resources\Afbeeldingen\Knoppen\refresh.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\lastPage.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\nextPage.png" />
-    <None Include="Resources\Afbeeldingen\Knoppen\metronome.png" />
-    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on1.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on2.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on11.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on21.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_off1.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_off2.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\record_start.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\record_stop.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />

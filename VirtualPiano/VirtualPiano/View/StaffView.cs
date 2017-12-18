@@ -22,6 +22,9 @@ namespace VirtualPiano.View
         public Song song;
         Color barColor;
 
+        public bool ShowClefCursor = true;
+        public static Color barContentColor = Color.Black;
+
         public StaffView(Staff staff, Song song)
         {
             this.staff = staff;
@@ -137,12 +140,12 @@ namespace VirtualPiano.View
                         {
                             if (note.Name == "EightNote")
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 6), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
+                                e.Graphics.DrawLine(new Pen(barContentColor, 6), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
                             }
                             else
                             {
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
-                                e.Graphics.DrawLine(new Pen(Color.Black, 5), note.X + 58, note.Y + 23, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 23);
+                                e.Graphics.DrawLine(new Pen(barContentColor, 5), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
+                                e.Graphics.DrawLine(new Pen(barContentColor, 5), note.X + 58, note.Y + 23, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 23);
                             }
 
                         }
@@ -150,9 +153,9 @@ namespace VirtualPiano.View
                         int Ynotelocation = note.Y;
 
                         //Als de noten te hoog of te heel laag zijn voor de notenbalk, worden er hulplijnen getkent.
-                        if (note.Y <= -25) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.X + 30, 36, note.X + 70, 36); }
-                        if (note.Y <= -40) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.X + 30, 22, note.X + 70, 22); }
-                        else if (note.Y >= 55) { e.Graphics.DrawLine(new Pen(Color.Black, 2), note.X + 30, 124, note.X + 70, 124); }
+                        if (note.Y <= -25) { e.Graphics.DrawLine(new Pen(barContentColor, 2), note.X + 30, 36, note.X + 70, 36); }
+                        if (note.Y <= -40) { e.Graphics.DrawLine(new Pen(barContentColor, 2), note.X + 30, 22, note.X + 70, 22); }
+                        else if (note.Y >= 55) { e.Graphics.DrawLine(new Pen(barContentColor, 2), note.X + 30, 124, note.X + 70, 124); }
 
 
                         e.Graphics.DrawImage(sign.Image, note.X, Ynotelocation, 90, 130);
@@ -196,7 +199,7 @@ namespace VirtualPiano.View
         {
             //Standaard cursor zetten voor noten en rusten
             if (ComposeView.SelectedSign == "Sharp" || ComposeView.SelectedSign == "Flat" || ComposeView.SelectedSign == "Connect") Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
-            else { SetDefaultCursor(); }
+            else SetDefaultCursor(); 
 
             if (ComposeView.SelectedSign == "Connect1")
             {
@@ -208,6 +211,13 @@ namespace VirtualPiano.View
             }
         }
 
+        private void SetClefCursor(Bar bar)
+        {
+            if (bar.clefName == ComposeView.SelectedSign)
+            {
+                Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+            }
+        }
 
         private void StaffView_MouseMove(object sender, MouseEventArgs e)
         {
@@ -215,14 +225,17 @@ namespace VirtualPiano.View
             int barBegin = 50;
             int barEnd = 475;
             bool noteSet = false;
+            int MouseX = PointToClient(Cursor.Position).X;
+            int MouseY = PointToClient(Cursor.Position).Y;
 
+           
             foreach (Bar bar in staff.Bars)
             {
-
                 if (ComposeView.SelectedSign != "")
                 {
-                    if (PointToClient(Cursor.Position).X < barEnd && PointToClient(Cursor.Position).X > barBegin)
+                    if (MouseX < barEnd && MouseX > barBegin)
                     {
+                        SetClefCursor(bar);
                         int Y = PointToClient(Cursor.Position).Y;
 
                         // ------Note-----
@@ -236,7 +249,7 @@ namespace VirtualPiano.View
 
                                 if (sign is Note note)
                                 {
-                                    if (note.IsLocation(PointToClient(Cursor.Position).X))
+                                    if (note.IsLocation(MouseX))
                                     {
                                         newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                         if (note.flipped == true || note.Y <= 0)
@@ -295,13 +308,8 @@ namespace VirtualPiano.View
                                 string Clef = ComposeView.SelectedSign;
                                 bar.lastClef = bar.clefName;
                                 bar.clefName = Clef;
-                                for (int i = 0; i < bar.Signs.Count(); i++)
-                                {
-                                    Bitmap newBitmap = new Bitmap(bar.Signs[i].Image);
-                                    newBitmap = BitmapController.ColorTint(newBitmap, 0.50F, 0.50F, 0.50F);
-                                    newBitmap = BitmapController.SetImageOpacity(newBitmap, 0.4F);
-                                    bar.Signs[i].Image = newBitmap;
-                                }
+                                bar.makeSignsGray();
+                                barContentColor = Color.FromArgb(255,200,200,200);
                                 bar.hasPreview = true;
                             }
 
@@ -489,7 +497,6 @@ namespace VirtualPiano.View
                                             else
                                             {
                                                 ComposeView.SelectedSign = "";
-                                                Console.WriteLine("SELECTEDSIGN IS NIETS");
                                                 ConnectError.Active = true;
                                                 ConnectError.Show("Deze noot kan niet verbonden worden", this);
                                                 await PutTaskDelay(2000);

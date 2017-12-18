@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtualPiano.Control;
 using VirtualPiano.Properties;
+using VirtualPiano.View;
 
 namespace VirtualPiano.Model
 {
@@ -63,6 +66,7 @@ namespace VirtualPiano.Model
                 foreach(Sign sign2 in Signs)
                 {
                     sign2.SetImage();
+                    StaffView.barContentColor = Color.Black;
                 }
             }
             else
@@ -96,6 +100,17 @@ namespace VirtualPiano.Model
                     note.ConnectionNote = null;
 
                 }
+            }
+        }
+
+        internal void makeSignsGray()
+        {
+            for (int i = 0; i < Signs.Count(); i++)
+            {
+                Bitmap newBitmap = new Bitmap(Signs[i].Image);
+                newBitmap = BitmapController.ColorTint(newBitmap, 0.50F, 0.50F, 0.50F);
+                newBitmap = BitmapController.SetImageOpacity(newBitmap, 0.4F);
+                Signs[i].Image = newBitmap;
             }
         }
     }

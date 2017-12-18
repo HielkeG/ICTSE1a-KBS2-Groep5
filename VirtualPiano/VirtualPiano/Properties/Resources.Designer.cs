@@ -592,6 +592,26 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap record_start {
+            get {
+                object obj = ResourceManager.GetObject("record_start", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap record_stop {
+            get {
+                object obj = ResourceManager.GetObject("record_stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap refresh {
             get {
                 object obj = ResourceManager.GetObject("refresh", resourceCulture);
