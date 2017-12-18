@@ -16,28 +16,24 @@ namespace VirtualPiano.View
 
         public event EventHandler closing;
         public event EventHandler exiting;
-        public HelpSelectedView(string title, string explanation)
-        {
-            InitializeComponent();
-            Title.Text = title;
-            Explanation.Text = explanation;
-        }
 
         public HelpSelectedView(string title, string explanation,bool image)
         {
             InitializeComponent();
             Title.Text = title;
             Explanation.Text = explanation;
-            LinkLabel imageLink = new LinkLabel();
-            imageLink.AutoSize = true;
-            imageLink.Location = 
-                Explanation.GetPositionFromCharIndex(Explanation.TextLength);
-            imageLink.Text = "Klik hier voor de afbeelding.";
-            imageLink.LinkClicked += ShowImage;
-            Explanation.AppendText(imageLink.Text + "   ");
-            Explanation.SelectionStart = Explanation.TextLength;
-            Explanation.Controls.Add(imageLink);
-
+            if (image)
+            {
+                LinkLabel imageLink = new LinkLabel();
+                imageLink.AutoSize = true;
+                imageLink.Location =
+                    Explanation.GetPositionFromCharIndex(Explanation.TextLength);
+                imageLink.Text = "Klik hier voor de afbeelding.";
+                imageLink.LinkClicked += ShowImage;
+                Explanation.AppendText(imageLink.Text + "   ");
+                Explanation.SelectionStart = Explanation.TextLength;
+                Explanation.Controls.Add(imageLink);
+            }
         }
 
         private void ShowImage(object sender, EventArgs e)
@@ -46,7 +42,7 @@ namespace VirtualPiano.View
             image.Resize += Rescale;
             image.Size = new Size(1000, 500);
             PictureBox pb = new PictureBox();
-            pb.Image = Resources.pianoKeybinds;
+            pb.Image = Resources.PianoBinds;
             pb.Size = image.Size;
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
             image.Icon = Resources.logo_icon32x32;

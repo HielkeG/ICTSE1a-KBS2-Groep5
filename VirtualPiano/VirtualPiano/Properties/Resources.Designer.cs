@@ -572,19 +572,9 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pianoKeybinds {
+        internal static System.Drawing.Bitmap PianoBinds {
             get {
-                object obj = ResourceManager.GetObject("pianoKeybinds", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pianoKeybinds1 {
-            get {
-                object obj = ResourceManager.GetObject("pianoKeybinds1", resourceCulture);
+                object obj = ResourceManager.GetObject("PianoBinds", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

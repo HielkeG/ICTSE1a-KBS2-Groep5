@@ -174,6 +174,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
@@ -328,8 +329,8 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\PianoBinds.png" />
     <None Include="Resources\Afbeeldingen\Piano.png" />
-    <None Include="Resources\Afbeeldingen\pianoKeybinds.bmp" />
     <None Include="Resources\Cursors\Connect2.cur" />
     <None Include="Resources\Cursors\Connect1.cur" />
     <None Include="Resources\Cursors\zestiendenoot_cur.png" />
@@ -365,8 +366,6 @@
     <None Include="Resources\Afbeeldingen\Knoppen\rewind.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
-    <None Include="Resources\Afbeeldingen\Cursors\Connect1.cur" />
-    <None Include="Resources\Afbeeldingen\Cursors\Connect2.cur" />
     <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\piano.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
