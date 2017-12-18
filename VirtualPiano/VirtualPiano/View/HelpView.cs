@@ -30,6 +30,7 @@ namespace VirtualPiano.View
 
         private void NotenbalkToevoegen_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            //methode die titel, uitleg en image zet
             ShowExplain("Notenbalk toevoegen","Standaard bestaat het componeerscherm uit één notenbalk. " +
                 "Dit kan uitgebreid worden door op het plus knopje onder de notenbalk te klikken. " +
                 "Als op deze knop gedrukt wordt verschijnt er een nieuwe notenbalk onder de laatste. " +
@@ -154,6 +155,7 @@ namespace VirtualPiano.View
 
         private void ShowExplain(string title, string explanation,bool image)
         {
+            //maakt huidige view leeg en zet daar een helpselectedview in. 
             Controls.Clear();
             HelpSelectedView helpSelected = new HelpSelectedView(title, explanation,image);
             helpSelected.Dock = DockStyle.Fill;
@@ -167,6 +169,7 @@ namespace VirtualPiano.View
 
         private void CloseOnEsc(Object sender, KeyEventArgs e)
         {
+            //uitlegscherm wordt gesloten als er op esc wordt gedrukt vanuit dit scherm.
             if (e.KeyCode == Keys.Escape)
             {
                 foreach (var item in Controls)
