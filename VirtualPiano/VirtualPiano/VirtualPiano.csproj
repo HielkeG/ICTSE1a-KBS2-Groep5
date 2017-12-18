@@ -78,9 +78,9 @@
     <Compile Include="Midi\Pitch.cs" />
     <Compile Include="Midi\ShortMsg.cs" />
     <Compile Include="Midi\Win32API.cs" />
-    <Compile Include="Migrations\201712151207456_KBS.cs" />
-    <Compile Include="Migrations\201712151207456_KBS.Designer.cs">
-      <DependentUpon>201712151207456_KBS.cs</DependentUpon>
+    <Compile Include="Migrations\201712151355130_base.cs" />
+    <Compile Include="Migrations\201712151355130_base.Designer.cs">
+      <DependentUpon>201712151355130_base.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
@@ -156,8 +156,8 @@
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\201712151207456_KBS.resx">
-      <DependentUpon>201712151207456_KBS.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712151355130_base.resx">
+      <DependentUpon>201712151355130_base.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
@@ -206,7 +206,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenoot.png" />
