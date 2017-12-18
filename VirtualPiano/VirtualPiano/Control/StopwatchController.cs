@@ -125,8 +125,9 @@ namespace VirtualPiano.Control
                 {                    
                     if (Song.Staffs[i].Bars.IndexOf(bar) >= currentBar && Song.Staffs.IndexOf(Song.Staffs[i]) >= currentStaff)
                     {
-                        if(bar.duration + tempNote.Duration <= 16)
+                        if(bar.Duration + tempNote.Duration <= 16)
                         {
+                            tempNote.X = (bar.Duration * 25 + (bar.length * Song.Staffs[i].Bars.IndexOf(bar))+25);
                             bar.Add(tempNote);
                             break;
                         }

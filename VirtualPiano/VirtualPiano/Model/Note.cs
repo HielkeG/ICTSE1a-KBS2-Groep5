@@ -27,6 +27,12 @@ namespace VirtualPiano.Model
         
         public Note() : base() { }
 
+        public Note(string tone, int octave)
+        {
+            this.Tone = tone;
+            this.Octave = octave;
+        }
+
         public Note(int x, int y, string tempNotename, string clef, int Flatsharp) :base()
         {
             flipped = false;

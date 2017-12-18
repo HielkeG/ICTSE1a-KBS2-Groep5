@@ -159,13 +159,13 @@ namespace VirtualPiano
                         sb.Append(n.ToString()).Append("is");
                         ComposeView.pkv1.KeyReleased(o, sb.ToString());
                         //Deel aanpassen zodat deze met kruizen en mollen werkt
-                        Note n1 = new Note("naam", sb.ToString(), o);
+                        Note n1 = new Note(sb.ToString(), o);
                         StopwatchController.StopWatch(n1);
                     }
                     else
                     {
                         ComposeView.pkv1.KeyReleased(o, n.ToString());
-                        Note n1 = new Note("naam", n.ToString(), o);
+                        Note n1 = new Note(n.ToString(), o);
                         StopwatchController.StopWatch(n1);
                     }
                     ComposeView.pkv1.Invalidate();

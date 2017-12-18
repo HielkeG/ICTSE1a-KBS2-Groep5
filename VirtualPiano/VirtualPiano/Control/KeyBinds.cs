@@ -32,7 +32,7 @@ namespace VirtualPiano.Control
 
                     if (StopwatchController.w1.IsRunning == false)
                     {
-                        Note n1 = new Note("naam", "C", ComposeView.CurrentOctave);
+                        Note n1 = new Note("C", ComposeView.CurrentOctave);
                         StopwatchController.StartWatch(n1);
                     }
                         keylijst.Add(Keys.Q);
@@ -59,7 +59,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     if (StopwatchController.watch.IsRunning == false)
                     {
-                        Note n2 = new Note("naam", "D", ComposeView.CurrentOctave);
+                        Note n2 = new Note("D", ComposeView.CurrentOctave);
                         StopwatchController.StartWatch(n2);
                     }
                         keylijst.Add(Keys.W);
@@ -84,7 +84,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     if (StopwatchController.watch.IsRunning == false)
                     {
-                        Note n3 = new Note("naam", "E", ComposeView.CurrentOctave);
+                        Note n3 = new Note("E", ComposeView.CurrentOctave);
                         StopwatchController.StartWatch(n3);
                     }
                         keylijst.Add(Keys.E);
@@ -99,7 +99,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     if (StopwatchController.watch.IsRunning == false)
                     {
-                        Note n4 = new Note("naam", "R", ComposeView.CurrentOctave);
+                        Note n4 = new Note("R", ComposeView.CurrentOctave);
                         StopwatchController.StartWatch(n4);
                     }
                         keylijst.Add(Keys.R);
@@ -125,7 +125,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     if (StopwatchController.watch.IsRunning == false)
                     {
-                        Note n5 = new Note("naam", "G", ComposeView.CurrentOctave);
+                        Note n5 = new Note("G", ComposeView.CurrentOctave);
                         StopwatchController.StartWatch(n5);
                     }
                         keylijst.Add(Keys.T);
@@ -150,7 +150,7 @@ namespace VirtualPiano.Control
                     ComposeView.pkv1.Invalidate();
                     if (StopwatchController.watch.IsRunning == false)
                     {
-                        Note n6 = new Note("naam", "A", ComposeView.CurrentOctave);
+                        Note n6 = new Note("A", ComposeView.CurrentOctave);
                         StopwatchController.StartWatch(n6);
                     }
                         keylijst.Add(Keys.Y);
@@ -313,7 +313,7 @@ namespace VirtualPiano.Control
                 case Keys.Q:
                     ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "C");
                     ComposeView.pkv1.Invalidate();
-                    Note n1 = new Note("naam", "C", ComposeView.CurrentOctave);
+                    Note n1 = new Note("C", ComposeView.CurrentOctave);
                     StopwatchController.StopWatch(n1);
                     keylijst.Remove(Keys.Q);
                     break;
@@ -326,7 +326,7 @@ namespace VirtualPiano.Control
                 case Keys.W:
                     ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "D");
                     ComposeView.pkv1.Invalidate();
-                    Note n3 = new Note("naam", "D", ComposeView.CurrentOctave);
+                    Note n3 = new Note("D", ComposeView.CurrentOctave);
                     StopwatchController.StopWatch(n3);
                     keylijst.Remove(Keys.W);
                     break;
@@ -338,14 +338,14 @@ namespace VirtualPiano.Control
                 case Keys.E:
                     ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "E");
                     ComposeView.pkv1.Invalidate();
-                    Note n5 = new Note("naam", "E", ComposeView.CurrentOctave);
+                    Note n5 = new Note("E", ComposeView.CurrentOctave);
                     StopwatchController.StopWatch(n5);
                     keylijst.Remove(Keys.E);
                     break;
                 case Keys.R:
                     ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "F");
                     ComposeView.pkv1.Invalidate();
-                    Note n6 = new Note("naam", "F", ComposeView.CurrentOctave);
+                    Note n6 = new Note("F", ComposeView.CurrentOctave);
                     StopwatchController.StopWatch(n6);
                     keylijst.Remove(Keys.R);
                     break;
@@ -357,7 +357,7 @@ namespace VirtualPiano.Control
                 case Keys.T:
                     ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "G");
                     ComposeView.pkv1.Invalidate();
-                    Note n8 = new Note("naam", "G", ComposeView.CurrentOctave);
+                    Note n8 = new Note("G", ComposeView.CurrentOctave);
                     StopwatchController.StopWatch(n8);
                     keylijst.Remove(Keys.T);
                     break;
@@ -369,7 +369,7 @@ namespace VirtualPiano.Control
                 case Keys.Y:
                     ComposeView.pkv1.KeyReleased(ComposeView.CurrentOctave, "A");
                     ComposeView.pkv1.Invalidate();
-                    Note n10 = new Note("naam", "A", ComposeView.CurrentOctave);
+                    Note n10 = new Note("A", ComposeView.CurrentOctave);
                     StopwatchController.StopWatch(n10);
                     keylijst.Remove(Keys.Y);
                     break;
