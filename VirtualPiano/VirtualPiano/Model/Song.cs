@@ -129,6 +129,7 @@ namespace VirtualPiano.Model
                                 //Als de rode lijn een noot raakt
                                 if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                                 {
+                                    Console.WriteLine(ComposeView.RedLineX);
                                     //Pianotoets oplichten
                                     keyNotes.Add(note);
                                     ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
@@ -136,9 +137,34 @@ namespace VirtualPiano.Model
 
                                     //Noot afspelen
                                     string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                    if (pitchTemp.Length == 4)
+                                    if (pitchTemp.Contains("is"))
                                     {
                                         Enum.TryParse(note.Tone.First().ToString() + "Sharp" + note.Octave.ToString(), out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+                                    else if (pitchTemp.Contains("As"))
+                                    {
+                                        Enum.TryParse("GSharp" + note.Octave.ToString(), out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+                                    else if (pitchTemp.Contains("Bes"))
+                                    {
+                                        Enum.TryParse("ASharp" + note.Octave.ToString(), out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+                                    else if (pitchTemp.Contains("Des"))
+                                    {
+                                        Enum.TryParse("CSharp" + note.Octave.ToString(), out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+                                    else if (pitchTemp.Contains("Es"))
+                                    {
+                                        Enum.TryParse("DSharp" + note.Octave.ToString(), out Pitch pitch);
+                                        MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+                                    }
+                                    else if (pitchTemp.Contains("Gs"))
+                                    {
+                                        Enum.TryParse("FSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
                                     else
@@ -146,7 +172,6 @@ namespace VirtualPiano.Model
                                         Enum.TryParse(pitchTemp, out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-
                                 }
                             }
                         }

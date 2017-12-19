@@ -96,9 +96,33 @@ namespace VirtualPiano.Model
         public void PlaySound()
         {
             string pitchName = Tone.ToString() + Octave.ToString();
-            if (pitchName.Length == 4)
+            if (pitchName.Contains("is"))
             {
                 Enum.TryParse(Tone.First().ToString() + "Sharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            } else if (pitchName.Contains("As"))
+            {
+                Enum.TryParse("GSharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else if (pitchName.Contains("Bes"))
+            {
+                Enum.TryParse("ASharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else if (pitchName.Contains("Des"))
+            {
+                Enum.TryParse("CSharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else if (pitchName.Contains("Es"))
+            {
+                Enum.TryParse("DSharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else if (pitchName.Contains("Ges"))
+            {
+                Enum.TryParse("FSharp" + Octave.ToString(), out Pitch pitch);
                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
             }
             else
