@@ -159,7 +159,7 @@ namespace VirtualPiano.View
 
                         //Noot tekenen
                         e.Graphics.DrawImage(sign.Image, note.X, Ynotelocation, 90, 130);
-                        if (note.Sharp == true) { e.Graphics.DrawImage(Resources.kruis_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
+                        if (note.Sharp == true) { e.Graphics.DrawImage(Resources.kruis_icon, note.X + 15, Ynotelocation + 40, 30, 40);}
                         else if (note.Flat == true) { e.Graphics.DrawImage(Resources.mol_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
                     }
 
@@ -575,13 +575,6 @@ namespace VirtualPiano.View
                                         {
                                             note.SetFlat();
                                             Console.WriteLine("SetFlat");
-                                        }
-
-                                        // ------Bin------
-                                        if (ComposeView.SelectedSign == "Bin" && note.Flat == true || note.Sharp == true)
-                                        {
-                                            note.Flat = false;
-                                            note.Sharp = false;
                                         }
 
                                         ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
