@@ -85,7 +85,6 @@ namespace VirtualPiano.Control
                                         
                     if (a.watch.ElapsedMilliseconds > 0 && a.watch.ElapsedMilliseconds < 350)
                     {
-                        Console.WriteLine("kwart noot");
                         note.Name = "QuarterNote";
                         tempNote = note;
                         tempNote.SetImage();

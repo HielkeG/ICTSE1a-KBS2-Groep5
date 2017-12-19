@@ -517,7 +517,7 @@ namespace VirtualPiano.View
             {
                 InvalidateRedLine();
                 //als het nummer afspeelt de redline verplaatsen met 4 pixels.
-                if (RedLineX >= 1700)
+                if (RedLineX >= 1620)
                 {
                     //als de lijn het einde van een staff bereikt. De lijn verplaatsen naar de volgende staff
                     RedLineX = -60;
@@ -686,6 +686,7 @@ namespace VirtualPiano.View
                         }
                     }
                 }
+                // --- Mol / Kruis verwijderen ---
                 draggingSign = null;
                 if (draggingSharp != null)
                 {
@@ -697,6 +698,7 @@ namespace VirtualPiano.View
                         Cursor = Cursors.Default;
                         draggingSharp = null;
                         note.isBeingMoved = false;
+                        
                     }
                 }
             }
@@ -706,6 +708,7 @@ namespace VirtualPiano.View
                 SelectedSign = "";
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                 sound.Play();
+                song.SetSharpFlat();
             }
             else if (SelectedSign == "BeginSharp")
             {
@@ -713,6 +716,7 @@ namespace VirtualPiano.View
                 SelectedSign = "";
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                 sound.Play();
+                song.SetSharpFlat();
             }
         }
 

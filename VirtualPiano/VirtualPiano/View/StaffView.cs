@@ -139,7 +139,6 @@ namespace VirtualPiano.View
                     //------Noten------
                     if (sign is Note note)
                     {
-                        if (note.Sharp == true) { Console.WriteLine("ik ben scherp! pas op!"); }
                         //----Verbindingslijn-----
                         if (note.ConnectionNote != null)     //noten die aan elkaar zitten tekenen
                         {
@@ -424,11 +423,9 @@ namespace VirtualPiano.View
                         }
                         if (MouseX < 40)
                         {
-                            Console.WriteLine("MuisX lager dan 40");
                             await PutTaskDelay(300);
                             if (ComposeView.cursorIsDown == true)
                             {
-                                Console.WriteLine("CursorIsdown");
                                 if (song.FlatSharp < 0)
                                 {
                                     Cursor = CursorController.ChangeCursor("Flat");
@@ -470,7 +467,7 @@ namespace VirtualPiano.View
                         if (song.FlatSharp >= 0)
                         {
                             song.FlatSharp++;
-                            song.ChangeSharpFlat(song.FlatSharp);
+                            song.SetSharpFlat();
                         } else
                         {
                             MessageBox.Show("Er kan geen kruis toegevoed worden, omdat het lied al mollen bevat. Als u toch een kruis wilt toevoegen, dient u eerst de mollen te verwijderen");
@@ -482,7 +479,7 @@ namespace VirtualPiano.View
                     {
                         if (song.FlatSharp <= 0) {
                             song.FlatSharp--;
-                            song.ChangeSharpFlat(song.FlatSharp);
+                            song.SetSharpFlat();
                         } else
                         {
                             MessageBox.Show("Er kan geen mol toegevoed worden, omdat het lied al kruizen bevat. Als u toch een mol wilt toevoegen, dient u eerst de kruizen te verwijderen");
@@ -629,12 +626,10 @@ namespace VirtualPiano.View
                                         if (ComposeView.SelectedSign == "Sharp")
                                         {
                                             note.SetSharp();
-                                            Console.WriteLine("SetSharp");
                                         }
                                         else if (ComposeView.SelectedSign == "Flat")
                                         {
                                             note.SetFlat();
-                                            Console.WriteLine("SetFlat");
                                         }
 
                                         ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);

@@ -152,8 +152,7 @@ namespace VirtualPiano.Model
             if (Tone == "G" || Tone == "Ges") { Tone = "Gis"; } 
             if (Tone == "D" || Tone == "Des") { Tone = "Dis"; } 
             if (Tone == "A" || Tone == "As") { Tone = "Ais"; }
-
-            Console.WriteLine(Sharp);
+            
             
         }
 

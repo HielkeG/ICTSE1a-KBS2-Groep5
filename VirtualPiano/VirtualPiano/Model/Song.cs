@@ -129,7 +129,6 @@ namespace VirtualPiano.Model
                                 //Als de rode lijn een noot raakt
                                 if (sign is Note note && note.X >= ComposeView.RedLineX + 63 && note.X <= ComposeView.RedLineX + 66)
                                 {
-                                    Console.WriteLine(ComposeView.RedLineX);
                                     //Pianotoets oplichten
                                     keyNotes.Add(note);
                                     ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
@@ -188,7 +187,7 @@ namespace VirtualPiano.Model
             catch (Exception){ }
         }
 
-        public void ChangeSharpFlat(int Flatsharp)
+        public void SetSharpFlat()
         {
             foreach (Staff staff in Staffs)
             {
@@ -213,17 +212,17 @@ namespace VirtualPiano.Model
                                 else if (note.Tone == "Ges") { note.Tone = "G"; }
 
                                 //Afhankelijk van het aantal kruizen/mollen de toon verhogen
-                                if (Flatsharp >= 1) { if (note.Tone == "F") { note.Tone = "Fis"; } }
-                                if (Flatsharp >= 2) { if (note.Tone == "C") { note.Tone = "Cis"; } }
-                                if (Flatsharp >= 3) { if (note.Tone == "G") { note.Tone = "Gis"; } }
-                                if (Flatsharp >= 4) { if (note.Tone == "D") { note.Tone = "Dis"; } }
-                                if (Flatsharp >= 5) { if (note.Tone == "A") { note.Tone = "Ais"; } }
+                                if (FlatSharp >= 1) { if (note.Tone == "F") { note.Tone = "Fis"; } }
+                                if (FlatSharp >= 2) { if (note.Tone == "C") { note.Tone = "Cis"; } }
+                                if (FlatSharp >= 3) { if (note.Tone == "G") { note.Tone = "Gis"; } }
+                                if (FlatSharp >= 4) { if (note.Tone == "D") { note.Tone = "Dis"; } }
+                                if (FlatSharp >= 5) { if (note.Tone == "A") { note.Tone = "Ais"; } }
 
-                                if (Flatsharp <= -1) { if (note.Tone == "B") { note.Tone = "Bes"; } }
-                                if (Flatsharp <= -2) { if (note.Tone == "E") { note.Tone = "Es"; } }
-                                if (Flatsharp <= -3) { if (note.Tone == "A") { note.Tone = "As"; } }
-                                if (Flatsharp <= -4) { if (note.Tone == "D") { note.Tone = "Des"; } }
-                                if (Flatsharp <= -5) { if (note.Tone == "G") { note.Tone = "Ges"; } }
+                                if (FlatSharp <= -1) { if (note.Tone == "B") { note.Tone = "Bes"; } }
+                                if (FlatSharp <= -2) { if (note.Tone == "E") { note.Tone = "Es"; } }
+                                if (FlatSharp <= -3) { if (note.Tone == "A") { note.Tone = "As"; } }
+                                if (FlatSharp <= -4) { if (note.Tone == "D") { note.Tone = "Des"; } }
+                                if (FlatSharp <= -5) { if (note.Tone == "G") { note.Tone = "Ges"; } }
                             }
                         }
                     }

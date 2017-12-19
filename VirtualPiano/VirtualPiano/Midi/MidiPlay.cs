@@ -71,24 +71,15 @@ namespace VirtualPiano
                     {
                         Console.Write(" or {0}", pitch.NotePreferringFlats());
                     }
-                    Console.WriteLine(pitch.Octave());
-                    Console.WriteLine(pitch.GetHashCode());
 
                 }
-                Console.WriteLine();
                 // Print the currently held down chord.
                 List<Chord> chords = Chord.FindMatchingChords(pitches);
                 Console.Write("Chords: ");
                 for (int i = 0; i < chords.Count; ++i)
                 {
                     Chord chord = chords[i];
-                    if (i > 0)
-                    {
-                        Console.Write(", ");
-                    }
-                    Console.Write("{0}", chord);
                 }
-                Console.WriteLine(); 
             }
 
 
@@ -133,7 +124,6 @@ namespace VirtualPiano
                     }
 
                     ComposeView.pkv1.Invalidate();
-                    Console.WriteLine(msg.Pitch);
                     pitchesPressed[msg.Pitch] = true;
                     //PrintStatus();
                     //Console.WriteLine(msg.Velocity);                    
