@@ -27,6 +27,12 @@ namespace VirtualPiano.Model
         
         public Note() : base() { }
 
+        public Note(string tone, int octave)
+        {
+            this.Tone = tone;
+            this.Octave = octave;
+        }
+
         public Note(int x, int y, string tempNotename, string clef, int Flatsharp) :base()
         {
             Flipped = false;
@@ -156,7 +162,8 @@ namespace VirtualPiano.Model
 
         public override void SetImage()
         {
-            if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
+            if (ConnectionNote != null) { Image = Resources.kwartnoot; }
+            else if (Name == "WholeNote") { Image = Resources.helenoot; Duration = 16; }  //afbeelding en duratie van noot zetten, afhankelijk van naam
             else if (Name == "HalfNote") { if (Y <= 0) { Image = Resources.halvenootflipped; } else { Image = Resources.halvenoot; } Duration = 8; }
             else if (Name == "QuarterNote") { if (Y <= 0) { Image = Resources.kwartnootflipped; } else { Image = Resources.kwartnoot; } Duration = 4; }
             else if (Name == "EightNote") { if (Y <= 0) { Image = Resources.achtstenootflipped; } else { Image = Resources.achtstenoot; } Duration = 2; }

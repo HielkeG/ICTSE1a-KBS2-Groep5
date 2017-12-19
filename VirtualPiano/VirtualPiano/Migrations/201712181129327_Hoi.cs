@@ -3,7 +3,7 @@ namespace VirtualPiano.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _base : DbMigration
+    public partial class Hoi : DbMigration
     {
         public override void Up()
         {

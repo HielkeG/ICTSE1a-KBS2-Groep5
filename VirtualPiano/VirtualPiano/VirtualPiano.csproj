@@ -63,6 +63,7 @@
     <Compile Include="Control\MusicController.cs" />
     <Compile Include="Control\DatabaseController.cs" />
     <Compile Include="Control\PianoKeysController.cs" />
+    <Compile Include="Control\StopwatchController.cs" />
     <Compile Include="Midi\Channel.cs" />
     <Compile Include="Midi\Chord.cs" />
     <Compile Include="Midi\Clock.cs" />
@@ -78,9 +79,9 @@
     <Compile Include="Midi\Pitch.cs" />
     <Compile Include="Midi\ShortMsg.cs" />
     <Compile Include="Midi\Win32API.cs" />
-    <Compile Include="Migrations\201712151355130_base.cs" />
-    <Compile Include="Migrations\201712151355130_base.Designer.cs">
-      <DependentUpon>201712151355130_base.cs</DependentUpon>
+    <Compile Include="Migrations\201712181129327_Hoi.cs" />
+    <Compile Include="Migrations\201712181129327_Hoi.Designer.cs">
+      <DependentUpon>201712181129327_Hoi.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
@@ -105,6 +106,18 @@
     </Compile>
     <Compile Include="View\DatabaseFileRemover.Designer.cs">
       <DependentUpon>DatabaseFileRemover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HelpSelectedView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\HelpSelectedView.Designer.cs">
+      <DependentUpon>HelpSelectedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HelpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HelpView.Designer.cs">
+      <DependentUpon>HelpView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
@@ -156,8 +169,13 @@
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\201712151355130_base.resx">
-      <DependentUpon>201712151355130_base.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712181129327_Hoi.resx">
+      <DependentUpon>201712181129327_Hoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DatabaseFileExplorer.resx">
       <DependentUpon>DatabaseFileExplorer.cs</DependentUpon>
@@ -165,13 +183,14 @@
     <EmbeddedResource Include="View\DatabaseFileRemover.resx">
       <DependentUpon>DatabaseFileRemover.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\HelpSelectedView.resx">
+      <DependentUpon>HelpSelectedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HelpView.resx">
+      <DependentUpon>HelpView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ComposeView.resx">
       <DependentUpon>ComposeView.cs</DependentUpon>
@@ -310,6 +329,29 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\PianoBinds.png" />
+    <None Include="Resources\Afbeeldingen\Piano.png" />
+    <None Include="Resources\Cursors\Connect2.cur" />
+    <None Include="Resources\Cursors\Connect1.cur" />
+    <None Include="Resources\Cursors\zestiendenoot_cur.png" />
+    <None Include="Resources\Cursors\kwartnoot_cur.png" />
+    <None Include="Resources\Cursors\halvenoot_cur.png" />
+    <None Include="Resources\Cursors\achtstenoot_cur.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\zestienderust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\zestiendenoot_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\opheffing_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\mol_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\kwartrust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\kwartnoot_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\kruis_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\helerust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\helenoot_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\halverust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\halvenoot_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\Gsleutel_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\fsleutel_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\achtsterust_icon.png" />
+    <None Include="Resources\Afbeeldingen\Toolbar\achtstenoot_icon.png" />
     <None Include="Resources\Geluiden\BinSound.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4B.wav" />
     <None Include="Resources\Geluiden\Piano\Piano5C.wav" />
@@ -324,8 +366,6 @@
     <None Include="Resources\Afbeeldingen\Knoppen\rewind.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
-    <None Include="Resources\Afbeeldingen\Cursors\Connect1.cur" />
-    <None Include="Resources\Afbeeldingen\Cursors\Connect2.cur" />
     <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\piano.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
@@ -333,17 +373,21 @@
     <None Include="Resources\Afbeeldingen\Knoppen\refresh.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\lastPage.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\nextPage.png" />
-    <None Include="Resources\Afbeeldingen\Knoppen\metronome.png" />
-    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on1.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on2.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on11.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_on21.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_off1.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_off2.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\record_start.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\record_stop.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
+    <None Include="Resources\Afbeeldingen\Menubar\guitar.png" />
+    <None Include="Resources\Afbeeldingen\Menubar\marimba.png" />
+    <None Include="Resources\Afbeeldingen\Menubar\piano.png" />
+    <None Include="Resources\Afbeeldingen\logo_highres.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />
@@ -353,6 +397,7 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\bin.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\bin_open.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\blank.png" />
+    <None Include="Resources\Afbeeldingen\Muzieknoten\opheffing.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\zestienderust.png" />
     <None Include="Resources\Geluiden\Piano\Piano4G.wav" />
     <None Include="Resources\Geluiden\Piano\Piano4Fis.wav" />

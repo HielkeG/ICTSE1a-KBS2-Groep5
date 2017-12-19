@@ -23,6 +23,12 @@ namespace VirtualPiano.Model
             SetImage();
         }
 
+        public Rest(string name)
+        {
+            this.Name = name;
+            SetImage();
+        }
+
         public override void SetImage()
         {
             if (Name == "WholeRest") { Image = Resources.helerust_icon; Duration = 16; }

@@ -76,6 +76,7 @@ namespace VirtualPiano.View
             //methodes koppelen aan het starten en stoppen vna het afspelen.
             MusicController.SongStarted += StartTimer;
             MusicController.SongStopped += StopTimer;
+            StopwatchController.Song = song;
             menuBarView1.Song = song;
             menuBarView1.selectedSong += ChangeSong;
             menuBarView1.newSong += NewSong;
@@ -96,7 +97,9 @@ namespace VirtualPiano.View
             Controls.Add(MusicController.rewindBtn);
             Controls.Add(MusicController.playBtn);
             Controls.Add(MusicController.stopBtn);
-            Controls.Add(MusicController.metronomeBtn);;
+            Controls.Add(MusicController.metronomeBtn);
+            Controls.Add(MusicController.recordBtn);
+
             //voeg hover, enter, leave effecten toe op de muziekknoppen
             PianoKeysController.pianoKeysBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             PianoKeysController.pianoKeysBtn.MouseHover += new EventHandler(AllButtons_Hover);
@@ -107,9 +110,24 @@ namespace VirtualPiano.View
             MusicController.stopBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             MusicController.stopBtn.MouseHover += new EventHandler(AllButtons_Hover);
             MusicController.stopBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.metronomeBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.metronomeBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.metronomeBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.recordBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.recordBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.recordBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+
             btnAddStaff.MouseEnter += new EventHandler(AllButtons_Enter);
             btnAddStaff.MouseHover += new EventHandler(AllButtons_Hover);
             btnAddStaff.MouseLeave += new EventHandler(AllButtons_Leave);
+            nextPage.MouseEnter += new EventHandler(AllButtons_Enter);
+            nextPage.MouseHover += new EventHandler(AllButtons_Hover);
+            nextPage.MouseLeave += new EventHandler(AllButtons_Leave);
+            previousPage.MouseEnter += new EventHandler(AllButtons_Enter);
+            previousPage.MouseHover += new EventHandler(AllButtons_Hover);
+            previousPage.MouseLeave += new EventHandler(AllButtons_Leave);
+
+            StopwatchController.OnFullStaff += newStaffView;
             
 
             Snelheid.Text = Metronome.Interval.ToString(); 
@@ -120,7 +138,7 @@ namespace VirtualPiano.View
         public void AllButtons_Enter(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, Color.Black);
+            btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.White, Color.LightGray);
         }
         public void AllButtons_Hover(object sender, EventArgs e)
         {
@@ -129,10 +147,11 @@ namespace VirtualPiano.View
         public void AllButtons_Down(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, Color.Black);
         }
         public void AllButtons_Leave(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.LightGray, Color.White);
         }
 
 
@@ -140,6 +159,7 @@ namespace VirtualPiano.View
         private void ChangeSong(object sender, EventArgs e)
         {
             MusicController.song = menuBarView1.Song;
+            StopwatchController.Song = menuBarView1.Song;
             TitelBox.Text = menuBarView1.Song.Title;
             //oorspronkelijke notenbalken verwijderen.
             SetLoadedSong(menuBarView1.Song);
@@ -506,7 +526,6 @@ namespace VirtualPiano.View
                     if (song.Staffs[CurrentPlayingStaff] != song.Staffs.Last())
                     {
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
-                        //rodeLijn.Stop();
                         staffViews[CurrentPlayingStaff].redLine.Visible = false;
                         CurrentPlayingStaff++;
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = true;
@@ -583,7 +602,6 @@ namespace VirtualPiano.View
                 {
                     item.staff.IsBeingPlayed = false;
                     item.redLine.Visible = false;
-                    
                 }
                 else
                 {
@@ -823,18 +841,19 @@ namespace VirtualPiano.View
             previousPage.BackColor = Color.Transparent;
             previousPage.FlatStyle = FlatStyle.Flat;
             previousPage.FlatAppearance.BorderSize = 0;
-            previousPage.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, Color.Black);
+            previousPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            previousPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
             previousPage.Click += previousPage_Click;
             Controls.Add(previousPage);
-
-
+            
             nextPage.Image = new Bitmap(Resources.nextPage, 50, 50);
             nextPage.Location = new Point(1809, 957);
             nextPage.Size = new Size(55, 55);
             nextPage.BackColor = Color.Transparent;
             nextPage.FlatStyle = FlatStyle.Flat;
             nextPage.FlatAppearance.BorderSize = 0;
-            nextPage.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, Color.Black);
+            nextPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            nextPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
             nextPage.Click += nextPage_Click;
             Controls.Add(nextPage);
         }
