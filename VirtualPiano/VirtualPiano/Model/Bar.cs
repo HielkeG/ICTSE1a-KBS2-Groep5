@@ -63,7 +63,7 @@ namespace VirtualPiano.Model
             if (sign.Contains("G") || sign.Contains("F"))
             {
                 clefName = lastClef;
-                foreach(Sign sign2 in Signs)
+                foreach (Sign sign2 in Signs)
                 {
                     sign2.SetImage();
                     StaffView.barContentColor = Color.Black;
@@ -85,15 +85,16 @@ namespace VirtualPiano.Model
         {
             Signs.Remove(sign);
             Duration -= sign.Duration;
-            if(sign is Note note)
+            if (sign is Note note)
             {
-                if(note.ConnectionNote != null)
+                if (note.ConnectionNote != null)
                 {
                     note.ConnectionNote.ConnectionNote = null;
-                    if(note.Name == "SixteenthNote"){
+                    if (note.Name == "SixteenthNote")
+                    {
                         note.ConnectionNote.Image = Resources.zestiendenoot;
                     }
-                    if (note.Name =="EightNote")
+                    if (note.Name == "EightNote")
                     {
                         note.ConnectionNote.Image = Resources.achtstenoot;
                     }
@@ -103,23 +104,23 @@ namespace VirtualPiano.Model
             }
         }
 
-        public void FillBar()
-        {          
-            
-                if (Duration == 4)
-                {
-                Add(new Rest("HalfRest"));
-                Add(new Rest("QuarterRest"));
+        public void FillBar(int barNr)
+        {
+
+            if (Duration == 4)
+            {
+                Add(new Rest("HalfRest", Duration * 25 + (length * barNr)));
+                Add(new Rest("QuarterRest",Duration*25+(length*barNr)));
             }
-                else if (Duration == 8)
-                {
-                Add(new Rest("HalfRest"));
+            else if (Duration == 8)
+            {
+                Add(new Rest("HalfRest", Duration * 25 + (length * barNr)));
             }
-                else if(Duration == 12)
-                {
-                Add(new Rest("QuarterRest"));
+            else if (Duration == 12)
+            {
+                Add(new Rest("QuarterRest", Duration * 25 + (length * barNr)));
             }
-            
+
         }
 
 

@@ -23,20 +23,22 @@ namespace VirtualPiano.View
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            if (ComposeView.RedLineX >= 362 && ComposeView.RedLineX <= 368)
+            {
+                ComposeView.RedLineX = 390;
+            }
+            if (ComposeView.RedLineX >= 793 && ComposeView.RedLineX <= 798)
+            {
+                ComposeView.RedLineX = 822;
+            }
+            if (ComposeView.RedLineX >= 1222 && ComposeView.RedLineX <= 1228)
+            {
+                ComposeView.RedLineX = 1250;
+            }
             base.OnPaint(e);
+
             e.Graphics.DrawLine(penRed, new Point(65 + ComposeView.RedLineX, 50), new Point(65 + ComposeView.RedLineX, 110));
-            if (ComposeView.RedLineX == 384)
-            {
-                ComposeView.RedLineX = 416;
-            }
-            if(ComposeView.RedLineX == 816)
-            {
-                ComposeView.RedLineX = 848;
-            }
-            if(ComposeView.RedLineX == 1248)
-            {
-                ComposeView.RedLineX = 1280;
-            }
+            
 
         }
     }

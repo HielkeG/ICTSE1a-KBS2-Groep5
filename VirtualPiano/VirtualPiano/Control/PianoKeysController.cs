@@ -41,8 +41,17 @@ namespace VirtualPiano.Control
 
         public void ChangeImage()
         {
-            if (ComposeView.keypanel.Visible==false) pianoKeysBtn.Image = new Bitmap(Resources.showpiano, 50, 50);
-            else pianoKeysBtn.Image = new Bitmap(Resources.close, 50, 50);
+            if (ComposeView.keypanel.Visible == false)
+            {
+                pianoKeysBtn.Image = new Bitmap(Resources.showpiano, 50, 50);
+                pianoKeysBtn.Image = BitmapController.ColorReplace(pianoKeysBtn.Image, 30, Color.White, Color.LightGray);
+            }
+            else
+            {
+                pianoKeysBtn.Image = new Bitmap(Resources.close, 50, 50);
+                pianoKeysBtn.Image = BitmapController.ColorReplace(pianoKeysBtn.Image, 30, Color.White, Color.LightGray);
+
+            }
         }
     }
 }

@@ -47,7 +47,6 @@ namespace VirtualPiano.Control
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine(e.Message);
                 }
             }
         }

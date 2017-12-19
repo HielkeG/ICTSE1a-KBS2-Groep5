@@ -25,14 +25,14 @@ namespace VirtualPiano.Control
         public static Image rewind = Resources.rewind;
         public static Image recordstart = new Bitmap(Resources.record_start, 50, 50);
         public static Image recordstop = new Bitmap(Resources.record_stop, 50, 50);
-        public static Bitmap metronomeOn1 = new Bitmap(Resources.metronome_on1,50,50);
-        public static Bitmap metronomeOn2 = new Bitmap(Resources.metronome_on2,50,50);
+        public static Bitmap metronomeOn1 = new Bitmap(Resources.metronome_on1, 50, 50);
+        public static Bitmap metronomeOn2 = new Bitmap(Resources.metronome_on2, 50, 50);
         public static Bitmap metronomeOff1 = new Bitmap(Resources.metronome_off1, 50, 50);
         public static Bitmap metronomeOff2 = new Bitmap(Resources.metronome_off2, 50, 50);
 
         public static Button playBtn = new Button();
         public static Button stopBtn = new Button();
-        public static Button rewindBtn= new Button();
+        public static Button rewindBtn = new Button();
         public static Button metronomeBtn = new Button();
         public static Button recordBtn = new Button();
 
@@ -117,11 +117,13 @@ namespace VirtualPiano.Control
             if (isRecording)
             {
                 recordBtn.Image = recordstart;
+                recordBtn.Image = BitmapController.ColorReplace(recordBtn.Image, 30, Color.White, Color.LightGray);
                 isRecording = false;
             }
             else
             {
                 recordBtn.Image = recordstop;
+                recordBtn.Image = BitmapController.ColorReplace(recordBtn.Image, 30, Color.White, Color.LightGray);
                 isRecording = true;
             }
         }
@@ -134,7 +136,8 @@ namespace VirtualPiano.Control
                 Metronoom.Stop();
                 MetronomeTicking = false;
                 if (metronomeBtn.Image == metronomeOn1) metronomeBtn.Image = metronomeOff1;
-                else metronomeBtn.Image = metronomeOff2;            }
+                else metronomeBtn.Image = metronomeOff2;
+            }
             else
             {
                 Metronoom.Start();
@@ -146,26 +149,26 @@ namespace VirtualPiano.Control
 
         public static void PlaySound(int octave, string tone)
         {
-                var player = new System.Windows.Media.MediaPlayer();
-                try
-                {
-                    string filename = (tone).ToString();
+            var player = new System.Windows.Media.MediaPlayer();
+            try
+            {
+                string filename = (tone).ToString();
 
-                    if (tone == "Bes") { filename = "Ais"; }
-                    else if (tone == "Des") { filename = "Cis"; }
-                    else if (tone == "Es") { filename = "Dis"; }
-                    else if (tone == "Ges") { filename = "Fis"; }
-                    else if (tone == "As") { filename = "Gis"; }
+                if (tone == "Bes") { filename = "Ais"; }
+                else if (tone == "Des") { filename = "Cis"; }
+                else if (tone == "Es") { filename = "Dis"; }
+                else if (tone == "Ges") { filename = "Fis"; }
+                else if (tone == "As") { filename = "Gis"; }
 
-                    player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
-                    player.Play();
-                }
-                catch (FileNotFoundException)
-                {
-                    Console.WriteLine("File not found");
-                }
-                currentOctave = octave;
-                currentTone = tone;
+                player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
+                player.Play();
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("File not found");
+            }
+            currentOctave = octave;
+            currentTone = tone;
         }
 
         public static void ResetLine()
@@ -179,10 +182,11 @@ namespace VirtualPiano.Control
         }
 
         public void PlayGeklikt(Object sender, EventArgs e)
-        { 
+        {
             if (isPlayingSong == false)
             {
-                playBtn.Image = new Bitmap(pause,width,height);
+                playBtn.Image = new Bitmap(pause, width, height);
+                playBtn.Image = BitmapController.ColorReplace(playBtn.Image, 30, Color.White, Color.LightGray);
                 isPlayingSong = true;
                 //int temp = Song.getDuration();
                 //Console.WriteLine(Song.getDuration());
@@ -191,7 +195,8 @@ namespace VirtualPiano.Control
             }
             else if (isPlayingSong)
             {
-                playBtn.Image = new Bitmap(play,width,height);
+                playBtn.Image = new Bitmap(play, width, height);
+                playBtn.Image = BitmapController.ColorReplace(playBtn.Image, 30, Color.White, Color.LightGray);
                 isPlayingSong = false;
                 rodeLijn.Stop();
             }
@@ -201,7 +206,7 @@ namespace VirtualPiano.Control
         public void StopGeklikt(Object sender, EventArgs e)
         {
             //wanneer de stopknop ingedrukt wordt. lijn opnieuw aan het begin zetten.
-            playBtn.Image = new Bitmap(play,width,height);
+            playBtn.Image = new Bitmap(play, width, height);
             isPlayingSong = false;
             ComposeView.CurrentPlayingStaff = 0;
             ComposeView.RedLineX = -60;

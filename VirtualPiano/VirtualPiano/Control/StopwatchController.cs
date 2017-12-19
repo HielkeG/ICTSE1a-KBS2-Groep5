@@ -85,7 +85,6 @@ namespace VirtualPiano.Control
                                         
                     if (a.watch.ElapsedMilliseconds > 0 && a.watch.ElapsedMilliseconds < 350)
                     {
-                        Console.WriteLine("kwart noot");
                         note.Name = "QuarterNote";
                         tempNote = note;
                         tempNote.SetImage();
@@ -133,7 +132,7 @@ namespace VirtualPiano.Control
                         }
                         else
                         {
-                            bar.FillBar();
+                            bar.FillBar(Song.Staffs[i].Bars.IndexOf(bar));
                             if (Song.Staffs[i].Bars.IndexOf(bar) == 3 && Song.Staffs.Count() == Song.Staffs.IndexOf(Song.Staffs[i]) + 1)
                             {
                                 OnFullStaff(bar,e);
