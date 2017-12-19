@@ -141,7 +141,7 @@ namespace TestProject
             bool verwachting = true;
 
             //assert
-            Assert.AreEqual(verwachting,note.flipped);
+            Assert.AreEqual(verwachting,note.Flipped);
         }
 
 
@@ -156,7 +156,7 @@ namespace TestProject
             bool verwachting = false;
 
             //assert
-            Assert.AreEqual(note.flipped, verwachting);
+            Assert.AreEqual(note.Flipped, verwachting);
         }
 
         [TestMethod]
@@ -183,6 +183,20 @@ namespace TestProject
 
             //act
             string verwachting = "As";
+
+            //assert
+            Assert.AreEqual(note.Tone, verwachting);
+        }
+
+        [TestMethod]
+        public void SetFlatWhenNoteCantBeFlat()
+        {
+            //arrange
+            Note note = new Note(-12, 20, "QuarterNote", "G", 0);
+            note.SetFlat();
+
+            //act
+            string verwachting = "C";
 
             //assert
             Assert.AreEqual(note.Tone, verwachting);
