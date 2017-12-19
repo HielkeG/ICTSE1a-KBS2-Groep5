@@ -136,7 +136,7 @@ namespace VirtualPiano.Model
 
                                     //Noot afspelen
                                     string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                    if (pitchTemp.Length == 4)
+                                    if (pitchTemp.Contains("is"))
                                     {
                                         Enum.TryParse(note.Tone.First().ToString() + "Sharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
