@@ -644,41 +644,75 @@ namespace VirtualPiano.View
             Cursor = Cursors.Default;
         }
 
+        //Deze methode wordt aangeroepen wanneer de muis binnenkomt bij de bin
         private void Bin_MouseEnter(object sender, EventArgs e)
         {
+            bool signdeleted = false;
+            //Wanneer er niks uit de toolbar geselecteerd is
             if (SelectedSign == "")
             {
                 for (int staff = 0; staff < song.Staffs.Count(); staff++)
                 {
                     for (int bar = 0; bar < song.Staffs[staff].Bars.Count(); bar++)
                     {
-                        for (int sign = 0; sign < song.Staffs[staff].Bars[bar].Signs.Count(); sign++)
+                        if (song.Staffs[staff].Bars[bar].Signs.Contains(draggingSign))
                         {
-                            if (song.Staffs[staff].Bars[bar].Signs[sign] == draggingSign)
+                            //Alle signs langsgaan
+                            for (int sign = 0; sign < song.Staffs[staff].Bars[bar].Signs.Count(); sign++)
                             {
-                                song.Staffs[staff].Bars[bar].RemoveSign(draggingSign);
-                                SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                                sound.Play();
-                                Cursor = Cursors.Default;
+                                //Als er een sign gelijk is aan draggingSign
+                                if (song.Staffs[staff].Bars[bar].Signs[sign] == draggingSign)
+                                {
+                                    //Sign verwijderen
+                                    song.Staffs[staff].Bars[bar].RemoveSign(draggingSign);
+                                    //Geluid afspelen
+                                    SoundPlayer sound = new SoundPlayer(Resources.BinSound);
+                                    sound.Play();
+                                    //Normale cursor
+                                    Cursor = Cursors.Default;
+                                    signdeleted = true;
+                                }
+                                if(signdeleted == true)
+                                {
+                                    if(!(song.Staffs[staff].Bars[bar].Signs.Count() - 1 < sign))
+                                    {
+                                        song.Staffs[staff].Bars[bar].Signs[sign].X -= draggingSign.Duration * 25;
+
+                                    }
+                                }
+
 
                             }
-
                         }
                     }
                 }
                 draggingSign = null;
-                if(draggingSharp != null)
+                if (draggingSharp != null)
                 {
-                    if(draggingSharp is Note note)
+                    if (draggingSharp is Note note)
                     {
                         note.SetNatural();
                         SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                         sound.Play();
                         Cursor = Cursors.Default;
                         draggingSharp = null;
+                        note.isBeingMoved = false;
                     }
                 }
-                
+            }
+            if (SelectedSign == "BeginFlat")
+            {
+                song.FlatSharp++;
+                SelectedSign = "";
+                SoundPlayer sound = new SoundPlayer(Resources.BinSound);
+                sound.Play();
+            }
+            else if (SelectedSign == "BeginSharp")
+            {
+                song.FlatSharp--;
+                SelectedSign = "";
+                SoundPlayer sound = new SoundPlayer(Resources.BinSound);
+                sound.Play();
             }
         }
 
@@ -743,11 +777,11 @@ namespace VirtualPiano.View
             if (MusicController.metronomeBtn.Image == MusicController.metronomeOn1)
             {
                 MusicController.metronomeBtn.Image = MusicController.metronomeOn2;
-             }
+            }
             else
             {
                 MusicController.metronomeBtn.Image = MusicController.metronomeOn1;
-             }
+            }
         }
 
         // Volgende pagina
@@ -789,7 +823,6 @@ namespace VirtualPiano.View
                 {
                     if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
                     {
-
                         panel.Visible = true;
                     }
                 }

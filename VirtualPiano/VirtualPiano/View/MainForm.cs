@@ -31,7 +31,6 @@ namespace VirtualPiano
                 //toetsaanslagen opvangen.
 
                 KeyBinds.PressPianoKeys(e);
-                Console.WriteLine("test");
             }
 
         }
