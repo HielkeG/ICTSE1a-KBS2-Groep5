@@ -201,6 +201,10 @@ namespace VirtualPiano.View
                 note.isBeingMoved = false;
                 SetDefaultCursor();
             }
+            if(ComposeView.draggingSign != null)
+            {
+                SetDefaultCursor();
+            }
             ComposeView.cursorIsDown = false;
         }
 
@@ -347,9 +351,9 @@ namespace VirtualPiano.View
                 if (bar.hasPreview)
                 {
                     bar.RemovePreview(ComposeView.SelectedSign);
-                    SetDefaultCursor();
+                    if(ComposeView.draggingSign != null)SetDefaultCursor();
                 }
-                else if (MouseX < barEnd2 && MouseX > barBegin2 && bar.Duration == 16) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+                else if (MouseX < barEnd2 && MouseX > barBegin2 && bar.Duration == 16 && ComposeView.draggingSign != null) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
                 barBegin2 += 430;
                 barEnd2 += 430;
             }

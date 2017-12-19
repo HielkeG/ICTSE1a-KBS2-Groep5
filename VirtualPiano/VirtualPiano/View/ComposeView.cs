@@ -459,7 +459,7 @@ namespace VirtualPiano.View
             if (SelectedSign != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                sound.Play();
+                if(MenuBarView.SoundEnabled)sound.Play();
                 Cursor = Cursors.Default;
                 SelectedSign = "";
             }
