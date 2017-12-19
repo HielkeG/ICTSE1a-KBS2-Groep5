@@ -23,6 +23,7 @@ namespace VirtualPiano.View
         public static MidiConnect m1 = new MidiConnect();
         public static MidiSettings m2 = new MidiSettings();
         public static bool SoundEnabled = true;
+        private bool showingHelp = false;
         public MenuBarView()
         {
 
@@ -231,8 +232,22 @@ namespace VirtualPiano.View
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HelpView help = new HelpView();
-            help.Show();
+            if (!showingHelp)
+            {
+                HelpView help = new HelpView();
+                help.Show();
+                help.FormClosing += ResetShowing;
+                showingHelp = true;
+            }
+            else
+            {
+                MessageBox.Show("Er wordt al een helpmenu getoond.", "Fout");
+            }
+        }
+
+        private void ResetShowing(object sender, EventArgs e)
+        {
+            showingHelp = false;
         }
     }
 }
