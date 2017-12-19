@@ -334,7 +334,6 @@ namespace VirtualPiano.View
                                 barContentColor = Color.FromArgb(255, 200, 200, 200);
                                 bar.hasPreview = true;
                             }
-
                         }
                     }
                 }
@@ -351,9 +350,9 @@ namespace VirtualPiano.View
                 if (bar.hasPreview)
                 {
                     bar.RemovePreview(ComposeView.SelectedSign);
-                    if(ComposeView.draggingSign != null)SetDefaultCursor();
+                    SetDefaultCursor();
                 }
-                else if (MouseX < barEnd2 && MouseX > barBegin2 && bar.Duration == 16 && ComposeView.draggingSign != null) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+                else if (MouseX < barEnd2 && MouseX > barBegin2 && bar.Duration == 16) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
                 barBegin2 += 430;
                 barEnd2 += 430;
             }
