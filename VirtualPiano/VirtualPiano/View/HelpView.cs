@@ -127,35 +127,31 @@ namespace VirtualPiano.View
 
         private void Nootsoorten_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Notensoorten", "In de muziek bestaan verschillende soorten noten: Hele noten, halve, kwarten, achtste, 1/16e enzovoort. Dit is de duur van een noot. " +
+            ShowExplain("Notensoorten", "In de muziek bestaan verschillende soorten noten: Hele noten, halve, kwarten, achtste, 1/16e enzovoort." +
                 "Deze worden allemaal aangegeven met een eigen icoon. Wanneer je de muis over een noot in de toolbar houdt kan je zien welke noot dit is.",false);
         }
 
         private void Tonen_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Tonen", "Een toon is een bepaalde hoogte van geluid. Bij de positie van een noot op de notenbalk hoort een bepaalde toon. " +
-                "De bestaande noten zijn C, D, E, F, G, A, B, C.",false);
+            ShowExplain("Tonen", "Een toon is een bepaalde hoogte van geluid.",false);
 
         }
 
         private void Maten_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Maten", "In onze applicatie wordt de vierkwartsmaat gebruikt. Een maat bestaat daardoor uit vier tellen. Een hele noot is vier tellen, een halve noot twee, enzovoort." +
-                "Dat betekent dus dat er maar één hele noot in een maat past en twee halve noten in één maat. Het aantal tellen van een noot wordt telkens gehalveerd. Een maat staat op een notenbalk.",false);
+            ShowExplain("Maten", "",false);
 
         }
 
         private void MolKruis_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Mollen en kruizen", "Mollen en kruizen worden gebruikt om een noot een halve toon te verhogen of verlagen. " +
-                "Een mol verlaagt de noot een halve toon. Een kruis verhoogt de noot met een halve toon. Wanneer een C een kruis krijgt wordt deze bijvoorbeeld C#.",false);
+            ShowExplain("Mollen en kruizen", "",false);
 
         }
 
         private void Sleutels_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Sleutels", "In onze applicatie gebruiken we de F-sleutel en de G-sleutel. Er is echter nog een derde sleutel: de C-sleutel. Een sleutel op de notenbalk komt op een lijn te staan" +
-                "en die lijn krijgt daarmee de toonhoogte van die sleutel. De sleutel bepaalt op deze  manier de toonhoogte voor alle komende noten, totdat een eventuele nieuwe sleutel aangegeven wordt.",false);
+            ShowExplain("Sleutels", "",false);
         }
 
         private void ShowExplain(string title, string explanation,bool image)
