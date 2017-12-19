@@ -173,7 +173,7 @@ namespace VirtualPiano.Model
                     {
                         if (sign is Note note)
                         {
-                            if (note.flat == false && note.sharp == false)
+                            if (note.Flat == false && note.Sharp == false)
                             {
                                 //Alle tonen naar de stamtoon zetten
                                 if (note.Tone == "Fis") { note.Tone = "F"; }
