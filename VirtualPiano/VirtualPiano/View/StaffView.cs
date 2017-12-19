@@ -129,12 +129,13 @@ namespace VirtualPiano.View
                     e.Graphics.DrawLine(new Pen(Color.WhiteSmoke, 5), 10, 145, 1765, 145);
                 }
 
-                // Hier worden de noten en rusten getekent
+                // Hieronder worden de noten en rusten getekent
                 foreach (Sign sign in bar.Signs)
                 {
                     //------Noten------
                     if (sign is Note note)
                     {
+                        if (note.Sharp == true) { Console.WriteLine("ik ben scherp! pas op!"); }
                         //----Verbindingslijn-----
                         if (note.ConnectionNote != null)     //noten die aan elkaar zitten tekenen
                         {
@@ -147,7 +148,6 @@ namespace VirtualPiano.View
                                 e.Graphics.DrawLine(new Pen(barContentColor, 5), note.X + 58, note.Y + 15, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 15);
                                 e.Graphics.DrawLine(new Pen(barContentColor, 5), note.X + 58, note.Y + 23, note.ConnectionNote.X + 59, note.ConnectionNote.Y + 23);
                             }
-
                         }
 
                         int Ynotelocation = note.Y;
@@ -159,8 +159,13 @@ namespace VirtualPiano.View
 
                         //Noot tekenen
                         e.Graphics.DrawImage(sign.Image, note.X, Ynotelocation, 90, 130);
-                        if (note.Sharp == true) { e.Graphics.DrawImage(Resources.kruis_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
-                        else if (note.Flat == true) { e.Graphics.DrawImage(Resources.mol_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
+
+                        if (note.isBeingMoved == false)
+                        {
+                            //Kruis of Mol tekenen
+                            if (note.Sharp == true) { e.Graphics.DrawImage(Resources.kruis_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
+                            else if (note.Flat == true) { e.Graphics.DrawImage(Resources.mol_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
+                        }
                     }
 
                     //Rust tekenen
@@ -186,6 +191,12 @@ namespace VirtualPiano.View
                 else if (ComposeView.draggingSign.Name == "QuarterNote") ComposeView.draggingSign.Image = Resources.kwartnoot;
                 else if (ComposeView.draggingSign.Name == "EightNote") ComposeView.draggingSign.Image = Resources.achtstenoot;
                 else if (ComposeView.draggingSign.Name == "SixteenthNote") ComposeView.draggingSign.Image = Resources.zestiendenoot;
+            }
+            if (ComposeView.draggingSharp is Note note)
+            {
+                note.isBeingMoved = false;
+                SetDefaultCursor();
+                ComposeView.draggingSharp = null;
             }
             ComposeView.cursorIsDown = false;
         }
@@ -379,6 +390,7 @@ namespace VirtualPiano.View
                                 await PutTaskDelay(300);
                                 if (ComposeView.cursorIsDown == true)
                                 {
+                                    note.isBeingMoved = true;
                                     if(note.Sharp == true)
                                     {
                                         Cursor = CursorController.ChangeCursor("Sharp");
@@ -575,13 +587,6 @@ namespace VirtualPiano.View
                                         {
                                             note.SetFlat();
                                             Console.WriteLine("SetFlat");
-                                        }
-
-                                        // ------Bin------
-                                        if (ComposeView.SelectedSign == "Bin" && note.Flat == true || note.Sharp == true)
-                                        {
-                                            note.Flat = false;
-                                            note.Sharp = false;
                                         }
 
                                         ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);

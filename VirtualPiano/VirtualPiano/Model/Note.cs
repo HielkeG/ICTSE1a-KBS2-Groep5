@@ -24,6 +24,7 @@ namespace VirtualPiano.Model
         public bool Flipped { get; set; }
         public Note ConnectionNote = null;
         public bool IsBeingPlayed;
+        public bool isBeingMoved = false;
         
         public Note() : base() { }
 
@@ -126,8 +127,9 @@ namespace VirtualPiano.Model
             if (Tone == "C") { Tone = "Cis"; } 
             if (Tone == "G" || Tone == "Ges") { Tone = "Gis"; } 
             if (Tone == "D" || Tone == "Des") { Tone = "Dis"; } 
-            if (Tone == "A" || Tone == "As") { Tone = "Ais"; } 
+            if (Tone == "A" || Tone == "As") { Tone = "Ais"; }
 
+            Console.WriteLine(Sharp);
             
         }
 
