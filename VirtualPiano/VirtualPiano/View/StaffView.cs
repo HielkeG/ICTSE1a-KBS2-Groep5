@@ -90,7 +90,7 @@ namespace VirtualPiano.View
                     if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 485, 26, 60, 110); latestClef = "G"; }
                     else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 483, -19, 88, 185); latestClef = "F"; }
 
-                    
+
 
                     //-----Kruizen / Mollen --------
                     //Hieronder worden de kruizen en de mollen getekent. afhankelijk van het aantal
@@ -106,7 +106,7 @@ namespace VirtualPiano.View
                     if (song.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.mol_icon, x_bar - 446, 36, 30, 40); }
                     if (song.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.mol_icon, x_bar - 440, 67, 30, 40); }
 
-                    
+
                 }
                 else
                 {
@@ -298,7 +298,7 @@ namespace VirtualPiano.View
                                 newNote = new Note(bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                 if (bar.CheckBarSpace(newNote) && notename != null)
                                 {
-                                    
+
                                     bar.Add(newNote);
                                     bar.hasPreview = true;
                                 }
@@ -345,7 +345,7 @@ namespace VirtualPiano.View
             Update();
 
             int barBegin2 = 50;
-            int barEnd2 = 474; 
+            int barEnd2 = 474;
             foreach (Bar bar in staff.Bars)
             {
                 if (bar.hasPreview)
@@ -425,9 +425,11 @@ namespace VirtualPiano.View
                         }
                         if (MouseX < 40)
                         {
+                            Console.WriteLine("MuisX lager dan 40");
                             await PutTaskDelay(300);
                             if (ComposeView.cursorIsDown == true)
                             {
+                                Console.WriteLine("CursorIsdown");
                                 if (song.FlatSharp < 0)
                                 {
                                     Cursor = CursorController.ChangeCursor("Flat");
@@ -438,7 +440,7 @@ namespace VirtualPiano.View
                                     Cursor = CursorController.ChangeCursor("Sharp");
                                     ComposeView.SelectedSign = "BeginSharp";
                                 }
-                                
+
                             }
                         }
                     }
@@ -466,15 +468,27 @@ namespace VirtualPiano.View
                     //Kruizen en Mollen toevoegen aan het begin
                     if (MouseX < 50 && ComposeView.SelectedSign == "Sharp")
                     {
-                        if (song.FlatSharp < 0) { song.FlatSharp = 0; }
-                        song.FlatSharp++;
-                        song.ChangeSharpFlat(song.FlatSharp);
+                        if (song.FlatSharp >= 0)
+                        {
+                            song.FlatSharp++;
+                            song.ChangeSharpFlat(song.FlatSharp);
+                        } else
+                        {
+                            MessageBox.Show("Er kan geen kruis toegevoed worden, omdat het lied al mollen bevat. Als u toch een kruis wilt toevoegen, dient u eerst de mollen te verwijderen");
+                        }
+
+
                     }
                     if (MouseX < 50 && ComposeView.SelectedSign == "Flat")
                     {
-                        if (song.FlatSharp > 0) { song.FlatSharp = 0; }
-                        song.FlatSharp--;
-                        song.ChangeSharpFlat(song.FlatSharp);
+                        if (song.FlatSharp <= 0) {
+                            song.FlatSharp--;
+                            song.ChangeSharpFlat(song.FlatSharp);
+                        } else
+                        {
+                            MessageBox.Show("Er kan geen mol toegevoed worden, omdat het lied al kruizen bevat. Als u toch een mol wilt toevoegen, dient u eerst de kruizen te verwijderen");
+                        }
+                        
                     }
 
                     foreach (Bar bar in staff.Bars)
