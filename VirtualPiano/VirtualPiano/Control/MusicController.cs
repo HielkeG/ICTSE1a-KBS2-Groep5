@@ -53,7 +53,7 @@ namespace VirtualPiano.Control
         {
             playBtn.Name = "PlayBtn";
             playBtn.Image = new Bitmap(Resources.play, 50, 50);
-            playBtn.Location = new Point(110, 40);
+            playBtn.Location = new Point(110, 75);
             playBtn.Size = new Size(55, 55);
             playBtn.BackColor = Color.Transparent;
             playBtn.FlatStyle = FlatStyle.Flat;
@@ -63,7 +63,7 @@ namespace VirtualPiano.Control
             playBtn.Click += PlayGeklikt;
 
             stopBtn.Name = "StopBtn";
-            stopBtn.Location = new Point(170, 40);
+            stopBtn.Location = new Point(170, 75);
             stopBtn.Image = new Bitmap(Resources.stop, 50, 50);
             stopBtn.Size = new Size(55, 55);
             stopBtn.FlatStyle = FlatStyle.Flat;
@@ -72,9 +72,20 @@ namespace VirtualPiano.Control
             stopBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             stopBtn.Click += StopGeklikt;
 
+            recordBtn.Name = "RecordBtn";
+            recordBtn.Image = recordstart;
+            recordBtn.Location = new Point(230, 75);
+            recordBtn.Size = new Size(55, 55);
+            recordBtn.BackColor = Color.Transparent;
+            recordBtn.FlatStyle = FlatStyle.Flat;
+            recordBtn.FlatAppearance.BorderSize = 0;
+            recordBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            recordBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            recordBtn.Click += RecordClick;
+
             metronomeBtn.Name = "MetronomeBtn";
             metronomeBtn.Image = metronomeOff1;
-            metronomeBtn.Location = new Point(1750, 40);
+            metronomeBtn.Location = new Point(1750, 35);
             metronomeBtn.Size = new Size(55, 55);
             metronomeBtn.BackColor = Color.Transparent;
             metronomeBtn.FlatStyle = FlatStyle.Flat;
@@ -83,16 +94,7 @@ namespace VirtualPiano.Control
             metronomeBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             metronomeBtn.Click += MetronomeClick;
 
-            recordBtn.Name = "RecordBtn";
-            recordBtn.Image = recordstart;
-            recordBtn.Location = new Point(230, 40);
-            recordBtn.Size = new Size(55, 55);
-            recordBtn.BackColor = Color.Transparent;
-            recordBtn.FlatStyle = FlatStyle.Flat;
-            recordBtn.FlatAppearance.BorderSize = 0;
-            recordBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            recordBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            recordBtn.Click += RecordClick;
+
 
             Metronoom = m;
             rodeLijn = r;

@@ -63,8 +63,8 @@ namespace VirtualPiano.View
             this.MetronoomLabel = new System.Windows.Forms.Label();
             this.MetronomeSpeed = new System.Windows.Forms.TextBox();
             this.CurrentPageLabel = new System.Windows.Forms.Label();
-            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.metroTip = new System.Windows.Forms.ToolTip(this.components);
+            this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -76,18 +76,18 @@ namespace VirtualPiano.View
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripContainer1.ContentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripContainer1.ContentPanel.BackgroundImage = global::VirtualPiano.Properties.Resources.toolbarbg;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer1.ContentPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(66, 979);
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 25);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(80, 927);
+            this.toolStripContainer1.Location = new System.Drawing.Point(1, 105);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(66, 979);
+            this.toolStripContainer1.Size = new System.Drawing.Size(80, 927);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
@@ -125,10 +125,10 @@ namespace VirtualPiano.View
             this.toolStripSeparator5,
             this.Bin});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(-1, 16);
+            this.toolStrip1.Location = new System.Drawing.Point(8, 9);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(66, 928);
+            this.toolStrip1.Size = new System.Drawing.Size(65, 900);
             this.toolStrip1.TabIndex = 0;
             // 
             // GKey
@@ -142,7 +142,7 @@ namespace VirtualPiano.View
             this.GKey.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.GKey.Name = "GKey";
             this.GKey.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.GKey.Size = new System.Drawing.Size(130, 55);
+            this.GKey.Size = new System.Drawing.Size(55, 55);
             this.GKey.Text = "G-Sleutel";
             this.GKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GKey_MouseDown);
             // 
@@ -156,14 +156,13 @@ namespace VirtualPiano.View
             this.FKey.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.FKey.Name = "FKey";
             this.FKey.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.FKey.Size = new System.Drawing.Size(130, 55);
+            this.FKey.Size = new System.Drawing.Size(55, 55);
             this.FKey.Text = "F-Sleutel";
             this.FKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FKey_MouseDown);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.AutoSize = false;
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(1);
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator1.Size = new System.Drawing.Size(50, 6);
@@ -241,7 +240,6 @@ namespace VirtualPiano.View
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.AutoSize = false;
-            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(1);
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator2.Size = new System.Drawing.Size(50, 6);
@@ -319,7 +317,6 @@ namespace VirtualPiano.View
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.AutoSize = false;
-            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(1);
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator3.Size = new System.Drawing.Size(50, 6);
@@ -330,7 +327,6 @@ namespace VirtualPiano.View
             this.toolStripButton1.BackColor = System.Drawing.Color.Transparent;
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.toolStripButton1.Name = "toolStripButton1";
@@ -345,7 +341,6 @@ namespace VirtualPiano.View
             this.Flat.BackColor = System.Drawing.Color.Transparent;
             this.Flat.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Flat.Image = ((System.Drawing.Image)(resources.GetObject("Flat.Image")));
-            this.Flat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Flat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Flat.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.Flat.Name = "Flat";
@@ -357,7 +352,6 @@ namespace VirtualPiano.View
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.AutoSize = false;
-            this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(1);
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator4.Size = new System.Drawing.Size(50, 6);
@@ -379,7 +373,6 @@ namespace VirtualPiano.View
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.AutoSize = false;
-            this.toolStripSeparator5.Margin = new System.Windows.Forms.Padding(1);
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.toolStripSeparator5.Size = new System.Drawing.Size(50, 6);
@@ -423,15 +416,18 @@ namespace VirtualPiano.View
             // 
             // TitelBox
             // 
-            this.TitelBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.TitelBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TitelBox.BackColor = System.Drawing.Color.White;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TitelBox.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(933, 45);
-            this.TitelBox.MaxLength = 128;
+            this.TitelBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitelBox.Location = new System.Drawing.Point(720, 45);
+            this.TitelBox.Margin = new System.Windows.Forms.Padding(0);
+            this.TitelBox.MaxLength = 96;
             this.TitelBox.Name = "TitelBox";
-            this.TitelBox.Size = new System.Drawing.Size(200, 35);
+            this.TitelBox.Size = new System.Drawing.Size(480, 37);
             this.TitelBox.TabIndex = 1;
-            this.TitelBox.Text = "Titel";
+            this.TitelBox.Text = "Artiest - Titel";
+            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
             this.TitelBox.Enter += new System.EventHandler(this.TitelBox_Enter);
             this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
@@ -470,25 +466,28 @@ namespace VirtualPiano.View
             // menuBarView1
             // 
             this.menuBarView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.menuBarView1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.menuBarView1.BackColor = System.Drawing.Color.Transparent;
+            this.menuBarView1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.menuBarView1.Location = new System.Drawing.Point(0, 0);
             this.menuBarView1.Margin = new System.Windows.Forms.Padding(0);
             this.menuBarView1.Name = "menuBarView1";
-            this.menuBarView1.Size = new System.Drawing.Size(1070, 25);
+            this.menuBarView1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.menuBarView1.Size = new System.Drawing.Size(1920, 24);
             this.menuBarView1.Song = null;
-            this.menuBarView1.TabIndex = 2;
+            this.menuBarView1.TabIndex = 7;
             // 
             // ComposeView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Controls.Add(this.MetronomeSpeed);
             this.Controls.Add(this.MetronoomLabel);
             this.Controls.Add(this.CurrentPageLabel);
             this.Controls.Add(this.menuBarView1);
             this.Controls.Add(this.TitelBox);
             this.Controls.Add(this.toolStripContainer1);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ComposeView";

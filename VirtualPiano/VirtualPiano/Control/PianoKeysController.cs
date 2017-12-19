@@ -22,7 +22,7 @@ namespace VirtualPiano.Control
         public PianoKeysController()
         {
             pianoKeysBtn.Image = new Bitmap(Resources.showpiano, 50, 50);
-            pianoKeysBtn.Location = new Point(1815, 40);
+            pianoKeysBtn.Location = new Point(1815, 35);
             pianoKeysBtn.Size = new Size(55, 55);
             pianoKeysBtn.BackColor = Color.Transparent;
             pianoKeysBtn.FlatStyle = FlatStyle.Flat;
