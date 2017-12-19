@@ -238,7 +238,7 @@ namespace VirtualPiano.View
                     if (MouseX < barEnd && MouseX > barBegin)
                     {
                         SetClefCursor(bar);
-                        int Y = PointToClient(Cursor.Position).Y;
+
 
                         // ------Note-----
                         if (ComposeView.SelectedSign.Contains("Note"))
@@ -267,6 +267,7 @@ namespace VirtualPiano.View
                                             newNote.Duration = 0;
                                             if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
                                             noteSet = true;
+                                            SetDefaultCursor();
                                             bar.hasPreview = true;
                                             break;
                                         }
@@ -279,6 +280,7 @@ namespace VirtualPiano.View
                                 newNote = new Note(bar.Duration * 25 + (bar.length * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                 if (bar.CheckBarSpace(newNote) && notename != null)
                                 {
+                                    
                                     bar.Add(newNote);
                                     bar.hasPreview = true;
                                 }
@@ -324,9 +326,18 @@ namespace VirtualPiano.View
             Invalidate();
             Update();
 
+            int barBegin2 = 50;
+            int barEnd2 = 474; 
             foreach (Bar bar in staff.Bars)
             {
-                if (bar.hasPreview) bar.RemovePreview(ComposeView.SelectedSign);
+                if (bar.hasPreview)
+                {
+                    bar.RemovePreview(ComposeView.SelectedSign);
+                    SetDefaultCursor();
+                }
+                else if (MouseX < barEnd2 && MouseX > barBegin2 && bar.Duration == 16) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSign);
+                barBegin2 += 430;
+                barEnd2 += 430;
             }
         }
 
