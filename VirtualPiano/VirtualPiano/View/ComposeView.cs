@@ -42,6 +42,7 @@ namespace VirtualPiano.View
         public PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Sign draggingSign;
+        public static Sign draggingSharp;
         public static Panel keypanel = new Panel()
         {
             Location = new Point(600, 730),
@@ -661,10 +662,23 @@ namespace VirtualPiano.View
                                 Cursor = Cursors.Default;
 
                             }
+
                         }
                     }
                 }
                 draggingSign = null;
+                if(draggingSharp != null)
+                {
+                    if(draggingSharp is Note note)
+                    {
+                        note.SetNatural();
+                        SoundPlayer sound = new SoundPlayer(Resources.BinSound);
+                        sound.Play();
+                        Cursor = Cursors.Default;
+                        draggingSharp = null;
+                    }
+                }
+                
             }
         }
 

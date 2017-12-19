@@ -19,9 +19,9 @@ namespace VirtualPiano.Model
     {
         public string Tone { get; set; }
         public int Octave { get; set; }
-        public bool sharp { get; set; }
-        public bool flat { get; set; }
-        public bool flipped { get; set; }
+        public bool Sharp { get; set; }
+        public bool Flat { get; set; }
+        public bool Flipped { get; set; }
         public Note ConnectionNote = null;
         public bool IsBeingPlayed;
         
@@ -35,7 +35,7 @@ namespace VirtualPiano.Model
 
         public Note(int x, int y, string tempNotename, string clef, int Flatsharp) :base()
         {
-            flipped = false;
+            Flipped = false;
             Name = tempNotename;
             X = x + 25;
 
@@ -120,26 +120,39 @@ namespace VirtualPiano.Model
 
         public void SetSharp()
         {
-            sharp = true;
-            flat = false;
-            { if (Tone == "F" || Tone == "Fes") { Tone = "Fis"; } }
-            { if (Tone == "C") { Tone = "Cis"; } }
-            { if (Tone == "G" || Tone == "Ges") { Tone = "Gis"; } }
-            { if (Tone == "D" || Tone == "Des") { Tone = "Dis"; } }
-            { if (Tone == "A" || Tone == "As") { Tone = "Ais"; } }
+            Sharp = true;
+            Flat = false;
+            if (Tone == "F" || Tone == "Fes") { Tone = "Fis"; } 
+            if (Tone == "C") { Tone = "Cis"; } 
+            if (Tone == "G" || Tone == "Ges") { Tone = "Gis"; } 
+            if (Tone == "D" || Tone == "Des") { Tone = "Dis"; } 
+            if (Tone == "A" || Tone == "As") { Tone = "Ais"; } 
 
             
         }
 
         public void SetFlat()
         {
-            sharp = false;
-            flat = true;
-            { if (Tone == "B") { Tone = "Bes"; } }
-            { if (Tone == "E") { Tone = "Es"; } }
-            { if (Tone == "A" || Tone == "Ais") { Tone = "As"; } }
-            { if (Tone == "D" || Tone == "Dis") { Tone = "Des"; } }
-            { if (Tone == "G" || Tone == "Gis") { Tone = "Ges"; } }
+            Sharp = false;
+            Flat = true;
+            if (Tone == "B") { Tone = "Bes"; } 
+            if (Tone == "E") { Tone = "Es"; } 
+            if (Tone == "A" || Tone == "Ais") { Tone = "As"; } 
+            if (Tone == "D" || Tone == "Dis") { Tone = "Des"; } 
+            if (Tone == "G" || Tone == "Gis") { Tone = "Ges"; } 
+        }
+
+        public void SetNatural()
+        {
+            Sharp = false;
+            Flat = false;
+            if (Tone == "As" || Tone == "Ais") { Tone = "A"; }
+            if (Tone == "Bes") { Tone = "B"; }
+            if (Tone == "Cis") { Tone = "C"; }
+            if (Tone == "Dis" || Tone == "Des") { Tone = "D"; }
+            if (Tone == "Es") { Tone = "E"; }
+            if (Tone == "Fis") { Tone = "F"; }
+            if (Tone == "Gis" || Tone == "Ges") { Tone = "G"; }
         }
 
         public bool CheckConnect()
@@ -175,7 +188,7 @@ namespace VirtualPiano.Model
             else if (Name == "QuarterNote") { Image = Resources.kwartnootflipped; }
             else if (Name == "EightNote") { Image = Resources.achtstenootflipped; }
             else if (Name == "SixteenthNote") {Image = Resources.zestiendenootflipped; }
-            flipped = true;
+            Flipped = true;
         }
         public void unflip()
         {
@@ -184,7 +197,7 @@ namespace VirtualPiano.Model
             else if (Name == "QuarterNote") { Image = Resources.kwartnoot; }
             else if (Name == "EightNote") { Image = Resources.achtstenoot; }
             else if (Name == "SixteenthNote") { Image = Resources.zestiendenoot; }
-            flipped = false;
+            Flipped = false;
         }
     }
 }

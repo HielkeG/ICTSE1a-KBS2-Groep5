@@ -87,7 +87,7 @@ namespace VirtualPiano.View
                 if (staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen en kruizen/mollen tekenen
                 {
                     //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
-                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 470, 26, 60, 110); latestClef = "G"; }
+                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, x_bar - 485, 26, 60, 110); latestClef = "G"; }
                     else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, x_bar - 483, -19, 88, 185); latestClef = "F"; }
 
                     //-----Kruizen / Mollen --------
@@ -157,11 +157,13 @@ namespace VirtualPiano.View
                         if (note.Y <= -40) { e.Graphics.DrawLine(new Pen(barContentColor, 2), note.X + 30, 22, note.X + 70, 22); }
                         else if (note.Y >= 55) { e.Graphics.DrawLine(new Pen(barContentColor, 2), note.X + 30, 124, note.X + 70, 124); }
 
-
+                        //Noot tekenen
                         e.Graphics.DrawImage(sign.Image, note.X, Ynotelocation, 90, 130);
-                        if (note.sharp == true) { e.Graphics.DrawImage(Resources.kruis_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
-                        else if (note.flat == true) { e.Graphics.DrawImage(Resources.mol_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
+                        if (note.Sharp == true) { e.Graphics.DrawImage(Resources.kruis_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
+                        else if (note.Flat == true) { e.Graphics.DrawImage(Resources.mol_icon, note.X + 15, Ynotelocation + 40, 30, 40); }
                     }
+
+                    //Rust tekenen
                     else if (sign is Rest rest)
                     {
                         if (rest.Name == "WholeRest") { e.Graphics.FillRectangle(new SolidBrush(Color.Black), new Rectangle(rest.X + 220, 66, 20, 10)); }
@@ -252,7 +254,7 @@ namespace VirtualPiano.View
                                     if (note.IsLocation(MouseX))
                                     {
                                         newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
-                                        if (note.flipped == true || note.Y <= 0)
+                                        if (note.Flipped == true || note.Y <= 0)
                                         {
                                             newNote.flip();
                                         }
@@ -364,10 +366,32 @@ namespace VirtualPiano.View
                             {
                                 //De cursor veranderd in de aangeklikte noot
                                 Cursor = CursorController.ChangeCursor(sign.Name);
-                                ComposeView.SelectedSign = sign.Name;
+                                ComposeView.SelectedSign = "";
                                 sign.Image = Resources.blank;
                                 ComposeView.draggingSign = sign;
                                 Invalidate();
+                            }
+                        }
+                        if (sign.IsLocation(MouseX + 20, MouseY))
+                        {
+                            if (sign is Note note && (note.Flat == true || note.Sharp == true))
+                            {
+                                await PutTaskDelay(300);
+                                if (ComposeView.cursorIsDown == true)
+                                {
+                                    if(note.Sharp == true)
+                                    {
+                                        Cursor = CursorController.ChangeCursor("Sharp");
+                                    }
+                                     else if (note.Flat == true)
+                                    {
+                                        Cursor = CursorController.ChangeCursor("Flat");
+                                    }
+
+                                    ComposeView.draggingSharp = sign;
+                                    
+                                    Invalidate();
+                                }
                             }
                         }
                     }
@@ -393,13 +417,13 @@ namespace VirtualPiano.View
                     //----------Sharp / Flat-------------
 
                     //Kruizen en Mollen toevoegen aan het begin
-                    if (MouseX < 100 && ComposeView.SelectedSign == "Sharp")
+                    if (MouseX < 50 && ComposeView.SelectedSign == "Sharp")
                     {
                         if (song.FlatSharp < 0) { song.FlatSharp = 0; }
                         song.FlatSharp++;
                         song.ChangeSharpFlat(song.FlatSharp);
                     }
-                    if (MouseX < 100 && ComposeView.SelectedSign == "Flat")
+                    if (MouseX < 50 && ComposeView.SelectedSign == "Flat")
                     {
                         if (song.FlatSharp > 0) { song.FlatSharp = 0; }
                         song.FlatSharp--;
@@ -428,10 +452,10 @@ namespace VirtualPiano.View
                                         //Als er een noot op dezelfde X-as staat als de X-as van de muisklik
                                         if (note.IsLocation(MouseX))
                                         {
-                                            
+
                                             newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                             //Als de noot op de kop staat, moet ook deze noot op de kop staan
-                                            if (note.Y <= 0 || note.flipped == true)
+                                            if (note.Y <= 0 || note.Flipped == true)
                                             {
                                                 newNote.flip();
                                             }
@@ -542,14 +566,22 @@ namespace VirtualPiano.View
                                         }
 
                                         // ----- Sharp / Flat --------
-                                        if (ComposeView.SelectedSign == "Sharp") note.SetSharp();
-                                        else if (ComposeView.SelectedSign == "Flat") note.SetFlat();
+                                        if (ComposeView.SelectedSign == "Sharp")
+                                        {
+                                            note.SetSharp();
+                                            Console.WriteLine("SetSharp");
+                                        }
+                                        else if (ComposeView.SelectedSign == "Flat")
+                                        {
+                                            note.SetFlat();
+                                            Console.WriteLine("SetFlat");
+                                        }
 
                                         // ------Bin------
-                                        if (ComposeView.SelectedSign == "Bin" && note.flat == true || note.sharp == true)
+                                        if (ComposeView.SelectedSign == "Bin" && note.Flat == true || note.Sharp == true)
                                         {
-                                            note.flat = false;
-                                            note.sharp = false;
+                                            note.Flat = false;
+                                            note.Sharp = false;
                                         }
 
                                         ComposeView.pkv1.KeyReleased(note.Octave, note.Tone);
