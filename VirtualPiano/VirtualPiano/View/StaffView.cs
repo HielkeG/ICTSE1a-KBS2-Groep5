@@ -201,6 +201,10 @@ namespace VirtualPiano.View
                 note.isBeingMoved = false;
                 SetDefaultCursor();
             }
+            if(ComposeView.draggingSign != null)
+            {
+                SetDefaultCursor();
+            }
             ComposeView.cursorIsDown = false;
         }
 
@@ -330,7 +334,6 @@ namespace VirtualPiano.View
                                 barContentColor = Color.FromArgb(255, 200, 200, 200);
                                 bar.hasPreview = true;
                             }
-
                         }
                     }
                 }
