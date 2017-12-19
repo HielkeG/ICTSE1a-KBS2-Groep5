@@ -668,6 +668,7 @@ namespace VirtualPiano.View
                         barEnd += 430;
                     }
                 }
+                ComposeView.SelectedSign = "";
             }
             Invalidate();
         }
