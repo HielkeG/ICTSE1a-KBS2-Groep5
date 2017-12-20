@@ -21,7 +21,7 @@ namespace VirtualPiano.Control
         public static Image stop = Resources.stop;
         public static Image play = Resources.play;
         public static Image pause = Resources.pause;
-        public static Image add = Resources.add;
+        public static Image add = Resources.add_material;
         public static Image rewind = Resources.rewind;
         public static Image recordstart = new Bitmap(Resources.record_start, 50, 50);
         public static Image recordstop = new Bitmap(Resources.record_stop, 50, 50);
@@ -53,7 +53,7 @@ namespace VirtualPiano.Control
         {
             playBtn.Name = "PlayBtn";
             playBtn.Image = new Bitmap(Resources.play, 50, 50);
-            playBtn.Location = new Point(110, 75);
+            playBtn.Location = new Point(110, 35);
             playBtn.Size = new Size(55, 55);
             playBtn.BackColor = Color.Transparent;
             playBtn.FlatStyle = FlatStyle.Flat;
@@ -63,7 +63,7 @@ namespace VirtualPiano.Control
             playBtn.Click += PlayGeklikt;
 
             stopBtn.Name = "StopBtn";
-            stopBtn.Location = new Point(170, 75);
+            stopBtn.Location = new Point(170, 35);
             stopBtn.Image = new Bitmap(Resources.stop, 50, 50);
             stopBtn.Size = new Size(55, 55);
             stopBtn.FlatStyle = FlatStyle.Flat;
@@ -74,7 +74,7 @@ namespace VirtualPiano.Control
 
             recordBtn.Name = "RecordBtn";
             recordBtn.Image = recordstart;
-            recordBtn.Location = new Point(230, 75);
+            recordBtn.Location = new Point(230, 35);
             recordBtn.Size = new Size(55, 55);
             recordBtn.BackColor = Color.Transparent;
             recordBtn.FlatStyle = FlatStyle.Flat;

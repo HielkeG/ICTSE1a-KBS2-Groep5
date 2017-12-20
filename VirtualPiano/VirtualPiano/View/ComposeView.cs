@@ -296,7 +296,7 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Location = new Point(977, newStaff.Y + 160);
+                //btnAddStaff.Location = new Point(977, newStaff.Y + 160);
             }
             else if (CurrentPage * 3 - 1 == staffViewsPanels.Count)
             {
@@ -306,7 +306,6 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Visible = false;
             }
             else if (y_staff == 140)
             {
@@ -316,7 +315,6 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Visible = false;
             }
             else if (CurrentPage * 3 == staffViewsPanels.Count)
             {
@@ -348,9 +346,9 @@ namespace VirtualPiano.View
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
-            btnAddStaff.Image = new Bitmap(Resources.add, 50, 50);
-            btnAddStaff.Location = new Point(977, y_staff + 160);
-            btnAddStaff.Size = new Size(55, 55);
+            btnAddStaff.Image = new Bitmap(Resources.add_material, 100, 100);
+            btnAddStaff.Location = new Point(1820, 840);
+            btnAddStaff.Size = new Size(100, 100);
             btnAddStaff.BackColor = Color.Transparent;
             btnAddStaff.FlatStyle = FlatStyle.Flat;
             btnAddStaff.FlatAppearance.BorderSize = 0;
@@ -807,7 +805,7 @@ namespace VirtualPiano.View
                     song.Pages++;
                     //Locatie wordt weer op 140 gezet
                     y_staff = 140;
-                    btnAddStaff.Location = new Point(977, y_staff + 160);
+                    //btnAddStaff.Location = new Point(977, y_staff + 160);
                     AddNewStaff();
                     btnAddStaff.Visible = true;
                 }

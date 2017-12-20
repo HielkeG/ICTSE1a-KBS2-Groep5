@@ -368,6 +368,7 @@
     <None Include="Resources\Afbeeldingen\Knoppen\rewind.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\add_material.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\piano.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
