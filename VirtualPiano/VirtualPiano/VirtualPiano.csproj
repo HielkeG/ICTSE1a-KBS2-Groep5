@@ -329,6 +329,8 @@
     <None Include="Resources\Afbeeldingen\Muzieknoten\zestienderust_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Afbeeldingen\topbarbg.png" />
+    <None Include="Resources\Afbeeldingen\toolbarbg.png" />
     <None Include="Resources\PianoBinds.png" />
     <None Include="Resources\Afbeeldingen\Piano.png" />
     <None Include="Resources\Cursors\Connect2.cur" />

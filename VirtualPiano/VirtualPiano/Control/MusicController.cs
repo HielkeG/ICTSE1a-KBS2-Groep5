@@ -53,7 +53,7 @@ namespace VirtualPiano.Control
         {
             playBtn.Name = "PlayBtn";
             playBtn.Image = new Bitmap(Resources.play, 50, 50);
-            playBtn.Location = new Point(110, 40);
+            playBtn.Location = new Point(110, 35);
             playBtn.Size = new Size(55, 55);
             playBtn.BackColor = Color.Transparent;
             playBtn.FlatStyle = FlatStyle.Flat;
@@ -63,7 +63,7 @@ namespace VirtualPiano.Control
             playBtn.Click += PlayGeklikt;
 
             stopBtn.Name = "StopBtn";
-            stopBtn.Location = new Point(170, 40);
+            stopBtn.Location = new Point(170, 35);
             stopBtn.Image = new Bitmap(Resources.stop, 50, 50);
             stopBtn.Size = new Size(55, 55);
             stopBtn.FlatStyle = FlatStyle.Flat;
@@ -72,20 +72,9 @@ namespace VirtualPiano.Control
             stopBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             stopBtn.Click += StopGeklikt;
 
-            metronomeBtn.Name = "MetronomeBtn";
-            metronomeBtn.Image = metronomeOff1;
-            metronomeBtn.Location = new Point(1750, 40);
-            metronomeBtn.Size = new Size(55, 55);
-            metronomeBtn.BackColor = Color.Transparent;
-            metronomeBtn.FlatStyle = FlatStyle.Flat;
-            metronomeBtn.FlatAppearance.BorderSize = 0;
-            metronomeBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            metronomeBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            metronomeBtn.Click += MetronomeClick;
-
             recordBtn.Name = "RecordBtn";
             recordBtn.Image = recordstart;
-            recordBtn.Location = new Point(230, 40);
+            recordBtn.Location = new Point(230, 35);
             recordBtn.Size = new Size(55, 55);
             recordBtn.BackColor = Color.Transparent;
             recordBtn.FlatStyle = FlatStyle.Flat;
@@ -93,6 +82,17 @@ namespace VirtualPiano.Control
             recordBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
             recordBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             recordBtn.Click += RecordClick;
+
+            metronomeBtn.Name = "MetronomeBtn";
+            metronomeBtn.Image = metronomeOff1;
+            metronomeBtn.Location = new Point(1750, 35);
+            metronomeBtn.Size = new Size(55, 55);
+            metronomeBtn.BackColor = Color.Transparent;
+            metronomeBtn.FlatStyle = FlatStyle.Flat;
+            metronomeBtn.FlatAppearance.BorderSize = 0;
+            metronomeBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            metronomeBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            metronomeBtn.Click += MetronomeClick;
 
             Metronoom = m;
             rodeLijn = r;
@@ -145,30 +145,6 @@ namespace VirtualPiano.Control
             }
         }
 
-        public static void PlaySound(int octave, string tone)
-        {
-            var player = new System.Windows.Media.MediaPlayer();
-            try
-            {
-                string filename = (tone).ToString();
-
-                if (tone == "Bes") { filename = "Ais"; }
-                else if (tone == "Des") { filename = "Cis"; }
-                else if (tone == "Es") { filename = "Dis"; }
-                else if (tone == "Ges") { filename = "Fis"; }
-                else if (tone == "As") { filename = "Gis"; }
-
-                player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
-                player.Play();
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("File not found");
-            }
-            currentOctave = octave;
-            currentTone = tone;
-        }
-
         public static void ResetLine()
         {
             playBtn.Image = new Bitmap(play, width, height);
@@ -186,8 +162,6 @@ namespace VirtualPiano.Control
                 playBtn.Image = new Bitmap(pause, width, height);
                 playBtn.Image = BitmapController.ColorReplace(playBtn.Image, 30, Color.White, Color.LightGray);
                 isPlayingSong = true;
-                //int temp = Song.getDuration();
-                //Console.WriteLine(Song.getDuration());
                 SongStarted(this, e);
                 rodeLijn.Start();
             }
@@ -199,7 +173,6 @@ namespace VirtualPiano.Control
                 rodeLijn.Stop();
             }
         }
-
 
         public void StopGeklikt(Object sender, EventArgs e)
         {

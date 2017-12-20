@@ -24,6 +24,7 @@ namespace VirtualPiano.Model
         public bool Flipped { get; set; }
         public Note ConnectionNote = null;
         public bool IsBeingPlayed;
+        public bool isBeingMoved = false;
         
         public Note() : base() { }
 
@@ -95,9 +96,33 @@ namespace VirtualPiano.Model
         public void PlaySound()
         {
             string pitchName = Tone.ToString() + Octave.ToString();
-            if (pitchName.Length == 4)
+            if (pitchName.Contains("is"))
             {
                 Enum.TryParse(Tone.First().ToString() + "Sharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            } else if (pitchName.Contains("As"))
+            {
+                Enum.TryParse("GSharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else if (pitchName.Contains("Bes"))
+            {
+                Enum.TryParse("ASharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else if (pitchName.Contains("Des"))
+            {
+                Enum.TryParse("CSharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else if (pitchName.Contains("Es"))
+            {
+                Enum.TryParse("DSharp" + Octave.ToString(), out Pitch pitch);
+                MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
+            }
+            else if (pitchName.Contains("Ges"))
+            {
+                Enum.TryParse("FSharp" + Octave.ToString(), out Pitch pitch);
                 MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
             }
             else
@@ -126,8 +151,8 @@ namespace VirtualPiano.Model
             if (Tone == "C") { Tone = "Cis"; } 
             if (Tone == "G" || Tone == "Ges") { Tone = "Gis"; } 
             if (Tone == "D" || Tone == "Des") { Tone = "Dis"; } 
-            if (Tone == "A" || Tone == "As") { Tone = "Ais"; } 
-
+            if (Tone == "A" || Tone == "As") { Tone = "Ais"; }
+            
             
         }
 

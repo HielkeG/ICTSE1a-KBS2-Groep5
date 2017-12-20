@@ -35,14 +35,15 @@
             // formContent
             // 
             this.formContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.formContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.formContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.formContent.BackColor = System.Drawing.Color.Transparent;
+            this.formContent.BackgroundImage = global::VirtualPiano.Properties.Resources.topbarbg;
+            this.formContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.formContent.Font = new System.Drawing.Font("Modern No. 20", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.formContent.ForeColor = System.Drawing.Color.Transparent;
+            this.formContent.ForeColor = System.Drawing.Color.Black;
             this.formContent.Location = new System.Drawing.Point(0, 0);
             this.formContent.Margin = new System.Windows.Forms.Padding(0);
             this.formContent.Name = "formContent";
-            this.formContent.Size = new System.Drawing.Size(1904, 1041);
+            this.formContent.Size = new System.Drawing.Size(1920, 1050);
             this.formContent.TabIndex = 0;
             // 
             // MainForm

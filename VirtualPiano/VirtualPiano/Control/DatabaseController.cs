@@ -45,9 +45,8 @@ namespace VirtualPiano.Control
                     context.Songs.Add(replacingSong);
                     context.SaveChanges();
                 }
-                catch(Exception e)
+                catch(Exception)
                 {
-                    Console.WriteLine(e.Message);
                 }
             }
         }

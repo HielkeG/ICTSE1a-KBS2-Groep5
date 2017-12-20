@@ -43,6 +43,7 @@ namespace VirtualPiano.View
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Sign draggingSign;
         public static Sign draggingSharp;
+        public static bool SoundEnabled = true;
         public static Panel keypanel = new Panel()
         {
             Location = new Point(600, 730),
@@ -460,7 +461,7 @@ namespace VirtualPiano.View
             if (SelectedSign != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                sound.Play();
+                if(ComposeView.SoundEnabled)sound.Play();
                 Cursor = Cursors.Default;
                 SelectedSign = "";
             }
@@ -518,7 +519,7 @@ namespace VirtualPiano.View
             {
                 InvalidateRedLine();
                 //als het nummer afspeelt de redline verplaatsen met 4 pixels.
-                if (RedLineX >= 1700)
+                if (RedLineX >= 1620)
                 {
                     //als de lijn het einde van een staff bereikt. De lijn verplaatsen naar de volgende staff
                     RedLineX = -60;
@@ -645,41 +646,78 @@ namespace VirtualPiano.View
             Cursor = Cursors.Default;
         }
 
+        //Deze methode wordt aangeroepen wanneer de muis binnenkomt bij de bin
         private void Bin_MouseEnter(object sender, EventArgs e)
         {
+            bool signdeleted = false;
+            //Wanneer er niks uit de toolbar geselecteerd is
             if (SelectedSign == "")
             {
                 for (int staff = 0; staff < song.Staffs.Count(); staff++)
                 {
                     for (int bar = 0; bar < song.Staffs[staff].Bars.Count(); bar++)
                     {
-                        for (int sign = 0; sign < song.Staffs[staff].Bars[bar].Signs.Count(); sign++)
+                        if (song.Staffs[staff].Bars[bar].Signs.Contains(draggingSign))
                         {
-                            if (song.Staffs[staff].Bars[bar].Signs[sign] == draggingSign)
+                            //Alle signs langsgaan
+                            for (int sign = 0; sign < song.Staffs[staff].Bars[bar].Signs.Count(); sign++)
                             {
-                                song.Staffs[staff].Bars[bar].RemoveSign(draggingSign);
-                                SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                                sound.Play();
-                                Cursor = Cursors.Default;
+                                //Als er een sign gelijk is aan draggingSign
+                                if (song.Staffs[staff].Bars[bar].Signs[sign] == draggingSign)
+                                {
+                                    //Sign verwijderen
+                                    song.Staffs[staff].Bars[bar].RemoveSign(draggingSign);
+                                    //Geluid afspelen
+                                    SoundPlayer sound = new SoundPlayer(Resources.BinSound);
+                                    if(ComposeView.SoundEnabled) sound.Play();
+                                    //Normale cursor
+                                    Cursor = Cursors.Default;
+                                    signdeleted = true;
+                                }
+                                if(signdeleted == true)
+                                {
+                                    if(!(song.Staffs[staff].Bars[bar].Signs.Count() - 1 < sign))
+                                    {
+                                        song.Staffs[staff].Bars[bar].Signs[sign].X -= draggingSign.Duration * 25;
+                                    }
+                                }
+
 
                             }
-
                         }
                     }
                 }
+                // --- Mol / Kruis verwijderen ---
                 draggingSign = null;
-                if(draggingSharp != null)
+                if (draggingSharp != null)
                 {
-                    if(draggingSharp is Note note)
+                    if (draggingSharp is Note note)
                     {
                         note.SetNatural();
                         SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                         sound.Play();
                         Cursor = Cursors.Default;
                         draggingSharp = null;
+                        note.isBeingMoved = false;
+                        
                     }
                 }
-                
+            }
+            if (SelectedSign == "BeginFlat")
+            {
+                song.FlatSharp++;
+                SelectedSign = "";
+                SoundPlayer sound = new SoundPlayer(Resources.BinSound);
+                sound.Play();
+                song.SetSharpFlat();
+            }
+            else if (SelectedSign == "BeginSharp")
+            {
+                song.FlatSharp--;
+                SelectedSign = "";
+                SoundPlayer sound = new SoundPlayer(Resources.BinSound);
+                sound.Play();
+                song.SetSharpFlat();
             }
         }
 
@@ -744,11 +782,11 @@ namespace VirtualPiano.View
             if (MusicController.metronomeBtn.Image == MusicController.metronomeOn1)
             {
                 MusicController.metronomeBtn.Image = MusicController.metronomeOn2;
-             }
+            }
             else
             {
                 MusicController.metronomeBtn.Image = MusicController.metronomeOn1;
-             }
+            }
         }
 
         // Volgende pagina
@@ -790,7 +828,6 @@ namespace VirtualPiano.View
                 {
                     if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
                     {
-
                         panel.Visible = true;
                     }
                 }

@@ -38,6 +38,9 @@
             this.Sound = new System.Windows.Forms.ToolStripMenuItem();
             this.SoundOnOff = new System.Windows.Forms.ToolStripMenuItem();
             this.instrumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gitaarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.marimbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Staff = new System.Windows.Forms.ToolStripMenuItem();
             this.AddStaff = new System.Windows.Forms.ToolStripMenuItem();
             this.midiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,15 +49,12 @@
             this.VirtualKeyboard = new System.Windows.Forms.ToolStripMenuItem();
             this.KeyboardVisible = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gitaarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.marimbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -74,7 +74,7 @@
             // 
             // File
             // 
-            this.File.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.File.BackColor = System.Drawing.Color.Transparent;
             this.File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.New,
             this.Open,
@@ -128,7 +128,7 @@
             // 
             // Sound
             // 
-            this.Sound.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Sound.BackColor = System.Drawing.Color.Transparent;
             this.Sound.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SoundOnOff});
             this.Sound.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -149,7 +149,7 @@
             // 
             // instrumentToolStripMenuItem
             // 
-            this.instrumentToolStripMenuItem.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.instrumentToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.instrumentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pianoToolStripMenuItem,
             this.gitaarToolStripMenuItem1,
@@ -158,72 +158,6 @@
             this.instrumentToolStripMenuItem.Name = "instrumentToolStripMenuItem";
             this.instrumentToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.instrumentToolStripMenuItem.Text = "Instrument";
-            // 
-            // Staff
-            // 
-            this.Staff.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Staff.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddStaff});
-            this.Staff.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Staff.Name = "Staff";
-            this.Staff.Size = new System.Drawing.Size(74, 24);
-            this.Staff.Text = "Notenbalk";
-            // 
-            // AddStaff
-            // 
-            this.AddStaff.Name = "AddStaff";
-            this.AddStaff.Size = new System.Drawing.Size(132, 22);
-            this.AddStaff.Text = "Toevoegen";
-            this.AddStaff.Click += new System.EventHandler(this.AddStaffView_Click);
-            // 
-            // midiToolStripMenuItem
-            // 
-            this.midiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.keyboardVerbindenToolStripMenuItem,
-            this.instellingenToolStripMenuItem});
-            this.midiToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.midiToolStripMenuItem.Name = "midiToolStripMenuItem";
-            this.midiToolStripMenuItem.Size = new System.Drawing.Size(43, 24);
-            this.midiToolStripMenuItem.Text = "Midi";
-            this.midiToolStripMenuItem.Click += new System.EventHandler(this.midiToolStripMenuItem_Click);
-            // 
-            // keyboardVerbindenToolStripMenuItem
-            // 
-            this.keyboardVerbindenToolStripMenuItem.Name = "keyboardVerbindenToolStripMenuItem";
-            this.keyboardVerbindenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.keyboardVerbindenToolStripMenuItem.Text = "Keyboard verbinden";
-            this.keyboardVerbindenToolStripMenuItem.Click += new System.EventHandler(this.ConnectKeyboard);
-            // 
-            // instellingenToolStripMenuItem
-            // 
-            this.instellingenToolStripMenuItem.Name = "instellingenToolStripMenuItem";
-            this.instellingenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.instellingenToolStripMenuItem.Text = "Instellingen";
-            this.instellingenToolStripMenuItem.Click += new System.EventHandler(this.Settings_Click);
-            // 
-            // VirtualKeyboard
-            // 
-            this.VirtualKeyboard.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.KeyboardVisible});
-            this.VirtualKeyboard.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.VirtualKeyboard.Name = "VirtualKeyboard";
-            this.VirtualKeyboard.Size = new System.Drawing.Size(111, 24);
-            this.VirtualKeyboard.Text = "Virtueel keyboard";
-            // 
-            // KeyboardVisible
-            // 
-            this.KeyboardVisible.Name = "KeyboardVisible";
-            this.KeyboardVisible.Size = new System.Drawing.Size(124, 22);
-            this.KeyboardVisible.Text = "Zichtbaar";
-            this.KeyboardVisible.Click += new System.EventHandler(this.Visible_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
-            this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // pianoToolStripMenuItem
             // 
@@ -262,6 +196,74 @@
             this.marimbaToolStripMenuItem.Size = new System.Drawing.Size(217, 82);
             this.marimbaToolStripMenuItem.Text = "Marimba";
             this.marimbaToolStripMenuItem.Click += new System.EventHandler(this.Marimba_Click);
+            // 
+            // Staff
+            // 
+            this.Staff.BackColor = System.Drawing.Color.Transparent;
+            this.Staff.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddStaff});
+            this.Staff.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Staff.Name = "Staff";
+            this.Staff.Size = new System.Drawing.Size(74, 24);
+            this.Staff.Text = "Notenbalk";
+            // 
+            // AddStaff
+            // 
+            this.AddStaff.Name = "AddStaff";
+            this.AddStaff.Size = new System.Drawing.Size(132, 22);
+            this.AddStaff.Text = "Toevoegen";
+            this.AddStaff.Click += new System.EventHandler(this.AddStaffView_Click);
+            // 
+            // midiToolStripMenuItem
+            // 
+            this.midiToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.midiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.keyboardVerbindenToolStripMenuItem,
+            this.instellingenToolStripMenuItem});
+            this.midiToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.midiToolStripMenuItem.Name = "midiToolStripMenuItem";
+            this.midiToolStripMenuItem.Size = new System.Drawing.Size(43, 24);
+            this.midiToolStripMenuItem.Text = "Midi";
+            this.midiToolStripMenuItem.Click += new System.EventHandler(this.midiToolStripMenuItem_Click);
+            // 
+            // keyboardVerbindenToolStripMenuItem
+            // 
+            this.keyboardVerbindenToolStripMenuItem.Name = "keyboardVerbindenToolStripMenuItem";
+            this.keyboardVerbindenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.keyboardVerbindenToolStripMenuItem.Text = "Keyboard verbinden";
+            this.keyboardVerbindenToolStripMenuItem.Click += new System.EventHandler(this.ConnectKeyboard);
+            // 
+            // instellingenToolStripMenuItem
+            // 
+            this.instellingenToolStripMenuItem.Name = "instellingenToolStripMenuItem";
+            this.instellingenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.instellingenToolStripMenuItem.Text = "Instellingen";
+            this.instellingenToolStripMenuItem.Click += new System.EventHandler(this.Settings_Click);
+            // 
+            // VirtualKeyboard
+            // 
+            this.VirtualKeyboard.BackColor = System.Drawing.Color.Transparent;
+            this.VirtualKeyboard.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.KeyboardVisible});
+            this.VirtualKeyboard.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.VirtualKeyboard.Name = "VirtualKeyboard";
+            this.VirtualKeyboard.Size = new System.Drawing.Size(111, 24);
+            this.VirtualKeyboard.Text = "Virtueel keyboard";
+            // 
+            // KeyboardVisible
+            // 
+            this.KeyboardVisible.Name = "KeyboardVisible";
+            this.KeyboardVisible.Size = new System.Drawing.Size(152, 22);
+            this.KeyboardVisible.Text = "Zichtbaar";
+            this.KeyboardVisible.Click += new System.EventHandler(this.Visible_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // MenuBarView
             // 
