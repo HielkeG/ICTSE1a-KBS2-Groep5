@@ -28,7 +28,6 @@ namespace VirtualPiano.Model
         public int TimeSignatureAmount { get; set; }
         [NotMapped]
         public string TimeSignatureName { get; set; }
-        [NotMapped]
         public int Duration { get; set; } = 0;
         public bool hasChanged;
         public bool hasPreview = false;
