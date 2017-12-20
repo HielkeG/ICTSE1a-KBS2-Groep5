@@ -535,7 +535,6 @@ namespace VirtualPiano.View
                     {
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
                         staffViews.ElementAt(CurrentPlayingStaff).redLine.Visible = false;
-                        staffViews.ElementAt(0).redLine.Visible = true;
                         song.Staffs[0].IsBeingPlayed = true;
                         MusicController.isPlayingSong = false;
                         MusicController.ResetLine();
