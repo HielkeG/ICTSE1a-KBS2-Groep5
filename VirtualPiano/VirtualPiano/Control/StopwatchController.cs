@@ -19,7 +19,7 @@ namespace VirtualPiano.Control
         public static Stopwatch w4 = new Stopwatch();
         public static Stopwatch w5 = new Stopwatch();
         public static event EventHandler OnFullStaff;
-        static Note tempNote;
+        static Note NoteToAdd;
         public static List<ConnectWatch> connect = new List<ConnectWatch>();
 
         public static void StartWatch(Note note)
@@ -69,46 +69,45 @@ namespace VirtualPiano.Control
                 if (a.note.Tone == note.Tone && a.note.Octave == note.Octave && a.watch.IsRunning == true)
                 {
                     a.watch.Stop();
-                    tempNote = note;
+                    NoteToAdd = note;
 
-                    if (tempNote.Tone.First() == 'C' && tempNote.Octave == 5) tempNote.Y = -43;
-                    else if (tempNote.Tone.First() == 'D' && tempNote.Octave == 4) tempNote.Y = -36;
-                    else if (tempNote.Tone.First() == 'A' && tempNote.Octave == 4) tempNote.Y = -28;
-                    else if (tempNote.Tone.First() == 'G' && tempNote.Octave == 4) tempNote.Y = -21;
-                    else if (tempNote.Tone.First() == 'F' && tempNote.Octave == 4) tempNote.Y = -15;
-                    else if (tempNote.Tone.First() == 'E' && tempNote.Octave == 4) tempNote.Y = -7;
-                    else if (tempNote.Tone.First() == 'D' && tempNote.Octave == 4) tempNote.Y = 1;
-                    else if (tempNote.Tone.First() == 'C' && tempNote.Octave == 4) tempNote.Y = 8;
-                    else if (tempNote.Tone.First() == 'B' && tempNote.Octave == 3) tempNote.Y = 17;
-                    else if (tempNote.Tone.First() == 'A' && tempNote.Octave == 3) tempNote.Y = 24;
-                    else if (tempNote.Tone.First() == 'G' && tempNote.Octave == 3) tempNote.Y = 31;
-                    else if (tempNote.Tone.First() == 'F' && tempNote.Octave == 3) tempNote.Y = 38;
-                    else if (tempNote.Tone.First() == 'E' && tempNote.Octave == 3) tempNote.Y = 45;
-                    else if (tempNote.Tone.First() == 'D' && tempNote.Octave == 3) tempNote.Y = 53;
-                    else if (tempNote.Tone.First() == 'C' && tempNote.Octave == 3) tempNote.Y = 59;
+                    if (NoteToAdd.Tone.First() == 'C' && NoteToAdd.Octave == 5) NoteToAdd.Y = -43;
+                    else if (NoteToAdd.Tone.First() == 'D' && NoteToAdd.Octave == 4) NoteToAdd.Y = -36;
+                    else if (NoteToAdd.Tone.First() == 'A' && NoteToAdd.Octave == 4) NoteToAdd.Y = -28;
+                    else if (NoteToAdd.Tone.First() == 'G' && NoteToAdd.Octave == 4) NoteToAdd.Y = -21;
+                    else if (NoteToAdd.Tone.First() == 'F' && NoteToAdd.Octave == 4) NoteToAdd.Y = -15;
+                    else if (NoteToAdd.Tone.First() == 'E' && NoteToAdd.Octave == 4) NoteToAdd.Y = -7;
+                    else if (NoteToAdd.Tone.First() == 'D' && NoteToAdd.Octave == 4) NoteToAdd.Y = 1;
+                    else if (NoteToAdd.Tone.First() == 'C' && NoteToAdd.Octave == 4) NoteToAdd.Y = 8;
+                    else if (NoteToAdd.Tone.First() == 'B' && NoteToAdd.Octave == 3) NoteToAdd.Y = 17;
+                    else if (NoteToAdd.Tone.First() == 'A' && NoteToAdd.Octave == 3) NoteToAdd.Y = 24;
+                    else if (NoteToAdd.Tone.First() == 'G' && NoteToAdd.Octave == 3) NoteToAdd.Y = 31;
+                    else if (NoteToAdd.Tone.First() == 'F' && NoteToAdd.Octave == 3) NoteToAdd.Y = 38;
+                    else if (NoteToAdd.Tone.First() == 'E' && NoteToAdd.Octave == 3) NoteToAdd.Y = 45;
+                    else if (NoteToAdd.Tone.First() == 'D' && NoteToAdd.Octave == 3) NoteToAdd.Y = 53;
+                    else if (NoteToAdd.Tone.First() == 'C' && NoteToAdd.Octave == 3) NoteToAdd.Y = 59;
 
-                    if (tempNote.Tone.Length == 6) tempNote.Sharp = true;
+                    if (NoteToAdd.Tone.Length == 6) NoteToAdd.Sharp = true;
 
                     if (a.watch.ElapsedMilliseconds > 0 && a.watch.ElapsedMilliseconds < 350)
                     {
                         note.Name = "QuarterNote";
-                        tempNote = note;
-                        tempNote.SetImage();
+
                     }
                     else if (a.watch.ElapsedMilliseconds >= 350 && a.watch.ElapsedMilliseconds < 700)
                     {
                         note.Name = "HalfNote";
-                        tempNote = note;
-                        tempNote.SetImage();
-
                     }
                     else if (a.watch.ElapsedMilliseconds > 700)
                     {
                         note.Name = "WholeNote";
-                        tempNote = note;
-                        tempNote.SetImage();
                     }
-                    AddNoteToLastBar();
+                    NoteToAdd = note;
+                    if(NoteToAdd.Name != null)
+                    {
+                        NoteToAdd.SetImage();
+                        AddNoteToLastBar();
+                    }
                     a.watch.Reset();
                     break;
                 }
@@ -124,17 +123,17 @@ namespace VirtualPiano.Control
             {
                 foreach (Bar bar in Song.Staffs[i].Bars)
                 {
-                    if (bar.Duration + tempNote.Duration <= 16)
+                    if (bar.Duration + NoteToAdd.Duration <= 16)
                     {
 
-                        tempNote.X = (bar.Duration * 25 + (bar.length * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
+                        NoteToAdd.X = (bar.Duration * 25 + (bar.length * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
 
-                        if (tempNote.Tone.Contains("Sharp"))
+                        if (NoteToAdd.Tone.Contains("Sharp"))
                         {
-                            tempNote.Tone = tempNote.Tone.First() + "is";
+                            NoteToAdd.Tone = NoteToAdd.Tone.First() + "is";
                         }
-                        tempNote.SetImage();
-                        bar.Add(tempNote);
+                        NoteToAdd.SetImage();
+                        bar.Add(NoteToAdd);
                         break;
                     }
                     else
