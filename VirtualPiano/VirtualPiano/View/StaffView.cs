@@ -389,8 +389,8 @@ namespace VirtualPiano.View
                                 ComposeView.pkv1.Invalidate();
                             }
 
-                            //Als de muis na 300 miliseconden nog steeds ingedrukt is, wordt het teken verslepen
-                            await PutTaskDelay(300);
+                            //Als de muis na 200 miliseconden nog steeds ingedrukt is, wordt het teken verslepen
+                            await PutTaskDelay(200);
                             if (ComposeView.cursorIsDown == true)
                             {
                                 //De cursor veranderd in de aangeklikte noot
@@ -401,11 +401,14 @@ namespace VirtualPiano.View
                                 Invalidate();
                             }
                         }
+                        //Als de muislocatie links van de muis is
                         if (sign.IsLocation(MouseX + 20, MouseY))
                         {
+                            //Als de noot een mol of een kruis heeft
                             if (sign is Note note && (note.Flat == true || note.Sharp == true))
                             {
-                                await PutTaskDelay(300);
+                                await PutTaskDelay(200);
+                                //Als na 200 milseconde de muis nog steeds ingedrukt is, wordt de mol/kruis verslepen
                                 if (ComposeView.cursorIsDown == true)
                                 {
                                     note.isBeingMoved = true;
@@ -423,6 +426,7 @@ namespace VirtualPiano.View
                                 }
                             }
                         }
+                        //Als de muisklik kleiner is dan 40 (aan het begin van de staff)
                         if (MouseX < 40)
                         {
                             await PutTaskDelay(300);
