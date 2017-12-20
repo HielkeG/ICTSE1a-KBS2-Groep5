@@ -21,7 +21,7 @@ namespace VirtualPiano.Control
         public static Stopwatch SameTime = new Stopwatch();
         public static event EventHandler OnFullStaff;
         static Note tempNote;
-        private static Note lastNote;
+        private static int lastX;
         static bool shouldBeUnderneath = false;
         public static List<ConnectWatch> connect = new List<ConnectWatch>();
 
@@ -139,7 +139,9 @@ namespace VirtualPiano.Control
                         AddNoteUnderNote();
                     }
                     a.watch.Reset();
+                    break;
                 }
+                
             }
         }
 
@@ -160,7 +162,8 @@ namespace VirtualPiano.Control
                         {
                             tempNote.Tone = tempNote.Tone.First() + "is";
                         }
-                        lastNote = tempNote;
+                        lastX = tempNote.X;
+                        tempNote.SetImage();
                         bar.Add(tempNote);
                         break;
                     }
@@ -184,16 +187,17 @@ namespace VirtualPiano.Control
                 //voor elke bar in de song
                 foreach (Bar bar in Song.Staffs[i].Bars)
                 {
-                    if (bar.Contains(lastNote))
+                    if (bar.Duration <= 16)
                     {
                         //x waarde hetzelfde als de vorig toegevoegde noot.
-                        tempNote.X = lastNote.X;
-                        lastNote = tempNote;
+                        tempNote.X = lastX;
                         if (tempNote.Tone.Contains("Sharp"))
                         {
                             tempNote.Tone = tempNote.Tone.First() + "is";
                         }
-                        bar.Add(tempNote);
+                        tempNote.SetImage();
+
+                        bar.AddAbove(tempNote);
                         break;
                     }
 

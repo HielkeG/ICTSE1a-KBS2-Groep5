@@ -52,6 +52,11 @@ namespace VirtualPiano.Model
             Duration += sign.Duration;
         }
 
+        public void AddAbove(Sign sign)
+        {
+            Signs.Add(sign);
+        }
+
         public void MakeEmpty() //Lijst van tekens leegmaken
         {
             Signs = new List<Sign>();
