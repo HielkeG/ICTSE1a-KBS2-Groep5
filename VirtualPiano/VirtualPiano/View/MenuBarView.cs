@@ -22,7 +22,6 @@ namespace VirtualPiano.View
         MenuBarController mbc = new MenuBarController();
         public static MidiConnect m1 = new MidiConnect();
         public static MidiSettings m2 = new MidiSettings();
-        public static bool SoundEnabled = true;
         private bool showingHelp = false;
         public MenuBarView()
         {
@@ -33,7 +32,7 @@ namespace VirtualPiano.View
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if(Song.Title == " ")
+            if (Song.Title == " ")
             {
                 MessageBox.Show("De titel is leeg. Vul een titel in.", "Fout", MessageBoxButtons.OK);
             }
@@ -48,7 +47,7 @@ namespace VirtualPiano.View
                     MessageBoxSavedSong();
                 }
             }
-            
+
             else
             {
                 DatabaseController.AddSong(Song);
@@ -63,7 +62,7 @@ namespace VirtualPiano.View
             {
                 string message = "De notenbalk is niet leeg. Het openen van een ander nummer zal de notenbalk overschrijven. Wilt u doorgaan?";
                 var result = MessageBox.Show(message, "Bericht", MessageBoxButtons.YesNo);
-                if(result == DialogResult.Yes)
+                if (result == DialogResult.Yes)
                 {
                     List<Song> songs = VirtualPiano.Control.DatabaseController.GetSongs();
                     DatabaseFileExplorer databaseFileExplorer = new DatabaseFileExplorer();
@@ -73,7 +72,7 @@ namespace VirtualPiano.View
 
                     }
                     databaseFileExplorer.ShowDialog();
-                    if (DialogResult.OK == databaseFileExplorer.DialogResult&&databaseFileExplorer.Song != null)
+                    if (DialogResult.OK == databaseFileExplorer.DialogResult && databaseFileExplorer.Song != null)
                     {
                         //song instellen en event uitvoeren zodat ook mainform weet over de verandering
                         Song = databaseFileExplorer.Song;
@@ -95,7 +94,7 @@ namespace VirtualPiano.View
 
                 }
                 databaseFileExplorer.ShowDialog();
-                if (DialogResult.OK == databaseFileExplorer.DialogResult && databaseFileExplorer.Song!=null)
+                if (DialogResult.OK == databaseFileExplorer.DialogResult && databaseFileExplorer.Song != null)
                 {
                     Song = databaseFileExplorer.Song;
                     selectedSong(this, e);
@@ -116,7 +115,7 @@ namespace VirtualPiano.View
         private void NewSong_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Uw huidige nummer zal verloren gaan. Wilt u doorgaan?", "Waarschuwing", MessageBoxButtons.YesNo);
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 newSong(this, e);
 
@@ -157,20 +156,20 @@ namespace VirtualPiano.View
 
         private void Piano_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this,"Piano");
+            mbc.ChangeInstrument(this, "Piano");
             MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.AcousticGrandPiano);
         }
-        
+
 
         private void Marimba_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this,"Marimba");
+            mbc.ChangeInstrument(this, "Marimba");
             MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.Marimba);
         }
 
         private void Gitaar_Click(object sender, EventArgs e)
         {
-            mbc.ChangeInstrument(this,"Gitaar");
+            mbc.ChangeInstrument(this, "Gitaar");
             MusicController.outputDevice.SendProgramChange(Channel.Channel1, Instrument.ElectricGuitarClean);
         }
 
@@ -196,7 +195,7 @@ namespace VirtualPiano.View
 
         private void Visible_Click(object sender, EventArgs e)
         {
-            if(ComposeView.pkv1.Visible == false)
+            if (ComposeView.pkv1.Visible == false)
             {
                 ComposeView.pkv1.Visible = true;
                 KeyboardVisible.CheckState = CheckState.Checked;
@@ -216,12 +215,12 @@ namespace VirtualPiano.View
             if (SoundOnOff.Checked)
             {
                 SoundOnOff.CheckState = CheckState.Unchecked;
-                SoundEnabled = false;  //mute
+                ComposeView.SoundEnabled = false;  //mute
             }
             else
             {
                 SoundOnOff.CheckState = CheckState.Checked;
-                SoundEnabled = true;   //unmute
+                ComposeView.SoundEnabled = true;   //unmute
             }
         }
 

@@ -200,7 +200,7 @@ namespace VirtualPiano.View
                 note.isBeingMoved = false;
                 SetDefaultCursor();
             }
-            if(ComposeView.draggingSign != null)
+            if (ComposeView.draggingSign != null)
             {
                 SetDefaultCursor();
             }
@@ -379,7 +379,7 @@ namespace VirtualPiano.View
                             //Als het een noot is, wordt de noot afgespeeld
                             if (sign is Note note)
                             {
-                                note.PlaySound();
+                                if (ComposeView.SoundEnabled) note.PlaySound();
                                 ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 await PutTaskDelay(75);
@@ -468,7 +468,8 @@ namespace VirtualPiano.View
                         {
                             song.FlatSharp++;
                             song.SetSharpFlat();
-                        } else
+                        }
+                        else
                         {
                             MessageBox.Show("Er kan geen kruis toegevoed worden, omdat het lied al mollen bevat. Als u toch een kruis wilt toevoegen, dient u eerst de mollen te verwijderen");
                         }
@@ -477,14 +478,16 @@ namespace VirtualPiano.View
                     }
                     if (MouseX < 50 && ComposeView.SelectedSign == "Flat")
                     {
-                        if (song.FlatSharp <= 0) {
+                        if (song.FlatSharp <= 0)
+                        {
                             song.FlatSharp--;
                             song.SetSharpFlat();
-                        } else
+                        }
+                        else
                         {
                             MessageBox.Show("Er kan geen mol toegevoed worden, omdat het lied al kruizen bevat. Als u toch een mol wilt toevoegen, dient u eerst de kruizen te verwijderen");
                         }
-                        
+
                     }
 
                     foreach (Bar bar in staff.Bars)

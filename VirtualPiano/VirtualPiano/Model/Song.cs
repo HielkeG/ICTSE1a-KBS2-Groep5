@@ -20,7 +20,7 @@ namespace VirtualPiano.Model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SongId { get; set; }
         public string Composer { get; set; }
-        public int FlatSharp {get; set;}
+        public int FlatSharp { get; set; }
         private string title = "titel";
         public int Pages { get; set; }
         public string Title
@@ -136,37 +136,37 @@ namespace VirtualPiano.Model
 
                                     //Noot afspelen
                                     string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                    if (pitchTemp.Contains("is"))
+                                    if (pitchTemp.Contains("is") && ComposeView.SoundEnabled)
                                     {
                                         Enum.TryParse(note.Tone.First().ToString() + "Sharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("As"))
+                                    else if (pitchTemp.Contains("As") && ComposeView.SoundEnabled)
                                     {
                                         Enum.TryParse("GSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("Bes"))
+                                    else if (pitchTemp.Contains("Bes") && ComposeView.SoundEnabled)
                                     {
                                         Enum.TryParse("ASharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("Des"))
+                                    else if (pitchTemp.Contains("Des") && ComposeView.SoundEnabled)
                                     {
                                         Enum.TryParse("CSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("Es"))
+                                    else if (pitchTemp.Contains("Es") && ComposeView.SoundEnabled)
                                     {
                                         Enum.TryParse("DSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("Gs"))
+                                    else if (pitchTemp.Contains("Gs") && ComposeView.SoundEnabled)
                                     {
                                         Enum.TryParse("FSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else
+                                    else if (ComposeView.SoundEnabled)
                                     {
                                         Enum.TryParse(pitchTemp, out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
@@ -184,7 +184,7 @@ namespace VirtualPiano.Model
                     }
                 }
             }
-            catch (Exception){ }
+            catch (Exception) { }
         }
 
         public void SetSharpFlat()
