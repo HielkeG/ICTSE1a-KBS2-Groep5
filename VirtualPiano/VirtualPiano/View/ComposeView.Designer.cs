@@ -227,11 +227,11 @@ namespace VirtualPiano.View
             // 
             // CurrentPageLabel
             // 
-            this.CurrentPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CurrentPageLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.CurrentPageLabel.Location = new System.Drawing.Point(1765, 955);
+            this.CurrentPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CurrentPageLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.CurrentPageLabel.Location = new System.Drawing.Point(1848, 845);
             this.CurrentPageLabel.Name = "CurrentPageLabel";
-            this.CurrentPageLabel.Size = new System.Drawing.Size(106, 58);
+            this.CurrentPageLabel.Size = new System.Drawing.Size(90, 50);
             this.CurrentPageLabel.TabIndex = 5;
             this.CurrentPageLabel.Text = "1";
             // 
