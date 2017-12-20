@@ -126,7 +126,7 @@ namespace VirtualPiano.Control
                     if (bar.Duration + NoteToAdd.Duration <= 16)
                     {
 
-                        NoteToAdd.X = (bar.Duration * 25 + (bar.length * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
+                        NoteToAdd.X = (bar.Duration * 25 + (bar.width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
 
                         if (NoteToAdd.Tone.Contains("Sharp"))
                         {
