@@ -18,38 +18,15 @@ namespace VirtualPiano.Control
         public static Stopwatch w3 = new Stopwatch();
         public static Stopwatch w4 = new Stopwatch();
         public static Stopwatch w5 = new Stopwatch();
-        public static Stopwatch SameTime = new Stopwatch();
         public static event EventHandler OnFullStaff;
         static Note tempNote;
-        private static int lastX;
-        static bool shouldBeUnderneath = false;
         public static List<ConnectWatch> connect = new List<ConnectWatch>();
 
         public static void StartWatch(Note note)
         {
-            if (!SameTime.IsRunning)
-            {
-                SameTime.Start();
-                shouldBeUnderneath = false;
-            }
-            else
-            {
-                SameTime.Stop();
-                if (SameTime.ElapsedMilliseconds < 150)
-                {
-                    Console.WriteLine("onder elkaar");
-                    //volgende noten moeten onder elkaar worden geplaatst
-                    shouldBeUnderneath = true;
-                }
-                else
-                {
-                    shouldBeUnderneath = false;
-                }
-                SameTime.Restart();
-            }
             //indrukken
             //kijken welke stopwatch vrij is
-            // voeg pitch + stopwatch toe aan lijst
+            //voeg pitch + stopwatch toe aan lijst
             //stopwatch in gebruik
 
             //loslaten
@@ -59,27 +36,27 @@ namespace VirtualPiano.Control
             // stopwatch niet in gebruik
             if (w1.IsRunning == false)
             {
-                connect.Add(new ConnectWatch(w1, note,shouldBeUnderneath));
+                connect.Add(new ConnectWatch(w1, note));
                 w1.Start();
             }
             else if (w2.IsRunning == false)
             {
-                connect.Add(new ConnectWatch(w2, note, shouldBeUnderneath));
+                connect.Add(new ConnectWatch(w2, note));
                 w2.Start();
             }
             else if (w3.IsRunning == false)
             {
-                connect.Add(new ConnectWatch(w3, note, shouldBeUnderneath));
+                connect.Add(new ConnectWatch(w3, note));
                 w3.Start();
             }
             else if (w4.IsRunning == false)
             {
-                connect.Add(new ConnectWatch(w4, note, shouldBeUnderneath));
+                connect.Add(new ConnectWatch(w4, note));
                 w4.Start();
             }
             else if (w5.IsRunning == false)
             {
-                connect.Add(new ConnectWatch(w5, note, shouldBeUnderneath));
+                connect.Add(new ConnectWatch(w5, note));
                 w5.Start();
             }
 
@@ -131,18 +108,12 @@ namespace VirtualPiano.Control
                         tempNote = note;
                         tempNote.SetImage();
                     }
-                    if (!a.UnderNeath)
-                    {
-                        AddNoteToLastBar();}
-                    else
-                    {
-                        AddNoteUnderNote();
-                    }
+                    AddNoteToLastBar();
                     a.watch.Reset();
                     break;
                 }
-                
             }
+
         }
 
         public static void AddNoteToLastBar()
@@ -162,7 +133,6 @@ namespace VirtualPiano.Control
                         {
                             tempNote.Tone = tempNote.Tone.First() + "is";
                         }
-                        lastX = tempNote.X;
                         tempNote.SetImage();
                         bar.Add(tempNote);
                         break;
@@ -179,46 +149,19 @@ namespace VirtualPiano.Control
             }
         }
 
-        //noot onder laatste vorige noot plaatsen
-        public static void AddNoteUnderNote()
-        {
-            for (int i = 0; i < Song.Staffs.Count(); i++)
-            {
-                //voor elke bar in de song
-                foreach (Bar bar in Song.Staffs[i].Bars)
-                {
-                    if (bar.Duration <= 16)
-                    {
-                        //x waarde hetzelfde als de vorig toegevoegde noot.
-                        tempNote.X = lastX;
-                        if (tempNote.Tone.Contains("Sharp"))
-                        {
-                            tempNote.Tone = tempNote.Tone.First() + "is";
-                        }
-                        tempNote.SetImage();
-
-                        bar.AddAbove(tempNote);
-                        break;
-                    }
-
-
-                }
-
-            }
-        }
     }
+
+
 
     public struct ConnectWatch
     {
         public Stopwatch watch;
         public Note note;
-        public bool UnderNeath;
 
-        public ConnectWatch(Stopwatch stopwatch, Note note, bool under)
+        public ConnectWatch(Stopwatch stopwatch, Note note)
         {
             this.watch = stopwatch;
             this.note = note;
-            UnderNeath = under;
         }
     }
 }
