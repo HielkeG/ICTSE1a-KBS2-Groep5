@@ -27,6 +27,7 @@ namespace VirtualPiano.View
         public static bool ConnectSelected = false;
         public static Note selectedNote1;
         public static Note selectedNote2;
+        public static Cursor cursor = Cursors.Default;
         public static string SelectedSign = "";
         public static bool cursorIsDown;
         private List<StaffView> staffViews = new List<StaffView>();
@@ -44,6 +45,7 @@ namespace VirtualPiano.View
         public static Sign draggingSign;
         public static Sign draggingSharp;
         public static bool SoundEnabled = true;
+        public static int AmountOfBars = 4;
         public static Panel keypanel = new Panel()
         {
             Location = new Point(600, 730),
@@ -54,6 +56,8 @@ namespace VirtualPiano.View
             Visible = false
         };
         private int CurrentPage = 1;
+
+        
 
         public ComposeView()
         {
@@ -192,7 +196,6 @@ namespace VirtualPiano.View
         {
             foreach (Staff staff in song.GetStaffs())
             {
-                staff.Y = y_staff;
                 staff.Order = staffViews.Count() + 1;
                 AddStaffView(staff);
                 if (staff == song.GetStaffs().First())
@@ -291,18 +294,16 @@ namespace VirtualPiano.View
         {
             if (CurrentPage * 3 - 2 == staffViewsPanels.Count)
             {
-                Staff newStaff = new Staff();
-                newStaff.Y = y_staff;
+                Staff newStaff = new Staff(AmountOfBars);
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Location = new Point(977, newStaff.Y + 160);
+                btnAddStaff.Location = new Point(977, Staff.Y + 160);
             }
             else if (CurrentPage * 3 - 1 == staffViewsPanels.Count)
             {
-                Staff newStaff = new Staff();
-                newStaff.Y = y_staff;
+                Staff newStaff = new Staff(AmountOfBars);
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
@@ -311,8 +312,7 @@ namespace VirtualPiano.View
             }
             else if (y_staff == 140)
             {
-                Staff newStaff = new Staff();
-                newStaff.Y = y_staff;
+                Staff newStaff = new Staff(AmountOfBars);
                 newStaff.Order = staffViews.Count() + 1;
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
@@ -460,9 +460,9 @@ namespace VirtualPiano.View
             if (SelectedSign != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                if(ComposeView.SoundEnabled)sound.Play();
-                Cursor = Cursors.Default;
+                if(SoundEnabled) sound.Play();
                 SelectedSign = "";
+                Cursor = CursorController.ChangeCursor(SelectedSign);
             }
 
             if (selectedNote1 != null || SelectedSign == "Connect2")
@@ -480,8 +480,7 @@ namespace VirtualPiano.View
 
         private void ComposeView_MouseEnter(object sender, EventArgs e)
         {
-            if (SelectedSign == "") Cursor = Cursors.Default;
-            else if (SelectedSign == "Connect2") Cursor = new Cursor(new System.IO.MemoryStream(Properties.Resources.Connect2));
+            Cursor = CursorController.ChangeCursor(SelectedSign);
         }
 
         public void Draw(PaintEventArgs e) //WIP
@@ -626,23 +625,18 @@ namespace VirtualPiano.View
             if (cursorIsDown)
             {
                 cursorIsDown = false;
-                Cursor = Cursors.Default;
                 SelectedSign = "";
+                Cursor = CursorController.ChangeCursor(SelectedSign);
                 Invalidate();
 
             }
             if (e.Button == MouseButtons.Right)
             {
-                Cursor = Cursors.Default;
                 SelectedSign = "";
+                Cursor = CursorController.ChangeCursor(SelectedSign);
                 ConnectSelected = false;
                 Invalidate();
             }
-        }
-
-        public void SetDefaultCursor()
-        {
-            Cursor = Cursors.Default;
         }
 
         //Deze methode wordt aangeroepen wanneer de muis binnenkomt bij de bin
@@ -670,7 +664,7 @@ namespace VirtualPiano.View
                                     SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                                     if(ComposeView.SoundEnabled) sound.Play();
                                     //Normale cursor
-                                    Cursor = Cursors.Default;
+                                    Cursor = CursorController.ChangeCursor(SelectedSign);
                                     signdeleted = true;
                                 }
                                 if(signdeleted == true)
@@ -695,7 +689,7 @@ namespace VirtualPiano.View
                         note.SetNatural();
                         SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                         sound.Play();
-                        Cursor = Cursors.Default;
+                        Cursor = CursorController.ChangeCursor(SelectedSign);
                         draggingSharp = null;
                         note.isBeingMoved = false;
                         

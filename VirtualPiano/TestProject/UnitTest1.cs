@@ -16,7 +16,7 @@ namespace TestProject
         public void DoMakeEmpty_WhenListContainsTwoSigns()
         {
             //Arrange
-            Bar bar = new Bar();
+            Bar bar = new Bar(4);
             bar.Add(new Note(12, 10, "HalfNote", "A", 2));
             bar.Add(new Note(10, 12, "HalfNote", "B", 2));
             bar.MakeEmpty();
@@ -30,7 +30,7 @@ namespace TestProject
         public void DoMakeEmpty_WhenListContainsNoSigns()
         {
             //Arrange
-            Bar bar = new Bar();
+            Bar bar = new Bar(4);
             bar.MakeEmpty();
 
 
@@ -45,7 +45,7 @@ namespace TestProject
         public void DoAddOneHalfNote_WhenBarIsEmpty()
         {
             //Arrange
-            Bar bar = new Bar();
+            Bar bar = new Bar(1);
 
             //Act
             bar.Add(new Note(10, 9, "HalfNote", "A", 2));
@@ -58,7 +58,7 @@ namespace TestProject
         public void DoAddOneHalfNoteAndTwoQuarterNotes_WhenBarIsEmpty()
         {
             //Arrange
-            Bar bar = new Bar();
+            Bar bar = new Bar(1);
 
             //Act
             bar.Add(new Note(10, 20, "HalfNote", "A", 2));
@@ -73,7 +73,7 @@ namespace TestProject
         public void DoCheckBarSpaceWithWholeNote_WhenBarIsEmpty()
         {
             //Arrange
-            Bar bar = new Bar();
+            Bar bar = new Bar(1);
 
             //Act
             bool Expect = true;
@@ -87,7 +87,7 @@ namespace TestProject
         public void DoCheckBarSpaceWithWHalfNote_WhenBarhasThreeQuarterNotes()
         {
             //Arrange
-            Bar bar = new Bar();
+            Bar bar = new Bar(1);
             bar.Add(new Note(20, 35, "QuarterNote", "C", 2));
             bar.Add(new Note(22, 47, "QuarterNote", "A", 2));
             bar.Add(new Note(24, 45, "QuarterNote", "B", 2));
@@ -206,7 +206,7 @@ namespace TestProject
         public void RemoveSignFromBar()
         {
             //arrange
-            Bar bar = new Bar();
+            Bar bar = new Bar(1);
             Note note = new Note(-12, 32, "QuarterNote", "G", 5);
             bar.Add(note);
             bar.RemoveSign(note);
