@@ -19,14 +19,14 @@ namespace VirtualPiano.Control
         public static Stopwatch w4 = new Stopwatch();
         public static Stopwatch w5 = new Stopwatch();
         public static event EventHandler OnFullStaff;
-        static Note tempNote;
+        static Note NoteToAdd;
         public static List<ConnectWatch> connect = new List<ConnectWatch>();
 
         public static void StartWatch(Note note)
         {
             //indrukken
             //kijken welke stopwatch vrij is
-            // voeg pitch + stopwatch toe aan lijst
+            //voeg pitch + stopwatch toe aan lijst
             //stopwatch in gebruik
 
             //loslaten
@@ -34,86 +34,87 @@ namespace VirtualPiano.Control
             //stopwatch stoppen
             //noot toevoegen
             // stopwatch niet in gebruik
-            if(w1.IsRunning == false)
+            if (w1.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w1, note));
                 w1.Start();
-            } else if(w2.IsRunning == false)
+            }
+            else if (w2.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w2, note));
                 w2.Start();
-            } else if(w3.IsRunning == false)
+            }
+            else if (w3.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w3, note));
                 w3.Start();
-            } else if(w4.IsRunning == false)
+            }
+            else if (w4.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w4, note));
                 w4.Start();
-            } else if(w5.IsRunning == false)
+            }
+            else if (w5.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w5, note));
                 w5.Start();
-            }            
+            }
+
         }
 
         public static void StopWatch(Note note)
         {
-
             foreach (ConnectWatch a in connect)
             {
                 if (a.note.Tone == note.Tone && a.note.Octave == note.Octave && a.watch.IsRunning == true)
                 {
                     a.watch.Stop();
-                    tempNote = note;
-                    
-                    if (tempNote.Tone == "C" && tempNote.Octave == 5) tempNote.Y = -43;
-                    else if (tempNote.Tone == "B" && tempNote.Octave == 4) tempNote.Y = -36;
-                    else if (tempNote.Tone == "A" && tempNote.Octave == 4) tempNote.Y = -28;
-                    else if (tempNote.Tone == "G" && tempNote.Octave == 4) tempNote.Y = -21;
-                    else if (tempNote.Tone == "F" && tempNote.Octave == 4) tempNote.Y = -15;
-                    else if (tempNote.Tone == "E" && tempNote.Octave == 4) tempNote.Y = -7;
-                    else if (tempNote.Tone == "D" && tempNote.Octave == 4) tempNote.Y = 1;
-                    else if (tempNote.Tone == "C" && tempNote.Octave == 4) tempNote.Y = 8;
-                    else if (tempNote.Tone == "B" && tempNote.Octave == 3) tempNote.Y = 17;
-                    else if (tempNote.Tone == "A" && tempNote.Octave == 3) tempNote.Y = 24;
-                    else if (tempNote.Tone == "G" && tempNote.Octave == 3) tempNote.Y = 31;
-                    else if (tempNote.Tone == "F" && tempNote.Octave == 3) tempNote.Y = 38;
-                    else if (tempNote.Tone == "E" && tempNote.Octave == 3) tempNote.Y = 45;
-                    else if (tempNote.Tone == "D" && tempNote.Octave == 3) tempNote.Y = 53;
-                    else if (tempNote.Tone == "C" && tempNote.Octave == 3) tempNote.Y = 59;
-                                        
+                    NoteToAdd = note;
+
+                    if (NoteToAdd.Tone.First() == 'C' && NoteToAdd.Octave == 5) NoteToAdd.Y = -43;
+                    else if (NoteToAdd.Tone.First() == 'D' && NoteToAdd.Octave == 4) NoteToAdd.Y = -36;
+                    else if (NoteToAdd.Tone.First() == 'A' && NoteToAdd.Octave == 4) NoteToAdd.Y = -28;
+                    else if (NoteToAdd.Tone.First() == 'G' && NoteToAdd.Octave == 4) NoteToAdd.Y = -21;
+                    else if (NoteToAdd.Tone.First() == 'F' && NoteToAdd.Octave == 4) NoteToAdd.Y = -15;
+                    else if (NoteToAdd.Tone.First() == 'E' && NoteToAdd.Octave == 4) NoteToAdd.Y = -7;
+                    else if (NoteToAdd.Tone.First() == 'D' && NoteToAdd.Octave == 4) NoteToAdd.Y = 1;
+                    else if (NoteToAdd.Tone.First() == 'C' && NoteToAdd.Octave == 4) NoteToAdd.Y = 8;
+                    else if (NoteToAdd.Tone.First() == 'B' && NoteToAdd.Octave == 3) NoteToAdd.Y = 17;
+                    else if (NoteToAdd.Tone.First() == 'A' && NoteToAdd.Octave == 3) NoteToAdd.Y = 24;
+                    else if (NoteToAdd.Tone.First() == 'G' && NoteToAdd.Octave == 3) NoteToAdd.Y = 31;
+                    else if (NoteToAdd.Tone.First() == 'F' && NoteToAdd.Octave == 3) NoteToAdd.Y = 38;
+                    else if (NoteToAdd.Tone.First() == 'E' && NoteToAdd.Octave == 3) NoteToAdd.Y = 45;
+                    else if (NoteToAdd.Tone.First() == 'D' && NoteToAdd.Octave == 3) NoteToAdd.Y = 53;
+                    else if (NoteToAdd.Tone.First() == 'C' && NoteToAdd.Octave == 3) NoteToAdd.Y = 59;
+
+                    if (NoteToAdd.Tone.Length == 6) NoteToAdd.Sharp = true;
+
                     if (a.watch.ElapsedMilliseconds > 0 && a.watch.ElapsedMilliseconds < 350)
                     {
                         note.Name = "QuarterNote";
-                        tempNote = note;
-                        tempNote.SetImage();
-                        AddNoteToLastBar();
+
                     }
                     else if (a.watch.ElapsedMilliseconds >= 350 && a.watch.ElapsedMilliseconds < 700)
                     {
-                        Console.WriteLine("halve noot");
                         note.Name = "HalfNote";
-                        tempNote = note;
-                        tempNote.SetImage();
-                        AddNoteToLastBar();
                     }
-                    else if(a.watch.ElapsedMilliseconds > 700) 
+                    else if (a.watch.ElapsedMilliseconds > 700)
                     {
-                        Console.WriteLine("hele noot");
                         note.Name = "WholeNote";
-                        tempNote = note;
-                        tempNote.SetImage();
+                    }
+                    NoteToAdd = note;
+                    if (NoteToAdd.Name != null)
+                    {
+                        NoteToAdd.SetImage();
                         AddNoteToLastBar();
                     }
                     a.watch.Reset();
+                    break;
                 }
             }
-        }
-          
 
-        public static int currentBar = 0;
-        public static int currentStaff = 0;
+        }
+
         public static void AddNoteToLastBar()
         {
             EventArgs e = new EventArgs();
@@ -121,28 +122,36 @@ namespace VirtualPiano.Control
             for (int i = 0; i < Song.Staffs.Count(); i++)
             {
                 foreach (Bar bar in Song.Staffs[i].Bars)
-                {                    
-                    if (Song.Staffs[i].Bars.IndexOf(bar) >= currentBar && Song.Staffs.IndexOf(Song.Staffs[i]) >= currentStaff)
+                {
+                    if (bar.Duration + NoteToAdd.Duration <= 16)
                     {
-                        if(bar.Duration + tempNote.Duration <= 16)
+
+                        NoteToAdd.X = (bar.Duration * 25 + (bar.length * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
+
+                        if (NoteToAdd.Tone.Contains("Sharp"))
                         {
-                            tempNote.X = (bar.Duration * 25 + (bar.width * Song.Staffs[i].Bars.IndexOf(bar))+25);
-                            bar.Add(tempNote);
-                            break;
+                            NoteToAdd.Tone = NoteToAdd.Tone.First() + "is";
                         }
-                        else
+                        NoteToAdd.SetImage();
+                        NoteToAdd.X = (bar.Duration * 25 + (bar.width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
+                        bar.Add(NoteToAdd);
+                        break;
+                    }
+                    else
+                    {
+                        bar.FillBar(Song.Staffs[i].Bars.IndexOf(bar));
+                        if (Song.Staffs[i].Bars.IndexOf(bar) == 3 && Song.Staffs.Count() == Song.Staffs.IndexOf(Song.Staffs[i]) + 1)
                         {
-                            bar.FillBar(Song.Staffs[i].Bars.IndexOf(bar));
-                            if (Song.Staffs[i].Bars.IndexOf(bar) == 3 && Song.Staffs.Count() == Song.Staffs.IndexOf(Song.Staffs[i]) + 1)
-                            {
-                                OnFullStaff(bar,e);
-                            }                            
-                        }                        
+                            OnFullStaff(bar, e);
+                        }
                     }
                 }
             }
         }
+
     }
+
+
 
     public struct ConnectWatch
     {

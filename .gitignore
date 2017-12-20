@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 VirtualKeyboard/VirtualKeyboard/Program.cs
+/VirtualPiano/VirtualPiano/Migrations

@@ -20,7 +20,7 @@ namespace VirtualPiano.Model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SongId { get; set; }
         public string Composer { get; set; }
-        public int FlatSharp {get; set;}
+        public int FlatSharp { get; set; }
         private string title = "titel";
         public int Pages { get; set; }
         public string Title
@@ -166,7 +166,7 @@ namespace VirtualPiano.Model
                                         Enum.TryParse("FSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if(ComposeView.SoundEnabled)
+                                    else if (ComposeView.SoundEnabled)
                                     {
                                         Enum.TryParse(pitchTemp, out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
@@ -184,7 +184,7 @@ namespace VirtualPiano.Model
                     }
                 }
             }
-            catch (Exception){ }
+            catch (Exception) { }
         }
 
         public void SetSharpFlat()

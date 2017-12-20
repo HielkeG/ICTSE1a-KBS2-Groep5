@@ -21,7 +21,7 @@ namespace VirtualPiano.Control
         public static Image stop = Resources.stop;
         public static Image play = Resources.play;
         public static Image pause = Resources.pause;
-        public static Image add = Resources.add;
+        public static Image add = Resources.add_material;
         public static Image rewind = Resources.rewind;
         public static Image recordstart = new Bitmap(Resources.record_start, 50, 50);
         public static Image recordstop = new Bitmap(Resources.record_stop, 50, 50);
@@ -92,6 +92,8 @@ namespace VirtualPiano.Control
             metronomeBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             metronomeBtn.Click += MetronomeClick;
 
+
+
             Metronoom = m;
             rodeLijn = r;
             song = s;
@@ -143,6 +145,7 @@ namespace VirtualPiano.Control
             }
         }
 
+
         public static void ResetLine()
         {
             playBtn.Image = new Bitmap(play, width, height);
@@ -160,6 +163,8 @@ namespace VirtualPiano.Control
                 playBtn.Image = new Bitmap(pause, width, height);
                 playBtn.Image = BitmapController.ColorReplace(playBtn.Image, 30, Color.White, Color.LightGray);
                 isPlayingSong = true;
+                //int temp = Song.getDuration();
+                //Console.WriteLine(Song.getDuration());
                 SongStarted(this, e);
                 rodeLijn.Start();
             }
@@ -171,6 +176,7 @@ namespace VirtualPiano.Control
                 rodeLijn.Stop();
             }
         }
+
 
         public void StopGeklikt(Object sender, EventArgs e)
         {

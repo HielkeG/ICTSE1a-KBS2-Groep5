@@ -233,6 +233,7 @@ namespace VirtualPiano.View
             song = new Song();
             MusicController.song = song;
             menuBarView1.Song = song;
+            StopwatchController.Song = song;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
             TitelBox.Text = "Titel";
@@ -299,7 +300,7 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Location = new Point(977, Staff.Y + 160);
+                //btnAddStaff.Location = new Point(977, newStaff.Y + 160);
             }
             else if (CurrentPage * 3 - 1 == staffViewsPanels.Count)
             {
@@ -308,7 +309,6 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Visible = false;
             }
             else if (y_staff == 140)
             {
@@ -317,7 +317,6 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Visible = false;
             }
             else if (CurrentPage * 3 == staffViewsPanels.Count)
             {
@@ -349,9 +348,9 @@ namespace VirtualPiano.View
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
-            btnAddStaff.Image = new Bitmap(Resources.add, 50, 50);
-            btnAddStaff.Location = new Point(977, y_staff + 160);
-            btnAddStaff.Size = new Size(55, 55);
+            btnAddStaff.Image = new Bitmap(Resources.add_material, 90, 90);
+            btnAddStaff.Location = new Point(1820, 930);
+            btnAddStaff.Size = new Size(90, 90);
             btnAddStaff.BackColor = Color.Transparent;
             btnAddStaff.FlatStyle = FlatStyle.Flat;
             btnAddStaff.FlatAppearance.BorderSize = 0;
@@ -360,7 +359,111 @@ namespace VirtualPiano.View
             this.Controls.Add(btnAddStaff);
             btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
         }
+        public void setPageButtons()
+        {
+            previousPage.Image = new Bitmap(Resources.up_arrow, 56, 56);
+            previousPage.Location = new Point(1836, 795);
+            previousPage.Size = new Size(56, 56);
+            previousPage.BackColor = Color.Transparent;
+            previousPage.FlatStyle = FlatStyle.Flat;
+            previousPage.FlatAppearance.BorderSize = 0;
+            previousPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            previousPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            previousPage.Click += previousPage_Click;
+            Controls.Add(previousPage);
 
+            nextPage.Image = new Bitmap(Resources.down_arrow, 56, 56);
+            nextPage.Location = new Point(1836, 876);
+            nextPage.Size = new Size(56, 56);
+            nextPage.BackColor = Color.Transparent;
+            nextPage.FlatStyle = FlatStyle.Flat;
+            nextPage.FlatAppearance.BorderSize = 0;
+            nextPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            nextPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            nextPage.Click += nextPage_Click;
+            Controls.Add(nextPage);
+        }
+        // Volgende pagina
+        private void nextPage_Click(object sender, EventArgs e)
+        {
+            //Als de huidige pagina niet helemaal gevuld is
+            if (!(CurrentPage * 3 - 1 == staffViewsPanels.Count || CurrentPage * 3 - 2 == staffViewsPanels.Count))
+            {
+                //Alle Staffviews uitzetten
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    panel.Visible = false;
+                }
+
+                //Als de huidige pagina de laatste pagina is
+                if (staffViewsPanels.Count == CurrentPage * 3)
+                {
+                    //Nieuwe pagina toevoegen en nieuwe staffview toevoegen
+                    song.Pages++;
+                    //Locatie wordt weer op 140 gezet
+                    y_staff = 140;
+                    //btnAddStaff.Location = new Point(977, y_staff + 160);
+                    AddNewStaff();
+                }
+
+                //Hudige pagina wordt verhoogt
+                CurrentPage++;
+                CurrentPageLabel.Text = CurrentPage.ToString();
+                if (CurrentPage == 10)
+                {
+                    CurrentPageLabel.Location = new Point(1835, 855);
+                    previousPage.Location = new Point(1790, 857);
+                }
+                //Alle staffviews van de huidige pagina worden getoond
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
+                    {
+                        panel.Visible = true;
+                    }
+                }
+            }
+            else
+            {
+                NextTip.Show("Er staan nog geen drie notenbalken op deze pagina.", nextPage, 4000);
+            }
+        }
+
+        //Vorige pagina
+        private void previousPage_Click(object sender, EventArgs e)
+        {
+            //Als de huidige pagina groter is dan 1
+            if (CurrentPage > 1)
+            {
+                //Alle Staffviews uitzetten
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    panel.Visible = false;
+                }
+                //Huidige pagina verlagen
+                CurrentPage--;
+                CurrentPageLabel.Text = CurrentPage.ToString();
+
+                if (CurrentPage == 9)
+                {
+                    CurrentPageLabel.Location = new Point(1865, 855);
+                    previousPage.Location = new Point(1820, 857);
+                }
+
+                //Alle staffviews van de huidige pagina worden getoond
+                foreach (Panel panel in staffViewsPanels)
+                {
+                    if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
+                    {
+                        panel.Visible = true;
+                    }
+                }
+            }
+            else
+            {
+                PreviousTip.Show("Kan niet naar de vorige pagina gaan.", previousPage, 4000);
+            }
+        }
 
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
@@ -533,7 +636,6 @@ namespace VirtualPiano.View
                     {
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
                         staffViews.ElementAt(CurrentPlayingStaff).redLine.Visible = false;
-                        staffViews.ElementAt(0).redLine.Visible = true;
                         song.Staffs[0].IsBeingPlayed = true;
                         MusicController.isPlayingSong = false;
                         MusicController.ResetLine();
@@ -662,14 +764,14 @@ namespace VirtualPiano.View
                                     song.Staffs[staff].Bars[bar].RemoveSign(draggingSign);
                                     //Geluid afspelen
                                     SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                                    if(ComposeView.SoundEnabled) sound.Play();
+                                    if (ComposeView.SoundEnabled) sound.Play();
                                     //Normale cursor
                                     Cursor = CursorController.ChangeCursor(SelectedSign);
                                     signdeleted = true;
                                 }
-                                if(signdeleted == true)
+                                if (signdeleted == true)
                                 {
-                                    if(!(song.Staffs[staff].Bars[bar].Signs.Count() - 1 < sign))
+                                    if (!(song.Staffs[staff].Bars[bar].Signs.Count() - 1 < sign))
                                     {
                                         song.Staffs[staff].Bars[bar].Signs[sign].X -= draggingSign.Duration * 25;
                                     }
@@ -692,7 +794,7 @@ namespace VirtualPiano.View
                         Cursor = CursorController.ChangeCursor(SelectedSign);
                         draggingSharp = null;
                         note.isBeingMoved = false;
-                        
+
                     }
                 }
             }
@@ -780,117 +882,6 @@ namespace VirtualPiano.View
             {
                 MusicController.metronomeBtn.Image = MusicController.metronomeOn1;
             }
-        }
-
-        // Volgende pagina
-        private void nextPage_Click(object sender, EventArgs e)
-        {
-            //Als de huidige pagina niet helemaal gevuld is
-            if (!(CurrentPage * 3 - 1 == staffViewsPanels.Count || CurrentPage * 3 - 2 == staffViewsPanels.Count))
-            {
-                //Alle Staffviews uitzetten
-                foreach (Panel panel in staffViewsPanels)
-                {
-                    panel.Visible = false;
-                }
-
-                //Als de huidige pagina de laatste pagina is
-                if (staffViewsPanels.Count == CurrentPage * 3)
-                {
-                    //Nieuwe pagina toevoegen en nieuwe staffview toevoegen
-                    song.Pages++;
-                    //Locatie wordt weer op 140 gezet
-                    y_staff = 140;
-                    btnAddStaff.Location = new Point(977, y_staff + 160);
-                    AddNewStaff();
-                    btnAddStaff.Visible = true;
-                }
-                else if (staffViewsPanels.Count == CurrentPage * 3 + 1) btnAddStaff.Visible = true;
-                else if (staffViewsPanels.Count == CurrentPage * 3 + 2) btnAddStaff.Visible = true;
-
-                //Hudige pagina wordt verhoogt
-                CurrentPage++;
-                CurrentPageLabel.Text = CurrentPage.ToString();
-                if (CurrentPage == 10)
-                {
-                    CurrentPageLabel.Location = new Point(1735, 955);
-                    previousPage.Location = new Point(1690, 957);
-                }
-                //Alle staffviews van de huidige pagina worden getoond
-                foreach (Panel panel in staffViewsPanels)
-                {
-                    if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
-                    {
-                        panel.Visible = true;
-                    }
-                }
-            }
-            else
-            {
-                NextTip.Show("Er staan nog geen drie notenbalken op deze pagina.", nextPage, 4000);
-            }
-        }
-
-        //Vorige pagina
-        private void previousPage_Click(object sender, EventArgs e)
-        {
-            //Als de huidige pagina groter is dan 1
-            if (CurrentPage > 1)
-            {
-                //Alle Staffviews uitzetten
-                btnAddStaff.Visible = false;
-                foreach (Panel panel in staffViewsPanels)
-                {
-                    panel.Visible = false;
-                }
-                //Huidige pagina verlagen
-                CurrentPage--;
-                CurrentPageLabel.Text = CurrentPage.ToString();
-
-                if (CurrentPage == 9)
-                {
-                    CurrentPageLabel.Location = new Point(1765, 955);
-                    previousPage.Location = new Point(1720, 957);
-                }
-
-                //Alle staffviews van de huidige pagina worden getoond
-                foreach (Panel panel in staffViewsPanels)
-                {
-                    if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
-                    {
-                        panel.Visible = true;
-                    }
-                }
-            }
-            else
-            {
-                PreviousTip.Show("Kan niet naar de vorige pagina gaan.", previousPage, 4000);
-            }
-        }
-
-        public void setPageButtons()
-        {
-            previousPage.Image = new Bitmap(Resources.lastPage, 50, 50);
-            previousPage.Location = new Point(1720, 957);
-            previousPage.Size = new Size(55, 55);
-            previousPage.BackColor = Color.Transparent;
-            previousPage.FlatStyle = FlatStyle.Flat;
-            previousPage.FlatAppearance.BorderSize = 0;
-            previousPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            previousPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            previousPage.Click += previousPage_Click;
-            Controls.Add(previousPage);
-
-            nextPage.Image = new Bitmap(Resources.nextPage, 50, 50);
-            nextPage.Location = new Point(1809, 957);
-            nextPage.Size = new Size(55, 55);
-            nextPage.BackColor = Color.Transparent;
-            nextPage.FlatStyle = FlatStyle.Flat;
-            nextPage.FlatAppearance.BorderSize = 0;
-            nextPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            nextPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            nextPage.Click += nextPage_Click;
-            Controls.Add(nextPage);
         }
 
     }

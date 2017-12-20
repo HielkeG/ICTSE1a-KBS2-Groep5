@@ -368,6 +368,7 @@
     <None Include="Resources\Afbeeldingen\Knoppen\rewind.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\stop.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\achtstenootflipped.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\add_material.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\close.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\piano.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\guitar.png" />
@@ -383,6 +384,9 @@
     <None Include="Resources\Afbeeldingen\Knoppen\metronome_off2.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\record_start.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\record_stop.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\down_arrow.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\left_arrow.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\right_arrow.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
@@ -390,6 +394,7 @@
     <None Include="Resources\Afbeeldingen\Menubar\marimba.png" />
     <None Include="Resources\Afbeeldingen\Menubar\piano.png" />
     <None Include="Resources\Afbeeldingen\logo_highres.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\up_arrow.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />
