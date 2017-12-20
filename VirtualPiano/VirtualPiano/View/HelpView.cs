@@ -25,6 +25,7 @@ namespace VirtualPiano.View
         }
         private void CloseView(object sender,EventArgs e)
         {
+            Close();
             Dispose();
         }
 
