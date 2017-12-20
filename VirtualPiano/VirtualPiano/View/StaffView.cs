@@ -185,7 +185,7 @@ namespace VirtualPiano.View
             }
         }
 
-        private void StaffView_MouseUp(object sender, MouseEventArgs e)
+        private async void StaffView_MouseUp(object sender, MouseEventArgs e)
         {
             if (ComposeView.draggingSign != null)
             {
@@ -194,16 +194,18 @@ namespace VirtualPiano.View
                 else if (ComposeView.draggingSign.Name == "QuarterNote") ComposeView.draggingSign.Image = Resources.kwartnoot;
                 else if (ComposeView.draggingSign.Name == "EightNote") ComposeView.draggingSign.Image = Resources.achtstenoot;
                 else if (ComposeView.draggingSign.Name == "SixteenthNote") ComposeView.draggingSign.Image = Resources.zestiendenoot;
+                SetDefaultCursor();
+                await PutTaskDelay(500);
+                ComposeView.draggingSign = null;
             }
             if (ComposeView.draggingSharp is Note note)
             {
                 note.isBeingMoved = false;
                 SetDefaultCursor();
+                await PutTaskDelay(500);
+                ComposeView.draggingSharp = null;
             }
-            if(ComposeView.draggingSign != null)
-            {
-                SetDefaultCursor();
-            }
+            
             ComposeView.cursorIsDown = false;
         }
 
