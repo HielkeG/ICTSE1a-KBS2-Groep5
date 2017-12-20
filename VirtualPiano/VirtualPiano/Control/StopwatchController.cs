@@ -26,7 +26,7 @@ namespace VirtualPiano.Control
         {
             //indrukken
             //kijken welke stopwatch vrij is
-            //voeg pitch + stopwatch toe aan lijst
+            // voeg pitch + stopwatch toe aan lijst
             //stopwatch in gebruik
 
             //loslaten
@@ -34,36 +34,32 @@ namespace VirtualPiano.Control
             //stopwatch stoppen
             //noot toevoegen
             // stopwatch niet in gebruik
-            if (w1.IsRunning == false)
+            if(w1.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w1, note));
                 w1.Start();
-            }
-            else if (w2.IsRunning == false)
+            } else if(w2.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w2, note));
                 w2.Start();
-            }
-            else if (w3.IsRunning == false)
+            } else if(w3.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w3, note));
                 w3.Start();
-            }
-            else if (w4.IsRunning == false)
+            } else if(w4.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w4, note));
                 w4.Start();
-            }
-            else if (w5.IsRunning == false)
+            } else if(w5.IsRunning == false)
             {
                 connect.Add(new ConnectWatch(w5, note));
                 w5.Start();
-            }
-
+            }            
         }
 
         public static void StopWatch(Note note)
         {
+
             foreach (ConnectWatch a in connect)
             {
                 if (a.note.Tone == note.Tone && a.note.Octave == note.Octave && a.watch.IsRunning == true)
@@ -92,14 +88,21 @@ namespace VirtualPiano.Control
                     if (a.watch.ElapsedMilliseconds > 0 && a.watch.ElapsedMilliseconds < 350)
                     {
                         note.Name = "QuarterNote";
-
+                        tempNote = note;
+                        tempNote.SetImage();
+                        AddNoteToLastBar();
                     }
                     else if (a.watch.ElapsedMilliseconds >= 350 && a.watch.ElapsedMilliseconds < 700)
                     {
+                        Console.WriteLine("halve noot");
                         note.Name = "HalfNote";
+                        tempNote = note;
+                        tempNote.SetImage();
+                        AddNoteToLastBar();
                     }
-                    else if (a.watch.ElapsedMilliseconds > 700)
+                    else if(a.watch.ElapsedMilliseconds > 700) 
                     {
+                        Console.WriteLine("hele noot");
                         note.Name = "WholeNote";
                     }
                     tempNote = note;
@@ -109,12 +112,13 @@ namespace VirtualPiano.Control
                         AddNoteToLastBar();
                     }
                     a.watch.Reset();
-                    break;
                 }
             }
-
         }
+          
 
+        public static int currentBar = 0;
+        public static int currentStaff = 0;
         public static void AddNoteToLastBar()
         {
             EventArgs e = new EventArgs();
@@ -147,10 +151,7 @@ namespace VirtualPiano.Control
                 }
             }
         }
-
     }
-
-
 
     public struct ConnectWatch
     {

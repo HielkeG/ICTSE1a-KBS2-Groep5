@@ -22,6 +22,7 @@ namespace VirtualPiano.View
         MenuBarController mbc = new MenuBarController();
         public static MidiConnect m1 = new MidiConnect();
         public static MidiSettings m2 = new MidiSettings();
+        public static bool SoundEnabled = true;
         private bool showingHelp = false;
         public MenuBarView()
         {
@@ -215,12 +216,12 @@ namespace VirtualPiano.View
             if (SoundOnOff.Checked)
             {
                 SoundOnOff.CheckState = CheckState.Unchecked;
-                ComposeView.SoundEnabled = false;  //mute
+                SoundEnabled = false;  //mute
             }
             else
             {
                 SoundOnOff.CheckState = CheckState.Checked;
-                ComposeView.SoundEnabled = true;   //unmute
+                SoundEnabled = true;   //unmute
             }
         }
 

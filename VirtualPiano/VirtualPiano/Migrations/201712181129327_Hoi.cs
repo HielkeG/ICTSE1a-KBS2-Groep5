@@ -3,7 +3,7 @@ namespace VirtualPiano.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class update : DbMigration
+    public partial class Hoi : DbMigration
     {
         public override void Up()
         {
@@ -14,6 +14,7 @@ namespace VirtualPiano.Migrations
                         BarId = c.Int(nullable: false, identity: true),
                         StaffId = c.Int(nullable: false),
                         clefName = c.String(nullable: false),
+                        Duration = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.BarId)
                 .ForeignKey("dbo.Staffs", t => t.StaffId, cascadeDelete: true)
@@ -30,9 +31,9 @@ namespace VirtualPiano.Migrations
                         Y = c.Int(nullable: false),
                         Tone = c.String(),
                         Octave = c.Int(),
-                        Sharp = c.Boolean(),
-                        Flat = c.Boolean(),
-                        Flipped = c.Boolean(),
+                        sharp = c.Boolean(),
+                        flat = c.Boolean(),
+                        flipped = c.Boolean(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.SignId)

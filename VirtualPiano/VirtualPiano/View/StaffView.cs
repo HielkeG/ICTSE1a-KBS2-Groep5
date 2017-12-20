@@ -379,7 +379,7 @@ namespace VirtualPiano.View
                             //Als het een noot is, wordt de noot afgespeeld
                             if (sign is Note note)
                             {
-                                if(ComposeView.SoundEnabled) note.PlaySound();
+                                note.PlaySound();
                                 ComposeView.pkv1.KeyPressed(note.Octave, note.Tone);
                                 ComposeView.pkv1.Invalidate();
                                 await PutTaskDelay(75);

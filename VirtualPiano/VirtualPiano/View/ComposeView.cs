@@ -43,7 +43,6 @@ namespace VirtualPiano.View
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Sign draggingSign;
         public static Sign draggingSharp;
-        public static bool SoundEnabled = true;
         public static Panel keypanel = new Panel()
         {
             Location = new Point(600, 730),
@@ -230,7 +229,6 @@ namespace VirtualPiano.View
             song = new Song();
             MusicController.song = song;
             menuBarView1.Song = song;
-            StopwatchController.Song = song;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
             TitelBox.Text = "Titel";
@@ -298,7 +296,7 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Location = new Point(977, newStaff.Y + 160);
+                //btnAddStaff.Location = new Point(977, newStaff.Y + 160);
             }
             else if (CurrentPage * 3 - 1 == staffViewsPanels.Count)
             {
@@ -308,7 +306,6 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Visible = false;
             }
             else if (y_staff == 140)
             {
@@ -318,7 +315,6 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                btnAddStaff.Visible = false;
             }
             else if (CurrentPage * 3 == staffViewsPanels.Count)
             {
@@ -350,9 +346,9 @@ namespace VirtualPiano.View
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
-            btnAddStaff.Image = new Bitmap(Resources.add, 50, 50);
-            btnAddStaff.Location = new Point(977, y_staff + 160);
-            btnAddStaff.Size = new Size(55, 55);
+            btnAddStaff.Image = new Bitmap(Resources.add_material, 100, 100);
+            btnAddStaff.Location = new Point(1820, 840);
+            btnAddStaff.Size = new Size(100, 100);
             btnAddStaff.BackColor = Color.Transparent;
             btnAddStaff.FlatStyle = FlatStyle.Flat;
             btnAddStaff.FlatAppearance.BorderSize = 0;
@@ -461,7 +457,7 @@ namespace VirtualPiano.View
             if (SelectedSign != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                if(ComposeView.SoundEnabled)sound.Play();
+                if(MenuBarView.SoundEnabled)sound.Play();
                 Cursor = Cursors.Default;
                 SelectedSign = "";
             }
@@ -535,6 +531,7 @@ namespace VirtualPiano.View
                     {
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
                         staffViews.ElementAt(CurrentPlayingStaff).redLine.Visible = false;
+                        staffViews.ElementAt(0).redLine.Visible = true;
                         song.Staffs[0].IsBeingPlayed = true;
                         MusicController.isPlayingSong = false;
                         MusicController.ResetLine();
@@ -668,7 +665,7 @@ namespace VirtualPiano.View
                                     song.Staffs[staff].Bars[bar].RemoveSign(draggingSign);
                                     //Geluid afspelen
                                     SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                                    if(ComposeView.SoundEnabled) sound.Play();
+                                    sound.Play();
                                     //Normale cursor
                                     Cursor = Cursors.Default;
                                     signdeleted = true;
@@ -678,6 +675,7 @@ namespace VirtualPiano.View
                                     if(!(song.Staffs[staff].Bars[bar].Signs.Count() - 1 < sign))
                                     {
                                         song.Staffs[staff].Bars[bar].Signs[sign].X -= draggingSign.Duration * 25;
+
                                     }
                                 }
 
@@ -807,7 +805,7 @@ namespace VirtualPiano.View
                     song.Pages++;
                     //Locatie wordt weer op 140 gezet
                     y_staff = 140;
-                    btnAddStaff.Location = new Point(977, y_staff + 160);
+                    //btnAddStaff.Location = new Point(977, y_staff + 160);
                     AddNewStaff();
                     btnAddStaff.Visible = true;
                 }

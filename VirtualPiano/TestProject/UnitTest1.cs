@@ -172,19 +172,6 @@ namespace TestProject
             //assert
             Assert.AreEqual(note.Tone, verwachting);
         }
-        [TestMethod]
-        public void SetSharpWhenNoteisATestSharpIsTrue()
-        {
-            //arrange
-            Note note = new Note(-12, 32, "QuarterNote", "G", 5);
-            note.SetSharp();
-
-            //act
-            bool verwachting = true;
-
-            //assert
-            Assert.AreEqual(note.Sharp, verwachting);
-        }
 
         [TestMethod]
         public void SetFlatWhenNoteisAis()
@@ -202,81 +189,11 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void SetFlatWhenNoteisAisTestSharpIsFalse()
-        {
-            //arrange
-            Note note = new Note(-12, 32, "QuarterNote", "G", 5);
-            note.SetSharp();
-            note.SetFlat();
-
-            //act
-            bool verwachting = false;
-
-            //assert
-            Assert.AreEqual(note.Sharp, verwachting);
-        }
-
-        [TestMethod]
-        public void SetFlatWhenNoteIsD()
-        {
-            //arrange
-            Note note = new Note(-12, 65, "QuarterNote", "G", 0);
-            note.SetFlat();
-
-            //act
-            string verwachting = "Des";
-
-            //assert
-            Assert.AreEqual(note.Tone, verwachting);
-        }
-
-        [TestMethod]
         public void SetFlatWhenNoteCantBeFlat()
         {
             //arrange
             Note note = new Note(-12, 20, "QuarterNote", "G", 0);
             note.SetFlat();
-
-            //act
-            string verwachting = "C";
-
-            //assert
-            Assert.AreEqual(note.Tone, verwachting);
-        }
-
-        [TestMethod]
-        public void SetNaturalWhenNoteIsNatural()
-        {
-            //arrange
-            Note note = new Note(-12, 20, "QuarterNote", "G", 0);
-
-            //act
-            string verwachting = "C";
-
-            //assert
-            Assert.AreEqual(note.Tone, verwachting);
-        }
-        [TestMethod]
-        public void SetNaturalWhenNoteIsFlat()
-        {
-            //arrange
-            Note note = new Note(-12, 20, "QuarterNote", "G", 0);
-            note.SetFlat();
-            note.SetNatural();
-
-            //act
-            string verwachting = "C";
-
-            //assert
-            Assert.AreEqual(note.Tone, verwachting);
-        }
-        [TestMethod]
-        public void SetNaturalWhenNoteIsSharp()
-        {
-            //arrange
-            Note note = new Note(-12, 20, "QuarterNote", "G", 0);
-            note.SetSharp();
-            note.SetNatural();
 
             //act
             string verwachting = "C";
