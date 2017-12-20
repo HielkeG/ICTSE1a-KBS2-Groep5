@@ -129,6 +129,19 @@ namespace VirtualPiano.Model
         {
             clefName = PreviewClef;
         }
+
+        public bool Contains(Sign sign)
+        {
+            if (Signs.Contains(sign))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         internal void makeSignsGray()
         {
             for (int i = 0; i < Signs.Count(); i++)

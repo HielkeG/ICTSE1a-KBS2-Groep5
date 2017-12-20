@@ -13,7 +13,7 @@ namespace VirtualPiano.Control
     {
         public static bool isGestart = false;
         public static OutputDevice outputDevice;
-        static List<Keys> keylijst = new List<Keys>();
+        static List<Keys> keylist = new List<Keys>();
 
         //methode die toets op laat lichten en toevoegt aan notenbalk. Tone voor de toon, key voor de aangeslagen toets en octaveplus voor welke octaaf aangeslagen wordt.
         public static void AddKey(string tone,Keys key,int octavePlus)
@@ -37,7 +37,7 @@ namespace VirtualPiano.Control
             ComposeView.pkv1.KeyPressed((ComposeView.CurrentOctave + octavePlus), tone);
             ComposeView.pkv1.Invalidate();
 
-            keylijst.Add(key);
+            keylist.Add(key);
         }
 
         //alle noten gebonden aan toetsenbordtoetsen.
@@ -48,14 +48,14 @@ namespace VirtualPiano.Control
             {
                 //octaaf 2
                 case Keys.Q:
-                    if (!keylijst.Contains(Keys.Q))
+                    if (!keylist.Contains(Keys.Q))
                     {
                         AddKey("C",Keys.Q,0);
                     }
 
                     break;
                 case Keys.D2:
-                    if (!keylijst.Contains(Keys.D2))
+                    if (!keylist.Contains(Keys.D2))
                     {
                         AddKey("CSharp", Keys.D2, 0);
                     }
@@ -63,135 +63,135 @@ namespace VirtualPiano.Control
 
                     break;
                 case Keys.W:
-                    if (!keylijst.Contains(Keys.W))
+                    if (!keylist.Contains(Keys.W))
                     {
                         AddKey("D",Keys.W, 0);
                     }
                     break;
                 case Keys.D3:
-                    if (!keylijst.Contains(Keys.D3))
+                    if (!keylist.Contains(Keys.D3))
                     {
                         AddKey("DSharp", Keys.D3, 0);
                     }
                     break;
                 case Keys.E:
-                    if (!keylijst.Contains(Keys.E))
+                    if (!keylist.Contains(Keys.E))
                     {
                         AddKey("E", Keys.E, 0);
                     }
                     break;
                 case Keys.R:
-                    if (!keylijst.Contains(Keys.R))
+                    if (!keylist.Contains(Keys.R))
                     {
                         AddKey("F", Keys.R, 0);
                     }
                     break;
                 case Keys.D5:
-                    if (!keylijst.Contains(Keys.D5))
+                    if (!keylist.Contains(Keys.D5))
                     {
                         AddKey("FSharp", Keys.D5, 0);
                     }
                     break;
                 case Keys.T:
-                    if (!keylijst.Contains(Keys.T))
+                    if (!keylist.Contains(Keys.T))
                     {
                         AddKey("G", Keys.T, 0);
                     }
                     break;
                 case Keys.D6:
-                    if (!keylijst.Contains(Keys.D6))
+                    if (!keylist.Contains(Keys.D6))
                     {
                         AddKey("GSharp", Keys.D6, 0);
                     }
                     break;
                 case Keys.Y:
-                    if (!keylijst.Contains(Keys.Y))
+                    if (!keylist.Contains(Keys.Y))
                     {
                         AddKey("A", Keys.Y, 0);
                     }
                     break;
                 case Keys.D7:
-                    if (!keylijst.Contains(Keys.D7))
+                    if (!keylist.Contains(Keys.D7))
                     {
                         AddKey("ASharp", Keys.D7, 0);
                     }
                     break;
                 case Keys.U:
-                    if (!keylijst.Contains(Keys.U))
+                    if (!keylist.Contains(Keys.U))
                     {
                         AddKey("B", Keys.U, 0);
                     }
                     break;
                 //octaaf 3
                 case Keys.V:
-                    if (!keylijst.Contains(Keys.V))
+                    if (!keylist.Contains(Keys.V))
                     {
                         AddKey("C", Keys.V, 1);
                     }
                     break;
                 case Keys.G:
-                    if (!keylijst.Contains(Keys.G))
+                    if (!keylist.Contains(Keys.G))
                     {
                         AddKey("CSharp", Keys.G, 1);
                     }
                     break;
                 case Keys.B:
-                    if (!keylijst.Contains(Keys.B))
+                    if (!keylist.Contains(Keys.B))
                     {
                         AddKey("D", Keys.B, 1);
                     }
                     break;
                 case Keys.H:
-                    if (!keylijst.Contains(Keys.H))
+                    if (!keylist.Contains(Keys.H))
                     {
                         AddKey("DSharp", Keys.H, 1);
                     }
                     break;
                 case Keys.N:
-                    if (!keylijst.Contains(Keys.N))
+                    if (!keylist.Contains(Keys.N))
                     {
                         AddKey("E", Keys.N, 1);
                     }
                     break;
                 case Keys.M:
-                    if (!keylijst.Contains(Keys.M))
+                    if (!keylist.Contains(Keys.M))
                     {
                         AddKey("F", Keys.M, 1);
                     }
                     break;
                 case Keys.K:
-                    if (!keylijst.Contains(Keys.K))
+                    if (!keylist.Contains(Keys.K))
                     {
                         AddKey("FSharp", Keys.K, 1);
                     }
                     break;
 
                 case Keys.Oemcomma:
-                    if (!keylijst.Contains(Keys.Oemcomma))
+                    if (!keylist.Contains(Keys.Oemcomma))
                     {
                         AddKey("G", Keys.Oemcomma, 1);
                     }
                     break;
                 case Keys.OemPeriod:
-                    if (!keylijst.Contains(Keys.OemPeriod))
+                    if (!keylist.Contains(Keys.OemPeriod))
                     {
                         AddKey("A", Keys.OemPeriod, 1);
                     }
                     break;
                 case Keys.L:
-                    if (!keylijst.Contains(Keys.L))
+                    if (!keylist.Contains(Keys.L))
                     {
                         AddKey("GSharp", Keys.L, 1);
                     }
                     break;
                 case Keys.OemSemicolon:
-                    if (!keylijst.Contains(Keys.OemSemicolon))
+                    if (!keylist.Contains(Keys.OemSemicolon))
                     {
                         AddKey("ASharp", Keys.OemSemicolon, 1);
                     }
                     break;
                 case Keys.OemQuestion:
-                    if (!keylijst.Contains(Keys.OemQuestion))
+                    if (!keylist.Contains(Keys.OemQuestion))
                     {
                         AddKey("B", Keys.OemQuestion, 1);
                     }
@@ -205,7 +205,7 @@ namespace VirtualPiano.Control
         {
             Note n1 = new Note(tone, (ComposeView.CurrentOctave + octave));
             StopwatchController.StopWatch(n1);
-            keylijst.Remove(key);
+            keylist.Remove(key);
             if (tone.ToString().Length + octave.ToString().Length == 7)
             {
                 if (tone.Contains("Sharp"))

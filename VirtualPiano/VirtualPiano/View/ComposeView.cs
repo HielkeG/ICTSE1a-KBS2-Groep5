@@ -229,6 +229,7 @@ namespace VirtualPiano.View
             song = new Song();
             MusicController.song = song;
             menuBarView1.Song = song;
+            StopwatchController.Song = song;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
             TitelBox.Text = "Titel";
