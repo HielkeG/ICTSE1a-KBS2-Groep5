@@ -43,7 +43,6 @@ namespace VirtualPiano.View
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Sign draggingSign;
         public static Sign draggingSharp;
-        public static bool SoundEnabled = true;
         public static Panel keypanel = new Panel()
         {
             Location = new Point(600, 730),
@@ -230,7 +229,6 @@ namespace VirtualPiano.View
             song = new Song();
             MusicController.song = song;
             menuBarView1.Song = song;
-            StopwatchController.Song = song;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
             TitelBox.Text = "Titel";
@@ -459,7 +457,7 @@ namespace VirtualPiano.View
             if (SelectedSign != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                if(ComposeView.SoundEnabled)sound.Play();
+                if(MenuBarView.SoundEnabled)sound.Play();
                 Cursor = Cursors.Default;
                 SelectedSign = "";
             }
@@ -533,6 +531,7 @@ namespace VirtualPiano.View
                     {
                         song.Staffs[CurrentPlayingStaff].IsBeingPlayed = false;
                         staffViews.ElementAt(CurrentPlayingStaff).redLine.Visible = false;
+                        staffViews.ElementAt(0).redLine.Visible = true;
                         song.Staffs[0].IsBeingPlayed = true;
                         MusicController.isPlayingSong = false;
                         MusicController.ResetLine();
@@ -666,7 +665,7 @@ namespace VirtualPiano.View
                                     song.Staffs[staff].Bars[bar].RemoveSign(draggingSign);
                                     //Geluid afspelen
                                     SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                                    if(ComposeView.SoundEnabled) sound.Play();
+                                    sound.Play();
                                     //Normale cursor
                                     Cursor = Cursors.Default;
                                     signdeleted = true;
@@ -676,6 +675,7 @@ namespace VirtualPiano.View
                                     if(!(song.Staffs[staff].Bars[bar].Signs.Count() - 1 < sign))
                                     {
                                         song.Staffs[staff].Bars[bar].Signs[sign].X -= draggingSign.Duration * 25;
+
                                     }
                                 }
 

@@ -136,37 +136,37 @@ namespace VirtualPiano.Model
 
                                     //Noot afspelen
                                     string pitchTemp = note.Tone.ToString() + note.Octave.ToString();
-                                    if (pitchTemp.Contains("is") && ComposeView.SoundEnabled)
+                                    if (pitchTemp.Contains("is"))
                                     {
                                         Enum.TryParse(note.Tone.First().ToString() + "Sharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("As") && ComposeView.SoundEnabled)
+                                    else if (pitchTemp.Contains("As"))
                                     {
                                         Enum.TryParse("GSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("Bes") && ComposeView.SoundEnabled)
+                                    else if (pitchTemp.Contains("Bes"))
                                     {
                                         Enum.TryParse("ASharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("Des") && ComposeView.SoundEnabled)
+                                    else if (pitchTemp.Contains("Des"))
                                     {
                                         Enum.TryParse("CSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("Es") && ComposeView.SoundEnabled)
+                                    else if (pitchTemp.Contains("Es"))
                                     {
                                         Enum.TryParse("DSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if (pitchTemp.Contains("Gs") && ComposeView.SoundEnabled)
+                                    else if (pitchTemp.Contains("Gs"))
                                     {
                                         Enum.TryParse("FSharp" + note.Octave.ToString(), out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
                                     }
-                                    else if(ComposeView.SoundEnabled)
+                                    else
                                     {
                                         Enum.TryParse(pitchTemp, out Pitch pitch);
                                         MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);

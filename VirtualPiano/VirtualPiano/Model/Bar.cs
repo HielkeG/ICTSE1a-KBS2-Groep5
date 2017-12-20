@@ -28,7 +28,6 @@ namespace VirtualPiano.Model
         public int TimeSignatureAmount { get; set; }
         [NotMapped]
         public string TimeSignatureName { get; set; }
-        [NotMapped]
         public int Duration { get; set; } = 0;
         public bool hasChanged;
         public bool hasPreview = false;
@@ -51,11 +50,6 @@ namespace VirtualPiano.Model
         {
             Signs.Add(sign);
             Duration += sign.Duration;
-        }
-
-        public void AddAbove(Sign sign)
-        {
-            Signs.Add(sign);
         }
 
         public void MakeEmpty() //Lijst van tekens leegmaken
@@ -135,19 +129,6 @@ namespace VirtualPiano.Model
         {
             clefName = PreviewClef;
         }
-
-        public bool Contains(Sign sign)
-        {
-            if (Signs.Contains(sign))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         internal void makeSignsGray()
         {
             for (int i = 0; i < Signs.Count(); i++)
