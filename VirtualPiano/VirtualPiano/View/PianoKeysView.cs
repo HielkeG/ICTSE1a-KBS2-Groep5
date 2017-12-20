@@ -19,12 +19,15 @@ namespace VirtualPiano.View
         List<PianoKey> PianoKeyList = new List<PianoKey>();
         public bool showPiano = true;
 
-
         public PianoKeysView()
         {
             DoubleBuffered = true;
             InitializeComponent();
+            BackgroundImage = Properties.Resources.pianoshadow;
+            BackgroundImageLayout = ImageLayout.None;
             CreateKeys();
+
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -62,16 +65,16 @@ namespace VirtualPiano.View
         //witte tekens eerst tekenen
         public void DrawWhiteKeys(PaintEventArgs e)
         {
-            int xLocation = 50;
+            int xLocation = 10;
             int PianoWidth = 50; //pianobreedte
-            int PianoHeight = 230; // pianohoogte;
+            int PianoHeight = 229; // pianohoogte;
             //nieuwe tekenmethode
             foreach (var item in PianoKeyList)
             {
                 if(item.GetType() == typeof(WhiteKey))
                 {
                     //alleen de witte keys uit de lijst tekenen. naam, locatie en breedte meegeven.
-                    item.DrawKey(e, item.keyname, xLocation, 0, PianoWidth, PianoHeight);
+                    item.DrawKey(e, item.keyname, xLocation, 11, PianoWidth, PianoHeight);
                     xLocation = xLocation + 50;
                 }
             }
@@ -80,7 +83,7 @@ namespace VirtualPiano.View
         //alle zwarte keys later tekenen, zodat ze over de witte keys staan.
         public void DrawBlackKeys(PaintEventArgs e)
         {
-            int xLocation = 50;
+            int xLocation = 10;
             int OnRow = 0;
             bool previous2 = false;
             foreach (var item in PianoKeyList)
@@ -90,7 +93,7 @@ namespace VirtualPiano.View
                 {
                     xLocation = xLocation + 50;
 
-                    item.DrawKey(e, item.keyname, xLocation - 13, 0, 50, 2);
+                    item.DrawKey(e, item.keyname, xLocation - 13, 12, 50, 2);
                     OnRow++;
                 }
                 //als er twee op de vorige rij stonden en de rij ervoor niet uit 2 bestond. Whitespace ertussen plaatsen.
