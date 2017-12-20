@@ -94,8 +94,6 @@ namespace VirtualPiano.Control
             metronomeBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             metronomeBtn.Click += MetronomeClick;
 
-
-
             Metronoom = m;
             rodeLijn = r;
             song = s;
@@ -147,30 +145,6 @@ namespace VirtualPiano.Control
             }
         }
 
-        public static void PlaySound(int octave, string tone)
-        {
-            var player = new System.Windows.Media.MediaPlayer();
-            try
-            {
-                string filename = (tone).ToString();
-
-                if (tone == "Bes") { filename = "Ais"; }
-                else if (tone == "Des") { filename = "Cis"; }
-                else if (tone == "Es") { filename = "Dis"; }
-                else if (tone == "Ges") { filename = "Fis"; }
-                else if (tone == "As") { filename = "Gis"; }
-
-                player.Open(new Uri($@"../../Resources/Geluiden/{ComposeView.instrument}/{octave}{filename}.wav", UriKind.Relative));
-                player.Play();
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("File not found");
-            }
-            currentOctave = octave;
-            currentTone = tone;
-        }
-
         public static void ResetLine()
         {
             playBtn.Image = new Bitmap(play, width, height);
@@ -188,8 +162,6 @@ namespace VirtualPiano.Control
                 playBtn.Image = new Bitmap(pause, width, height);
                 playBtn.Image = BitmapController.ColorReplace(playBtn.Image, 30, Color.White, Color.LightGray);
                 isPlayingSong = true;
-                //int temp = Song.getDuration();
-                //Console.WriteLine(Song.getDuration());
                 SongStarted(this, e);
                 rodeLijn.Start();
             }
@@ -201,7 +173,6 @@ namespace VirtualPiano.Control
                 rodeLijn.Stop();
             }
         }
-
 
         public void StopGeklikt(Object sender, EventArgs e)
         {
