@@ -15,14 +15,26 @@ namespace VirtualPiano.Model
         public virtual Song Song { get; set; }
         [Key]
         public int StaffId { get; set; }
-        public List<Bar> Bars { get; set; } = new List<Bar>() { new Bar(), new Bar(), new Bar(), new Bar() }; //4 maten in een notenbalk
+        public List<Bar> Bars { get; set; } = new List<Bar>();
         //volgorde van staffs in de song
         public int Order { get; set; }
         public int FlatSharp { get; set; }
-        public int Y { get; set; }
+        public static int X = 50;
+        public static int Y = 0;
+        public int width = 0;
+        public static int height = 160;
+
         [NotMapped]
         public bool IsBeingPlayed { get; set; } = false;
 
+        public Staff(int AmountOfBars)
+        {
+            for (int i = 0; i < AmountOfBars; i++)
+            {
+                Bars.Add(new Bar(i));
+                width += Bars[i].width;
+            }
+        }
 
         public bool IsEmtpy()
         {
@@ -37,5 +49,9 @@ namespace VirtualPiano.Model
             return empty;
         }
 
+        public bool MouseInStaff(int MouseX, int MouseY)
+        {
+            return (MouseX > X -50 && MouseX < X + width && MouseY > Y && MouseY < Y + height + 5);
+        }
     }
 }

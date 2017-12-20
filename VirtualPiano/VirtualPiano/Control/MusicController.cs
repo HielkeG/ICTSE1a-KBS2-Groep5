@@ -43,8 +43,6 @@ namespace VirtualPiano.Control
         public static int height = 50;
         public static event EventHandler SongStarted;
         public static event EventHandler SongStopped;
-        private static int currentOctave = 0;
-        private static string currentTone = "";
         public static bool isGestart = false;
         public static bool MetronomeTicking = false;
         public static bool isRecording = false;

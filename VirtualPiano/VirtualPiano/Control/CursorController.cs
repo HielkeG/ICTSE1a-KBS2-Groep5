@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
 using VirtualPiano.Properties;
+using VirtualPiano.View;
 
 namespace VirtualPiano.Control
 {
@@ -41,6 +42,8 @@ namespace VirtualPiano.Control
             Graphics g = Graphics.FromImage(b);
             IntPtr ptr = b.GetHicon();
             Cursor cur = new System.Windows.Forms.Cursor(ptr);
+            ComposeView.cursor = cur;
+            StaffView.cursor = cur;
             return cur;
         }
     }

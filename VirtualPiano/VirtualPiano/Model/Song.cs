@@ -47,7 +47,7 @@ namespace VirtualPiano.Model
         public Song()
         {
             Staffs = new List<Staff>();
-            Staffs.Add(new Staff());
+            Staffs.Add(new Staff(ComposeView.AmountOfBars));
             Pages = 1;
             FlatSharp = 0;
 
