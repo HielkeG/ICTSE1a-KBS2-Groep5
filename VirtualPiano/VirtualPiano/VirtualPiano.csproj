@@ -83,13 +83,9 @@
     <Compile Include="Midi\Pitch.cs" />
     <Compile Include="Midi\ShortMsg.cs" />
     <Compile Include="Midi\Win32API.cs" />
-    <Compile Include="Migrations\201712211110468_DB.cs" />
-    <Compile Include="Migrations\201712211110468_DB.Designer.cs">
-      <DependentUpon>201712211110468_DB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712211114250_DB1.cs" />
-    <Compile Include="Migrations\201712211114250_DB1.Designer.cs">
-      <DependentUpon>201712211114250_DB1.cs</DependentUpon>
+    <Compile Include="Migrations\201712211125190_DB.cs" />
+    <Compile Include="Migrations\201712211125190_DB.Designer.cs">
+      <DependentUpon>201712211125190_DB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
@@ -177,11 +173,8 @@
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\201712211110468_DB.resx">
-      <DependentUpon>201712211110468_DB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712211114250_DB1.resx">
-      <DependentUpon>201712211114250_DB1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712211125190_DB.resx">
+      <DependentUpon>201712211125190_DB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -399,6 +392,8 @@
     <None Include="Resources\Afbeeldingen\Knoppen\down_arrow.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\left_arrow.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\right_arrow.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\close_application.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\close_application_over.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
