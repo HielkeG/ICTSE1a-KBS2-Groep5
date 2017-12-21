@@ -239,7 +239,6 @@ namespace VirtualPiano.View
             TitelBox.Text = "Titel";
             CurrentPage = 1;
             btnAddStaff.Visible = true;
-            btnAddStaff.Location = new Point(btnAddStaff.Location.X, y_staff - 40);
             Invalidate();
         }
 
@@ -267,7 +266,6 @@ namespace VirtualPiano.View
                 if (item == song.GetStaffs().Last() && staffViews.Count <= 2)
                 {
                     btnAddStaff.Visible = true;
-                    btnAddStaff.Location = new Point(btnAddStaff.Location.X, y_staff + 160);
                 }
                 else
                 {
@@ -300,7 +298,6 @@ namespace VirtualPiano.View
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
-                //btnAddStaff.Location = new Point(977, newStaff.Y + 160);
             }
             else if (CurrentPage * 3 - 1 == staffViewsPanels.Count)
             {
@@ -402,7 +399,6 @@ namespace VirtualPiano.View
                     song.Pages++;
                     //Locatie wordt weer op 140 gezet
                     y_staff = 140;
-                    //btnAddStaff.Location = new Point(977, y_staff + 160);
                     AddNewStaff();
                 }
 

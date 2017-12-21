@@ -122,7 +122,7 @@ namespace VirtualPiano.View
                 e.Graphics.DrawLine(new Pen(barColor, 5), bar.X, 145, bar.X + bar.Width, 145);
                 if (fullBar == ComposeView.AmountOfBars)
                 {
-                    e.Graphics.DrawLine(new Pen(Color.LightGray, 5), 10, 145, staff.width, 145);
+                    e.Graphics.DrawLine(new Pen(Color.FromKnownColor(KnownColor.Control), 5), 10, 145, staff.width, 145);
                 }
 
                 // Hieronder worden de noten en rusten getekent
