@@ -73,7 +73,7 @@ namespace VirtualPiano.Control
                     NoteToAdd = note;
 
                     if (NoteToAdd.Tone.First() == 'C' && NoteToAdd.Octave == 5) NoteToAdd.Y = -43;
-                    else if (NoteToAdd.Tone.First() == 'D' && NoteToAdd.Octave == 4) NoteToAdd.Y = -36;
+                    else if (NoteToAdd.Tone.First() == 'B' && NoteToAdd.Octave == 4) NoteToAdd.Y = -36;
                     else if (NoteToAdd.Tone.First() == 'A' && NoteToAdd.Octave == 4) NoteToAdd.Y = -28;
                     else if (NoteToAdd.Tone.First() == 'G' && NoteToAdd.Octave == 4) NoteToAdd.Y = -21;
                     else if (NoteToAdd.Tone.First() == 'F' && NoteToAdd.Octave == 4) NoteToAdd.Y = -15;
