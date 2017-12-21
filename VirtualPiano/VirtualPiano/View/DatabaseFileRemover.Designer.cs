@@ -89,7 +89,7 @@
             this.Name = "DatabaseFileRemover";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "DatabaseFileRemover";
+            this.Text = "Verwijder nummer";
             this.ResumeLayout(false);
             this.PerformLayout();
 
