@@ -22,7 +22,7 @@ namespace VirtualPiano.View
         MenuBarController mbc = new MenuBarController();
         public static MidiConnect m1 = new MidiConnect();
         public static MidiSettings m2 = new MidiSettings();
-        private bool showingHelp = false;
+        private List<HelpView> HelpViews = new List<HelpView>();
         public MenuBarView()
         {
 
@@ -231,25 +231,16 @@ namespace VirtualPiano.View
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!showingHelp)
+            //als er al een helpscherm bestaat wordt deze gesloten.
+            foreach (var item in HelpViews)
             {
-                //als er nog geen helpscherm getoond wordt, wordt deze getoond.
-                HelpView help = new HelpView();
-                help.Show();
-                //als het scherm gesloten wordt kan de gebruiker weer een nieuw scherm openen.
-                help.FormClosing += ResetShowing;
-                showingHelp = true;
+                item.Dispose();
             }
-            else
-            {
-                //foutmelding tonen
-                MessageBox.Show("Er wordt al een helpmenu getoond.", "Fout");
-            }
-        }
-
-        private void ResetShowing(object sender, EventArgs e)
-        {
-            showingHelp = false;
+            HelpViews.Clear();
+            //helpview wordt opnieuw geopend.
+            HelpView help = new HelpView();
+            HelpViews.Add(help);
+            help.Show();
         }
     }
 }
