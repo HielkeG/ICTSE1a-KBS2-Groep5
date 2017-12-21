@@ -32,28 +32,26 @@ namespace VirtualPiano.Model
         public bool hasChanged;
         public bool hasPreview = false;
         public string lastClef;
-        public int Width { get; set; } = 430;
-        public static int FirstBarWidth { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; } = 50;
-        public int Height { get; set; } = 100;
+        public int width = 430;
+        public static int firstBarWidth;
+        public int x;
+        public int y = 50;
+        public int height = 100;
 
         public Bar(int index)
         {
             if (index == 0)
             {
-                Width += 45; X = index * Width + 10;
-                FirstBarWidth = Width;
+                width += 45; x = index * width + 10;
+                firstBarWidth = width;
             }
-            else X = ((index - 1) * Width) + FirstBarWidth;
+            else x = ((index - 1) * width) + firstBarWidth;
 
             clefName = "G";
             Signs = new List<Sign>();
         }
-        public Bar()
-        { }
 
-            public bool CheckBarSpace(Sign sign)    //kijken of er ruimte in de maat is voor nieuw teken
+        public bool CheckBarSpace(Sign sign)    //kijken of er ruimte in de maat is voor nieuw teken
         {
             if (Duration + sign.Duration > 16) return false;
             else return true;
@@ -122,16 +120,16 @@ namespace VirtualPiano.Model
 
             if (Duration == 4)
             {
-                Add(new Rest("HalfRest", Duration * 25 + (Width * barNr)));
-                Add(new Rest("QuarterRest",Duration*25+(Width*barNr)));
+                Add(new Rest("HalfRest", Duration * 25 + (width * barNr)));
+                Add(new Rest("QuarterRest",Duration*25+(width*barNr)));
             }
             else if (Duration == 8)
             {
-                Add(new Rest("HalfRest", Duration * 25 + (Width * barNr)));
+                Add(new Rest("HalfRest", Duration * 25 + (width * barNr)));
             }
             else if (Duration == 12)
             {
-                Add(new Rest("QuarterRest", Duration * 25 + (Width * barNr)));
+                Add(new Rest("QuarterRest", Duration * 25 + (width * barNr)));
             }
         }
 
@@ -154,7 +152,7 @@ namespace VirtualPiano.Model
 
         public bool MouseInBar(int mouseX, int mouseY)
         {
-            return (mouseX > X && mouseX < X + Width && mouseY > Y - 50 && mouseY < Y + Height -10);
+            return (mouseX > x && mouseX < x + width && mouseY > y - 50 && mouseY < y + height -10);
         }
     }
 }
