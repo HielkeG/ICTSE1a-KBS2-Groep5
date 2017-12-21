@@ -261,3 +261,5 @@ __pycache__/
 *.pyc
 VirtualKeyboard/VirtualKeyboard/Program.cs
 /VirtualPiano/VirtualPiano/Migrations
+VirtualPiano/VirtualPiano/VirtualPiano.csproj
+VirtualPiano/VirtualPiano/VirtualPiano.csproj
