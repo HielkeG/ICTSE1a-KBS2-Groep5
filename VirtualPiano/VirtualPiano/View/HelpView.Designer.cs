@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelpView));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Notenbalktoevoegen = new System.Windows.Forms.LinkLabel();
@@ -293,7 +294,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 482);
+            this.ClientSize = new System.Drawing.Size(469, 481);
             this.Controls.Add(this.KruisMol);
             this.Controls.Add(this.linkLabel15);
             this.Controls.Add(this.label6);
@@ -317,8 +318,15 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(485, 520);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(485, 520);
             this.Name = "HelpView";
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Help";
             this.ResumeLayout(false);
             this.PerformLayout();
