@@ -28,11 +28,13 @@ namespace VirtualPiano
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             //als de gebruiker typend spelen aan heeft staan.
+            
+
             if (ComposeView.PlayingKeyboard)
             {
                 //toetsaanslagen opvangen.
-
-                KeyBinds.PressPianoKeys(e);
+                if (MusicController.isRecording)
+                    KeyBinds.PressPianoKeys(e);
             }
 
         }
@@ -41,7 +43,8 @@ namespace VirtualPiano
         {
             if (ComposeView.PlayingKeyboard)
             {
-                KeyBinds.ReleasePianoKeys(e);
+                if (MusicController.isRecording)
+                    KeyBinds.ReleasePianoKeys(e);
                 Refresh();
             }
         }

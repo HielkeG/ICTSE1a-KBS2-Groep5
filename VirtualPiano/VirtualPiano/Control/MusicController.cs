@@ -46,6 +46,9 @@ namespace VirtualPiano.Control
         public static bool isGestart = false;
         public static bool MetronomeTicking = false;
         public static bool isRecording = false;
+        public static bool recordingStarted = false;
+        public static event EventHandler ToggledPianoVisible;
+        public static event EventHandler StartRecord;
 
         public MusicController(Timer m, Timer r, Song s)
         {
@@ -122,7 +125,11 @@ namespace VirtualPiano.Control
             {
                 recordBtn.Image = recordstop;
                 recordBtn.Image = BitmapController.ColorReplace(recordBtn.Image, 30, Color.White, Color.LightGray);
-                isRecording = true;
+                if (!ComposeView.keypanel.Visible)
+                    ToggledPianoVisible(this, e);
+                if (recordingStarted == false)
+                    StartRecord(this, e);
+                recordingStarted = true;
             }
         }
 
@@ -188,6 +195,7 @@ namespace VirtualPiano.Control
             rodeLijn.Stop();
             SongStopped(this, e);
             outputDevice.SilenceAllNotes();
+            isRecording = false;
         }
 
         //metronoom bpm instellen. Leerling geeft een bpm in. Deze wordt omgezet naar milliseconden zodat de timer juist ingesteld wordt.
