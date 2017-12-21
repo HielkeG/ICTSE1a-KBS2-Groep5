@@ -257,6 +257,7 @@ namespace VirtualPiano.View
             MusicController.song = song;
             menuBarView1.Song = song;
             StopwatchController.Song = song;
+            StopwatchController.CurrentComposingStaff = 0;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
             TitelBox.Text = "Titel";
@@ -273,6 +274,7 @@ namespace VirtualPiano.View
             song = newSong;
             RedLineX = -60;
             CurrentPage = 1;
+            StopwatchController.CurrentComposingStaff = 0;
             CurrentPageLabel.Text = CurrentPage.ToString();
             btnAddStaff.Visible = true;
             foreach (var item in song.GetStaffs())
