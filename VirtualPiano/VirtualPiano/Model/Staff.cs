@@ -23,7 +23,8 @@ namespace VirtualPiano.Model
         public static int Y = 0;
         public int width = 0;
         public static int height = 160;
-
+        [NotMapped]
+        public bool ComposingStaff { get; set; } = false;
         [NotMapped]
         public bool IsBeingPlayed { get; set; } = false;
 
