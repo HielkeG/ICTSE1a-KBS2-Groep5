@@ -233,13 +233,16 @@ namespace VirtualPiano.View
         {
             if (!showingHelp)
             {
+                //als er nog geen helpscherm getoond wordt, wordt deze getoond.
                 HelpView help = new HelpView();
                 help.Show();
+                //als het scherm gesloten wordt kan de gebruiker weer een nieuw scherm openen.
                 help.FormClosing += ResetShowing;
                 showingHelp = true;
             }
             else
             {
+                //foutmelding tonen
                 MessageBox.Show("Er wordt al een helpmenu getoond.", "Fout");
             }
         }
