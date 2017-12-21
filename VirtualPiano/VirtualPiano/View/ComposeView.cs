@@ -40,11 +40,13 @@ namespace VirtualPiano.View
         private static bool RunningTimer;    //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         public static int RedLineX = -60;   //locatie van de rode lijn
         public static bool PlayingKeyboard = false;
-        public PianoKeysController pkc1 = new PianoKeysController();
+        public static PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
         public static Sign draggingSign;
         public static Sign draggingSharp;
         public static bool SoundEnabled = true;
+        Label RecordLabel = new Label();
+        public int RecordCount;
         public static int AmountOfBars = 4;
         public static Panel keypanel = new Panel()
         {
@@ -118,6 +120,8 @@ namespace VirtualPiano.View
             MusicController.recordBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             MusicController.recordBtn.MouseHover += new EventHandler(AllButtons_Hover);
             MusicController.recordBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+            MusicController.ToggledPianoVisible += TogglePianoVisible;
+            MusicController.StartRecord += StartRecord;
 
             btnAddStaff.MouseEnter += new EventHandler(AllButtons_Enter);
             btnAddStaff.MouseHover += new EventHandler(AllButtons_Hover);
@@ -165,6 +169,25 @@ namespace VirtualPiano.View
             TitelBox.Text = menuBarView1.Song.Title;
             //oorspronkelijke notenbalken verwijderen.
             SetLoadedSong(menuBarView1.Song);
+        }
+
+        public void StartRecord(object sender, EventArgs e)
+        {
+            MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
+            RecordLabel.Visible = true;
+            RecordLabel.Font = new Font("Microsoft Sans Serif", 50);
+            RecordLabel.Location = new Point((this.Width / 2) - 100, 100);
+            RecordLabel.TextAlign = ContentAlignment.MiddleCenter;
+            RecordLabel.Height = 65;
+            RecordLabel.Width = 200;
+            RecordLabel.BackColor = Color.Transparent;
+            Controls.Add(RecordLabel);
+            RecordLabel.BringToFront();
+            RecordLabel.Text = "3";
+            RecordTimer.Start();
+
+
+
         }
 
         private void TogglePianoVisible(object sender, EventArgs e)
@@ -880,5 +903,36 @@ namespace VirtualPiano.View
             }
         }
 
+        private void RecordTimer_Tick(object sender, EventArgs e)
+        {
+            RecordCount++;
+            //System.Media.SystemSounds.Beep.Play();
+            if (RecordCount == 1)
+            {
+                MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
+                RecordLabel.Text = "2";
+            }
+            else if (RecordCount == 2)
+            {
+                MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
+                RecordLabel.Text = "1";
+            }
+            else if (RecordCount == 3)
+            {
+                MusicController.outputDevice.SendNoteOn(Channel.Channel3, Pitch.C3, 127);
+                RecordLabel.Text = "Start!";
+                MusicController.isRecording = true;
+            }
+
+            //RecordLabel.Visible = false;
+            if (RecordCount == 4)
+            {
+                RecordCount = 0;
+                RecordTimer.Stop();
+                RecordLabel.Visible = false;
+                MusicController.recordingStarted = false;
+
+            }
+        }
     }
 }

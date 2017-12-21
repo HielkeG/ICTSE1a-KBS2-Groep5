@@ -265,7 +265,7 @@ namespace VirtualPiano.Control
                     RemoveKey("C", Keys.V, 1);
                     break;
                 case Keys.G:
-                    RemoveKey("CSharp", Keys.V, 1);
+                    RemoveKey("CSharp", Keys.G, 1);
                     break;
                 case Keys.B:
                     RemoveKey("D", Keys.B, 1);
