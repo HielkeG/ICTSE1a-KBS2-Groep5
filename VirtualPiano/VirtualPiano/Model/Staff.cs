@@ -33,7 +33,17 @@ namespace VirtualPiano.Model
             for (int i = 0; i < AmountOfBars; i++)
             {
                 Bars.Add(new Bar(i));
-                width += Bars[i].width;
+                width += Bars[i].Width;
+            }
+        }
+
+        public Staff()
+        {
+            int AmountOfBars = 4;
+            for (int i = 0; i < AmountOfBars; i++)
+            {
+                Bars.Add(new Bar(i));
+                width += Bars[i].Width;
             }
         }
 

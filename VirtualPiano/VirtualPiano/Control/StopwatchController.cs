@@ -129,14 +129,14 @@ namespace VirtualPiano.Control
                     if (bar.Duration + NoteToAdd.Duration <= 16 && Song.Staffs[i] == Song.Staffs[CurrentComposingStaff])
                     {
 
-                        NoteToAdd.X = (bar.Duration * 25 + (bar.width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
+                        NoteToAdd.X = (bar.Duration * 25 + (bar.Width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
 
                         if (NoteToAdd.Tone.Contains("Sharp"))
                         {
                             NoteToAdd.Tone = NoteToAdd.Tone.First() + "is";
                         }
                         NoteToAdd.SetImage();
-                        NoteToAdd.X = (bar.Duration * 25 + (bar.width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
+                        NoteToAdd.X = (bar.Duration * 25 + (bar.Width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
                         bar.Add(NoteToAdd);
                         break;
                     }
