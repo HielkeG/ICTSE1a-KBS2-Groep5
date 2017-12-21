@@ -16,6 +16,7 @@ namespace VirtualPiano.View
         public HelpView()
         {
             InitializeComponent();
+            //Icoontje van het scherm veranderen.
             Icon = Resources.logo_icon32x32;
         }
 
@@ -23,10 +24,31 @@ namespace VirtualPiano.View
         {
             InitializeComponent();
         }
+
+        //hele scherm afsluiten
         private void CloseView(object sender,EventArgs e)
         {
+            //eerst sluiten zodat composeview weet dat het scherm gesloten wordt.
             Close();
+            //daarna helemaal verwijderen.
             Dispose();
+        }
+
+        //deze methode toont het uitlegscherm.
+        private void ShowExplain(string title, string explanation, bool image)
+        {
+            //maakt huidige view leeg en zet daar een helpselectedview in. 
+            Controls.Clear();
+            //nieuw helpselectedview tonen met de titel, uitleg en of er een afbeelding in de tekst staat.
+            HelpSelectedView helpSelected = new HelpSelectedView(title, explanation, image);
+            helpSelected.Dock = DockStyle.Fill;
+            //closeview methode koppelen voor wanneer het scherm gesloten wordt.
+            helpSelected.exiting += CloseView;
+            //wanneer de gebruiker op esc drukt word het scherm gesloten.
+            KeyDown += CloseOnEsc;
+            helpSelected.closing += ResetView;
+            Controls.Add(helpSelected);
+
         }
 
         private void NotenbalkToevoegen_Click(object sender, LinkLabelLinkClickedEventArgs e)
@@ -164,18 +186,7 @@ namespace VirtualPiano.View
                 "De sleutel bepaalt op deze  manier de toonhoogte voor alle komende noten, totdat een eventuele nieuwe sleutel aangegeven wordt.",false);
         }
 
-        private void ShowExplain(string title, string explanation,bool image)
-        {
-            //maakt huidige view leeg en zet daar een helpselectedview in. 
-            Controls.Clear();
-            HelpSelectedView helpSelected = new HelpSelectedView(title, explanation,image);
-            helpSelected.Dock = DockStyle.Fill;
-            helpSelected.exiting += CloseView;
-            KeyDown += CloseOnEsc;
-            helpSelected.closing += ResetView;
-            Controls.Add(helpSelected);
 
-        }
 
 
         private void CloseOnEsc(Object sender, KeyEventArgs e)
@@ -185,10 +196,12 @@ namespace VirtualPiano.View
             {
                 foreach (var item in Controls)
                 {
+                    //als het item een helpselectedview is wordt deze gesloten.
                     if (item.GetType() == typeof(HelpSelectedView))
                     {
                         HelpSelectedView uc = (HelpSelectedView)item;
                         uc.Dispose();
+                        //deze methode zorgt ervoor dat het scherm opnieuw getekend wordt.
                         ResetView(this, e);
                     }
                 }
