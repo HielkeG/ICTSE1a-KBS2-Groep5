@@ -32,7 +32,16 @@ namespace VirtualPiano.Model
             for (int i = 0; i < AmountOfBars; i++)
             {
                 Bars.Add(new Bar(i));
-                width += Bars[i].width;
+                width += Bars[i].Width;
+            }
+        }
+        public Staff()
+        {
+            int AmountOfBars = 4;
+            for (int i = 0; i < AmountOfBars; i++)
+            {
+                Bars.Add(new Bar(i));
+                width += Bars[i].Width;
             }
         }
 
@@ -51,7 +60,7 @@ namespace VirtualPiano.Model
 
         public bool MouseInStaff(int MouseX, int MouseY)
         {
-            return (MouseX > X -50 && MouseX < X + width && MouseY > Y && MouseY < Y + height + 5);
+            return (MouseX > X - 50 && MouseX < X + width && MouseY > Y && MouseY < Y + height + 5);
         }
     }
 }
