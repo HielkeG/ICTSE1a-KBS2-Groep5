@@ -23,7 +23,8 @@ namespace VirtualPiano.Model
         public static int Y = 0;
         public int width = 0;
         public static int height = 160;
-
+        [NotMapped]
+        public bool ComposingStaff { get; set; } = false;
         [NotMapped]
         public bool IsBeingPlayed { get; set; } = false;
 
@@ -32,7 +33,17 @@ namespace VirtualPiano.Model
             for (int i = 0; i < AmountOfBars; i++)
             {
                 Bars.Add(new Bar(i));
-                width += Bars[i].width;
+                width += Bars[i].Width;
+            }
+        }
+
+        public Staff()
+        {
+            int AmountOfBars = 4;
+            for (int i = 0; i < AmountOfBars; i++)
+            {
+                Bars.Add(new Bar(i));
+                width += Bars[i].Width;
             }
         }
 

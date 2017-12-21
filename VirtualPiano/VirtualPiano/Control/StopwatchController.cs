@@ -19,6 +19,7 @@ namespace VirtualPiano.Control
         public static Stopwatch w4 = new Stopwatch();
         public static Stopwatch w5 = new Stopwatch();
         public static event EventHandler OnFullStaff;
+        public static int CurrentComposingStaff;
         static Note NoteToAdd;
         public static List<ConnectWatch> connect = new List<ConnectWatch>();
 
@@ -72,7 +73,7 @@ namespace VirtualPiano.Control
                     NoteToAdd = note;
 
                     if (NoteToAdd.Tone.First() == 'C' && NoteToAdd.Octave == 5) NoteToAdd.Y = -43;
-                    else if (NoteToAdd.Tone.First() == 'D' && NoteToAdd.Octave == 4) NoteToAdd.Y = -36;
+                    else if (NoteToAdd.Tone.First() == 'B' && NoteToAdd.Octave == 4) NoteToAdd.Y = -36;
                     else if (NoteToAdd.Tone.First() == 'A' && NoteToAdd.Octave == 4) NoteToAdd.Y = -28;
                     else if (NoteToAdd.Tone.First() == 'G' && NoteToAdd.Octave == 4) NoteToAdd.Y = -21;
                     else if (NoteToAdd.Tone.First() == 'F' && NoteToAdd.Octave == 4) NoteToAdd.Y = -15;
@@ -118,31 +119,45 @@ namespace VirtualPiano.Control
         public static void AddNoteToLastBar()
         {
             EventArgs e = new EventArgs();
-
+            //voor elke staff 
             for (int i = 0; i < Song.Staffs.Count(); i++)
             {
+                //in elke bar kijken of de noot daarin geplaatst moet worden.
                 foreach (Bar bar in Song.Staffs[i].Bars)
                 {
-                    if (bar.Duration + NoteToAdd.Duration <= 16)
+                    //als de noot past en deze staff gecomponeerd moet worden.
+                    if (bar.Duration + NoteToAdd.Duration <= 16 && Song.Staffs[i] == Song.Staffs[CurrentComposingStaff])
                     {
 
-                        NoteToAdd.X = (bar.Duration * 25 + (bar.width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
+                        NoteToAdd.X = (bar.Duration * 25 + (bar.Width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
 
                         if (NoteToAdd.Tone.Contains("Sharp"))
                         {
                             NoteToAdd.Tone = NoteToAdd.Tone.First() + "is";
                         }
                         NoteToAdd.SetImage();
-                        NoteToAdd.X = (bar.Duration * 25 + (bar.width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
+                        NoteToAdd.X = (bar.Duration * 25 + (bar.Width * Song.Staffs[i].Bars.IndexOf(bar)) + 25);
                         bar.Add(NoteToAdd);
                         break;
                     }
                     else
                     {
+                        //anders wordt de bar gevuld 
                         bar.FillBar(Song.Staffs[i].Bars.IndexOf(bar));
-                        if (Song.Staffs[i].Bars.IndexOf(bar) == 3 && Song.Staffs.Count() == Song.Staffs.IndexOf(Song.Staffs[i]) + 1)
+                        //als het de laatste bar is in de staffview en het de laatste staffview van de song is.
+                        if (Song.Staffs[CurrentComposingStaff].Bars.IndexOf(bar) == 3)
                         {
-                            OnFullStaff(bar, e);
+                            //als dit de vierde bar was wordt er een nieuwe staff toegevoegd.
+                            Song.Staffs[CurrentComposingStaff].ComposingStaff = false;
+                            if (Song.Staffs[CurrentComposingStaff] == Song.Staffs.Last())
+                            {
+                                //nieuwe staffview toevoegen
+                                OnFullStaff(bar, e);
+                            }
+                            CurrentComposingStaff++;
+
+
+                            Song.Staffs[CurrentComposingStaff].ComposingStaff = true;
                         }
                     }
                 }

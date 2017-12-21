@@ -77,40 +77,40 @@ namespace VirtualPiano.View
 
                 for (int i = 0; i < 5; i++) //5 horizontale lijnen per bar
                 {
-                    e.Graphics.DrawLine(penBlack, bar.x, bar.y + i * 15, bar.x + bar.width, bar.y + i * 15);
+                    e.Graphics.DrawLine(penBlack, bar.X, bar.Y + i * 15, bar.X + bar.Width, bar.Y + i * 15);
                 }
 
                 // -----Sleutels tekenen------
                 if (staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen en kruizen/mollen tekenen
                 {
                     //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
-                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.x - 10, 26, 60, 110); latestClef = "G"; }
-                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.x - 10, -19, 88, 185); latestClef = "F"; }
+                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.X - 10, 26, 60, 110); latestClef = "G"; }
+                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.X - 10, -19, 88, 185); latestClef = "F"; }
 
 
                     //-----Kruizen / Mollen --------
                     //Hieronder worden de kruizen en de mollen getekent. afhankelijk van het aantal
-                    if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.kruis_icon, bar.x + 35, 30, 30, 40); }
-                    if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.kruis_icon, bar.x + 50, 53, 30, 40); }
-                    if (song.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.kruis_icon, bar.x + 50, 25, 30, 40); }
-                    if (song.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.kruis_icon, bar.x + 29, 47, 30, 40); }
-                    if (song.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.kruis_icon, bar.x + 35, 65, 30, 40); }
+                    if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 35, 30, 30, 40); }
+                    if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 50, 53, 30, 40); }
+                    if (song.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 50, 25, 30, 40); }
+                    if (song.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 29, 47, 30, 40); }
+                    if (song.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 35, 65, 30, 40); }
 
-                    if (song.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.mol_icon, bar.x + 35, 52, 30, 40); }
-                    if (song.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.mol_icon, bar.x + 50, 28, 30, 40); }
-                    if (song.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.mol_icon, bar.x + 50, 59, 30, 40); }
-                    if (song.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.mol_icon, bar.x + 29, 36, 30, 40); }
-                    if (song.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.mol_icon, bar.x + 35, 67, 30, 40); }
+                    if (song.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 35, 52, 30, 40); }
+                    if (song.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 50, 28, 30, 40); }
+                    if (song.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 50, 59, 30, 40); }
+                    if (song.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 29, 36, 30, 40); }
+                    if (song.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 35, 67, 30, 40); }
                 }
                 else
                 {
                     //----Sleutels----
-                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.x + 5, 43, 40, 83); latestClef = "G"; }
-                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.x - 18, -5, 77, 155); latestClef = "F"; }
+                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.X + 5, 43, 40, 83); latestClef = "G"; }
+                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.X - 18, -5, 77, 155); latestClef = "F"; }
                 }
 
                 //--- Maatstrepen-----
-                e.Graphics.DrawLine(new Pen(Color.Black), bar.x + bar.width, 50, bar.x + bar.width, 110); //per maat verticale lijn tekenen
+                e.Graphics.DrawLine(new Pen(Color.Black), bar.X + bar.Width, 50, bar.X + bar.Width, 110); //per maat verticale lijn tekenen
                 if (bar.Duration == 16)
                 {
                     barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
@@ -119,7 +119,7 @@ namespace VirtualPiano.View
 
                 else barColor = Color.Red;
 
-                e.Graphics.DrawLine(new Pen(barColor, 5), bar.x, 145, bar.x + bar.width, 145);
+                e.Graphics.DrawLine(new Pen(barColor, 5), bar.X, 145, bar.X + bar.Width, 145);
                 if (fullBar == ComposeView.AmountOfBars)
                 {
                     e.Graphics.DrawLine(new Pen(Color.LightGray, 5), 10, 145, staff.width, 145);
@@ -267,7 +267,7 @@ namespace VirtualPiano.View
 
                             if (noteSet == false && bar.Duration < 16)
                             {
-                                newNote = new Note(bar.Duration * 25 + (bar.width * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                newNote = new Note(bar.Duration * 25 + (bar.Width * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                 if (bar.CheckBarSpace(newNote) && notename != null)
                                 {
                                     bar.Add(newNote);
@@ -284,7 +284,7 @@ namespace VirtualPiano.View
                         {
                             string rest = ComposeView.SelectedSign;
 
-                            Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.width * staff.Bars.IndexOf(bar)));
+                            Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.Width * staff.Bars.IndexOf(bar)));
                             if (bar.CheckBarSpace(newRest) && rest != null)
                             {
                                 bar.Add(newRest);
@@ -499,7 +499,7 @@ namespace VirtualPiano.View
                                 //Als er nog geen noot toegevoegd is aan een andere noot
                                 if (noteSet == false)
                                 {
-                                    newNote = new Note(bar.Duration * 25 + (bar.width * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                    newNote = new Note(bar.Duration * 25 + (bar.Width * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                     if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
                                 }
 
@@ -508,7 +508,7 @@ namespace VirtualPiano.View
                             else if (ComposeView.SelectedSign.Contains("Rest"))
                             {
                                 string rest = ComposeView.SelectedSign;
-                                Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.width * staff.Bars.IndexOf(bar)));
+                                Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.Width * staff.Bars.IndexOf(bar)));
                                 if (bar.CheckBarSpace(newRest) && rest != null) bar.Add(newRest);  //rest toevoegen als er ruimte is
                             }
                             // -----Clef----

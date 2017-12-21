@@ -59,7 +59,9 @@ namespace VirtualPiano.Control
                 context.Configuration.LazyLoadingEnabled = false;
                 foreach (var item in context.Songs)
                 {
-                    if (item.Title == song.Title)
+                    string lowerTitle = item.Title.ToLower();
+                    string lowerInputTitle = song.Title.ToLower();
+                    if (lowerTitle == lowerInputTitle)
                     {
                         return true;
                     }
