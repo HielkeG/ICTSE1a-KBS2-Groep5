@@ -135,7 +135,7 @@ namespace TestProject
         {
             //arrange
             Note note = new Note(20, 35, "QuarterNote", "C", 2);
-            note.flip();
+            note.Flip();
 
             //act
             bool verwachting = true;
@@ -150,7 +150,7 @@ namespace TestProject
         {
             //arrange
             Note note = new Note(-12, -35, "QuarterNote", "C", 2);
-            note.unflip();
+            note.Unflip();
 
             //act
             bool verwachting = false;
