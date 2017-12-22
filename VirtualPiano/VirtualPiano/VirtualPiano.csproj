@@ -393,6 +393,8 @@
     <None Include="Resources\Afbeeldingen\Knoppen\down_arrow.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\left_arrow.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\right_arrow.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\close_application.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\close_application_over.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\close_material.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\record_active_material.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\pause_material.png" />

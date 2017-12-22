@@ -65,6 +65,7 @@ namespace VirtualPiano.View
             this.CurrentPageLabel = new System.Windows.Forms.Label();
             this.metroTip = new System.Windows.Forms.ToolTip(this.components);
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
+            this.RecordTimer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -477,6 +478,11 @@ namespace VirtualPiano.View
             this.menuBarView1.Song = null;
             this.menuBarView1.TabIndex = 7;
             // 
+            // RecordTimer
+            // 
+            this.RecordTimer.Interval = 600;
+            this.RecordTimer.Tick += new System.EventHandler(this.RecordTimer_Tick);
+            // 
             // ComposeView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -547,5 +553,6 @@ namespace VirtualPiano.View
         private TextBox MetronomeSpeed;
         private Label CurrentPageLabel;
         private ToolTip metroTip;
+        public Timer RecordTimer;
     }
 }

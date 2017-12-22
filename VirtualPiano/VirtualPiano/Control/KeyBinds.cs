@@ -21,12 +21,14 @@ namespace VirtualPiano.Control
             Enum.TryParse(tone + (ComposeView.CurrentOctave+octavePlus), out Pitch pitch);
             MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
 
-            if (StopwatchController.watch.IsRunning == false)
+            if (StopwatchController.watch.IsRunning == false&&MusicController.isRecording)
             {
+                //toevoegen aan de notenbalk
                 Note n1 = new Note(tone, (ComposeView.CurrentOctave+octavePlus));
                 StopwatchController.StartWatch(n1);
             }
 
+            //verhoogde noot juiste naam geven, zodat deze goed oplicht.
             if (pitch.ToString().Length == 7)
             {
                 if (tone.Contains("Sharp"))
@@ -34,6 +36,7 @@ namespace VirtualPiano.Control
                     tone = tone.First() + "is";
                 }
             }
+            //oplichten van de toetsen
             ComposeView.pkv1.KeyPressed((ComposeView.CurrentOctave + octavePlus), tone);
             ComposeView.pkv1.Invalidate();
 
@@ -265,7 +268,7 @@ namespace VirtualPiano.Control
                     RemoveKey("C", Keys.V, 1);
                     break;
                 case Keys.G:
-                    RemoveKey("CSharp", Keys.V, 1);
+                    RemoveKey("CSharp", Keys.G, 1);
                     break;
                 case Keys.B:
                     RemoveKey("D", Keys.B, 1);

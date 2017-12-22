@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.formContent = new VirtualPiano.View.ComposeView();
+            this.CloseApplication = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // formContent
@@ -46,13 +47,30 @@
             this.formContent.Size = new System.Drawing.Size(1920, 1050);
             this.formContent.TabIndex = 0;
             // 
+            // CloseApplication
+            // 
+            this.CloseApplication.BackColor = System.Drawing.Color.White;
+            this.CloseApplication.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.CloseApplication.FlatAppearance.BorderSize = 0;
+            this.CloseApplication.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseApplication.Location = new System.Drawing.Point(1875, -1);
+            this.CloseApplication.Name = "CloseApplication";
+            this.CloseApplication.Size = new System.Drawing.Size(45, 30);
+            this.CloseApplication.TabIndex = 1;
+            this.CloseApplication.UseVisualStyleBackColor = false;
+            this.CloseApplication.Click += new System.EventHandler(this.CloseApplication_Click);
+            this.CloseApplication.MouseEnter += new System.EventHandler(this.CloseApplication_MouseEnter);
+            this.CloseApplication.MouseLeave += new System.EventHandler(this.CloseApplication_MouseLeave);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.CloseApplication);
             this.Controls.Add(this.formContent);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
@@ -69,6 +87,7 @@
         #endregion
 
         public View.ComposeView formContent;
+        private System.Windows.Forms.Button CloseApplication;
     }
 }
 

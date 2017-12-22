@@ -44,6 +44,9 @@ namespace VirtualPiano.Control
         public static bool isGestart = false;
         public static bool MetronomeTicking = false;
         public static bool isRecording = false;
+        public static bool recordingStarted = false;
+        public static event EventHandler ToggledPianoVisible;
+        public static event EventHandler StartRecord;
 
         public MusicController(Timer m, Timer r, Song s)
         {
@@ -56,7 +59,7 @@ namespace VirtualPiano.Control
             playBtn.FlatAppearance.BorderSize = 0;
             playBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
             playBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            playBtn.Click += PlayGeklikt;
+            playBtn.Click += PlayClicked;
 
             stopBtn.Name = "StopBtn";
             stopBtn.Image = stop;
@@ -67,7 +70,7 @@ namespace VirtualPiano.Control
             stopBtn.FlatAppearance.BorderSize = 0;
             stopBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
             stopBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            stopBtn.Click += StopGeklikt;
+            stopBtn.Click += StopClicked;
 
             recordBtn.Name = "RecordBtn";
             recordBtn.Image = recordstart;
@@ -122,7 +125,9 @@ namespace VirtualPiano.Control
             {
                 recordBtn.Image = recordstop;
                 recordBtn.Image = BitmapController.ColorReplace(recordBtn.Image, 30, Color.White, Color.LightGray);
-                isRecording = true;
+                if (!ComposeView.keypanel.Visible) { ToggledPianoVisible(this, e); }
+                StartRecord(this, e);
+                recordingStarted = true;
             }
         }
 
@@ -156,8 +161,7 @@ namespace VirtualPiano.Control
             rodeLijn.Stop();
         }
 
-
-        public void PlayGeklikt(Object sender, EventArgs e)
+        public void PlayClicked(Object sender, EventArgs e)
         {
             playBtn.FlatAppearance.BorderSize = 0;
             if (isPlayingSong == false)
@@ -179,8 +183,7 @@ namespace VirtualPiano.Control
         }
 
 
-
-        public void StopGeklikt(Object sender, EventArgs e)
+        public void StopClicked(Object sender, EventArgs e)
         {
             //wanneer de stopknop ingedrukt wordt. lijn opnieuw aan het begin zetten.
             playBtn.Image = play;
@@ -191,6 +194,7 @@ namespace VirtualPiano.Control
             rodeLijn.Stop();
             SongStopped(this, e);
             outputDevice.SilenceAllNotes();
+            isRecording = false;
         }
 
         //metronoom bpm instellen. Leerling geeft een bpm in. Deze wordt omgezet naar milliseconden zodat de timer juist ingesteld wordt.

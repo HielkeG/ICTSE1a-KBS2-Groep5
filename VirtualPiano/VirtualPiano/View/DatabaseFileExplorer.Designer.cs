@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatabaseFileExplorer));
             this.label1 = new System.Windows.Forms.Label();
             this.ZoekOpdracht = new System.Windows.Forms.TextBox();
             this.ItemsList = new System.Windows.Forms.ListBox();
@@ -75,12 +76,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(341, 597);
+            this.ClientSize = new System.Drawing.Size(344, 596);
             this.Controls.Add(this.Selecteer);
             this.Controls.Add(this.ItemsList);
             this.Controls.Add(this.ZoekOpdracht);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(360, 635);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(360, 635);
             this.Name = "DatabaseFileExplorer";
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Nummers";
             this.ResumeLayout(false);
             this.PerformLayout();
