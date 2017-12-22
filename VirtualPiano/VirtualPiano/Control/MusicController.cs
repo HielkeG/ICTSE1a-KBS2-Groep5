@@ -113,7 +113,7 @@ namespace VirtualPiano.Control
 
         }
 
-        private void RecordClick(object sender, EventArgs e)
+        public void RecordClick(object sender, EventArgs e)
         {
             if (isRecording)
             {
