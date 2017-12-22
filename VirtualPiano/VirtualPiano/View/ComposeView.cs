@@ -18,35 +18,27 @@ namespace VirtualPiano.View
     public partial class ComposeView : UserControl
     {
         public Song song = new Song();
-        Button btnAddStaff = new Button();
-        public static Button previousPage = new Button();
-        public static Button nextPage = new Button();
-        private ToolTip PreviousTip = new ToolTip();
-        private ToolTip NextTip = new ToolTip();
-        int y_staff = 140;
-        public static bool ConnectSelected = false;
-        public static Note selectedNote1;
-        public static Note selectedNote2;
+        
+        public Button previousPage = new Button();
+        public Button nextPage = new Button();
+        public static string SelectedSymbol = ""; //Deze variable onthoud op welk symbool uit de toolbar geklikt is, zodat de juiste bewerking gedaan kan worden.
+        public static Sign draggingSign; //Deze variable onthoud welke noot aan het slepen is, zodat deze noot bijvoorbeeld verwijderd kan worden.
+        public static Sign draggingSharp; //Deze variabele onthoud van welke noot het kruis of mol wordt verslepen.
+        public static bool ConnectSelected = false; //Deze boolean onthoud of het verbindsymbool uit de toolbar is aangeklikt.
+        public static Note selectedNote1; //Deze variable onthoud welke noot geselecteerd is voor het koppelen
+        public static Note selectedNote2; //Deze variable onthoud welke noot geselecteerd is voor het koppelen.
         public static Cursor cursor = Cursors.Default;
-        public static string SelectedSign = "";
-        public static bool cursorIsDown;
-        private List<StaffView> staffViews = new List<StaffView>();
-        private List<Panel> staffViewsPanels = new List<Panel>();
-        private bool firstStart = true;
+        public static bool cursorIsDown; //Deze variable onthoud of de muis is ingedrukt of niet
         public static System.Timers.Timer Songtimer = new System.Timers.Timer();  //Aparte timer zodat deze meerdere threads gebruikt.
-        public static string instrument = "Piano";
+        public static string instrument = "Piano"; //Deze variable onthoudt welk instrument geselecteerd is.
         public static int CurrentOctave = 3;
         public static int CurrentPlayingStaff = 0;
-        private static bool RunningTimer;    //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         public static int RedLineX = -60;   //locatie van de rode lijn
         public static bool PlayingKeyboard = false;
+        public static bool SoundEnabled = true;
         public static PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
-        public static Sign draggingSign;
-        public static Sign draggingSharp;
-        public static bool SoundEnabled = true;
-        Label RecordLabel = new Label();
-        public int RecordCount;
+       
         public static int AmountOfBars = 4;
         public static Panel keypanel = new Panel()
         {
@@ -57,9 +49,19 @@ namespace VirtualPiano.View
             Dock = DockStyle.Bottom,
             Visible = false
         };
+        private List<StaffView> staffViews = new List<StaffView>();
+        private List<Panel> staffViewsPanels = new List<Panel>();
+        private bool firstStart = true;
+        private static bool RunningTimer;    //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         private int CurrentPage = 1;
+        private int y_staff = 140;
+        private int RecordCount;
+        private Button btnAddStaff = new Button();
+        private ToolTip PreviousTip = new ToolTip();
+        private ToolTip NextTip = new ToolTip();
+        private Label RecordLabel = new Label();
 
-        
+
 
         public ComposeView()
         {
@@ -480,92 +482,92 @@ namespace VirtualPiano.View
 
         private void FullNote_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "WholeNote";                             //de bijbehorende naam van de noot.       
-            Cursor = CursorController.ChangeCursor(SelectedSign);   //de cursor veranderen naar de gewenste afbeelding.
+            SelectedSymbol = "WholeNote";                             //de bijbehorende naam van de noot.       
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);   //de cursor veranderen naar de gewenste afbeelding.
         }
 
         private void HalfNote_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "HalfNote";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "HalfNote";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void QuarterNote_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "QuarterNote";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "QuarterNote";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void EightNote_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "EightNote";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "EightNote";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void SixteenthNote_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "SixteenthNote";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "SixteenthNote";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void FullRest_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "WholeRest";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "WholeRest";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void HalfRest_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "HalfRest";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "HalfRest";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void QuarterRest_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "QuarterRest";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "QuarterRest";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void GKey_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "G";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "G";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void FKey_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "F";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "F";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void EightRest_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "EightRest";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "EightRest";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void SixteenthRest_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "SixteenthRest";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "SixteenthRest";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void Sharp_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "Sharp";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "Sharp";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void Flat_MouseDown(object sender, MouseEventArgs e)
         {
-            SelectedSign = "Flat";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "Flat";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         private void Connect_Click(object sender, EventArgs e)
         {
-            SelectedSign = "Connect1";
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            SelectedSymbol = "Connect1";
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
             ComposeView.selectedNote1 = null;
             ComposeView.selectedNote2 = null;
 
@@ -573,15 +575,15 @@ namespace VirtualPiano.View
 
         private void Bin_Click(object sender, EventArgs e)
         {
-            if (SelectedSign != "")
+            if (SelectedSymbol != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                 if(SoundEnabled) sound.Play();
-                SelectedSign = "";
-                Cursor = CursorController.ChangeCursor(SelectedSign);
+                SelectedSymbol = "";
+                Cursor = CursorController.ChangeCursor(SelectedSymbol);
             }
 
-            if (selectedNote1 != null || SelectedSign == "Connect2")
+            if (selectedNote1 != null || SelectedSymbol == "Connect2")
             {
                 selectedNote1 = null;
             }
@@ -596,7 +598,7 @@ namespace VirtualPiano.View
 
         private void ComposeView_MouseEnter(object sender, EventArgs e)
         {
-            Cursor = CursorController.ChangeCursor(SelectedSign);
+            Cursor = CursorController.ChangeCursor(SelectedSymbol);
         }
 
         public void Draw(PaintEventArgs e) //WIP
@@ -740,15 +742,15 @@ namespace VirtualPiano.View
             if (cursorIsDown)
             {
                 cursorIsDown = false;
-                SelectedSign = "";
-                Cursor = CursorController.ChangeCursor(SelectedSign);
+                SelectedSymbol = "";
+                Cursor = CursorController.ChangeCursor(SelectedSymbol);
                 Invalidate();
 
             }
             if (e.Button == MouseButtons.Right)
             {
-                SelectedSign = "";
-                Cursor = CursorController.ChangeCursor(SelectedSign);
+                SelectedSymbol = "";
+                Cursor = CursorController.ChangeCursor(SelectedSymbol);
                 ConnectSelected = false;
                 Invalidate();
             }
@@ -759,7 +761,7 @@ namespace VirtualPiano.View
         {
             bool signdeleted = false;
             //Wanneer er niks uit de toolbar geselecteerd is
-            if (SelectedSign == "")
+            if (SelectedSymbol == "")
             {
                 for (int staff = 0; staff < song.Staffs.Count(); staff++)
                 {
@@ -779,7 +781,7 @@ namespace VirtualPiano.View
                                     SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                                     if (ComposeView.SoundEnabled) sound.Play();
                                     //Normale cursor
-                                    Cursor = CursorController.ChangeCursor(SelectedSign);
+                                    Cursor = CursorController.ChangeCursor(SelectedSymbol);
                                     signdeleted = true;
                                 }
                                 if (signdeleted == true)
@@ -804,25 +806,25 @@ namespace VirtualPiano.View
                         note.SetNatural();
                         SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                         sound.Play();
-                        Cursor = CursorController.ChangeCursor(SelectedSign);
+                        Cursor = CursorController.ChangeCursor(SelectedSymbol);
                         draggingSharp = null;
                         note.isBeingMoved = false;
 
                     }
                 }
             }
-            if (SelectedSign == "BeginFlat")
+            if (SelectedSymbol == "BeginFlat")
             {
                 song.FlatSharp++;
-                SelectedSign = "";
+                SelectedSymbol = "";
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                 sound.Play();
                 song.SetSharpFlat();
             }
-            else if (SelectedSign == "BeginSharp")
+            else if (SelectedSymbol == "BeginSharp")
             {
                 song.FlatSharp--;
-                SelectedSign = "";
+                SelectedSymbol = "";
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
                 sound.Play();
                 song.SetSharpFlat();
