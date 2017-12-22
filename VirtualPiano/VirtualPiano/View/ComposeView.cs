@@ -18,7 +18,7 @@ namespace VirtualPiano.View
     public partial class ComposeView : UserControl
     {
         public Song song = new Song();
-        Button btnAddStaff = new Button();
+        public Button btnAddStaff = new Button();
         public static Button previousPage = new Button();
         public static Button nextPage = new Button();
         private ToolTip PreviousTip = new ToolTip();
@@ -46,6 +46,8 @@ namespace VirtualPiano.View
         public static Sign draggingSharp;
         public static bool SoundEnabled = true;
         public static int AmountOfBars = 4;
+        public static Image add = Resources.add_material;
+
         public static Panel keypanel = new Panel()
         {
             Location = new Point(600, 730),
@@ -55,9 +57,7 @@ namespace VirtualPiano.View
             Dock = DockStyle.Bottom,
             Visible = false
         };
-        private int CurrentPage = 1;
-
-        
+        protected int CurrentPage = 1;        
 
         public ComposeView()
         {
@@ -109,15 +109,25 @@ namespace VirtualPiano.View
             PianoKeysController.pianoKeysBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             PianoKeysController.pianoKeysBtn.MouseHover += new EventHandler(AllButtons_Hover);
             PianoKeysController.pianoKeysBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+
             MusicController.playBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             MusicController.playBtn.MouseHover += new EventHandler(AllButtons_Hover);
             MusicController.playBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+
             MusicController.stopBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             MusicController.stopBtn.MouseHover += new EventHandler(AllButtons_Hover);
             MusicController.stopBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+
+            MusicController.metronomeBtn.MouseEnter += new EventHandler(AllButtons_Enter);
+            MusicController.metronomeBtn.MouseHover += new EventHandler(AllButtons_Hover);
+            MusicController.metronomeBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+
+
             MusicController.recordBtn.MouseEnter += new EventHandler(AllButtons_Enter);
             MusicController.recordBtn.MouseHover += new EventHandler(AllButtons_Hover);
             MusicController.recordBtn.MouseLeave += new EventHandler(AllButtons_Leave);
+
+
 
             btnAddStaff.MouseEnter += new EventHandler(AllButtons_Enter);
             btnAddStaff.MouseHover += new EventHandler(AllButtons_Hover);
@@ -140,7 +150,7 @@ namespace VirtualPiano.View
         public void AllButtons_Enter(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.White, Color.LightGray);
+            btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.LightGray, Color.White);
         }
         public void AllButtons_Hover(object sender, EventArgs e)
         {
@@ -149,11 +159,17 @@ namespace VirtualPiano.View
         public void AllButtons_Down(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
+            //btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.White, Color.DarkGray);
+            btn.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
+
+
+
         }
         public void AllButtons_Leave(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.LightGray, Color.White);
+            btn.Image = BitmapController.ColorReplace(btn.Image, 30, Color.White, Color.LightGray);
+
         }
 
 
@@ -348,9 +364,9 @@ namespace VirtualPiano.View
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
-            btnAddStaff.Image = new Bitmap(Resources.add_material, 90, 90);
-            btnAddStaff.Location = new Point(1820, 930);
-            btnAddStaff.Size = new Size(90, 90);
+            btnAddStaff.Image = add;
+            btnAddStaff.Location = new Point(1815, 925);
+            btnAddStaff.Size = new Size(100, 100);
             btnAddStaff.BackColor = Color.Transparent;
             btnAddStaff.FlatStyle = FlatStyle.Flat;
             btnAddStaff.FlatAppearance.BorderSize = 0;
@@ -362,7 +378,7 @@ namespace VirtualPiano.View
         public void setPageButtons()
         {
             previousPage.Image = new Bitmap(Resources.up_arrow, 56, 56);
-            previousPage.Location = new Point(1836, 795);
+            previousPage.Location = new Point(1836, 790);
             previousPage.Size = new Size(56, 56);
             previousPage.BackColor = Color.Transparent;
             previousPage.FlatStyle = FlatStyle.Flat;
@@ -373,7 +389,7 @@ namespace VirtualPiano.View
             Controls.Add(previousPage);
 
             nextPage.Image = new Bitmap(Resources.down_arrow, 56, 56);
-            nextPage.Location = new Point(1836, 876);
+            nextPage.Location = new Point(1836, 870);
             nextPage.Size = new Size(56, 56);
             nextPage.BackColor = Color.Transparent;
             nextPage.FlatStyle = FlatStyle.Flat;
@@ -409,11 +425,7 @@ namespace VirtualPiano.View
                 //Hudige pagina wordt verhoogt
                 CurrentPage++;
                 CurrentPageLabel.Text = CurrentPage.ToString();
-                if (CurrentPage == 10)
-                {
-                    CurrentPageLabel.Location = new Point(1835, 855);
-                    previousPage.Location = new Point(1790, 857);
-                }
+
                 //Alle staffviews van de huidige pagina worden getoond
                 foreach (Panel panel in staffViewsPanels)
                 {
@@ -443,12 +455,7 @@ namespace VirtualPiano.View
                 //Huidige pagina verlagen
                 CurrentPage--;
                 CurrentPageLabel.Text = CurrentPage.ToString();
-
-                if (CurrentPage == 9)
-                {
-                    CurrentPageLabel.Location = new Point(1865, 855);
-                    previousPage.Location = new Point(1820, 857);
-                }
+                CurrentPageLabel.TextAlign = ContentAlignment.MiddleCenter;
 
                 //Alle staffviews van de huidige pagina worden getoond
                 foreach (Panel panel in staffViewsPanels)

@@ -35,11 +35,27 @@ namespace VirtualPiano.View
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComposeView));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.GKey = new System.Windows.Forms.ToolStripButton();
+            this.FKey = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.FullNote = new System.Windows.Forms.ToolStripButton();
+            this.HalfNote = new System.Windows.Forms.ToolStripButton();
+            this.QuarterNote = new System.Windows.Forms.ToolStripButton();
+            this.EightNote = new System.Windows.Forms.ToolStripButton();
+            this.SixteenthNote = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.FullRest = new System.Windows.Forms.ToolStripButton();
+            this.HalfRest = new System.Windows.Forms.ToolStripButton();
+            this.QuarterRest = new System.Windows.Forms.ToolStripButton();
+            this.EightRest = new System.Windows.Forms.ToolStripButton();
+            this.SixteenthRest = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.Flat = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.Bin = new System.Windows.Forms.ToolStripButton();
             this.Metronome = new System.Windows.Forms.Timer(this.components);
             this.Snelheid = new System.Windows.Forms.TextBox();
             this.RedLine = new System.Windows.Forms.Timer(this.components);
@@ -48,22 +64,6 @@ namespace VirtualPiano.View
             this.MetronomeSpeed = new System.Windows.Forms.TextBox();
             this.CurrentPageLabel = new System.Windows.Forms.Label();
             this.metroTip = new System.Windows.Forms.ToolTip(this.components);
-            this.GKey = new System.Windows.Forms.ToolStripButton();
-            this.FKey = new System.Windows.Forms.ToolStripButton();
-            this.FullNote = new System.Windows.Forms.ToolStripButton();
-            this.HalfNote = new System.Windows.Forms.ToolStripButton();
-            this.QuarterNote = new System.Windows.Forms.ToolStripButton();
-            this.EightNote = new System.Windows.Forms.ToolStripButton();
-            this.SixteenthNote = new System.Windows.Forms.ToolStripButton();
-            this.FullRest = new System.Windows.Forms.ToolStripButton();
-            this.HalfRest = new System.Windows.Forms.ToolStripButton();
-            this.QuarterRest = new System.Windows.Forms.ToolStripButton();
-            this.EightRest = new System.Windows.Forms.ToolStripButton();
-            this.SixteenthRest = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.Flat = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.Bin = new System.Windows.Forms.ToolStripButton();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -131,110 +131,6 @@ namespace VirtualPiano.View
             this.toolStrip1.Size = new System.Drawing.Size(65, 895);
             this.toolStrip1.TabIndex = 0;
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.AutoSize = false;
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.toolStripSeparator1.Size = new System.Drawing.Size(50, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.AutoSize = false;
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.toolStripSeparator2.Size = new System.Drawing.Size(50, 6);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.AutoSize = false;
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.toolStripSeparator3.Size = new System.Drawing.Size(50, 6);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.AutoSize = false;
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.toolStripSeparator4.Size = new System.Drawing.Size(50, 6);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.AutoSize = false;
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.toolStripSeparator5.Size = new System.Drawing.Size(50, 6);
-            // 
-            // Metronome
-            // 
-            this.Metronome.Tick += new System.EventHandler(this.Metronome_Tick);
-            // 
-            // Snelheid
-            // 
-            this.Snelheid.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Snelheid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Snelheid.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Snelheid.Location = new System.Drawing.Point(304, 103);
-            this.Snelheid.Name = "Snelheid";
-            this.Snelheid.Size = new System.Drawing.Size(100, 23);
-            this.Snelheid.TabIndex = 16;
-            this.Snelheid.TextChanged += new System.EventHandler(this.Snelheid_TextChanged);
-            // 
-            // RedLine
-            // 
-            this.RedLine.Interval = 20;
-            this.RedLine.Tick += new System.EventHandler(this.RedLine_Tick);
-            // 
-            // TitelBox
-            // 
-            this.TitelBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TitelBox.BackColor = System.Drawing.Color.White;
-            this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TitelBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(720, 45);
-            this.TitelBox.Margin = new System.Windows.Forms.Padding(0);
-            this.TitelBox.MaxLength = 96;
-            this.TitelBox.Name = "TitelBox";
-            this.TitelBox.Size = new System.Drawing.Size(480, 37);
-            this.TitelBox.TabIndex = 1;
-            this.TitelBox.Text = "Artiest - Titel";
-            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
-            this.TitelBox.Enter += new System.EventHandler(this.TitelBox_Enter);
-            this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
-            this.TitelBox.Leave += new System.EventHandler(this.TitelBox_Leave);
-            // 
-            // MetronoomLabel
-            // 
-            this.MetronoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MetronoomLabel.ForeColor = System.Drawing.Color.Black;
-            this.MetronoomLabel.Location = new System.Drawing.Point(1582, 56);
-            this.MetronoomLabel.Name = "MetronoomLabel";
-            this.MetronoomLabel.Size = new System.Drawing.Size(107, 23);
-            this.MetronoomLabel.TabIndex = 3;
-            this.MetronoomLabel.Text = "Metronoom:";
-            // 
-            // MetronomeSpeed
-            // 
-            this.MetronomeSpeed.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MetronomeSpeed.Location = new System.Drawing.Point(1695, 54);
-            this.MetronomeSpeed.Name = "MetronomeSpeed";
-            this.MetronomeSpeed.Size = new System.Drawing.Size(40, 25);
-            this.MetronomeSpeed.TabIndex = 4;
-            this.MetronomeSpeed.Text = "100";
-            this.MetronomeSpeed.TextChanged += new System.EventHandler(this.MetronomeSpeed_TextChanged);
-            // 
-            // CurrentPageLabel
-            // 
-            this.CurrentPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CurrentPageLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.CurrentPageLabel.Location = new System.Drawing.Point(1848, 845);
-            this.CurrentPageLabel.Name = "CurrentPageLabel";
-            this.CurrentPageLabel.Size = new System.Drawing.Size(90, 50);
-            this.CurrentPageLabel.TabIndex = 5;
-            this.CurrentPageLabel.Text = "1";
-            // 
             // GKey
             // 
             this.GKey.AutoSize = false;
@@ -263,6 +159,13 @@ namespace VirtualPiano.View
             this.FKey.Size = new System.Drawing.Size(55, 55);
             this.FKey.Text = "F-Sleutel";
             this.FKey.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FKey_MouseDown);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.AutoSize = false;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.toolStripSeparator1.Size = new System.Drawing.Size(50, 6);
             // 
             // FullNote
             // 
@@ -334,6 +237,13 @@ namespace VirtualPiano.View
             this.SixteenthNote.Text = "1/16e noot";
             this.SixteenthNote.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SixteenthNote_MouseDown);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.AutoSize = false;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.toolStripSeparator2.Size = new System.Drawing.Size(50, 6);
+            // 
             // FullRest
             // 
             this.FullRest.AutoSize = false;
@@ -404,6 +314,13 @@ namespace VirtualPiano.View
             this.SixteenthRest.Text = "SixteenthRest";
             this.SixteenthRest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SixteenthRest_MouseDown);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.AutoSize = false;
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.toolStripSeparator3.Size = new System.Drawing.Size(50, 6);
+            // 
             // toolStripButton1
             // 
             this.toolStripButton1.AutoSize = false;
@@ -432,6 +349,13 @@ namespace VirtualPiano.View
             this.Flat.Text = "Mol";
             this.Flat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Flat_MouseDown);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.AutoSize = false;
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.toolStripSeparator4.Size = new System.Drawing.Size(50, 6);
+            // 
             // toolStripButton2
             // 
             this.toolStripButton2.AutoSize = false;
@@ -445,6 +369,13 @@ namespace VirtualPiano.View
             this.toolStripButton2.Size = new System.Drawing.Size(50, 50);
             this.toolStripButton2.Text = "Noten samenvoegen";
             this.toolStripButton2.Click += new System.EventHandler(this.Connect_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.AutoSize = false;
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.toolStripSeparator5.Size = new System.Drawing.Size(50, 6);
             // 
             // Bin
             // 
@@ -462,6 +393,76 @@ namespace VirtualPiano.View
             this.Bin.MouseEnter += new System.EventHandler(this.Bin_MouseEnter);
             this.Bin.MouseLeave += new System.EventHandler(this.Bin_MouseLeave);
             this.Bin.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Bin_MouseMove);
+            // 
+            // Metronome
+            // 
+            this.Metronome.Tick += new System.EventHandler(this.Metronome_Tick);
+            // 
+            // Snelheid
+            // 
+            this.Snelheid.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Snelheid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Snelheid.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Snelheid.Location = new System.Drawing.Point(304, 103);
+            this.Snelheid.Name = "Snelheid";
+            this.Snelheid.Size = new System.Drawing.Size(100, 23);
+            this.Snelheid.TabIndex = 16;
+            this.Snelheid.TextChanged += new System.EventHandler(this.Snelheid_TextChanged);
+            // 
+            // RedLine
+            // 
+            this.RedLine.Interval = 20;
+            this.RedLine.Tick += new System.EventHandler(this.RedLine_Tick);
+            // 
+            // TitelBox
+            // 
+            this.TitelBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TitelBox.BackColor = System.Drawing.Color.White;
+            this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TitelBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitelBox.Location = new System.Drawing.Point(720, 45);
+            this.TitelBox.Margin = new System.Windows.Forms.Padding(0);
+            this.TitelBox.MaxLength = 96;
+            this.TitelBox.Name = "TitelBox";
+            this.TitelBox.Size = new System.Drawing.Size(480, 37);
+            this.TitelBox.TabIndex = 1;
+            this.TitelBox.Text = "Artiest - Titel";
+            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
+            this.TitelBox.Enter += new System.EventHandler(this.TitelBox_Enter);
+            this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
+            this.TitelBox.Leave += new System.EventHandler(this.TitelBox_Leave);
+            // 
+            // MetronoomLabel
+            // 
+            this.MetronoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MetronoomLabel.ForeColor = System.Drawing.Color.Black;
+            this.MetronoomLabel.Location = new System.Drawing.Point(1530, 55);
+            this.MetronoomLabel.Name = "MetronoomLabel";
+            this.MetronoomLabel.Size = new System.Drawing.Size(107, 23);
+            this.MetronoomLabel.TabIndex = 3;
+            this.MetronoomLabel.Text = "Metronoom:";
+            // 
+            // MetronomeSpeed
+            // 
+            this.MetronomeSpeed.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MetronomeSpeed.Location = new System.Drawing.Point(1643, 53);
+            this.MetronomeSpeed.Name = "MetronomeSpeed";
+            this.MetronomeSpeed.Size = new System.Drawing.Size(40, 25);
+            this.MetronomeSpeed.TabIndex = 4;
+            this.MetronomeSpeed.Text = "100";
+            this.MetronomeSpeed.TextChanged += new System.EventHandler(this.MetronomeSpeed_TextChanged);
+            // 
+            // CurrentPageLabel
+            // 
+            this.CurrentPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CurrentPageLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.CurrentPageLabel.Location = new System.Drawing.Point(1836, 838);
+            this.CurrentPageLabel.Name = "CurrentPageLabel";
+            this.CurrentPageLabel.Size = new System.Drawing.Size(60, 41);
+            this.CurrentPageLabel.TabIndex = 5;
+            this.CurrentPageLabel.Text = "1";
+            this.CurrentPageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // menuBarView1
             // 

@@ -14,16 +14,16 @@ namespace VirtualPiano.Control
 {
     public class PianoKeysController
     {
-        public static Image openpiano = Resources.showpiano;
-        public static Image close = Resources.close;
+        public static Image openpiano = Resources.showpiano_material;
+        public static Image close = Resources.close_material;
         public static Button pianoKeysBtn = new Button();
         public event EventHandler ToggledPianoVisible;
 
         public PianoKeysController()
         {
-            pianoKeysBtn.Image = new Bitmap(Resources.showpiano, 50, 50);
-            pianoKeysBtn.Location = new Point(1815, 35);
-            pianoKeysBtn.Size = new Size(55, 55);
+            pianoKeysBtn.Image = openpiano;
+            pianoKeysBtn.Location = new Point(1800, 20);
+            pianoKeysBtn.Size = new Size(80, 80);
             pianoKeysBtn.BackColor = Color.Transparent;
             pianoKeysBtn.FlatStyle = FlatStyle.Flat;
             pianoKeysBtn.FlatAppearance.BorderSize = 0;
@@ -43,12 +43,12 @@ namespace VirtualPiano.Control
         {
             if (ComposeView.keypanel.Visible == false)
             {
-                pianoKeysBtn.Image = new Bitmap(Resources.showpiano, 50, 50);
+                pianoKeysBtn.Image = openpiano;
                 pianoKeysBtn.Image = BitmapController.ColorReplace(pianoKeysBtn.Image, 30, Color.White, Color.LightGray);
             }
             else
             {
-                pianoKeysBtn.Image = new Bitmap(Resources.close, 50, 50);
+                pianoKeysBtn.Image = close;
                 pianoKeysBtn.Image = BitmapController.ColorReplace(pianoKeysBtn.Image, 30, Color.White, Color.LightGray);
 
             }

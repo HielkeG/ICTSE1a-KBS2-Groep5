@@ -190,6 +190,16 @@ namespace VirtualPiano.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap close_material {
+            get {
+                object obj = ResourceManager.GetObject("close_material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] Connect1 {
@@ -472,6 +482,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap metronome_off_material {
+            get {
+                object obj = ResourceManager.GetObject("metronome_off_material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap metronome_off1 {
             get {
                 object obj = ResourceManager.GetObject("metronome_off1", resourceCulture);
@@ -482,9 +502,19 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap metronome_off2 {
+        internal static System.Drawing.Bitmap metronome_on_material {
             get {
-                object obj = ResourceManager.GetObject("metronome_off2", resourceCulture);
+                object obj = ResourceManager.GetObject("metronome_on_material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metronome_on_material2 {
+            get {
+                object obj = ResourceManager.GetObject("metronome_on_material2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -582,6 +612,16 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pause_material {
+            get {
+                object obj = ResourceManager.GetObject("pause_material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap piano {
             get {
                 object obj = ResourceManager.GetObject("piano", resourceCulture);
@@ -632,9 +672,39 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap play_material {
+            get {
+                object obj = ResourceManager.GetObject("play_material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap record_active_material {
+            get {
+                object obj = ResourceManager.GetObject("record_active_material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap record_start {
             get {
                 object obj = ResourceManager.GetObject("record_start", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap record_start_material {
+            get {
+                object obj = ResourceManager.GetObject("record_start_material", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -682,9 +752,29 @@ namespace VirtualPiano.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap showpiano_material {
+            get {
+                object obj = ResourceManager.GetObject("showpiano_material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap stop {
             get {
                 object obj = ResourceManager.GetObject("stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stop_material {
+            get {
+                object obj = ResourceManager.GetObject("stop_material", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

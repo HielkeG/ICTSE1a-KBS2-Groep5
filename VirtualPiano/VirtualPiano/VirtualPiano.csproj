@@ -83,6 +83,10 @@
     <Compile Include="Midi\Pitch.cs" />
     <Compile Include="Midi\ShortMsg.cs" />
     <Compile Include="Midi\Win32API.cs" />
+    <Compile Include="Migrations\201712211235314_db1.cs" />
+    <Compile Include="Migrations\201712211235314_db1.Designer.cs">
+      <DependentUpon>201712211235314_db1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -169,6 +173,9 @@
     <Compile Include="View\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Migrations\201712211235314_db1.resx">
+      <DependentUpon>201712211235314_db1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -191,6 +198,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ComposeView.resx">
       <DependentUpon>ComposeView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MenuBarView.resx">
       <DependentUpon>MenuBarView.cs</DependentUpon>
@@ -385,6 +393,14 @@
     <None Include="Resources\Afbeeldingen\Knoppen\down_arrow.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\left_arrow.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\right_arrow.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\close_material.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\record_active_material.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\pause_material.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\play_material.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\record_start_material.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_off_material.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on_material.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\metronome_on_material2.png" />
     <Content Include="Resources\Afbeeldingen\Knoppen\showpiano.png" />
     <None Include="Resources\Afbeeldingen\logo_icon.ico" />
     <None Include="Resources\Afbeeldingen\logo_icon32x32.ico" />
@@ -393,6 +409,8 @@
     <None Include="Resources\Afbeeldingen\Menubar\piano.png" />
     <None Include="Resources\Afbeeldingen\logo_highres.png" />
     <None Include="Resources\Afbeeldingen\Knoppen\up_arrow.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\showpiano_material.png" />
+    <None Include="Resources\Afbeeldingen\Knoppen\stop_material.png" />
     <Content Include="Resources\Afbeeldingen\Muzieknoten\achtsterust.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\halvenootflipped.png" />
     <None Include="Resources\Afbeeldingen\Muzieknoten\kwartnootflipped.png" />
