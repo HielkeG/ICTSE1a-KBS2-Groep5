@@ -61,7 +61,7 @@ namespace VirtualPiano.Control
             playBtn.FlatAppearance.BorderSize = 0;
             playBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
             playBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            playBtn.Click += PlayGeklikt;
+            playBtn.Click += PlayClicked;
 
             stopBtn.Name = "StopBtn";
             stopBtn.Location = new Point(170, 35);
@@ -71,7 +71,7 @@ namespace VirtualPiano.Control
             stopBtn.FlatAppearance.BorderSize = 0;
             stopBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
             stopBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            stopBtn.Click += StopGeklikt;
+            stopBtn.Click += StopClicked;
 
             recordBtn.Name = "RecordBtn";
             recordBtn.Image = recordstart;
@@ -125,10 +125,8 @@ namespace VirtualPiano.Control
             {
                 recordBtn.Image = recordstop;
                 recordBtn.Image = BitmapController.ColorReplace(recordBtn.Image, 30, Color.White, Color.LightGray);
-                if (!ComposeView.keypanel.Visible)
-                    ToggledPianoVisible(this, e);
-                if (recordingStarted == false)
-                    StartRecord(this, e);
+                if (!ComposeView.keypanel.Visible) { ToggledPianoVisible(this, e); }
+                StartRecord(this, e);
                 recordingStarted = true;
             }
         }
@@ -163,7 +161,7 @@ namespace VirtualPiano.Control
             rodeLijn.Stop();
         }
 
-        public void PlayGeklikt(Object sender, EventArgs e)
+        public void PlayClicked(Object sender, EventArgs e)
         {
             if (isPlayingSong == false)
             {
@@ -185,7 +183,7 @@ namespace VirtualPiano.Control
         }
 
 
-        public void StopGeklikt(Object sender, EventArgs e)
+        public void StopClicked(Object sender, EventArgs e)
         {
             //wanneer de stopknop ingedrukt wordt. lijn opnieuw aan het begin zetten.
             playBtn.Image = new Bitmap(play, width, height);
