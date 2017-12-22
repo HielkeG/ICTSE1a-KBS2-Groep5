@@ -19,7 +19,6 @@ namespace VirtualPiano.Model
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SongId { get; set; }
-        public string Composer { get; set; }
         public int FlatSharp { get; set; }
         private string title = "titel";
         public int Pages { get; set; }

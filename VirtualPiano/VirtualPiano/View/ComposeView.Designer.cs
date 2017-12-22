@@ -427,8 +427,7 @@ namespace VirtualPiano.View
             this.TitelBox.Name = "TitelBox";
             this.TitelBox.Size = new System.Drawing.Size(480, 37);
             this.TitelBox.TabIndex = 1;
-            this.TitelBox.Text = "Artiest - Titel";
-            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TitelBox.Text = "Titel";
             this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
             this.TitelBox.Enter += new System.EventHandler(this.TitelBox_Enter);
             this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);

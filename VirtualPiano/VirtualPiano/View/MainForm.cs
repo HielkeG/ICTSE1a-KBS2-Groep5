@@ -33,7 +33,6 @@ namespace VirtualPiano
             if (ComposeView.PlayingKeyboard)
             {
                 //toetsaanslagen opvangen.
-                if (MusicController.isRecording)
                     KeyBinds.PressPianoKeys(e);
             }
 
@@ -43,7 +42,6 @@ namespace VirtualPiano
         {
             if (ComposeView.PlayingKeyboard)
             {
-                if (MusicController.isRecording)
                     KeyBinds.ReleasePianoKeys(e);
                 Refresh();
             }
