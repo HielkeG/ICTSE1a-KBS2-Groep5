@@ -265,6 +265,9 @@ namespace VirtualPiano.View
             TitelBox.Text = "Titel";
             CurrentPage = 1;
             btnAddStaff.Visible = true;
+            ActiveControl = TitelBox;
+            TitelBox.ForeColor = Color.Silver;
+            TitelBox_MouseMove(new object(), new MouseEventArgs(new MouseButtons(), 0, 0, 0, 0));
             Invalidate();
         }
 
@@ -276,6 +279,7 @@ namespace VirtualPiano.View
             song = newSong;
             RedLineX = -60;
             CurrentPage = 1;
+            TitelBox.ForeColor = Color.Black;
             StopwatchController.CurrentComposingStaff = 0;
             CurrentPageLabel.Text = CurrentPage.ToString();
             btnAddStaff.Visible = true;
@@ -676,11 +680,10 @@ namespace VirtualPiano.View
 
         private void TitelBox_TextChanged(object sender, EventArgs e)
         {
+
             if (TitelBox.Text != "")
             {
                 song.Title = TitelBox.Text;
-                Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
-                TitelBox.Size = size;
             }
             else
             {
@@ -860,6 +863,7 @@ namespace VirtualPiano.View
 
         private void TitelBox_KeyDown(object sender, KeyEventArgs e)
         {
+            TitelBox.ForeColor = Color.Black;
             if (e.KeyCode == Keys.Enter)
             {
                 TitelBox.Enabled = false;
@@ -936,6 +940,32 @@ namespace VirtualPiano.View
                 MusicController.recordingStarted = false;
 
             }
+        }
+
+        private void TitelBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (TitelBox.Focused)
+            {
+                if (TitelBox.ForeColor == Color.Silver) TitelBox.Text = "";
+            }
+        }
+
+        private void ComposeView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!TitelBox.Focused)
+            {
+                if (TitelBox.ForeColor == Color.Silver || TitelBox.Text == "")
+                {
+                    TitelBox.Text = "Titel";
+                    TitelBox.ForeColor = Color.Silver;
+                }
+            }
+        }
+
+        private void ComposeView_Load(object sender, EventArgs e)
+        {
+            ActiveControl = TitelBox;
+            TitelBox_MouseMove(sender, new MouseEventArgs(new MouseButtons(),0,0,0,0));
         }
     }
 }

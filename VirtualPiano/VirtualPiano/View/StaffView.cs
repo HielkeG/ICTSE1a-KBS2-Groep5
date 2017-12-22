@@ -220,6 +220,7 @@ namespace VirtualPiano.View
             bool noteSet = false;
             int MouseX = PointToClient(Cursor.Position).X;
             int MouseY = PointToClient(Cursor.Position).Y;
+            
 
             foreach (Bar bar in staff.Bars)
             {

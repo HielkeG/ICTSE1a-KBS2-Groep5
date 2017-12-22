@@ -421,17 +421,20 @@ namespace VirtualPiano.View
             this.TitelBox.BackColor = System.Drawing.Color.White;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TitelBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitelBox.Location = new System.Drawing.Point(720, 45);
+            this.TitelBox.ForeColor = System.Drawing.Color.Silver;
+            this.TitelBox.Location = new System.Drawing.Point(477, 45);
             this.TitelBox.Margin = new System.Windows.Forms.Padding(0);
             this.TitelBox.MaxLength = 96;
             this.TitelBox.Name = "TitelBox";
-            this.TitelBox.Size = new System.Drawing.Size(480, 37);
+            this.TitelBox.Size = new System.Drawing.Size(916, 37);
             this.TitelBox.TabIndex = 1;
             this.TitelBox.Text = "Titel";
+            this.TitelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TitelBox.TextChanged += new System.EventHandler(this.TitelBox_TextChanged);
             this.TitelBox.Enter += new System.EventHandler(this.TitelBox_Enter);
             this.TitelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TitelBox_KeyDown);
             this.TitelBox.Leave += new System.EventHandler(this.TitelBox_Leave);
+            this.TitelBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitelBox_MouseMove);
             // 
             // MetronoomLabel
             // 
@@ -497,8 +500,10 @@ namespace VirtualPiano.View
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ComposeView";
             this.Size = new System.Drawing.Size(1859, 1014);
+            this.Load += new System.EventHandler(this.ComposeView_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseDown);
             this.MouseEnter += new System.EventHandler(this.ComposeView_MouseEnter);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ComposeView_MouseUp);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ResumeLayout(false);
