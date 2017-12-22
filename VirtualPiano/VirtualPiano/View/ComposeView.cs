@@ -288,14 +288,6 @@ namespace VirtualPiano.View
                 {
                     item.IsBeingPlayed = true;
                 }
-                if (item == song.GetStaffs().Last() && staffViews.Count <= 2)
-                {
-                    btnAddStaff.Visible = true;
-                }
-                else
-                {
-                    btnAddStaff.Visible = false;
-                }
                 y_staff += 200;
 
 
