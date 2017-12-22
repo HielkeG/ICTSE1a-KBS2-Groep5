@@ -18,15 +18,15 @@ namespace VirtualPiano.Control
 
         public static OutputDevice outputDevice = OutputDevice.InstalledDevices[0];
         public static bool isPlayingSong = false;
-        public static Image stop = Resources.stop_material;
-        public static Image play = Resources.play_material;
-        public static Image pause = Resources.pause_material;
-        public static Image rewind = Resources.rewind;
-        public static Image recordstart = Resources.record_start_material;
-        public static Image recordstop = Resources.record_active_material;
-        public static Image metronomeOn1 = Resources.metronome_on_material;
-        public static Image metronomeOn2 = Resources.metronome_on_material2;
-        public static Image metronomeOff = Resources.metronome_off_material;
+        public static Image play = new Bitmap(Resources.play_material, 90, 90);
+        public static Image stop = new Bitmap(Resources.stop_material, 90, 90);
+        public static Image pause = new Bitmap(Resources.pause_material, 90, 90);
+        public static Image rewind = new Bitmap(Resources.rewind, 90, 90);
+        public static Image recordstart = new Bitmap(Resources.record_start_material, 90, 90);
+        public static Image recordstop = new Bitmap(Resources.record_active_material, 90, 90);
+        public static Image metronomeOn1 = new Bitmap(Resources.metronome_on_material, 90, 90);
+        public static Image metronomeOn2 = new Bitmap(Resources.metronome_on_material2, 90, 90);
+        public static Image metronomeOff = new Bitmap(Resources.metronome_off_material, 90, 90);
 
         public static Button playBtn = new Button();
         public static Button stopBtn = new Button();
@@ -52,8 +52,8 @@ namespace VirtualPiano.Control
         {
             playBtn.Name = "PlayBtn";
             playBtn.Image = play;
-            playBtn.Size = new Size(80, 80);
-            playBtn.Location = new Point(90, 20);
+            playBtn.Size = new Size(85, 85);
+            playBtn.Location = new Point(100, 20);
             playBtn.BackColor = Color.Transparent;
             playBtn.FlatStyle = FlatStyle.Flat;
             playBtn.FlatAppearance.BorderSize = 0;
@@ -63,8 +63,8 @@ namespace VirtualPiano.Control
 
             stopBtn.Name = "StopBtn";
             stopBtn.Image = stop;
-            stopBtn.Size = new Size(80, 80);
-            stopBtn.Location = new Point(180, 20);
+            stopBtn.Size = new Size(85, 85);
+            stopBtn.Location = new Point(185, 20);
             recordBtn.BackColor = Color.Transparent;
             stopBtn.FlatStyle = FlatStyle.Flat;
             stopBtn.FlatAppearance.BorderSize = 0;
@@ -74,7 +74,7 @@ namespace VirtualPiano.Control
 
             recordBtn.Name = "RecordBtn";
             recordBtn.Image = recordstart;
-            recordBtn.Size = new Size(80, 80);
+            recordBtn.Size = new Size(85, 85);
             recordBtn.Location = new Point(270, 20);
             recordBtn.BackColor = Color.Transparent;
             recordBtn.FlatStyle = FlatStyle.Flat;
@@ -85,22 +85,18 @@ namespace VirtualPiano.Control
 
             metronomeBtn.Name = "MetronomeBtn";
             metronomeBtn.Image = metronomeOff;
-            metronomeBtn.Size = new Size(80, 80);
+            metronomeBtn.Size = new Size(85, 85);
             metronomeBtn.Location = new Point(1700, 20);
             metronomeBtn.BackColor = Color.Transparent;
             metronomeBtn.FlatStyle = FlatStyle.Flat;
             metronomeBtn.FlatAppearance.BorderSize = 0;
-            metronomeBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
             metronomeBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
             metronomeBtn.FlatAppearance.MouseOverBackColor = Color.Transparent;
             metronomeBtn.Click += MetronomeClick;
 
-
-
             Metronoom = m;
             rodeLijn = r;
             song = s;
-
 
             //standaard interval op 100 zetten. Zodat de bpm ook 100 is.
             Metronoom.Interval = 100;
@@ -150,7 +146,6 @@ namespace VirtualPiano.Control
             }
         }
 
-
         public static void ResetLine()
         {
             playBtn.Image = play;
@@ -181,7 +176,6 @@ namespace VirtualPiano.Control
                 rodeLijn.Stop();
             }
         }
-
 
         public void StopClicked(Object sender, EventArgs e)
         {

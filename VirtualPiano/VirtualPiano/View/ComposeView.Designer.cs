@@ -35,6 +35,21 @@ namespace VirtualPiano.View
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComposeView));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.Metronome = new System.Windows.Forms.Timer(this.components);
+            this.Snelheid = new System.Windows.Forms.TextBox();
+            this.RedLine = new System.Windows.Forms.Timer(this.components);
+            this.TitelBox = new System.Windows.Forms.TextBox();
+            this.MetronoomLabel = new System.Windows.Forms.Label();
+            this.MetronomeSpeed = new System.Windows.Forms.TextBox();
+            this.CurrentPageLabel = new System.Windows.Forms.Label();
+            this.metroTip = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.GKey = new System.Windows.Forms.ToolStripButton();
             this.FKey = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -416,7 +431,7 @@ namespace VirtualPiano.View
             this.RedLine.Tick += new System.EventHandler(this.RedLine_Tick);
             // 
             // TitelBox
-            // 
+            //
             this.TitelBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.TitelBox.BackColor = System.Drawing.Color.White;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -460,7 +475,7 @@ namespace VirtualPiano.View
             // 
             this.CurrentPageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CurrentPageLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.CurrentPageLabel.Location = new System.Drawing.Point(1836, 838);
+            this.CurrentPageLabel.Location = new System.Drawing.Point(1836, 861);
             this.CurrentPageLabel.Name = "CurrentPageLabel";
             this.CurrentPageLabel.Size = new System.Drawing.Size(60, 41);
             this.CurrentPageLabel.TabIndex = 5;

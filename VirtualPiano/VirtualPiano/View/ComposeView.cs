@@ -18,15 +18,16 @@ namespace VirtualPiano.View
     public partial class ComposeView : UserControl
     {
         public Song song = new Song();
-        Button btnAddStaff = new Button();
-        public static Button previousPage = new Button();
-        public static Button nextPage = new Button();
-        private ToolTip PreviousTip = new ToolTip();
-        private ToolTip NextTip = new ToolTip();
-        int y_staff = 140;
-        public static bool ConnectSelected = false;
-        public static Note selectedNote1;
-        public static Note selectedNote2;
+        private Button btnAddStaff = new Button();
+        public Button previousPage = new Button();
+        public Button nextPage = new Button();
+
+        public static string SelectedSymbol = ""; //Deze variable onthoud op welk symbool uit de toolbar geklikt is, zodat de juiste bewerking gedaan kan worden.
+        public static Sign draggingSign; //Deze variable onthoud welke noot aan het slepen is, zodat deze noot bijvoorbeeld verwijderd kan worden.
+        public static Sign draggingSharp; //Deze variabele onthoud van welke noot het kruis of mol wordt verslepen.
+        public static bool ConnectSelected = false; //Deze boolean onthoud of het verbindsymbool uit de toolbar is aangeklikt.
+        public static Note selectedNote1; //Deze variable onthoud welke noot geselecteerd is voor het koppelen
+        public static Note selectedNote2; //Deze variable onthoud welke noot geselecteerd is voor het koppelen.
         public static Cursor cursor = Cursors.Default;
         public static bool cursorIsDown; //Deze variable onthoud of de muis is ingedrukt of niet
         public static System.Timers.Timer Songtimer = new System.Timers.Timer();  //Aparte timer zodat deze meerdere threads gebruikt.
@@ -38,10 +39,8 @@ namespace VirtualPiano.View
         public static bool SoundEnabled = true;
         public static PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
-       
-        public static int AmountOfBars = 4;
-        public static Image add = Resources.add_material;
 
+        public static int AmountOfBars = 4;
         public static Panel keypanel = new Panel()
         {
             Location = new Point(600, 730),
@@ -51,15 +50,18 @@ namespace VirtualPiano.View
             Dock = DockStyle.Bottom,
             Visible = false
         };
+        private List<StaffView> staffViews = new List<StaffView>();
+        private List<Panel> staffViewsPanels = new List<Panel>();
+        private bool firstStart = true;
+        private static bool RunningTimer;    //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         private int CurrentPage = 1;
         private int y_staff = 140;
         private int RecordCount;
-        private Button btnAddStaff = new Button();
         private ToolTip PreviousTip = new ToolTip();
         private ToolTip NextTip = new ToolTip();
         private Label RecordLabel = new Label();
 
-        
+
 
         public ComposeView()
         {
@@ -69,7 +71,6 @@ namespace VirtualPiano.View
             Songtimer.Elapsed += TimerTick;
             AddStaffButton();
             SetPageButtons();
-
 
             InitializeComponent();
             if (firstStart)
@@ -199,8 +200,6 @@ namespace VirtualPiano.View
             RecordLabel.Text = "3";
             RecordTimer.Start();
 
-
-
         }
 
         //Deze methode zet de piano aan en uit
@@ -279,6 +278,9 @@ namespace VirtualPiano.View
             TitelBox.Text = "Titel";
             CurrentPage = 1;
             btnAddStaff.Visible = true;
+            ActiveControl = TitelBox;
+            TitelBox.ForeColor = Color.Silver;
+            TitelBox_MouseMove(new object(), new MouseEventArgs(new MouseButtons(), 0, 0, 0, 0));
             Invalidate();
         }
 
@@ -290,6 +292,7 @@ namespace VirtualPiano.View
             song = newSong;
             RedLineX = -60;
             CurrentPage = 1;
+            TitelBox.ForeColor = Color.Black;
             StopwatchController.CurrentComposingStaff = 0;
             CurrentPageLabel.Text = CurrentPage.ToString();
             btnAddStaff.Visible = true;
@@ -386,8 +389,8 @@ namespace VirtualPiano.View
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen
         {
-            btnAddStaff.Image = add;
-            btnAddStaff.Location = new Point(1815, 925);
+            btnAddStaff.Image = Resources.add_material;
+            btnAddStaff.Location = new Point(1815, 950);
             btnAddStaff.Size = new Size(100, 100);
             btnAddStaff.BackColor = Color.Transparent;
             btnAddStaff.FlatStyle = FlatStyle.Flat;
@@ -400,7 +403,7 @@ namespace VirtualPiano.View
         public void SetPageButtons()
         {
             previousPage.Image = new Bitmap(Resources.up_arrow, 56, 56);
-            previousPage.Location = new Point(1836, 790);
+            previousPage.Location = new Point(1836, 810);
             previousPage.Size = new Size(56, 56);
             previousPage.BackColor = Color.Transparent;
             previousPage.FlatStyle = FlatStyle.Flat;
@@ -411,7 +414,7 @@ namespace VirtualPiano.View
             Controls.Add(previousPage);
 
             nextPage.Image = new Bitmap(Resources.down_arrow, 56, 56);
-            nextPage.Location = new Point(1836, 870);
+            nextPage.Location = new Point(1836, 895);
             nextPage.Size = new Size(56, 56);
             nextPage.BackColor = Color.Transparent;
             nextPage.FlatStyle = FlatStyle.Flat;
@@ -591,7 +594,7 @@ namespace VirtualPiano.View
             if (SelectedSymbol != "")
             {
                 SoundPlayer sound = new SoundPlayer(Resources.BinSound);
-                if(SoundEnabled) sound.Play();
+                if (SoundEnabled) sound.Play();
                 SelectedSymbol = "";
                 Cursor = CursorController.ChangeCursor(SelectedSymbol);
             }
@@ -941,6 +944,31 @@ namespace VirtualPiano.View
                 MusicController.recordingStarted = false;
 
             }
+        }
+        private void TitelBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (TitelBox.Focused)
+            {
+                if (TitelBox.ForeColor == Color.Silver) TitelBox.Text = "";
+            }
+        }
+
+        private void ComposeView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!TitelBox.Focused)
+            {
+                if (TitelBox.ForeColor == Color.Silver || TitelBox.Text == "")
+                {
+                    TitelBox.Text = "Titel";
+                    TitelBox.ForeColor = Color.Silver;
+                }
+            }
+        }
+
+        private void ComposeView_Load(object sender, EventArgs e)
+        {
+            ActiveControl = TitelBox;
+            TitelBox_MouseMove(sender, new MouseEventArgs(new MouseButtons(), 0, 0, 0, 0));
         }
     }
 }
