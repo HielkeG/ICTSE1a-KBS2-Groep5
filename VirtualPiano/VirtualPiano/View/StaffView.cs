@@ -247,11 +247,11 @@ namespace VirtualPiano.View
                                         newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
                                         if (note.Flipped == true || note.Y <= 0)
                                         {
-                                            newNote.flip();
+                                            newNote.Flip();
                                         }
                                         else
                                         {
-                                            newNote.unflip();
+                                            newNote.Unflip();
                                         }
                                         if (note.Duration >= newNote.Duration)
                                         {
@@ -478,11 +478,11 @@ namespace VirtualPiano.View
                                             //Als de noot op de kop staat, moet ook deze noot op de kop staan
                                             if (note.Y <= 0 || note.Flipped == true)
                                             {
-                                                newNote.flip();
+                                                newNote.Flip();
                                             }
                                             else
                                             {
-                                                newNote.unflip();
+                                                newNote.Unflip();
                                             }
                                             //Als de noot kleiner of gelijk is aan de noot waarmee het vergelijkt
                                             if (note.Duration >= newNote.Duration)

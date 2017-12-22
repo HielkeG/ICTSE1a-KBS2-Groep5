@@ -18,9 +18,9 @@ namespace VirtualPiano.View
     public partial class ComposeView : UserControl
     {
         public Song song = new Song();
-        
         public Button previousPage = new Button();
         public Button nextPage = new Button();
+
         public static string SelectedSymbol = ""; //Deze variable onthoud op welk symbool uit de toolbar geklikt is, zodat de juiste bewerking gedaan kan worden.
         public static Sign draggingSign; //Deze variable onthoud welke noot aan het slepen is, zodat deze noot bijvoorbeeld verwijderd kan worden.
         public static Sign draggingSharp; //Deze variabele onthoud van welke noot het kruis of mol wordt verslepen.
@@ -66,16 +66,11 @@ namespace VirtualPiano.View
         public ComposeView()
         {
             NextTip.InitialDelay = 0;
-
             PreviousTip.InitialDelay = 0;
-
             Songtimer.Interval = 5;
             Songtimer.Elapsed += TimerTick;
-
             AddStaffButton();
             setPageButtons();
-
-
             InitializeComponent();
             if (firstStart)
             {
@@ -192,8 +187,10 @@ namespace VirtualPiano.View
 
         }
 
+        //Deze methode zet de piano aan en uit
         private void TogglePianoVisible(object sender, EventArgs e)
         {
+            //Als de piano zichtbaar is, wordt de piano uit gezet
             if (keypanel.Visible)
             {
                 keypanel.Visible = false;
@@ -202,6 +199,7 @@ namespace VirtualPiano.View
                 pkc1.ChangeImage();
                 PlayingKeyboard = false;
             }
+            //Als de piano uit staat, wordt de piano aan gezet
             else
             {
                 keypanel.Visible = true;

@@ -193,7 +193,10 @@ namespace VirtualPiano.Model
             else if (Name == "QuarterNote") { if (Y <= 0) { Image = Resources.kwartnootflipped; } else { Image = Resources.kwartnoot; } Duration = 4; }
             else if (Name == "EightNote") { if (Y <= 0) { Image = Resources.achtstenootflipped; } else { Image = Resources.achtstenoot; } Duration = 2; }
             else if (Name == "SixteenthNote") { if (Y <= 0) { Image = Resources.zestiendenootflipped; } else { Image = Resources.zestiendenoot; } Duration = 1; }
-
+            if (Flipped)
+            {
+                Flip();
+            } 
         }
 
         internal void MakeConnection(Note note2)
@@ -206,7 +209,7 @@ namespace VirtualPiano.Model
             ComposeView.selectedNote2 = null;
         }
 
-        public void flip()
+        public void Flip()
         {
             if (Name == "WholeNote") { Image = Resources.helenoot;} 
             else if (Name == "HalfNote") { Image = Resources.halvenootflipped; }
@@ -215,7 +218,7 @@ namespace VirtualPiano.Model
             else if (Name == "SixteenthNote") {Image = Resources.zestiendenootflipped; }
             Flipped = true;
         }
-        public void unflip()
+        public void Unflip()
         {
             if (Name == "WholeNote") { Image = Resources.helenoot; }
             else if (Name == "HalfNote") { Image = Resources.halvenoot; }
