@@ -83,23 +83,23 @@ namespace VirtualPiano.View
                 if (staff.Bars.First() == bar) //Bij eerste maat: sleutel groter tekenen en kruizen/mollen tekenen
                 {
                     //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
-                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.X - 10, 26, 60, 110); latestClef = "G"; }
-                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.X - 10, -19, 88, 185); latestClef = "F"; }
+                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.X - 15, 26, 60, 110); latestClef = "G"; }
+                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.X - 15, -19, 88, 185); latestClef = "F"; }
 
 
                     //-----Kruizen / Mollen --------
                     //Hieronder worden de kruizen en de mollen getekent. afhankelijk van het aantal
-                    if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 35, 30, 30, 40); }
-                    if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 50, 53, 30, 40); }
-                    if (song.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 50, 25, 30, 40); }
-                    if (song.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 29, 47, 30, 40); }
-                    if (song.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 35, 65, 30, 40); }
+                    if (song.FlatSharp >= 1) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 20, 30, 30, 40); }
+                    if (song.FlatSharp >= 2) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 35, 53, 30, 40); }
+                    if (song.FlatSharp >= 3) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 35, 25, 30, 40); }
+                    if (song.FlatSharp >= 4) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 14, 47, 30, 40); }
+                    if (song.FlatSharp >= 5) { e.Graphics.DrawImage(Resources.kruis_icon, bar.X + 20, 65, 30, 40); }
 
-                    if (song.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 35, 52, 30, 40); }
-                    if (song.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 50, 28, 30, 40); }
-                    if (song.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 50, 59, 30, 40); }
-                    if (song.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 29, 36, 30, 40); }
-                    if (song.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 35, 67, 30, 40); }
+                    if (song.FlatSharp <= -1) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 20, 52, 30, 40); }
+                    if (song.FlatSharp <= -2) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 35, 28, 30, 40); }
+                    if (song.FlatSharp <= -3) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 35, 59, 30, 40); }
+                    if (song.FlatSharp <= -4) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 24, 36, 30, 40); }
+                    if (song.FlatSharp <= -5) { e.Graphics.DrawImage(Resources.mol_icon, bar.X + 20, 67, 30, 40); }
                 }
                 else
                 {
@@ -193,7 +193,7 @@ namespace VirtualPiano.View
                 note.isBeingMoved = false;
 
                 CursorController.ChangeCursor("default");
-                await PutTaskDelay(500);
+                await PutTaskDelay(100);
                 ComposeView.draggingSharp = null;
             }
             ComposeView.cursorIsDown = false;
@@ -216,114 +216,138 @@ namespace VirtualPiano.View
 
         private void StaffView_MouseMove(object sender, MouseEventArgs e)
         {
-            //------Preview tonen--------
-            bool noteSet = false;
-            int MouseX = PointToClient(Cursor.Position).X;
-            int MouseY = PointToClient(Cursor.Position).Y;
-            
-
-            foreach (Bar bar in staff.Bars)
+            if (ComposeView.draggingSharp != null)
             {
-
-                if (bar.MouseInBar(MouseX, MouseY))
+                if(ComposeView.draggingSharp is Note note)
                 {
-                    SetClefCursor(bar);
-
-                    if (ComposeView.SelectedSymbol != "")
+                    if (note.Flat)
                     {
-                        // ------Note-----
-                        if (ComposeView.SelectedSymbol.Contains("Note"))
-                        {
-                            string notename = ComposeView.SelectedSymbol;
-                            Note newNote;
-                            for (int i = 0; i < bar.Signs.Count(); i++)
-                            {
-                                Sign sign = bar.Signs[i];
+                        Cursor = CursorController.ChangeCursor("Flat");
+                    } else if(note.Sharp)
+                    {
+                        Cursor = CursorController.ChangeCursor("Sharp");
+                    }
+                } 
+            }
+            else if(ComposeView.SelectedSymbol == "BeginSharp")
+            {
+                Cursor = CursorController.ChangeCursor("Sharp");
+            }
+            else if (ComposeView.SelectedSymbol == "BeginFlat")
+            {
+                Cursor = CursorController.ChangeCursor("Flat");
+            }
+            else
+            {
+                //------Preview tonen--------
+                bool noteSet = false;
+                int MouseX = PointToClient(Cursor.Position).X;
+                int MouseY = PointToClient(Cursor.Position).Y;
 
-                                if (sign is Note note)
+                foreach (Bar bar in staff.Bars)
+                {
+
+                    if (bar.MouseInBar(MouseX, MouseY))
+                    {
+                        SetClefCursor(bar);
+
+                        if (ComposeView.SelectedSymbol != "")
+                        {
+                            // ------Note-----
+                            if (ComposeView.SelectedSymbol.Contains("Note"))
+                            {
+                                string notename = ComposeView.SelectedSymbol;
+                                Note newNote;
+                                for (int i = 0; i < bar.Signs.Count(); i++)
                                 {
-                                    if (note.IsLocation(MouseX))
+                                    Sign sign = bar.Signs[i];
+
+                                    if (sign is Note note)
                                     {
-                                        newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
-                                        if (note.Flipped == true || note.Y <= 0)
+                                        if (note.IsLocation(MouseX))
                                         {
-                                            newNote.Flip();
-                                        }
-                                        else
-                                        {
-                                            newNote.Unflip();
-                                        }
-                                        if (note.Duration >= newNote.Duration)
-                                        {
-                                            newNote.Duration = 0;
-                                            if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
-                                            noteSet = true;
-                                            bar.hasPreview = true;
-                                            break;
+                                            newNote = new Note(note.X - 25, PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                            if (note.Flipped == true || note.Y <= 0)
+                                            {
+                                                newNote.Flip();
+                                            }
+                                            else
+                                            {
+                                                newNote.Unflip();
+                                            }
+                                            if (note.Duration >= newNote.Duration)
+                                            {
+                                                newNote.Duration = 0;
+                                                if (bar.CheckBarSpace(newNote) && notename != null) bar.Add(newNote);  //note toevoegen als er ruimte is
+                                                noteSet = true;
+                                                bar.hasPreview = true;
+                                                break;
+                                            }
                                         }
                                     }
                                 }
+
+                                if (noteSet == false && bar.Duration < 16)
+                                {
+                                    newNote = new Note(bar.Duration * 25 + (bar.Width * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
+                                    if (bar.CheckBarSpace(newNote) && notename != null)
+                                    {
+                                        bar.Add(newNote);
+                                        bar.hasPreview = true;
+                                    }
+                                }
+
+
+                                //note toevoegen als er ruimte is
+
+                            }
+                            // -----Rest-----
+                            else if (ComposeView.SelectedSymbol.Contains("Rest"))
+                            {
+                                string rest = ComposeView.SelectedSymbol;
+
+                                Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.Width * staff.Bars.IndexOf(bar)));
+                                if (bar.CheckBarSpace(newRest) && rest != null)
+                                {
+                                    bar.Add(newRest);
+                                    bar.hasPreview = true;
+                                }
+                                //rest toevoegen als er ruimte is
                             }
 
-                            if (noteSet == false && bar.Duration < 16)
+                            //-----Clef----
+                            else if (ComposeView.SelectedSymbol == "G" || ComposeView.SelectedSymbol == "F")
                             {
-                                newNote = new Note(bar.Duration * 25 + (bar.Width * staff.Bars.IndexOf(bar)), PointToClient(Cursor.Position).Y, notename, bar.clefName, song.FlatSharp);
-                                if (bar.CheckBarSpace(newNote) && notename != null)
+                                if (bar.clefName != ComposeView.SelectedSymbol)
                                 {
-                                    bar.Add(newNote);
+                                    string Clef = ComposeView.SelectedSymbol;
+                                    bar.lastClef = bar.clefName;
+                                    bar.clefName = Clef;
+                                    bar.makeSignsGray();
+                                    barContentColor = Color.FromArgb(255, 200, 200, 200);
                                     bar.hasPreview = true;
                                 }
                             }
-
-
-                            //note toevoegen als er ruimte is
-
-                        }
-                        // -----Rest-----
-                        else if (ComposeView.SelectedSymbol.Contains("Rest"))
-                        {
-                            string rest = ComposeView.SelectedSymbol;
-
-                            Rest newRest = new Rest(rest, bar.Duration * 25 + (bar.Width * staff.Bars.IndexOf(bar)));
-                            if (bar.CheckBarSpace(newRest) && rest != null)
-                            {
-                                bar.Add(newRest);
-                                bar.hasPreview = true;
-                            }
-                            //rest toevoegen als er ruimte is
-                        }
-
-                        //-----Clef----
-                        else if (ComposeView.SelectedSymbol == "G" || ComposeView.SelectedSymbol == "F")
-                        {
-                            if (bar.clefName != ComposeView.SelectedSymbol)
-                            {
-                                string Clef = ComposeView.SelectedSymbol;
-                                bar.lastClef = bar.clefName;
-                                bar.clefName = Clef;
-                                bar.makeSignsGray();
-                                barContentColor = Color.FromArgb(255, 200, 200, 200);
-                                bar.hasPreview = true;
-                            }
                         }
                     }
-                }
-            }
-            if (!staff.MouseInStaff(MouseX, MouseY) && ComposeView.draggingSign == null) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSymbol);
-            Invalidate();
-            Update();
 
-            foreach (Bar bar in staff.Bars)
-            {
-                if (bar.hasPreview)
-                {
-                    bar.RemovePreview(ComposeView.SelectedSymbol);
-                    Cursor = CursorController.ChangeCursor("default");
                 }
-                else if (bar.MouseInBar(MouseX, MouseY) && bar.Duration == 16 && ComposeView.draggingSign == null) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSymbol);
+                if (!staff.MouseInStaff(MouseX, MouseY) && ComposeView.draggingSign == null) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSymbol);
+                Invalidate();
+                Update();
+
+                foreach (Bar bar in staff.Bars)
+                {
+                    if (bar.hasPreview)
+                    {
+                        bar.RemovePreview(ComposeView.SelectedSymbol);
+                        Cursor = CursorController.ChangeCursor("default");
+                    }
+                    else if (bar.MouseInBar(MouseX, MouseY) && bar.Duration == 16 && ComposeView.draggingSign == null) Cursor = CursorController.ChangeCursor(ComposeView.SelectedSymbol);
+                }
             }
         }
-        
+
         //-----Methode wordt aangeroepen als een muisklik ingedrukt wordt
         private async void StaffView_MouseDown(object sender, MouseEventArgs e)
         {
@@ -379,15 +403,16 @@ namespace VirtualPiano.View
                                     note.isBeingMoved = true;
                                     ComposeView.draggingSharp = sign;
                                     Cursor = CursorController.ChangeCursor(ComposeView.draggingSharp.Name);
+                                    ComposeView.SelectedSymbol = "";
 
                                     Invalidate();
                                 }
                             }
                         }
-                        //Als de muisklik kleiner is dan 40 (aan het begin van de staff)
-                        if (MouseX < 40)
+                        //Als de muisklik kleiner is dan 60 (aan het begin van de staff)
+                        if (MouseX < 60)
                         {
-                            await PutTaskDelay(300);
+                            await PutTaskDelay(200);
                             if (ComposeView.cursorIsDown == true)
                             {
                                 if (song.FlatSharp < 0)

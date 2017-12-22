@@ -38,7 +38,7 @@ namespace VirtualPiano.View
         public static bool SoundEnabled = true;
         public static PianoKeysController pkc1 = new PianoKeysController();
         public static PianoKeysView pkv1 = new PianoKeysView();
-       
+        private MusicController m1;
         public static int AmountOfBars = 4;
         public static Panel keypanel = new Panel()
         {
@@ -99,7 +99,7 @@ namespace VirtualPiano.View
             menuBarView1.togglePianoVisible += TogglePianoVisible;
 
             //voeg muziekknoppen toe en metronoom
-            MusicController m1 = new MusicController(Metronome, RedLine, song);
+            m1 = new MusicController(Metronome, RedLine, song);
             Controls.Add(MusicController.rewindBtn);
             Controls.Add(MusicController.playBtn);
             Controls.Add(MusicController.stopBtn);
@@ -178,6 +178,7 @@ namespace VirtualPiano.View
             RecordLabel.Location = new Point((this.Width / 2) - 100, 100);
             RecordLabel.TextAlign = ContentAlignment.MiddleCenter;
             RecordLabel.Height = 65;
+            
             RecordLabel.Width = 200;
             RecordLabel.BackColor = Color.Transparent;
             Controls.Add(RecordLabel);
@@ -259,6 +260,11 @@ namespace VirtualPiano.View
             MusicController.song = song;
             menuBarView1.Song = song;
             StopwatchController.Song = song;
+            //isrecording op true zetten zodat het daarna altijd op false gezet wordt.
+            MusicController.isRecording = true;
+            EventArgs e = new EventArgs();
+            //recordclick zorgt ervoor dat isrecording geswitcht wordt, nu wordt recording dus uitgezet
+            m1.RecordClick(this, e);
             StopwatchController.CurrentComposingStaff = 0;
             CurrentPlayingStaff = 0;
             ShowFirstStaffView();
@@ -279,6 +285,10 @@ namespace VirtualPiano.View
             song = newSong;
             RedLineX = -60;
             CurrentPage = 1;
+            //isrecording op true zetten zodat het daarna altijd op false gezet wordt.
+            MusicController.isRecording = true;
+            EventArgs e = new EventArgs();
+            m1.RecordClick(this, e);
             TitelBox.ForeColor = Color.Black;
             StopwatchController.CurrentComposingStaff = 0;
             CurrentPageLabel.Text = CurrentPage.ToString();

@@ -75,8 +75,10 @@ namespace VirtualPiano.View
 
         private void KruisMol_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowExplain("Kruizen en mollen toevoegen", "U kunt kruizen en mollen toevoegen door op het # of b teken te klikken en vervolgens op de gewenste locatie op de notenbalk te klikken." +
-                "Wanneer u hier klikt wordt het geselecteerde teken geplaatst. Om een teken te verwijderen beweegt u de muis over het teken heen en klikt u op de rechtermuisknop.", false);
+            ShowExplain("Kruizen en mollen toevoegen", "U kunt kruizen en mollen toevoegen door op het #- of b-teken te klikken en vervolgens op de gewenste noot te klikken." +
+                "Wanneer u hier klikt wordt het geselecteerde teken geplaatst. U kunt ook mollen en kruizen aan het begin van de notenbalk toevoegen." +
+                "U klikt dan ook op het #- of b-symbool. Vervolgens klikt u ergens aan het begin van de notenbalk om het kruis / de mol te plaatsen." +
+                "Als u een kruis of een mol wilt verwijderen klikt u op het symbool en die sleept u vervolgens de prullenbak in.", false);
         }
 
         private void SpelendComp_Clicked(object sender, LinkLabelLinkClickedEventArgs e)
