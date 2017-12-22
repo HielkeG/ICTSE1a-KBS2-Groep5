@@ -71,7 +71,7 @@ namespace VirtualPiano.View
             Songtimer.Elapsed += TimerTick;
 
             AddStaffButton();
-            setPageButtons();
+            SetPageButtons();
 
 
             InitializeComponent();
@@ -87,7 +87,7 @@ namespace VirtualPiano.View
             menuBarView1.Song = song;
             menuBarView1.selectedSong += ChangeSong;
             menuBarView1.newSong += NewSong;
-            menuBarView1.newStaffView += newStaffView;
+            menuBarView1.newStaffView += NewStaffView;
 
             //piano toevoegen
             Controls.Add(PianoKeysController.pianoKeysBtn);
@@ -133,7 +133,7 @@ namespace VirtualPiano.View
             previousPage.MouseHover += new EventHandler(AllButtons_Hover);
             previousPage.MouseLeave += new EventHandler(AllButtons_Leave);
 
-            StopwatchController.OnFullStaff += newStaffView;
+            StopwatchController.OnFullStaff += NewStaffView;
 
 
             Snelheid.Text = Metronome.Interval.ToString();
@@ -295,13 +295,13 @@ namespace VirtualPiano.View
             Refresh();
         }
 
-        private void btnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
+        private void BtnAddStaff_Click(object sender, EventArgs e) //Notenbalk toevoegen knop
         {
             AddNewStaff();
         }
 
         //luistert naar event uit menubar, zodat een nieuwe staff toegevoegd wordt.
-        private void newStaffView(object sender, EventArgs e)
+        private void NewStaffView(object sender, EventArgs e)
         {
             AddNewStaff();
         }
@@ -310,24 +310,30 @@ namespace VirtualPiano.View
         {
             if (CurrentPage * 3 - 2 == staffViewsPanels.Count)
             {
-                Staff newStaff = new Staff(AmountOfBars);
-                newStaff.Order = staffViews.Count() + 1;
+                Staff newStaff = new Staff(AmountOfBars)
+                {
+                    Order = staffViews.Count() + 1
+                };
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
             }
             else if (CurrentPage * 3 - 1 == staffViewsPanels.Count)
             {
-                Staff newStaff = new Staff(AmountOfBars);
-                newStaff.Order = staffViews.Count() + 1;
+                Staff newStaff = new Staff(AmountOfBars)
+                {
+                    Order = staffViews.Count() + 1
+                };
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
             }
             else if (y_staff == 140)
             {
-                Staff newStaff = new Staff(AmountOfBars);
-                newStaff.Order = staffViews.Count() + 1;
+                Staff newStaff = new Staff(AmountOfBars)
+                {
+                    Order = staffViews.Count() + 1
+                };
                 song.AddStaff(newStaff);
                 AddStaffView(newStaff);
                 y_staff += 200;
@@ -336,7 +342,7 @@ namespace VirtualPiano.View
             {
 
                 EventArgs e = new EventArgs();
-                nextPage_Click(this, e);
+                NextPage_Click(this, e);
             }
             else
             {
@@ -346,10 +352,12 @@ namespace VirtualPiano.View
 
         public void AddStaffView(Staff staff)   //nieuwe notenbalkpanel maken en vullen
         {
-            Panel panel = new Panel();
-            panel.Location = new Point(100, y_staff);
-            panel.Name = "staff";
-            panel.Size = new Size(1800, 150);
+            Panel panel = new Panel
+            {
+                Location = new Point(100, y_staff),
+                Name = "staff",
+                Size = new Size(1800, 150)
+            };
             StaffView _staffView = new StaffView(staff, song)
             {
                 Dock = DockStyle.None
@@ -371,9 +379,9 @@ namespace VirtualPiano.View
             btnAddStaff.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnAddStaff.FlatAppearance.MouseOverBackColor = Color.Transparent;
             this.Controls.Add(btnAddStaff);
-            btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
+            btnAddStaff.Click += new System.EventHandler(this.BtnAddStaff_Click);
         }
-        public void setPageButtons()
+        public void SetPageButtons()
         {
             previousPage.Image = new Bitmap(Resources.up_arrow, 56, 56);
             previousPage.Location = new Point(1836, 795);
@@ -383,7 +391,7 @@ namespace VirtualPiano.View
             previousPage.FlatAppearance.BorderSize = 0;
             previousPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
             previousPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            previousPage.Click += previousPage_Click;
+            previousPage.Click += PreviousPage_Click;
             Controls.Add(previousPage);
 
             nextPage.Image = new Bitmap(Resources.down_arrow, 56, 56);
@@ -394,11 +402,11 @@ namespace VirtualPiano.View
             nextPage.FlatAppearance.BorderSize = 0;
             nextPage.FlatAppearance.MouseDownBackColor = Color.Transparent;
             nextPage.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            nextPage.Click += nextPage_Click;
+            nextPage.Click += NextPage_Click;
             Controls.Add(nextPage);
         }
         // Volgende pagina
-        private void nextPage_Click(object sender, EventArgs e)
+        private void NextPage_Click(object sender, EventArgs e)
         {
             //Als de huidige pagina niet helemaal gevuld is
             if (!(CurrentPage * 3 - 1 == staffViewsPanels.Count || CurrentPage * 3 - 2 == staffViewsPanels.Count))
@@ -443,7 +451,7 @@ namespace VirtualPiano.View
         }
 
         //Vorige pagina
-        private void previousPage_Click(object sender, EventArgs e)
+        private void PreviousPage_Click(object sender, EventArgs e)
         {
             //Als de huidige pagina groter is dan 1
             if (CurrentPage > 1)
@@ -616,8 +624,7 @@ namespace VirtualPiano.View
 
         private void Snelheid_TextChanged(object sender, EventArgs e)
         {
-            int isNumber = 0;
-            int.TryParse(Snelheid.Text.ToString(), out isNumber);
+            int.TryParse(Snelheid.Text.ToString(), result: out int isNumber);
             if (isNumber != 0)
             {
                 int interval = Int32.Parse(Snelheid.Text);
@@ -658,7 +665,7 @@ namespace VirtualPiano.View
                         if (CurrentPlayingStaff / 3 == CurrentPage)
                         {
                             EventArgs ev = new EventArgs();
-                            nextPage_Click(this, ev);
+                            NextPage_Click(this, ev);
                         }
                     }
                 }

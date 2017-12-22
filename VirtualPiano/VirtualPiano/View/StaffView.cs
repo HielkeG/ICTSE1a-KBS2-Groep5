@@ -18,10 +18,9 @@ namespace VirtualPiano.View
         public Staff staff;
         public RedLine redLine;
         public Song song;
-        public int fullBar { get; set; }
+        public int FullBar { get; set; }
         Color barColor;
         public static Cursor cursor = Cursors.Default;
-        public bool ShowClefCursor = true;
         public static Color barContentColor = Color.Black;
 
         public StaffView(Staff staff, Song song)

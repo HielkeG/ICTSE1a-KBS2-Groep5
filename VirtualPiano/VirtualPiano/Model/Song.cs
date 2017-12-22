@@ -45,8 +45,10 @@ namespace VirtualPiano.Model
         }
         public Song()
         {
-            Staffs = new List<Staff>();
-            Staffs.Add(new Staff(ComposeView.AmountOfBars));
+            Staffs = new List<Staff>
+            {
+                new Staff(ComposeView.AmountOfBars)
+            };
             Pages = 1;
             FlatSharp = 0;
 
@@ -98,7 +100,7 @@ namespace VirtualPiano.Model
             return isEmpty;
         }
 
-        public int getDuration()
+        public int GetDuration()
         {
             int Duration = 0;
             foreach (Staff staff in Staffs)
