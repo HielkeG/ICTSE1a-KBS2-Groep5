@@ -18,8 +18,6 @@ namespace VirtualPiano.View
     public partial class ComposeView : UserControl
     {
         public Song song = new Song();
-        public Button previousPage = new Button();
-        public Button nextPage = new Button();
 
         public static string SelectedSymbol = ""; //Deze variable onthoud op welk symbool uit de toolbar geklikt is, zodat de juiste bewerking gedaan kan worden.
         public static Sign draggingSign; //Deze variable onthoud welke noot aan het slepen is, zodat deze noot bijvoorbeeld verwijderd kan worden.
@@ -28,14 +26,11 @@ namespace VirtualPiano.View
         public static Note selectedNote1; //Deze variable onthoud welke noot geselecteerd is voor het koppelen
         public static Note selectedNote2; //Deze variable onthoud welke noot geselecteerd is voor het koppelen.
         public Button btnAddStaff = new Button();
-        public static Button previousPage = new Button();
-        public static Button nextPage = new Button();
+        public Button previousPage = new Button();
+        public Button nextPage = new Button();
         private ToolTip PreviousTip = new ToolTip();
         private ToolTip NextTip = new ToolTip();
         int y_staff = 140;
-        public static bool ConnectSelected = false;
-        public static Note selectedNote1;
-        public static Note selectedNote2;
         public static Cursor cursor = Cursors.Default;
         public static bool cursorIsDown; //Deze variable onthoud of de muis is ingedrukt of niet
         public static System.Timers.Timer Songtimer = new System.Timers.Timer();  //Aparte timer zodat deze meerdere threads gebruikt.
@@ -65,11 +60,7 @@ namespace VirtualPiano.View
         private bool firstStart = true;
         private static bool RunningTimer;    //boolean of de timer loopt, zodat hij niet onnodig meerdere timers start.
         private int CurrentPage = 1;
-        private int y_staff = 140;
         private int RecordCount;
-        private Button btnAddStaff = new Button();
-        private ToolTip PreviousTip = new ToolTip();
-        private ToolTip NextTip = new ToolTip();
         private Label RecordLabel = new Label();
 
         public ComposeView()

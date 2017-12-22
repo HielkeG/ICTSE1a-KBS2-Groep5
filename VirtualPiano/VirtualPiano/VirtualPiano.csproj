@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201712211235314_db1.Designer.cs">
       <DependentUpon>201712211235314_db1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712221230225_add-migration db1.cs" />
+    <Compile Include="Migrations\201712221230225_add-migration db1.Designer.cs">
+      <DependentUpon>201712221230225_add-migration db1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Note.cs" />
@@ -175,6 +179,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201712211235314_db1.resx">
       <DependentUpon>201712211235314_db1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221230225_add-migration db1.resx">
+      <DependentUpon>201712221230225_add-migration db1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
