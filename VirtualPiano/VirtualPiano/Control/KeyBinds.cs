@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualPiano.Model;
@@ -13,7 +14,8 @@ namespace VirtualPiano.Control
     {
         public static bool isGestart = false;
         public static OutputDevice outputDevice;
-        static List<Keys> keylist = new List<Keys>();
+        public static List<Keys> keylist = new List<Keys>();
+        public static List<Pitch> pitchlist = new List<Pitch>();
 
         //methode die toets op laat lichten en toevoegt aan notenbalk. Tone voor de toon, key voor de aangeslagen toets en octaveplus voor welke octaaf aangeslagen wordt.
         public static void AddKey(string tone,Keys key,int octavePlus)
@@ -42,6 +44,35 @@ namespace VirtualPiano.Control
 
             keylist.Add(key);
         }
+
+
+
+
+        public static void AddTone(Pitch pitch)
+        {
+            if (StopwatchController.watch.IsRunning == false && MusicController.isRecording)
+            {
+                //toevoegen aan de notenbalk
+                string tone = pitch.ToString();
+                string resultString = Regex.Match(tone, @"\d+").Value;
+                int o = Int32.Parse(resultString);
+
+                if(tone.Length == 2) {
+                    Note n1 = new Note(tone.First().ToString(), o);
+                    StopwatchController.StartWatch(n1);
+                } else
+                {
+                    Note n1 = new Note(tone.Substring(0, 6), o);
+                    StopwatchController.StartWatch(n1);
+                }                
+                pitchlist.Add(pitch);
+            }
+        }
+
+
+
+
+
 
         //alle noten gebonden aan toetsenbordtoetsen.
         public static void PressPianoKeys(KeyEventArgs e)
@@ -219,6 +250,28 @@ namespace VirtualPiano.Control
             ComposeView.pkv1.KeyReleased((ComposeView.CurrentOctave + octave), tone);
             ComposeView.pkv1.Invalidate();
         }
+
+
+        public static void RemoveTone(Pitch pitch)
+        {
+            string tone = pitch.ToString();
+            string resultString = Regex.Match(tone, @"\d+").Value;
+            int o = Int32.Parse(resultString);
+
+            if (tone.Length == 2)
+            {
+                Note n1 = new Note(tone.First().ToString(), o);
+                StopwatchController.StopWatch(n1);
+            }
+            else
+            {
+                Note n1 = new Note(tone.Substring(0, 6), o);
+                StopwatchController.StopWatch(n1);
+            }
+            pitchlist.Remove(pitch);
+        }
+
+
 
         public static void ReleasePianoKeys(KeyEventArgs e)
         {

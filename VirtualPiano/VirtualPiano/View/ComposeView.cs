@@ -394,6 +394,7 @@ namespace VirtualPiano.View
             staffViewsPanels.Add(panel);
             panel.Controls.Add(_staffView);
             Controls.Add(panel);
+
         }
 
         public void AddStaffButton()        //nieuwe "notenbalk toevoegen" knop toevoegen

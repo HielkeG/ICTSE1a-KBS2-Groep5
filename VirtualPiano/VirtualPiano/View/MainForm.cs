@@ -22,20 +22,26 @@ namespace VirtualPiano
             InitializeComponent();
             VirtualPiano.Control.DatabaseController.InitializeDatabase();
             SetCloseButton();
+            MidiPlay.Summarizer.RefreshScreen += RefreshMethod;
         }
 
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             //als de gebruiker typend spelen aan heeft staan.
-            
-
             if (ComposeView.PlayingKeyboard)
             {
                 //toetsaanslagen opvangen.
                     KeyBinds.PressPianoKeys(e);
             }
+        }
 
+        public void RefreshMethod(object sender, EventArgs e)
+        {
+            if (ComposeView.PlayingKeyboard)
+            {
+                Invalidate();
+            }
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)

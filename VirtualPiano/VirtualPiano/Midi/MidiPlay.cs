@@ -44,6 +44,11 @@ namespace VirtualPiano
         public class Summarizer
         {
 
+            public static EventHandler RefreshScreen;
+
+
+
+
             public Summarizer(InputDevice inputDevice)
             {
                 this.inputDevice = inputDevice;
@@ -92,21 +97,17 @@ namespace VirtualPiano
                     MusicController.outputDevice.SendProgramChange(Channel.Channel2, CurrentInstrument);
                     if (MidiSettings.Touch)
                     {
-                        MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
-                        MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, msg.Velocity);
-                        if (StopwatchController.watch.IsRunning == false)
-                        {
-                            //StopwatchController.StartWatch();
-
-                        }
+                        MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, msg.Velocity);
+                        MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, msg.Velocity);                       
                     } else
                     {
                         MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
-                        MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, 127);
-                        if (StopwatchController.watch.IsRunning == false)
-                        {
-                            //StopwatchController.StartWatch();
-                        }
+                        MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, 127);                        
+                    }
+
+                    if (!KeyBinds.pitchlist.Contains(msg.Pitch))
+                    {
+                        KeyBinds.AddTone(msg.Pitch);
                     }
 
                     string currentTone = msg.Pitch.ToString();
@@ -124,11 +125,12 @@ namespace VirtualPiano
                     }
 
                     ComposeView.pkv1.Invalidate();
-                    pitchesPressed[msg.Pitch] = true;
-                    //PrintStatus();
-                    //Console.WriteLine(msg.Velocity);                    
+                    pitchesPressed[msg.Pitch] = true;                 
                 }
             }
+
+
+
 
             public void NoteOff(NoteOffMessage msg)
             {
@@ -148,18 +150,21 @@ namespace VirtualPiano
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(n.ToString()).Append("is");
                         ComposeView.pkv1.KeyReleased(o, sb.ToString());
-                        //Deel aanpassen zodat deze met kruizen en mollen werkt
                         Note n1 = new Note(sb.ToString(), o);
                         StopwatchController.StopWatch(n1);
+                        KeyBinds.RemoveTone(msg.Pitch);
+                        RefreshScreen(null, new EventArgs());
                     }
                     else
                     {
                         ComposeView.pkv1.KeyReleased(o, n.ToString());
                         Note n1 = new Note(n.ToString(), o);
                         StopwatchController.StopWatch(n1);
+                        KeyBinds.RemoveTone(msg.Pitch);
+                        RefreshScreen(null, new EventArgs());
+                        //RefreshScreen2(null, new EventArgs());
                     }
                     ComposeView.pkv1.Invalidate();
-                    //PrintStatus();
                 }
             }
 
