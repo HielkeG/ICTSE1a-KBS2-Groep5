@@ -73,6 +73,7 @@ namespace VirtualPiano.View
 
         private void buttonApply_Click(object sender, EventArgs e)
         {
+            if(midiInstruments.SelectedItem != null)
             MidiPlay.CurrentInstrument = (Instrument)midiInstruments.SelectedItem;
         }
 
