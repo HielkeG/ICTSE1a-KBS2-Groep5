@@ -162,7 +162,7 @@ namespace VirtualPiano
                         StopwatchController.StopWatch(n1);
                         KeyBinds.RemoveTone(msg.Pitch);
                         RefreshScreen(null, new EventArgs());
-                        //RefreshScreen2(null, new EventArgs());
+
                     }
                     ComposeView.pkv1.Invalidate();
                 }

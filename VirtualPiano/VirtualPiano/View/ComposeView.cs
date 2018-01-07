@@ -393,7 +393,14 @@ namespace VirtualPiano.View
             staffViews.Add(_staffView);
             staffViewsPanels.Add(panel);
             panel.Controls.Add(_staffView);
-            Controls.Add(panel);
+            if (!this.IsHandleCreated)
+            {
+                this.CreateHandle();
+            }
+            this.Invoke(new Action(() => { Controls.Add(panel); }));
+
+
+
 
         }
 
@@ -437,13 +444,19 @@ namespace VirtualPiano.View
         // Volgende pagina
         private void NextPage_Click(object sender, EventArgs e)
         {
+            if (!this.IsHandleCreated)
+            {
+                this.CreateHandle();
+            }
+
             //Als de huidige pagina niet helemaal gevuld is
             if (!(CurrentPage * 3 - 1 == staffViewsPanels.Count || CurrentPage * 3 - 2 == staffViewsPanels.Count))
             {
                 //Alle Staffviews uitzetten
                 foreach (Panel panel in staffViewsPanels)
                 {
-                    panel.Visible = false;
+                    this.Invoke(new Action(() => { panel.Visible = false ; }));
+                    //panel.Visible = false;
                 }
 
                 //Als de huidige pagina de laatste pagina is
@@ -458,14 +471,18 @@ namespace VirtualPiano.View
 
                 //Hudige pagina wordt verhoogt
                 CurrentPage++;
-                CurrentPageLabel.Text = CurrentPage.ToString();
+
+                //CurrentPageLabel.Text = CurrentPage.ToString();
+                this.Invoke(new Action(() => { CurrentPageLabel.Text = CurrentPage.ToString(); }));
 
                 //Alle staffviews van de huidige pagina worden getoond
                 foreach (Panel panel in staffViewsPanels)
                 {
                     if (staffViewsPanels.IndexOf(panel) + 1 >= CurrentPage * 3 - 2 && staffViewsPanels.IndexOf(panel) + 1 <= CurrentPage * 3)
                     {
-                        panel.Visible = true;
+                        //panel.Visible = true;
+                        this.Invoke(new Action(() => { panel.Visible = true; }));
+
                     }
                 }
             }

@@ -153,6 +153,7 @@ namespace VirtualPiano.Control
                             {
                                 //nieuwe staffview toevoegen
                                 OnFullStaff(bar, e);
+                                
                             }
                             CurrentComposingStaff++;
 
