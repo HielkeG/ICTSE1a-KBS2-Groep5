@@ -203,7 +203,6 @@ namespace VirtualPiano.View
         private void StaffView_MouseEnter(object sender, EventArgs e)
         {
             Cursor = CursorController.ChangeCursor(ComposeView.SelectedSymbol);
-            Console.WriteLine(ComposeView.SelectedSymbol);
         }
 
         private void SetClefCursor(Bar bar)
