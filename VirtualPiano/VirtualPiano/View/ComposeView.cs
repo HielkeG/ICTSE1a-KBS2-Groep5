@@ -714,8 +714,6 @@ namespace VirtualPiano.View
             if (TitelBox.Text != "")
             {
                 song.Title = TitelBox.Text;
-                Size size = TextRenderer.MeasureText(TitelBox.Text, TitelBox.Font);
-                TitelBox.Size = size;
             }
             else
             {
@@ -895,6 +893,7 @@ namespace VirtualPiano.View
 
         private void TitelBox_KeyDown(object sender, KeyEventArgs e)
         {
+            TitelBox.ForeColor = Color.Black;
             if (e.KeyCode == Keys.Enter)
             {
                 TitelBox.Enabled = false;
