@@ -164,8 +164,6 @@ namespace VirtualPiano.Control
                 playBtn.Image = pause;
                 playBtn.FlatAppearance.BorderSize = 0;
                 isPlayingSong = true;
-                //int temp = Song.getDuration();
-                //Console.WriteLine(Song.getDuration());
                 SongStarted(this, e);
                 rodeLijn.Start();
             }
