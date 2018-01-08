@@ -84,7 +84,7 @@ namespace VirtualPiano.View
                 {
                     //De sleutels worden alleen getekent als de sleutel niet hetzelfde is als de vorige
                     if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.X - 15, 26, 60, 110); latestClef = "G"; }
-                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.X - 15, -19, 88, 185); latestClef = "F"; }
+                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.X - 20, -19, 88, 185); latestClef = "F"; }
 
 
                     //-----Kruizen / Mollen --------
@@ -104,12 +104,14 @@ namespace VirtualPiano.View
                 else
                 {
                     //----Sleutels----
-                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.X + 5, 43, 40, 83); latestClef = "G"; }
-                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.X - 18, -5, 77, 155); latestClef = "F"; }
+                    if (bar.clefName == "G" && latestClef != "G") { e.Graphics.DrawImage(Resources.gsleutel, bar.X - 40, 43, 40, 83); latestClef = "G"; }
+                    else if (bar.clefName == "F" && latestClef != "F") { e.Graphics.DrawImage(Resources.fsleutel, bar.X - 60, -5, 77, 155); latestClef = "F"; }
                 }
 
                 //--- Maatstrepen-----
-                e.Graphics.DrawLine(new Pen(Color.Black), bar.X + bar.Width, 50, bar.X + bar.Width, 110); //per maat verticale lijn tekenen
+                e.Graphics.DrawLine(new Pen(Color.Black), bar.X, 50, bar.X, 110); //per maat verticale lijn tekenen
+                if (staff.Bars.Last() == bar) e.Graphics.DrawLine(new Pen(Color.Black), bar.X + bar.Width, 50, bar.X + bar.Width, 110); 
+
                 if (bar.Duration == 16)
                 {
                     barColor = Color.Green;     //als maat vol is: groene lijn, anders: rood
@@ -117,7 +119,7 @@ namespace VirtualPiano.View
                 }
 
                 else barColor = Color.Red;
-
+                
                 e.Graphics.DrawLine(new Pen(barColor, 5), bar.X, 145, bar.X + bar.Width, 145);
                 if (fullBar == ComposeView.AmountOfBars)
                 {
