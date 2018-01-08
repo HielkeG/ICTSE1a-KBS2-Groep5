@@ -18,15 +18,15 @@ namespace VirtualPiano.Control
         public static List<Pitch> pitchlist = new List<Pitch>();
 
         //methode die toets op laat lichten en toevoegt aan notenbalk. Tone voor de toon, key voor de aangeslagen toets en octaveplus voor welke octaaf aangeslagen wordt.
-        public static void AddKey(string tone,Keys key,int octavePlus)
+        public static void AddKey(string tone, Keys key, int octavePlus)
         {
-            Enum.TryParse(tone + (ComposeView.CurrentOctave+octavePlus), out Pitch pitch);
+            Enum.TryParse(tone + (ComposeView.CurrentOctave + octavePlus), out Pitch pitch);
             MusicController.outputDevice.SendNoteOn(Channel.Channel1, pitch, 127);
 
-            if (StopwatchController.watch.IsRunning == false&&MusicController.isRecording)
+            if (StopwatchController.watch.IsRunning == false && MusicController.isRecording)
             {
                 //toevoegen aan de notenbalk
-                Note n1 = new Note(tone, (ComposeView.CurrentOctave+octavePlus));
+                Note n1 = new Note(tone, (ComposeView.CurrentOctave + octavePlus));
                 StopwatchController.StartWatch(n1);
             }
 
@@ -57,21 +57,19 @@ namespace VirtualPiano.Control
                 string resultString = Regex.Match(tone, @"\d+").Value;
                 int o = Int32.Parse(resultString);
 
-                if(tone.Length == 2) {
+                if (tone.Length == 2)
+                {
                     Note n1 = new Note(tone.First().ToString(), o);
                     StopwatchController.StartWatch(n1);
-                } else
+                }
+                else
                 {
                     Note n1 = new Note(tone.Substring(0, 6), o);
                     StopwatchController.StartWatch(n1);
-                }                
+                }
                 pitchlist.Add(pitch);
             }
         }
-
-
-
-
 
 
         //alle noten gebonden aan toetsenbordtoetsen.
@@ -84,7 +82,7 @@ namespace VirtualPiano.Control
                 case Keys.Q:
                     if (!keylist.Contains(Keys.Q))
                     {
-                        AddKey("C",Keys.Q,0);
+                        AddKey("C", Keys.Q, 0);
                     }
 
                     break;
@@ -99,7 +97,7 @@ namespace VirtualPiano.Control
                 case Keys.W:
                     if (!keylist.Contains(Keys.W))
                     {
-                        AddKey("D",Keys.W, 0);
+                        AddKey("D", Keys.W, 0);
                     }
                     break;
                 case Keys.D3:
@@ -270,8 +268,6 @@ namespace VirtualPiano.Control
             }
             pitchlist.Remove(pitch);
         }
-
-
 
         public static void ReleasePianoKeys(KeyEventArgs e)
         {

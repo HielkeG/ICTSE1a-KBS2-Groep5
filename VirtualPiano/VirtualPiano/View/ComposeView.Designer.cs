@@ -35,11 +35,27 @@ namespace VirtualPiano.View
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComposeView));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.GKey = new System.Windows.Forms.ToolStripButton();
+            this.FKey = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.FullNote = new System.Windows.Forms.ToolStripButton();
+            this.HalfNote = new System.Windows.Forms.ToolStripButton();
+            this.QuarterNote = new System.Windows.Forms.ToolStripButton();
+            this.EightNote = new System.Windows.Forms.ToolStripButton();
+            this.SixteenthNote = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.FullRest = new System.Windows.Forms.ToolStripButton();
+            this.HalfRest = new System.Windows.Forms.ToolStripButton();
+            this.QuarterRest = new System.Windows.Forms.ToolStripButton();
+            this.EightRest = new System.Windows.Forms.ToolStripButton();
+            this.SixteenthRest = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.Flat = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.Bin = new System.Windows.Forms.ToolStripButton();
             this.Metronome = new System.Windows.Forms.Timer(this.components);
             this.Snelheid = new System.Windows.Forms.TextBox();
             this.RedLine = new System.Windows.Forms.Timer(this.components);
@@ -48,22 +64,6 @@ namespace VirtualPiano.View
             this.MetronomeSpeed = new System.Windows.Forms.TextBox();
             this.CurrentPageLabel = new System.Windows.Forms.Label();
             this.metroTip = new System.Windows.Forms.ToolTip(this.components);
-            this.GKey = new System.Windows.Forms.ToolStripButton();
-            this.FKey = new System.Windows.Forms.ToolStripButton();
-            this.FullNote = new System.Windows.Forms.ToolStripButton();
-            this.HalfNote = new System.Windows.Forms.ToolStripButton();
-            this.QuarterNote = new System.Windows.Forms.ToolStripButton();
-            this.EightNote = new System.Windows.Forms.ToolStripButton();
-            this.SixteenthNote = new System.Windows.Forms.ToolStripButton();
-            this.FullRest = new System.Windows.Forms.ToolStripButton();
-            this.HalfRest = new System.Windows.Forms.ToolStripButton();
-            this.QuarterRest = new System.Windows.Forms.ToolStripButton();
-            this.EightRest = new System.Windows.Forms.ToolStripButton();
-            this.SixteenthRest = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.Flat = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.Bin = new System.Windows.Forms.ToolStripButton();
             this.menuBarView1 = new VirtualPiano.View.MenuBarView();
             this.RecordTimer = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -83,12 +83,12 @@ namespace VirtualPiano.View
             this.toolStripContainer1.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer1.ContentPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(80, 927);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(80, 920);
             this.toolStripContainer1.Location = new System.Drawing.Point(1, 105);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(80, 927);
+            this.toolStripContainer1.Size = new System.Drawing.Size(80, 920);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
@@ -126,10 +126,10 @@ namespace VirtualPiano.View
             this.toolStripSeparator5,
             this.Bin});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(8, 13);
+            this.toolStrip1.Location = new System.Drawing.Point(8, 10);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(65, 895);
+            this.toolStrip1.Size = new System.Drawing.Size(65, 898);
             this.toolStrip1.TabIndex = 0;
             // 
             // GKey
@@ -416,7 +416,7 @@ namespace VirtualPiano.View
             this.RedLine.Tick += new System.EventHandler(this.RedLine_Tick);
             // 
             // TitelBox
-            //
+            // 
             this.TitelBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.TitelBox.BackColor = System.Drawing.Color.White;
             this.TitelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -515,7 +515,7 @@ namespace VirtualPiano.View
             this.PerformLayout();
 
         }
-        
+
 
         private void ComposeView_MouseDown(object sender, MouseEventArgs e)
         {
