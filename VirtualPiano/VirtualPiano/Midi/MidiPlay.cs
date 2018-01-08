@@ -43,7 +43,7 @@ namespace VirtualPiano
 
         public class Summarizer
         {
-
+            //scherm verversen bij aanslaan van een toets
             public static EventHandler RefreshScreen;
 
 
@@ -88,12 +88,13 @@ namespace VirtualPiano
             }
 
 
-
+            //functie die aangeroepen wordt wanneer een toets wordt ingedrukt
             public void NoteOn(NoteOnMessage msg)
             {
                 
                 lock (this)
                 {
+                    //toon afspelen
                     MusicController.outputDevice.SendProgramChange(Channel.Channel2, CurrentInstrument);
                     if (MidiSettings.Touch)
                     {
@@ -104,12 +105,12 @@ namespace VirtualPiano
                         MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 127);
                         MusicController.outputDevice.SendNoteOn(Channel.Channel2, msg.Pitch, 127);                        
                     }
-
+                    //aangeslagen toets toevoegen aan lijst en starten van een nieuwe stopwatch
                     if (!KeyBinds.pitchlist.Contains(msg.Pitch))
                     {
                         KeyBinds.AddTone(msg.Pitch);
                     }
-
+                    //toets oplichten
                     string currentTone = msg.Pitch.ToString();
                     char n = currentTone.FirstOrDefault();
                     string resultString = Regex.Match(currentTone, @"\d+").Value;
@@ -131,12 +132,13 @@ namespace VirtualPiano
 
 
 
-
+            //functie die aangeroepen wordt wanneer een toets wordt losgelaten
             public void NoteOff(NoteOffMessage msg)
             {
 
                 lock (this)
                 {
+                    //stoppen met afspelen van een toon
                     MusicController.outputDevice.SendControlChange(Channel.Channel1, Controller.SustainPedal, 0);
                     MusicController.outputDevice.SendNoteOff(Channel.Channel2, msg.Pitch, 80);
 
@@ -145,6 +147,7 @@ namespace VirtualPiano
                     char n = currentTone.FirstOrDefault();
                     string resultString = Regex.Match(currentTone, @"\d+").Value;
                     int o = Int32.Parse(resultString);
+                    //stoppen met oplichten van toets en stoppen van een stopwatch om lengte van de aangeslagen toets te meten
                     if (currentTone.Length == 7)
                     {
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -171,7 +174,7 @@ namespace VirtualPiano
             private InputDevice inputDevice;
             private Dictionary<Pitch, bool> pitchesPressed;
         }
-
+        //openen van midi poort
         public static void Start(InputDevice input)
         {           
             InputDevice inputDevice = input;
@@ -182,7 +185,7 @@ namespace VirtualPiano
 
 
         }
-
+        //sluiten van midi poort
         public static void Stop(InputDevice input)
         {
             InputDevice inputDevice = input;

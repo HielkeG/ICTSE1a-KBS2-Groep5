@@ -47,7 +47,7 @@ namespace VirtualPiano.Control
 
 
 
-
+        //toon toevoegen aan lijst met aangeslagen toetsen en starten van een nieuwe stopwatch
         public static void AddTone(Pitch pitch)
         {
             if (StopwatchController.watch.IsRunning == false && MusicController.isRecording)
@@ -234,7 +234,7 @@ namespace VirtualPiano.Control
                     break;
             }
         }
-
+        //toon verwijderen uit lijst met aangeslagen toetsen en stopwatch stoppen
         public static void RemoveKey(string tone, Keys key, int octave)
         {
             Note n1 = new Note(tone, (ComposeView.CurrentOctave + octave));
@@ -251,7 +251,7 @@ namespace VirtualPiano.Control
             ComposeView.pkv1.Invalidate();
         }
 
-
+        //toon verwijderen uit lijst met aangeslagen toetsen en stopwatch stoppen
         public static void RemoveTone(Pitch pitch)
         {
             string tone = pitch.ToString();
